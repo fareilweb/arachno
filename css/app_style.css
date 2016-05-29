@@ -1,0 +1,62 @@
+/* ========================================
+ * General
+ * ======================================== */
+a,
+a:hover,
+a:focus,
+a:visited{
+    text-decoration: none;
+}
+
+
+
+/* ========================================
+ * Link & Buttons
+ * ======================================== */
+span.big-icon{
+    font-size: 18pt;
+}
+
+
+/* ========================================
+ * Page Preloader
+ * ======================================== */
+
+#page-preloader{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    text-align: center;
+}
+
+#page-preloader img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 196px;
+    height: auto;
+    margin-top: -48px;
+    margin-left: -48px;
+}
+
+
+/* ========================================
+ * Pagination
+ * ======================================== */
+.pagination{
+
+}
+.pagination a{
+
+}
+.pagination a span{
+    font-size: 32pt;
+}
+.pagination .current_page{
+    font-size: 16pt;
+}
