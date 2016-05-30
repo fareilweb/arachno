@@ -11,5 +11,5 @@ class Config
     public static $db_prefix    = 'acms_';
     public static $theme 	= 'default';
     public static $localization = 'it-IT';//'en-GB';
-    public static $owner_email	= 'info@fareilweb.com';
+    public static $owner_email	= 'user@provider.ext';
 }
