@@ -10,7 +10,7 @@ class Config
     public static $db_pass 	= '';
     public static $db_prefix    = 'as_';
     public static $theme 	= 'default';
-    public static $localization = 'it-IT';
+    public static $default_lang = 'it-IT';//'en-GB';
     public static $owner_email	= 'user@provider.ext';
     public static $paypal_fee 	= 3.5;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*=============================================================================*
  * Entry Point Of The App
  *=============================================================================*/
@@ -11,7 +12,16 @@ class App
 
     public function __construct()
     {
+
         Session::init();
+
+        
+        
+        /* Language / Localization =============================================*/
+        //TODO - Switch the language
+        require_once(Config::$abs_path.'/languages/'.Config::$default_lang.'.php');
+        
+        
         
         $url = $this->parseUrl();
         

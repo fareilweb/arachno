@@ -2,7 +2,7 @@
 /*==============================================================================*
  * Uncomment for debug: 
  *==============================================================================*/
-//ini_set('display_errors', TRUE);
+ini_set('display_errors', TRUE);
 
 
 /*==============================================================================*
@@ -19,4 +19,5 @@ require_once(Config::$abs_path.'/libs/php/Database.php');
 require_once(Config::$abs_path.'/models/Model.php');
 require_once(Config::$abs_path.'/controllers/Controller.php');
 require_once(Config::$abs_path.'/App.php');
+
 (new App());

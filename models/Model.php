@@ -7,7 +7,7 @@ class Model extends Database
         parent::__construct();
     }
     
-    public function debug($var='')
+    public function varDebug($var='')
     {
         echo "<pre>";
         print_r($var);

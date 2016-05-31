@@ -13,15 +13,16 @@ class Page extends Controller
         $page_model = $this->getModel('PageModel');
         $data = $page_model->getPageData( $page_slug );
         
-        //$this->debug($data);
-        
         // Menu Data and Menu View
         $menu_model = $this->getModel('MenuModel');
         $data->menu_data = $menu_model->selectMenuDataById(1);
-        $this->includeView('nav/main_menu_view');   
+        
+        // Included Views
+        $this->includeView('nav/main_menu');   
+        $this->includeView('nav/lang_menu');
         
         // Includes and then Main Page View
         $data->includes = $this->getIncludes();
-        $this->getView('pages/page_view', $data);
+        $this->getView('pages/page_default', $data);
     }
 }

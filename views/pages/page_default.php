@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-localization="<?=Session::get('localization') ? Session::get('localization') : Config::$localization;?>">
+<html lang="en" data-localization="<?=Session::get('lang') ? Session::get('lang') : Config::$default_lang;?>">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

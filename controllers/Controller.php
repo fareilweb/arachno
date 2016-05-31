@@ -36,7 +36,7 @@ class Controller
     }
 
     
-    public function debug($var='')
+    public function varDebug($var='')
     {
         echo "<pre>";
         print_r($var);

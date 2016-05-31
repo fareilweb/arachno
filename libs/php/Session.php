@@ -13,7 +13,7 @@ class Session
     // Initialize The Session
     public static function init() {
         if( self::$SessionStarted == FALSE ) {
-            if(@session_start()) {
+            if(session_start()) {
             	self::$SessionStarted = TRUE;	
             }else{
             	return FALSE;	
@@ -22,15 +22,15 @@ class Session
     }
 	
 	
-	// Get All the session array
-	public static function getSession()
-	{
-		if(self::$SessionStarted = TRUE){
-			return $_SESSION;	
-		}else{
-			return FALSE;		
-		}
-	}
+    // Get All the session array
+    public static function getSession()
+    {
+            if(self::$SessionStarted = TRUE){
+                    return $_SESSION;	
+            }else{
+                    return FALSE;		
+            }
+    }
     
     
     // Set a Variable
@@ -75,7 +75,7 @@ class Session
     {
         if(self::$SessionStarted == true)
         {
-            if(session_unset() AND @session_destroy()){
+            if(session_unset() AND session_destroy()){
             	self::$SessionStarted = false;
 				return TRUE;	
             }else{
