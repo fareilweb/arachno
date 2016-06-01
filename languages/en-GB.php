@@ -1,11 +1,10 @@
 <?php
 
 /*==============================================================================*
- * Lingua Italiana per Arachno CMS
+ * English Language for Arachno CMS
  *==============================================================================*/
 class Language
 {
-    public static $select_language = 'Seleziona la lingua';
-     
-           
-} 
+    public static $select_language = 'Select Language';
+            
+}
