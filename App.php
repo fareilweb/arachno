@@ -15,12 +15,14 @@ class App
 
         Session::init();
 
+
         /* Language / Localization =============================================*/
         if(!Session::get('lang')){
             require(Config::$abs_path.'/languages/'.Config::$default_lang.'.php');
         }else{
             require_once(Config::$abs_path.'/languages/'.Session::get('lang').'.php');
         }
+        
         
         $url = $this->parseUrl();
         

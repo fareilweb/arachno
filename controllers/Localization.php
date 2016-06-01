@@ -4,7 +4,7 @@
  * Languages and Localization Manager
  *=============================================================================*/
 
-class Lang extends Controller
+class Localization extends Controller
 {
     
     public function setLanguage()
