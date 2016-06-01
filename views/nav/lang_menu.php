@@ -11,8 +11,12 @@
         
         <div class="form-group">
             <select id="languageCode" name="language_code" class="form-control">
-                <option value="it-IT">Italiano (it-IT)</option>
-                <option value="en-GB">English (en-GB)</option>
+                <option value="it-IT" <?=Session::get('lang')==="it-IT" ? 'selected' : ''; ?>>
+                    Italiano (it-IT)
+                </option>
+                <option value="en-GB" <?=Session::get('lang')==="en-GB" ? 'selected' : ''; ?>>
+                    English (en-GB)
+                </option>                
             </select>
         </div>
     </form>

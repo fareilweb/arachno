@@ -58,6 +58,8 @@
     =========================================================================-->
     <div class="container-fluid">
         
+        <?=Language::$select_language?>
+        
         <!-- Page Heading -->
         <?=isset($data->page_heading) ? "<div class=\"page-heading\"><h2>".$data->page_heading."</h2></div>" : '';?>
 
