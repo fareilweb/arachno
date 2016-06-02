@@ -29,12 +29,14 @@ class Controller
         $view_path = Config::$abs_path.'/views/'.$view.'.php';
         array_push($this->includes, $view_path);
     }
-
-    
-    public function includeModule($module="", $position="")
+    public function includeView($view="", $position="")
     {
-        $module_path = Config::$abs_path.'/modules/'.$module.'.php';
-        array_push($this->modules, ['position'=>$position, 'path'=>$module_path]);
+        if($position!=""){
+            $view_path = Config::$abs_path.'/modules/'.$view.'.php';
+            array_push($this->includes, ['position'=>$position, 'path'=>$view_path]);
+        }else{
+            
+        }
     }
     
     public function getIncludes()
