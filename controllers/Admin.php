@@ -16,7 +16,7 @@ class Admin extends Controller
             
         }else{
            // User Logged and Admin. Access Granted
-           
+           echo "ciao";
         }
     }
     
