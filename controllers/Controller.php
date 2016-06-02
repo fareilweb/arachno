@@ -34,9 +34,8 @@ class Controller
     public function includeModule($module="", $position="")
     {
         $module_path = Config::$abs_path.'/modules/'.$module.'.php';
-        array_push(['position'=>$position, 'path'=>$module_path]);
+        array_push($this->modules, ['position'=>$position, 'path'=>$module_path]);
     }
-    
     
     public function getIncludes()
     {
