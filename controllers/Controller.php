@@ -8,6 +8,7 @@ class Controller
 {
     
     public $includes = [];
+    public $modules =[];
 
     
     public function getModel($model='')
@@ -23,12 +24,19 @@ class Controller
     }
 
     
-    public function includeView($view='')
+    public function includeView($view="")
     {
         $view_path = Config::$abs_path.'/views/'.$view.'.php';
         array_push($this->includes, $view_path);
     }
 
+    
+    public function includeModule($module="", $position="")
+    {
+        $module_path = Config::$abs_path.'/modules/'.$module.'.php';
+        array_push(['position'=>$position, 'path'=>$module_path]);
+    }
+    
     
     public function getIncludes()
     {
