@@ -11,12 +11,17 @@ class Admin extends Controller
         // Restrict access to Admin User Only
         if( Session::get('user_data')===FALSE || Session::get('user_data')->user_type !== "admin" )
         {
-           // Access Denied
-           echo Language::$access_denied;
-            
+           $data = new stdClass;
+           $this->includeView('user/login');
+           
+           
+           $data->includes = $this->getIncludes();
+           $this->getView('pages/page_default', $data);
+           
         }else{
            // User Logged and Admin. Access Granted
            echo "ciao";
+           
         }
     }
     

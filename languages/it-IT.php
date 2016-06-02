@@ -9,7 +9,6 @@ class Lang
     public static $select_language = 'Seleziona la lingua';
     
     
-    
     /* Admin Area ============================================================= */
     
     
