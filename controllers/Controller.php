@@ -24,8 +24,7 @@ class Controller
     }
 
     
-    public function includeView($view="")
-    {
+    public function includeView($view=""){
         $view_path = Config::$abs_path.'/views/'.$view.'.php';
         array_push($this->includes, $view_path);
     }
