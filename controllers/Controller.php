@@ -1,15 +1,13 @@
 <?php
 
 /*=============================================================================*
- * Main Controller of The App. All the created may be exstends this one
+ * Main Controller of The App. All the created may be extends this one
  *=============================================================================*/
 
 class Controller
 {
     
     public $includes = [];
-    public $modules =[];
-
     
     public function getModel($model='')
     {
@@ -24,19 +22,17 @@ class Controller
     }
 
     
-    public function includeView($view=""){
-        $view_path = Config::$abs_path.'/views/'.$view.'.php';
-        array_push($this->includes, $view_path);
-    }
     public function includeView($view="", $position="")
     {
         if($position!=""){
             $view_path = Config::$abs_path.'/modules/'.$view.'.php';
             array_push($this->includes, ['position'=>$position, 'path'=>$view_path]);
         }else{
-            
+            $view_path = Config::$abs_path.'/views/'.$view.'.php';
+            array_push($this->includes, $view_path);    
         }
     }
+    
     
     public function getIncludes()
     {
