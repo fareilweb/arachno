@@ -8,7 +8,7 @@ class App
 {
     protected $controller = 'Page'; // Default Controller (is possible to override)
     protected $method = 'index';    // Default Method (is possible to ovveride)
-    protected $params = [];         // Params container passer by the URL
+    protected $params = array();    // Params container passer by the URL
 
     public function __construct()
     {
@@ -60,17 +60,17 @@ class App
             }
 
             /* Get and Set params from the remaining $url vars */
-            $this->params = $url ? array_values($url) : [];
+            $this->params = $url ? array_values($url) : array();
 
             /* Call controller and method, and passing the parameters */
-            call_user_func_array([$this->controller, $this->method], [$this->params] );
+            call_user_func_array(array($this->controller, $this->method), array($this->params));
 
         /* If the $url is EMPTY | Default controller/methods with empty args */
         }else{
             
             require_once(dirname(__FILE__) . '/controllers/' . $this->controller . '.php');
             $this->controller = new $this->controller;
-            call_user_func_array([$this->controller, $this->method], [$this->params]);
+            call_user_func_array(array($this->controller, $this->method), array($this->params));
             
         }
 

@@ -16,7 +16,7 @@ class MenuModel extends Model
         $results = $this->queryExec($query);
         
         /*** 3. - Create and populate Array of Objects as Data Container ======*/
-        $data = [];
+        $data = array();
         while ($obj = $results->fetch_object()){
             array_push($data, $obj);
         }
