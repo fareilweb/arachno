@@ -47,28 +47,44 @@
 </head>
 <body>
     
-    <!--Page Preloader -->
+    <!--Page Preloader-->
     <div id="page-preloader">
         <img src="<?=Config::$web_path?>/views/pages/images/preloader.gif"/>
     </div>
-
     
-    <!--========================================================================
-        Main Content Go Here
-    =========================================================================-->
+    <!--========================================================================  
+    * General Includes - Usefull to include functions, classes
+    * or libs, that dont need to be included in a specific position
+    * ========================================================================-->
+    <?php 
+        if(isset($data->includes)) {                      
+            foreach ($data->includes as $include_key => $include_path)
+            {
+                if($include_key != "positions"){
+                    include_once($include_path);
+                }
+            }
+        }
+    ?>
+    
+    <!--========================================================================  
+    * Main Content of the Document Start Here
+    * ========================================================================-->
     <div class="container-fluid">
+        
+        <div>
+            <?=$this->getIncluded('content-top')?>
+        </div>
         
         <!-- Page Heading -->
         <?=isset($data->page_heading) ? "<div class=\"page-heading\"><h2>".$data->page_heading."</h2></div>" : '';?>
+        
+        <!-- Page Content -->
+        <p><?=isset($data->page_content) ? $data->page_content : '';?></p>
 
-        <!-- Page Includes -->
-        <?php if(isset($data->includes)){                      
-            foreach ($data->includes as $include_path){
-                include_once($include_path);
-            }
-        }?>
-
-        <?=isset($data->page_content) ? $data->page_content : '';?>
+        <p>
+            <?=$this->getIncluded('content-bottom')?>
+        </p>
 
     </div><!-- .container-fluid END -->
 
