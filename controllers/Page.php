@@ -6,6 +6,9 @@ class Page extends Controller
 {
     public function index( $params=array() )
     {
+        
+        //$this->varDebug($params);
+        
         // Init Data Container
         $this->data = new stdClass;
         

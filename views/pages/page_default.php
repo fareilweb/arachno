@@ -52,38 +52,15 @@
         <img src="<?=Config::$web_path?>/views/pages/images/preloader.gif"/>
     </div>
     
-    <!--========================================================================  
-    * General Includes - Usefull to include functions, classes
-    * or libs, that dont need to be included in a specific position
-    * ========================================================================-->
-    <?php 
-        if(isset($this->includes)) {                      
-            foreach ($this->includes as $include_key => $include_path)
-            {
-                if($include_key != "positions"){
-                    include_once($include_path);
-                }
-            }
-        }
         
-        /*if(isset($data->includes)) {                      
-            foreach ($data->includes as $include_key => $include_path)
-            {
-                if($include_key != "positions"){
-                    include_once($include_path);
-                }
-            }
-        }*/
-    ?>
-    
     <!--========================================================================  
     * Main Content of the Document Start Here
     * ========================================================================-->
     <div class="container-fluid">
-        
+        <?=$this->varDebug($this)?>
         <!-- Content Top Position -->
         <div class="content-top">
-            <?php $this->getInclude('content-top');?>
+            <?php $this->getInclude('content-top')?>
         </div>
         
         <!-- Page Heading -->
@@ -92,9 +69,10 @@
         <!-- Page Content -->
         <p><?=isset($data->page_content) ? $data->page_content : '';?></p>
 
-        <p>
+        <!-- Content Bottom Position -->
+        <div class="content-bottom">
             <?php $this->getInclude('content-bottom')?>
-        </p>
+        </div>
 
     </div><!-- .container-fluid END -->
 

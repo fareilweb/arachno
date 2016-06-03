@@ -9,10 +9,12 @@ class Controller
     
     public $includes = array();
     
+    
     public function __construct()
     {
         $this->includes['positions'] = array();
     }
+    
     
     public function getModel($model='')
     {
@@ -21,7 +23,7 @@ class Controller
     }
     
 
-    public function getView($view='', $data=NULL )
+    public function getView($view="", $data=NULL )
     {
         require_once(Config::$abs_path.'/views/'.$view.'.php');
     }
@@ -30,6 +32,7 @@ class Controller
     public function includeView($view="", $position="")
     {
         $view_path = Config::$abs_path.'/views/'.$view.'.php';
+        
         if($position!=""){
             $this->includes['positions'][$position] = $view_path;
         }else{
@@ -46,12 +49,6 @@ class Controller
         }
     }
     
-    
-    public function getIncludes()
-    {
-        return $this->includes;
-    }
-
     
     public function varDebug($var='')
     {
