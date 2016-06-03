@@ -40,8 +40,9 @@ class Controller
     
     public function getInclude($position="")
     {
-        if(isset($this->includes['positions'][$position])){
-            require_once( $path );    
+        if( isset($this->includes['positions'][$position]) )
+        {
+            require_once( $this->includes['positions'][$position] );    
         }
     }
     

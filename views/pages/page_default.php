@@ -57,14 +57,23 @@
     * or libs, that dont need to be included in a specific position
     * ========================================================================-->
     <?php 
-        if(isset($data->includes)) {                      
-            foreach ($data->includes as $include_key => $include_path)
+        if(isset($this->includes)) {                      
+            foreach ($this->includes as $include_key => $include_path)
             {
                 if($include_key != "positions"){
                     include_once($include_path);
                 }
             }
         }
+        
+        /*if(isset($data->includes)) {                      
+            foreach ($data->includes as $include_key => $include_path)
+            {
+                if($include_key != "positions"){
+                    include_once($include_path);
+                }
+            }
+        }*/
     ?>
     
     <!--========================================================================  
@@ -72,12 +81,13 @@
     * ========================================================================-->
     <div class="container-fluid">
         
-        <div>
+        <!-- Content Top Position -->
+        <div class="content-top">
             <?php $this->getInclude('content-top');?>
         </div>
         
         <!-- Page Heading -->
-        <?=isset($data->page_heading) ? "<div class=\"page-heading\"><h2>".$data->page_heading."</h2></div>" : '';?>
+        <?=isset($this->page_heading) ? "<div class=\"page-heading\"><h2>".$this->page_heading."</h2></div>" : '';?>
         
         <!-- Page Content -->
         <p><?=isset($data->page_content) ? $data->page_content : '';?></p>
