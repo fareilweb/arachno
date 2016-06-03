@@ -73,7 +73,7 @@
     <div class="container-fluid">
         
         <div>
-            <?=$this->getIncluded('content-top')?>
+            <?php $this->getInclude('content-top');?>
         </div>
         
         <!-- Page Heading -->
@@ -83,7 +83,7 @@
         <p><?=isset($data->page_content) ? $data->page_content : '';?></p>
 
         <p>
-            <?=$this->getIncluded('content-bottom')?>
+            <?php $this->getInclude('content-bottom')?>
         </p>
 
     </div><!-- .container-fluid END -->

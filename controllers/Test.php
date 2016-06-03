@@ -8,14 +8,11 @@ class Test extends Controller
         echo "It is a test";
     }
     
-    function other($args=[])
+    function other( $args=array() )
     {
         $data = new stdClass;
-        $data->page_heading = "Titolo pagina";
         
-        
-        
-        $this->getView('pages/page_view', $data);
+        $this->getView('pages/page_default', $data);
     }
     
 }

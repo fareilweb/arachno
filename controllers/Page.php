@@ -4,7 +4,7 @@
  *==============================================================================*/
 class Page extends Controller
 {
-    public function index( $params=[] )
+    public function index( $params=array() )
     {
         // Get Page Slug (the used identifier) from the params
         $page_slug = isset($params[0]) ? $params[0] : Config::$home_slug;
@@ -17,8 +17,6 @@ class Page extends Controller
         $menu_model = $this->getModel('MenuModel');
         $this->menu_data = $menu_model->selectMenuDataById(1);
             
-        //$this->varDebug($data);
-
         // Included Views
         $this->includeView('nav/main_menu', 'content-top');   
         $this->includeView('nav/lang_menu', 'content-bottom');

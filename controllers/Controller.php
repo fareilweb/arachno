@@ -7,11 +7,11 @@
 class Controller
 {
     
-    public $includes = [];
+    public $includes = array();
     
     public function __construct()
     {
-        $this->includes['positions'] = [];
+        $this->includes['positions'] = array();
     }
     
     public function getModel($model='')
@@ -38,9 +38,11 @@ class Controller
     }
     
     
-    public function getIncluded($position="")
+    public function getInclude($position="")
     {
-        require_once($this->includes['positions'][$position]);
+        if(isset($this->includes['positions'][$position])){
+            require_once( $path );    
+        }
     }
     
     
