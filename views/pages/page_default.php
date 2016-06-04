@@ -109,7 +109,7 @@
     </script-->
     
     <div class="debug">
-        <?=$this->varDebug($this)?>
+        <!--?=$this->varDebug($this)?-->
     </div>
 </body>
 </html>

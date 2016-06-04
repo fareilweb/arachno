@@ -4,7 +4,7 @@
 
 //var_dump($_SERVER);
 
-phpinfo();
+//phpinfo();
 
 //echo "CIAO";
 

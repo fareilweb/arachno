@@ -6,16 +6,12 @@
 
 class Controller
 {
-    
-    public $includes = array();
+    // Proprierties
+    public $includes = array("positions"=>array());
     public $menus = array();
     
-    public function __construct()
-    {
-        $this->includes['positions'] = array();
-    }
-    
-    
+   
+    // Get Model Method
     public function getModel($model='')
     {
         require_once(Config::$abs_path.'/models/'.$model.'.php');
@@ -23,12 +19,14 @@ class Controller
     }
     
 
+    // Get View Method
     public function getView($view="", $data=NULL )
     {
         require_once(Config::$abs_path.'/views/'.$view.'.php');
     }
 
     
+    // Include a View Method
     public function includeView($view="", $position="")
     {
         $view_path = Config::$abs_path.'/views/'.$view.'.php';
@@ -41,10 +39,12 @@ class Controller
     }
     
     
+    // 
     public function getInclude($position="")
     {
         if( isset($this->includes['positions'][$position]) )
         {
+            //echo $this->includes['positions'][$position];
             require_once( $this->includes['positions'][$position] );    
         }
     }
