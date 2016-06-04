@@ -1,8 +1,8 @@
 <?php
 class Config
 {
-    public static $abs_path  	= 'D:\xampp\htdocs\arachnocms\app';
-    public static $web_path  	= 'http://localhost/arachnocms/app';
+    public static $abs_path  	= 'D:\xampp\htdocs\arachno';
+    public static $web_path  	= 'http://localhost/arachno';
     public static $home_slug 	= 'home';
     public static $db_host 	    = 'localhost';
     public static $db_name 	    = 'arachnocms';
