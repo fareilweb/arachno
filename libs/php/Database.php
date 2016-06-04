@@ -98,8 +98,8 @@ class Database
             $data->num_rows = $result->num_rows;
         }
 
-        $result->free();
-        $this->mysqli->close();
+        //$result->free();
+        //$this->mysqli->close();
 
         return $data;
     }

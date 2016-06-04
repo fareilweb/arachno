@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
-    <meta name="title" content="<?php if(isset($data->page_title)){echo $data->page_title;} ?>"/>
-    <meta name="description" content="<?php if(isset($data->page_meta_description)){echo $data->page_meta_description;} ?>"/>
-    <meta name="keywords" content="<?php if(isset($data->page_meta_keywords)){echo $data->page_meta_keywords;} ?>"/>
+    <meta name="title" content="<?php if(isset($this->page_data->page_title)){echo $this->page_data->page_title;} ?>"/>
+    <meta name="description" content="<?php if(isset($this->page_data->page_meta_description)){echo $this->page_data->page_meta_description;} ?>"/>
+    <meta name="keywords" content="<?php if(isset($this->page_data->page_meta_keywords)){echo $this->page_data->page_meta_keywords;} ?>"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,7 +57,6 @@
     * Main Content of the Document Start Here
     * ========================================================================-->
     <div class="container-fluid">
-        <?=$this->varDebug($this)?>
         <!-- Content Top Position -->
         <div class="content-top">
             <?php $this->getInclude('content-top')?>
@@ -67,7 +66,7 @@
         <?=isset($this->page_heading) ? "<div class=\"page-heading\"><h2>".$this->page_heading."</h2></div>" : '';?>
         
         <!-- Page Content -->
-        <p><?=isset($data->page_content) ? $data->page_content : '';?></p>
+        <p><?=isset($this->page_data->page_content) ? $this->page_data->page_content : '';?></p>
 
         <!-- Content Bottom Position -->
         <div class="content-bottom">
@@ -109,5 +108,8 @@
     ga('send', 'pageview');
     </script-->
     
+    <div class="debug">
+        <?=$this->varDebug($this)?>
+    </div>
 </body>
 </html>

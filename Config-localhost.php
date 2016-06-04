@@ -5,7 +5,7 @@ class Config
     public static $web_path  	= 'http://localhost/arachno';
     public static $home_slug 	= 'home';
     public static $db_host 	    = 'localhost';
-    public static $db_name 	    = 'arachnocms';
+    public static $db_name 	    = 'arachno';
     public static $db_user 	    = 'root';
     public static $db_pass 	    = 'luca1981';
     public static $db_prefix    = 'acms_';

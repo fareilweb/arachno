@@ -8,7 +8,7 @@ class Controller
 {
     
     public $includes = array();
-    
+    public $menus = array();
     
     public function __construct()
     {

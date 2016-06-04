@@ -22,8 +22,8 @@ class MenuModel extends Model
         }
 
         /*** 4. - Free/Close (clean memory) ===================================*/
-        $results->free();
-        $this->mysqli->close();
+        //$results->free();
+        //$this->mysqli->close();
         
         /*** 5. - Return Data to Caller =======================================*/
         return $data;

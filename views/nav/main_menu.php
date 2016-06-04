@@ -1,13 +1,13 @@
 <div class="main_menu">
     <div class="main_menu_wrapper">
-        <?php if(isset($this->menu_data)): ?>
+        <?php if(isset($this->menus["main_menu"])): ?>
         
             <h3>
-                <?=isset($this->menu_data[0]->menu_title) ? $this->menu_data[0]->menu_title : '';?>
+                <?=isset($this->menus["main_menu"][0]->menu_title) ? $this->menus["main_menu"][0]->menu_title : '';?>
             </h3>
         
             <ul>
-                <?php foreach($this->menu_data as $menu_link): ?>
+                <?php foreach($this->menus["main_menu"] as $menu_link): ?>
                     <?php
                         $uri = Config::$web_path;
                         if(isset($menu_link->link_rel_uri)){
@@ -19,6 +19,7 @@
                     <li>
                         <a 
                             href = "<?=$uri?>" 
+                            target = "_blank"
                             title= "<?=$menu_link->link_title?>" 
                             alt  = "<?=$menu_link->link_title?>"
                         >
