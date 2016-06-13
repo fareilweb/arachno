@@ -16,7 +16,6 @@ class Page extends Controller
         $page_model = $this->getModel('PageModel');
         $this->page_data = $page_model->getPageData( $page_slug );
         
-        
         // Menu Data and Menu View
         $menu_model = $this->getModel('MenuModel');
         $this->menus["main_menu"] = $menu_model->selectMenuDataById(1);
