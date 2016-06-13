@@ -18,10 +18,10 @@ class AController extends Controller
         $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
         
         // Main Menu View
-        $this->includeView('nav/main_menu', 'content-top');
+        $this->includeView('nav/main_menu', 'header-content');   
         
-        // Lang View
-        $this->includeView('nav/lang_menu', 'content-bottom');        
+        // Language
+        $this->includeView('nav/lang_menu', 'footer-content');    
         
         // Page Default View
         $this->getView('pages/page_default');

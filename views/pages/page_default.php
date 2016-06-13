@@ -47,34 +47,57 @@
 </head>
 <body>
     
-    <!--Page Preloader-->
+    <!-- Page Preloader -->
     <div id="page-preloader">
         <img src="<?=Config::$web_path?>/views/pages/images/preloader.gif"/>
     </div>
     
-        
-    <!--========================================================================  
-    * Main Content of the Document Start Here
-    * ========================================================================-->
+    
+    <!-- Header -->
     <div class="container-fluid">
+        <header class="row">
+            <div class="header-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <?php $this->getInclude('header-content')?>
+            </div>
+        </header>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+        
         <!-- Content Top Position -->
         <div class="content-top">
             <?php $this->getInclude('content-top')?>
         </div>
         
         <!-- Page Heading -->
-        <?=isset($this->page_heading) ? "<div class=\"page-heading\"><h2>".$this->page_heading."</h2></div>" : '';?>
+        <div class="page-title">
+            <h2><?=isset($this->page_data->page_title) ? $this->page_data->page_title : '';?></h2>
+        </div>
         
         <!-- Page Content -->
-        <p><?=isset($this->page_data->page_content) ? $this->page_data->page_content : '';?></p>
+        <div class="main-content">
+            <?php $this->getInclude('main-content')?>
+            <?=isset($this->page_data->page_content) ? $this->page_data->page_content : '';?>
+        </div>
 
         <!-- Content Bottom Position -->
         <div class="content-bottom">
             <?php $this->getInclude('content-bottom')?>
         </div>
 
-    </div><!-- .container-fluid END -->
+    </div><!-- Main Content END -->
 
+    
+    <!-- Footer -->
+    <div class="container-fluid">
+        <footer class="row">
+            <div class="footer-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <?php $this->getInclude('footer-content')?>
+            </div>
+        </footer>
+    </div>
+    
     
     <!--========================================================================
         APP Scripts (JS/PHP)
@@ -108,8 +131,11 @@
     ga('send', 'pageview');
     </script-->
     
+    
+    <!-- Debug -->
     <div class="debug">
         <!--?=$this->varDebug($this)?-->
     </div>
+    
 </body>
 </html>

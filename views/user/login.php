@@ -13,9 +13,10 @@
     <form role="form" action="<?=Config::$web_path?>/User/login" method="post">
 
         <input type="hidden" name="redirect"
-        value="<?php if(isset($data->args[0]) && $data->args[0]=='redirect')
-                        foreach($data->args as $key=>$value){ if($key>0) echo '/'.$value; } 
-                ?>" />
+            value="<?php if(isset($data->args[0]) && $data->args[0]=='redirect'){
+                            foreach($data->args as $key=>$value){ if($key>0) echo '/'.$value; } 
+                         }
+                    ?>" />
 
         <div class="row">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">

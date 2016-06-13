@@ -14,13 +14,27 @@ html, body{
  *=============================================================================*/
 
 .container-fluid{
-    max-width: 1200px;
+
 }
 .main-logo{
 
 }
-.page-heading{
-    margin: 24px 0 24px 0;
+.page-title{
+    
+}
+
+
+
+/*=============================================================================*
+ * Header
+ *=============================================================================*/
+header{
+    margin-top:0;
+    margin-bottom: 24px;
+    background: #D5DDE5;
+}
+header .header-content{
+    
 }
 
 
@@ -63,6 +77,21 @@ div.top-menu ul li{
 }
 div.top-menu ul li a{
 
+}
+
+
+
+/*=============================================================================*
+ * Footer
+ *=============================================================================*/
+footer{
+    min-height: 164px;
+    margin-top: 24px;
+    margin-bottom: 0;
+    background: #EBEBEB;
+}
+footer .footer-content{
+    
 }
 
 
