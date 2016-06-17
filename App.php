@@ -23,7 +23,6 @@ class App
             require_once(Config::$abs_path.'/languages/'.Session::get('lang').'.php');
         }
         
-        
         $url = $this->parseUrl();
         
         if($url)    

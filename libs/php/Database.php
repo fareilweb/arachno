@@ -65,7 +65,7 @@ class Database
         }
 
         $data = $result->fetch_assoc();
-
+        
         $result->free();
         $this->mysqli->close();
 
