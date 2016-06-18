@@ -2,13 +2,11 @@
 
 //echo __DIR__;
 
+//$input = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
+
 echo "<pre>";
-    //print_r($_SERVER);
+//print_r($input);
 echo "</pre>";
-
-$input = filter_input(INPUT_SERVER, "HTTP_HOST");
-
-echo("INPUT: ".$input);
 
 //echo function_exists("filter_input");
 

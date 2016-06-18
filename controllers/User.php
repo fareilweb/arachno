@@ -3,7 +3,6 @@
 class User extends Controller
 {
     
-    
     public function index()
     {
         // Default
@@ -11,8 +10,10 @@ class User extends Controller
     }
     
     
-    public function login()
+    public function login($args)
     {
+        $this->args = $args;
+        
         // Main Menu
         $menu_model = $this->getModel('MenuModel');
         $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
@@ -47,9 +48,15 @@ class User extends Controller
     }
     
     
+    public function profile()
+    {
+        echo "Profile";    
+    }
+    
+    
     public function restore()
     {
-        
+        echo "Restore";
     }
     
     
