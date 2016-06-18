@@ -19,29 +19,36 @@
                     ?>" />
 
         <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <label for="user_email">E-Mail</label>
                     <input type="email" id="user_email" name="user_email" class="form-control" placeholder="E-Mail"/>
                 </div>
             </div>
 
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
                     <label for="user_password">Password</label>
                     <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Password"/>
                 </div>
             </div>
 
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="text-align: center;">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
                 <div class="form-group" style="margin-bottom: 3px;">
                     <label><br/></label>
-                    <button type="submit" class="form-control btn-warning">
+                    <button type="submit" class="form-control btn btn-default">
                         <span class="glyphicon glyphicon-log-in"></span> Accedi
                     </button>
                 </div>
-                <a href="<?=Config::$web_path?>/User/register" target="_self">Non ancora registrato? <span class="glyphicon glyphicon-user"></span></a>
             </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <div class="form-group" style="margin-bottom: 3px;">
+                    <label><br/></label>
+                    <a href="<?=Config::$web_path?>/User/register" target="_self">Non ancora registrato? <span class="glyphicon glyphicon-user"></span></a>
+                </div>
+            </div>
+            
         </div>
         
     </form>

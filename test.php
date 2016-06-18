@@ -2,7 +2,15 @@
 
 //echo __DIR__;
 
-//var_dump($_SERVER);
+echo "<pre>";
+    //print_r($_SERVER);
+echo "</pre>";
+
+$input = filter_input(INPUT_SERVER, "HTTP_HOST");
+
+echo("INPUT: ".$input);
+
+//echo function_exists("filter_input");
 
 //phpinfo();
 
