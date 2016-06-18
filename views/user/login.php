@@ -13,7 +13,7 @@
 <!-- =========================================================================== 
     Utente non autenticato, mostra il form di accesso 
 ============================================================================ -->
-<form role="form" action="<?=Config::$web_path?>/User/login" method="post">
+<form role="form" action="<?=Config::$web_path?>/User/loginProcess" method="post">
 <!-- Hidden Data -->
     <input 
         type="hidden" 
