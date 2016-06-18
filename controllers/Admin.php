@@ -8,15 +8,21 @@ class Admin extends Controller
 {
     
     function __construct()
-    {
-        // Restrict access to Admin User Only
-        if( Session::get('user_data')===FALSE || Session::get('user_data')->user_type !== "admin" )
-        {
-           header('location: ' . Config::$web_path . '/User/login/redirect/Admin');
+    {   // Auth And Privilege Check
+        if(empty(Session::get('auth')) || !Session::get('auth')){
+            // redirect to login or exit
+           if(!header('location: ' . Config::$web_path . '/User/login/redirect/Admin')){
+               exit();
+           }
         }else{
-           // User Logged and Admin. Access Granted
-           echo "ciao";
-           
+            // User Logged
+            $user = $this->getModel('UserModel');
+            $user->loadUserById( Session::get('user_data')['user_id'] );
+            // If User iS not Admin exit
+            if($user->user_type!=="admin"){
+                echo Lang::$access_denied;
+                exit();
+            }
         }
     }
     
@@ -24,9 +30,17 @@ class Admin extends Controller
     {    
         $data = new stdClass;
         $this->includeView('user/login');
-        $data->includes = $this->getIncludes();
+        
+        // Views Includes
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('nav/lang_menu', 'footer-content'); 
+        
+        //
         $this->getView('pages/page_default', $data);
     }
+    
+    
     
     
 }

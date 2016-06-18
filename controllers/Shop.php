@@ -6,7 +6,6 @@ class Shop extends Controller
         $this->showProducts($args);
     }
     
- 
     public function showItems($args)
     {
         // Get Args
@@ -32,15 +31,17 @@ class Shop extends Controller
         $this->args = $args;
         
         // Elaborate Content
-        //TO DO - Get Item Data By The MOdel
-        //$item_model = $this->getModel('ShopItemModel');
-       
+        if(isset($args[0]) && is_numeric($args[0]))
+        {
+            $this->item = $this->getModel('ShopItemModel');
+            $this->item->loadById($args[0]);
+        }
         
         // Views
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('nav/lang_menu', 'footer-content');
-        $this->includeView('shop/items', 'main-content');       
+        $this->includeView('shop/item', 'main-content');       
         $this->getView('pages/page_default');
     }
  

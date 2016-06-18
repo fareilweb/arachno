@@ -12,8 +12,16 @@ class Lang
     /* Admin Area ============================================================= */
     
     
-    /* Generale =============================================================== */
+    /* General ================================================================ */
+    public static $welcome = 'Benvenuto';
+    public static $goodbye = 'A Presto';
     public static $access_denied = 'Accesso Negato';
     
+    /* Error Messages ========================================================= */
+    public static $err_login = "Accesso Fallito";
+    public static $err_logout = "Disconnessione Fallita";
+    
+    /* Shop =================================================================== */
+    public static $products_list_title = "Prodotti";
     
 } 

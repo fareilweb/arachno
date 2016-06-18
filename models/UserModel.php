@@ -1,7 +1,8 @@
 <?php
 class UserModel extends Model
 {
-    // User Proprerties
+    
+    // Class Proprerties
     private $user_id                = NULL;
     private $user_reg_date          = NULL;
     private $user_activation        = NULL;
@@ -30,12 +31,38 @@ class UserModel extends Model
     }
     
     
-    // Load User Data By ID
+    // Load User Data By ID ====================================================
     public function loadUserById($user_id=NULL)
     {
         if($user_id!==NULL)
         {
             $query = "SELECT * FROM #_users WHERE user_id = $user_id";
+            $user_data = $this->getObjectData($query);
+            if(!$user_data){
+                return FALSE;
+            }else{
+                $this->user_id              = $user_data->user_id;
+                $this->user_reg_date        = $user_data->user_reg_date;
+                $this->user_activation      = $user_data->user_activation;
+                $this->hash_user_activation = $user_data->hash_user_activation;
+                $this->user_type            = $user_data->user_type;
+                $this->user_name            = $user_data->user_name;
+                $this->user_surname         = $user_data->user_surname;
+                $this->user_email           = $user_data->user_email;
+                $this->user_phone           = $user_data->user_phone;
+                $this->user_mobile_phone    = $user_data->user_mobile_phone;
+                $this->user_password        = $user_data->user_password;
+            }
+        }
+    }
+    
+    
+    // Load User Data By EMail =================================================
+    public function loadUserByEmail($user_email=NULL)
+    {
+        if($user_email!==NULL)
+        {
+            $query = "SELECT * FROM #_users WHERE user_email = '$user_email'";
             $user_data = $this->getObjectData($query);
             if(!$user_data){
                 return FALSE;

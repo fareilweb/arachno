@@ -6,13 +6,26 @@ html, body{
     color: #222;
     /*background: url("../images/bg-pattern.png");*/
 }
+a{
+    color: #7ecff4;
+}
+
+
+/*=============================================================================*
+ * Notices Box
+ *=============================================================================*/
+#notice{
+    background: #7ecff4;
+    color: #fcfcfc;
+    font-size: 14pt;
+    text-align: center;
+}
 
 
 
 /*=============================================================================*
  * Page Content 
  *=============================================================================*/
-
 .container-fluid{
 
 }
@@ -29,8 +42,7 @@ html, body{
  * Header
  *=============================================================================*/
 header{
-    margin-top:0;
-    margin-bottom: 24px;
+    
 }
 header .header-content{
     
@@ -39,18 +51,8 @@ header .header-content{
 
 
 /*=============================================================================*
- * Admin Area
- *=============================================================================*/
-.dashboard_view .dashboard_link{
-    padding: 0 6px;
-}
-
-
-
-/*=============================================================================*
  * Forms ELements
  *=============================================================================*/
-
 input[type='radio']{
     width: 20px;
     height: 20px;
@@ -64,18 +66,21 @@ select, option{
 /*=============================================================================*
  * Menus/Navigation
  *=============================================================================*/
-div.top-menu{
+#navbar ul.nav{
 
 }
-div.top-menu ul{
-    list-style: none;
+#navbar ul.nav{
+    
 }
-div.top-menu ul li{
-    float: left;
-    margin: 6px 12px;
+#navbar ul.nav li{
+    
 }
-div.top-menu ul li a{
-
+#navbar ul.nav li a{
+ 
+}
+#navbar ul.nav li a:hover{
+    background: #7ecff4;
+    color: #ffffff;
 }
 
 
@@ -205,9 +210,6 @@ td.text-right {
 }
 
 
-
-
-
 /* ===========================================
  * Bootstrap Media Queries  ==================
  * ======================================== */
@@ -218,12 +220,10 @@ td.text-right {
 }
 
 
-
 /* Medium Devices, Desktops */
 @media only screen and (min-width : 992px) {
 
 }
-
 
 
 /* Large Devices, Wide Screens */

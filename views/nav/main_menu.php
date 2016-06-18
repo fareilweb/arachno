@@ -25,7 +25,7 @@
                             </a>
                         </li>
                     <?php endforeach; ?>
-                       
+                    
                       <!--li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -39,36 +39,25 @@
                         </ul>
                       </li-->
                     </ul>
-                    <!--ul class="nav navbar-nav navbar-right">
-                      <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                      <li><a href="../navbar-static-top/">Static top</a></li>
-                      <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-                    </ul-->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <label style="margin: 18px 8px auto 8px;">
+                                Lingua
+                            </label>
+                        </li>
+                        <li>
+                            <p>
+                                <?php include(__DIR__ . '/lang_menu.php');?>
+                            </p>
+                        </li>
+                    </ul>
                 </div>
-
-        
+   
             <!--h3>
                 <?=isset($this->menus["main_menu"][0]->menu_title) ? $this->menus["main_menu"][0]->menu_title : '';?>
             </h3-->
-
-            <ul>
-                
-            </ul>
         
         <?php endif;?>
             
     </div>
 </div>
-
-<!--
-[0] => stdClass Object
-(
-    [menu_id] => 1
-    [menu_title] => Menu Principale
-    [link_id] => 1
-    [fk_menu_id] => 1
-    [link_title] => Home Page
-    [link_rel_uri] => /
-    [link_abs_uri] => NULL
-)
--->
