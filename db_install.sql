@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2016 at 05:28 PM
+-- Generation Time: Jun 21, 2016 at 11:06 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -31,19 +31,20 @@ CREATE TABLE `acms_menu_items` (
   `fk_menu_id` int(11) NOT NULL,
   `link_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `link_rel_uri` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `link_abs_uri` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `link_abs_uri` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `fk_lang_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `acms_menu_items`
 --
 
-INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`) VALUES
-(1, 1, 'Home', '/', 'NULL'),
-(2, 1, 'Test Page', '/test-page', ''),
-(3, 1, 'Shop', '/Shop/showItems/all', ''),
-(5, 1, 'Accesso', '/User/login', ''),
-(6, 1, 'Registrati', '/User/register', '');
+INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
+(1, 1, 'Home', '/', 'NULL', 1),
+(2, 1, 'Test Page', '/test-page', '', 1),
+(3, 1, 'Shop', '/Shop/showItems/all', '', 1),
+(5, 1, 'Accesso', '/User/login', '', 1),
+(6, 1, 'Registrati', '/User/register', '', 1);
 
 -- --------------------------------------------------------
 
@@ -53,15 +54,16 @@ INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_
 
 CREATE TABLE `acms_menu_list` (
   `menu_id` int(11) NOT NULL,
-  `menu_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `menu_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `fk_lang_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `acms_menu_list`
 --
 
-INSERT INTO `acms_menu_list` (`menu_id`, `menu_title`) VALUES
-(1, 'Menu Principale');
+INSERT INTO `acms_menu_list` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
+(1, 'Menu Principale', 1);
 
 -- --------------------------------------------------------
 
@@ -76,16 +78,17 @@ CREATE TABLE `acms_pages` (
   `page_title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `page_content` text COLLATE utf8_unicode_ci NOT NULL,
   `page_meta_description` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `page_meta_keywords` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `page_meta_keywords` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `fk_lang_id(11)` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `acms_pages`
 --
 
-INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_title`, `page_content`, `page_meta_description`, `page_meta_keywords`) VALUES
-(1, 'home', 1, 'Home Page', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget ipsum sit amet mauris fringilla hendrerit. Mauris convallis luctus convallis. Nam convallis felis in arcu porta rutrum. Maecenas consequat elementum tellus, eu volutpat ante elementum ac. Integer vestibulum justo a quam fermentum, id maximus erat lacinia. Morbi convallis, nisi id vehicula faucibus, diam lorem commodo elit, vel feugiat tellus urna in est. Sed sit amet euismod felis, a lobortis sem. Curabitur vel erat velit. Ut dolor nisi, dapibus nec massa eget, pulvinar aliquet mi.  Aliquam tincidunt id dolor in tristique. Sed posuere et mauris in auctor. Pellentesque nulla est, bibendum egestas mauris egestas, aliquam hendrerit felis. Etiam maximus porttitor neque, eu cursus velit tempus fringilla. Morbi ultricies enim non ipsum cursus, et mattis diam suscipit. Aenean in auctor leo. Nulla gravida tempor dolor ac condimentum. Aliquam erat volutpat. Mauris odio augue, fringilla sit amet aliquet sed, rutrum non mauris.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'Lorem ipsum, dolor sit amet, consectetur, adipiscing'),
-(2, 'test-page', 1, 'Test Page Title', 'Test Page - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget ipsum sit amet mauris fringilla hendrerit. Mauris convallis luctus convallis. Nam convallis felis in arcu porta rutrum. Maecenas consequat elementum tellus, eu volutpat ante elementum ac. Integer vestibulum justo a quam fermentum, id maximus erat lacinia. Morbi convallis, nisi id vehicula faucibus, diam lorem commodo elit, vel feugiat tellus urna in est. Sed sit amet euismod felis, a lobortis sem. Curabitur vel erat velit. Ut dolor nisi, dapibus nec massa eget, pulvinar aliquet mi. Aliquam tincidunt id dolor in tristique. Sed posuere et mauris in auctor. Pellentesque nulla est, bibendum egestas mauris egestas, aliquam hendrerit felis. Etiam maximus porttitor neque, eu cursus velit tempus fringilla. Morbi ultricies enim non ipsum cursus, et mattis diam suscipit. Aenean in auctor leo. Nulla gravida tempor dolor ac condimentum. Aliquam erat volutpat. Mauris odio augue, fringilla sit amet aliquet sed, rutrum non mauris.', 'Test Page - Lorem ipsum dolor sit amet, consectetur adipiscing elit. ', 'Test Page, Lorem ipsum dolor sit amet, consectetur adipiscing elit. ');
+INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_title`, `page_content`, `page_meta_description`, `page_meta_keywords`, `fk_lang_id(11)`) VALUES
+(1, 'home', 1, 'Home Page', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget ipsum sit amet mauris fringilla hendrerit. Mauris convallis luctus convallis. Nam convallis felis in arcu porta rutrum. Maecenas consequat elementum tellus, eu volutpat ante elementum ac. Integer vestibulum justo a quam fermentum, id maximus erat lacinia. Morbi convallis, nisi id vehicula faucibus, diam lorem commodo elit, vel feugiat tellus urna in est. Sed sit amet euismod felis, a lobortis sem. Curabitur vel erat velit. Ut dolor nisi, dapibus nec massa eget, pulvinar aliquet mi.  Aliquam tincidunt id dolor in tristique. Sed posuere et mauris in auctor. Pellentesque nulla est, bibendum egestas mauris egestas, aliquam hendrerit felis. Etiam maximus porttitor neque, eu cursus velit tempus fringilla. Morbi ultricies enim non ipsum cursus, et mattis diam suscipit. Aenean in auctor leo. Nulla gravida tempor dolor ac condimentum. Aliquam erat volutpat. Mauris odio augue, fringilla sit amet aliquet sed, rutrum non mauris.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', 'Lorem ipsum, dolor sit amet, consectetur, adipiscing', 1),
+(2, 'test-page', 1, 'Test Page Title', 'Test Page - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget ipsum sit amet mauris fringilla hendrerit. Mauris convallis luctus convallis. Nam convallis felis in arcu porta rutrum. Maecenas consequat elementum tellus, eu volutpat ante elementum ac. Integer vestibulum justo a quam fermentum, id maximus erat lacinia. Morbi convallis, nisi id vehicula faucibus, diam lorem commodo elit, vel feugiat tellus urna in est. Sed sit amet euismod felis, a lobortis sem. Curabitur vel erat velit. Ut dolor nisi, dapibus nec massa eget, pulvinar aliquet mi. Aliquam tincidunt id dolor in tristique. Sed posuere et mauris in auctor. Pellentesque nulla est, bibendum egestas mauris egestas, aliquam hendrerit felis. Etiam maximus porttitor neque, eu cursus velit tempus fringilla. Morbi ultricies enim non ipsum cursus, et mattis diam suscipit. Aenean in auctor leo. Nulla gravida tempor dolor ac condimentum. Aliquam erat volutpat. Mauris odio augue, fringilla sit amet aliquet sed, rutrum non mauris.', 'Test Page - Lorem ipsum dolor sit amet, consectetur adipiscing elit. ', 'Test Page, Lorem ipsum dolor sit amet, consectetur adipiscing elit. ', 1);
 
 -- --------------------------------------------------------
 
@@ -96,15 +99,16 @@ INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_tit
 CREATE TABLE `acms_shop_categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(80) DEFAULT NULL,
-  `category_status` tinyint(1) DEFAULT '1'
+  `category_status` tinyint(1) DEFAULT '1',
+  `fk_lang_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acms_shop_categories`
 --
 
-INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`) VALUES
-(1, 'Categoria Oggetti 01', 1);
+INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `fk_lang_id`) VALUES
+(1, 'Categoria Oggetti 01', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -133,22 +137,16 @@ CREATE TABLE `acms_shop_items` (
   `fk_category_id` int(11) DEFAULT NULL,
   `item_status` tinyint(1) DEFAULT '0',
   `item_stock` int(11) DEFAULT NULL,
-  `item_price` varchar(45) DEFAULT NULL,
+  `item_price` float DEFAULT NULL,
   `item_title` varchar(100) DEFAULT NULL,
   `item_weight` varchar(45) DEFAULT NULL,
   `item_color` varchar(45) DEFAULT NULL,
   `item_short_desc` varchar(100) DEFAULT NULL,
   `item_long_desc` text,
   `item_meta_keywords` varchar(150) DEFAULT NULL,
-  `item_meta_description` varchar(150) DEFAULT NULL
+  `item_meta_description` varchar(150) DEFAULT NULL,
+  `fk_lang_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `acms_shop_items`
---
-
-INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_color`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(1, 'ABC001', 1, 1, 100, '100,123', 'Titolo dell''Oggetto', '10kg', 'Rosso', 'Breve descrizione dell''oggetto', 'Descrizione estesa dell''oggetto', 'parole, chiave, relative, all, oggetto', 'Meta descrizione dell''oggetto');
 
 -- --------------------------------------------------------
 
@@ -167,15 +165,37 @@ CREATE TABLE `acms_users` (
   `user_email` varchar(32) DEFAULT NULL,
   `user_phone` varchar(16) DEFAULT NULL,
   `user_mobile_phone` varchar(16) DEFAULT NULL,
-  `user_password` varchar(255) DEFAULT NULL
+  `user_password` varchar(255) DEFAULT NULL,
+  `fk_lang_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acms_users`
 --
 
-INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`) VALUES
-(1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$2y$12$6N54XI8ZCJxL1uG7iI/dtu0p4IPPMMCyQVP1ns0LCAyFR1BRvlmZO');
+INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
+(1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$2y$12$6N54XI8ZCJxL1uG7iI/dtu0p4IPPMMCyQVP1ns0LCAyFR1BRvlmZO', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acsm_languages`
+--
+
+CREATE TABLE `acsm_languages` (
+  `lang_id` int(11) NOT NULL,
+  `lang_iso_code` varchar(4) DEFAULT NULL,
+  `lang_internal_code` varchar(8) DEFAULT NULL,
+  `lang_name` varchar(80) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acsm_languages`
+--
+
+INSERT INTO `acsm_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, `lang_name`) VALUES
+(1, 'it', 'it-IT', 'Italiano'),
+(2, 'en', 'en-GB', 'English');
 
 --
 -- Indexes for dumped tables
@@ -185,25 +205,29 @@ INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_u
 -- Indexes for table `acms_menu_items`
 --
 ALTER TABLE `acms_menu_items`
-  ADD PRIMARY KEY (`link_id`);
+  ADD PRIMARY KEY (`link_id`),
+  ADD KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
 -- Indexes for table `acms_menu_list`
 --
 ALTER TABLE `acms_menu_list`
-  ADD PRIMARY KEY (`menu_id`);
+  ADD PRIMARY KEY (`menu_id`),
+  ADD KEY `fk_acms_menu_list_acsm_languages1_idx` (`fk_lang_id`);
 
 --
 -- Indexes for table `acms_pages`
 --
 ALTER TABLE `acms_pages`
-  ADD PRIMARY KEY (`page_id`,`page_slug`);
+  ADD PRIMARY KEY (`page_id`,`page_slug`),
+  ADD KEY `fk_acms_pages_acsm_languages1_idx` (`fk_lang_id(11)`);
 
 --
 -- Indexes for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`),
+  ADD KEY `fk_acms_shop_categories_acsm_languages1_idx` (`fk_lang_id`);
 
 --
 -- Indexes for table `acms_shop_images`
@@ -217,13 +241,21 @@ ALTER TABLE `acms_shop_images`
 --
 ALTER TABLE `acms_shop_items`
   ADD PRIMARY KEY (`item_id`),
-  ADD KEY `fk_shop_items_shop_categories_idx` (`fk_category_id`);
+  ADD KEY `fk_shop_items_shop_categories_idx` (`fk_category_id`),
+  ADD KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
 -- Indexes for table `acms_users`
 --
 ALTER TABLE `acms_users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `fk_acms_users_acsm_languages1_idx` (`fk_lang_id`);
+
+--
+-- Indexes for table `acsm_languages`
+--
+ALTER TABLE `acsm_languages`
+  ADD PRIMARY KEY (`lang_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -258,15 +290,26 @@ ALTER TABLE `acms_shop_images`
 -- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
+-- AUTO_INCREMENT for table `acsm_languages`
+--
+ALTER TABLE `acsm_languages`
+  MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `acms_shop_categories`
+--
+ALTER TABLE `acms_shop_categories`
+  ADD CONSTRAINT `fk_acms_shop_categories_acsm_languages1` FOREIGN KEY (`fk_lang_id`) REFERENCES `acsm_languages` (`lang_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `acms_shop_images`
@@ -278,6 +321,7 @@ ALTER TABLE `acms_shop_images`
 -- Constraints for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
+  ADD CONSTRAINT `fk_acms_shop_items_acsm_languages1` FOREIGN KEY (`fk_lang_id`) REFERENCES `acsm_languages` (`lang_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_shop_items_shop_categories` FOREIGN KEY (`fk_category_id`) REFERENCES `acms_shop_categories` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

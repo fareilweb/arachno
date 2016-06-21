@@ -53,10 +53,6 @@
                     </ul>
                 </div>
    
-            <!--h3>
-                <?=isset($this->menus["main_menu"][0]->menu_title) ? $this->menus["main_menu"][0]->menu_title : '';?>
-            </h3-->
-        
         <?php endif;?>
             
     </div>

@@ -2,8 +2,7 @@
 
 class ShopItemModel extends Model
 {
-    
-    // Class Proprerties
+    // Class Proprierties
     private $item_id                = NULL;
     private $item_code              = NULL;
     private $fk_category_id         = NULL;
@@ -17,6 +16,9 @@ class ShopItemModel extends Model
     private $item_long_desc         = NULL; 
     private $item_meta_keywords     = NULL;
     private $item_meta_description  = NULL;
+    private $fk_lang_id             = NULL;
+    private $category_name          = NULL;
+    private $category_status        = NULL;
     
     // Getter Magin Method
     public function __get($property){
@@ -33,11 +35,17 @@ class ShopItemModel extends Model
         return $this;
     }
     
-    
-    // Populate Propriesties By Item ID
+    // Populate Proprierties By Item ID
     public function loadById($item_id = NULL)
     {
-        $query = "SELECT * FROM #_shop_items WHERE item_id = $item_id";
+        Lang::$lang_id;
+        
+        $query = 
+            "SELECT * FROM #_shop_items 
+            LEFT JOIN #_shop_categories ON category_id = #_shop_items.fk_category_id 
+            WHERE item_id = $item_id 
+            AND #_shop_items.fk_lang_id = " . Lang::$lang_id . ";";
+        
         $item_data = $this->getObjectData($query);
         if($item_data){
             foreach($item_data as $item_key => $item_val)
@@ -48,21 +56,76 @@ class ShopItemModel extends Model
         
     }
     
-    // Populate Proprieties From Gived OBJECT
-    public function loadFromObject($item_obj = NULL)
+    
+    public function insert()
     {
-        
+        $fields = "`item_code`,";
+        $fields.= "`fk_category_id`,";
+        $fields.= "`item_status`,";
+        $fields.= "`item_stock`,";
+        $fields.= "`item_price`,";
+        $fields.= "`item_title`,";
+        $fields.= "`item_weight`,";
+        $fields.= "`item_color`,";
+        $fields.= "`item_short_desc`,";
+        $fields.= "`item_long_desc`,";
+        $fields.= "`item_meta_keywords`,";
+        $fields.= "`item_meta_description`,";
+        $fields.= "`fk_lang_id`";
+
+        $values = "'" . $this->item_code .     "',";
+        $values.= "'" . $this->fk_category_id ."',";
+        $values.= "'" . $this->item_status .   "',";
+        $values.= "'" . $this->item_stock .    "',";
+        $values.= "'" . $this->item_price .    "',";
+        $values.= "'" . $this->item_title .    "',";
+        $values.= "'" . $this->item_weight .   "',";
+        $values.= "'" . $this->item_color .    "',";
+        $values.= "'" . $this->item_short_desc . "',";
+        $values.= "'" . $this->item_long_desc . "',";
+        $values.= "'" . $this->item_meta_keywords . "',";
+        $values.= "'" . $this->item_meta_description . "',";
+        $values.= "'" . $this->fk_lang_id . "'";
+
+     
+        $query = "INSERT INTO #_shop_items( $fields ) VALUES ( $values );";
+        if(!$this->queryExec($query)){ return FALSE; }else{ return TRUE; }
     }
     
-    // Populate Proprieties From Gived ARRAY
-    public function loadFromArray($item_array = NULL)
+    
+    public function iteratedInsert()
     {
-        foreach ($item_array as $item_key => $item_val)
+        $fields = "";
+        $values = "";
+        $count = 0;
+        foreach($this as $item_key=>$item_val)
         {
-            $this->$item_key = $item_val;
+            $fields.= "`" .$item_key . "`";
+            $values.= "'" .$item_val . "'";
+            if($count < count($this->post)){ $fields.= ", "; $values.= ", "; }
+            $count++;
+        }
+        
+        $query = 
+            "INSERT INTO #_shop_items"
+            . "( $fields )"
+            . "VALUES( $values );";
+        
+        
+        if(!$this->queryExec($query)){
+            return FALSE;
+        }else{
+            return TRUE;
         }
     }
     
+    
+    public function update()
+    {
+    
+        
+        
+    }
     
     
     

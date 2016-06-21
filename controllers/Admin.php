@@ -8,7 +8,7 @@ class Admin extends Controller
 {
     function __construct()
     {   // Auth And Privilege Check
-        if(empty(Session::get('auth')) || !Session::get('auth')){
+        if( !Session::get('auth')){
             // redirect to login or exit
            if(!header('location: ' . Config::$web_path . '/User/login/redirect/Admin')){
                exit();
@@ -76,10 +76,14 @@ class Admin extends Controller
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
-    
-        // TODO - Save Item to Database
         
-        $this->varDebug($new_item);
+        if(!$new_item->insert()){
+            echo "Inserimento Fallito";
+        }else{
+            echo "Oggetto Inserito";
+        }
+        
+        // TODO - Save Item to Database
         
     }
     

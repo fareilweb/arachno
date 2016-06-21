@@ -16,7 +16,7 @@ class Shop extends Controller
         
         
         // Views
-        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('nav/lang_menu', 'footer-content');
         $this->includeView('shop/items', 'main-content');       
@@ -35,6 +35,7 @@ class Shop extends Controller
         {
             $this->item = $this->getModel('ShopItemModel');
             $this->item->loadById($args[0]);
+            
         }
         
         // Views

@@ -9,12 +9,13 @@
             <span class="glyphicon glyphicon-log-out"></span> Esci
         </a>
     </div>
+
+
     
 <?php else: ?>
 <!-- =========================================================================== 
     Utente non autenticato, mostra il form di accesso 
 ============================================================================ -->
-
 <form role="form" action="<?=Config::$web_path?>/User/loginProcess" method="post">
 <!-- Hidden Data -->
     <input 
