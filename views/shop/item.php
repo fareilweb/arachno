@@ -36,10 +36,12 @@
         <div>
             <?=$this->item->item_long_desc;?>
         </div>
+        <div>
             <?=$this->item->item_meta_keywords;?>
-        
+        </div>
+        <div>
             <?=$this->item->item_meta_description;?>
-    
+        </div>
     <?php endif; ?>
     
 </div>
