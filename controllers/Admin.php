@@ -6,7 +6,6 @@
 
 class Admin extends Controller
 {
-    
     function __construct()
     {   // Auth And Privilege Check
         if(empty(Session::get('auth')) || !Session::get('auth')){
@@ -26,21 +25,61 @@ class Admin extends Controller
         }
     }
     
+    // Index Method
     function index()
     {    
-        $data = new stdClass;
-        $this->includeView('user/login');
-        
         // Views Includes
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        $this->includeView('nav/main_menu', 'header-content');
-        $this->includeView('nav/lang_menu', 'footer-content'); 
-        
-        //
-        $this->getView('pages/page_default', $data);
+        $this->includeView('admin/nav/menu', 'header-content');
+        $this->getView('pages/page_default');
     }
     
+    // Add Item
+    function addItem()
+    {
+        // Include Views
+        $this->includeView('admin/shop/edit_item', 'main-content');
+        $this->index();
+    }
     
+    // Add Item - PROCESS
+    function addItemProcess($args)
+    {
+        $this->args = $args;
+        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        
+        //echo $this->post['item_id'];
+        
+        if(isset($this->post['item_id']) && $this->post['item_id']!=="")
+        {
+            $this->updateItem();
+        }else{
+            $this->createItem();
+        }
+    }
+    
+    // Add Item - UPDATE MODE
+    function updateItem()
+    {
+        // TODO - Get The Stored Item From DB and Populate the Object Proprierties
+        
+        // TODO - Update Data To The Object Instance
+        
+        // TODO - Update Data With The New Data in the Object Instance
+        
+    }
+    
+    // Add Item - CREATE MODE
+    function createItem()
+    {
+        $new_item = $this->getModel('ShopItemModel');
+        foreach ($this->post as $item_key => $item_val){
+            $new_item->$item_key = $item_val;
+        }
+        
+        $this->varDebug($new_item);
+        
+    }
     
     
 }
