@@ -76,6 +76,8 @@ class Admin extends Controller
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
+    
+        // TODO - Save Item to Database
         
         $this->varDebug($new_item);
         
