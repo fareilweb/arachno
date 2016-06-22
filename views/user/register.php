@@ -1,5 +1,5 @@
 <div class="registration">
-    <form role="form" action="<?=Config::$web_path?>/User/register" method="post">
+    <form role="form" action="<?=Config::$web_path?>/User/registerProcess" method="post">
     <!-- Hidden Data ========================================================= -->
         <input 
             type="hidden" 
