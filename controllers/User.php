@@ -5,11 +5,17 @@ class User extends Controller
     
     public function index($args)
     {
-        // Default
-        $this->login($args);
+        $this->args = $args;
+        
+        // Meniu Data
+        $menu_model = $this->getModel('MenuModel');
+        $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('nav/lang_menu', 'footer-content');
+        $this->getView('pages/page_default');
+        
     }
-    
-    
     
     public function login($args)
     {
@@ -62,8 +68,6 @@ class User extends Controller
            $this->notice = Lang::$access_denied;
         }
         
-        
-        
         if($post['redirect']!=="")
         {
             header('location: ' . Config::$web_path . $post['redirect']);
@@ -79,7 +83,7 @@ class User extends Controller
     }
     
     
-    public function logout()
+    public function logout($args)
     {
         Session::set('auth', FALSE);
         if(Session::get('auth')!==TRUE){
@@ -87,32 +91,22 @@ class User extends Controller
         }else{
             $this->notice = Lang::$err_logout;
         }
-        
-        // Views Includes
-        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        $this->includeView('nav/main_menu', 'header-content');
-        $this->includeView('nav/lang_menu', 'footer-content'); 
-        
-        // Page View
-        $this->getView('pages/page_default');
+        $this->index($args);
     }
     
     
-    public function register()
+    public function register($args)
     {
-        // Main Menu
-        $menu_model = $this->getModel('MenuModel');
-        $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
-        $this->includeView('nav/main_menu', 'header-content');
-        
-        // User Register
+        // Views / Includes
         $this->includeView('user/register', 'main-content');
+        $this->index($args);
+    }
+    
+    public function registerProcess($args)
+    {
+        $this->args = $args;
+        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         
-        // Language
-        $this->includeView('nav/lang_menu', 'footer-content');
-        
-        // Page Default View
-        $this->getView('pages/page_default');
     }
     
     

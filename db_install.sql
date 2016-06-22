@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2016 at 11:06 PM
+-- Generation Time: Jun 22, 2016 at 09:35 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -43,8 +43,9 @@ INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_
 (1, 1, 'Home', '/', 'NULL', 1),
 (2, 1, 'Test Page', '/test-page', '', 1),
 (3, 1, 'Shop', '/Shop/showItems/all', '', 1),
-(5, 1, 'Accesso', '/User/login', '', 1),
-(6, 1, 'Registrati', '/User/register', '', 1);
+(5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
+(6, 1, 'Registrati', '/User/register', '', 1),
+(7, 1, 'Amministrazione', '/Admin', '', 1);
 
 -- --------------------------------------------------------
 
@@ -75,11 +76,11 @@ CREATE TABLE `acms_pages` (
   `page_id` int(11) NOT NULL,
   `page_slug` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `fk_author_user_id` int(11) NOT NULL,
-  `page_title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `page_content` text COLLATE utf8_unicode_ci NOT NULL,
-  `page_meta_description` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `page_meta_keywords` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `fk_lang_id(11)` int(11) NOT NULL
+  `page_title` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `page_content` text CHARACTER SET utf8,
+  `page_meta_description` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `page_meta_keywords` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `fk_lang_id(11)` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -101,7 +102,7 @@ CREATE TABLE `acms_shop_categories` (
   `category_name` varchar(80) DEFAULT NULL,
   `category_status` tinyint(1) DEFAULT '1',
   `fk_lang_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acms_shop_categories`
@@ -123,7 +124,7 @@ CREATE TABLE `acms_shop_images` (
   `image_title` varchar(100) DEFAULT NULL,
   `image_alt` varchar(100) DEFAULT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,7 @@ CREATE TABLE `acms_shop_items` (
   `item_meta_keywords` varchar(150) DEFAULT NULL,
   `item_meta_description` varchar(150) DEFAULT NULL,
   `fk_lang_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -174,7 +175,7 @@ CREATE TABLE `acms_users` (
 --
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
-(1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$2y$12$6N54XI8ZCJxL1uG7iI/dtu0p4IPPMMCyQVP1ns0LCAyFR1BRvlmZO', 1);
+(1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 -- --------------------------------------------------------
 
@@ -187,7 +188,7 @@ CREATE TABLE `acsm_languages` (
   `lang_iso_code` varchar(4) DEFAULT NULL,
   `lang_internal_code` varchar(8) DEFAULT NULL,
   `lang_name` varchar(80) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acsm_languages`
@@ -265,7 +266,7 @@ ALTER TABLE `acsm_languages`
 -- AUTO_INCREMENT for table `acms_menu_items`
 --
 ALTER TABLE `acms_menu_items`
-  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `acms_menu_list`
 --
@@ -301,29 +302,6 @@ ALTER TABLE `acms_users`
 --
 ALTER TABLE `acsm_languages`
   MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `acms_shop_categories`
---
-ALTER TABLE `acms_shop_categories`
-  ADD CONSTRAINT `fk_acms_shop_categories_acsm_languages1` FOREIGN KEY (`fk_lang_id`) REFERENCES `acsm_languages` (`lang_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `acms_shop_images`
---
-ALTER TABLE `acms_shop_images`
-  ADD CONSTRAINT `fk_acms_items_images_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `acms_shop_items`
---
-ALTER TABLE `acms_shop_items`
-  ADD CONSTRAINT `fk_acms_shop_items_acsm_languages1` FOREIGN KEY (`fk_lang_id`) REFERENCES `acsm_languages` (`lang_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_shop_items_shop_categories` FOREIGN KEY (`fk_category_id`) REFERENCES `acms_shop_categories` (`category_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

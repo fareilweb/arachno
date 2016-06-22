@@ -24,8 +24,12 @@
                 <div class="form-group">
                     <label>Categoria</label>
                     <select name="fk_category_id" class="form-control" >
-                        <option value="1" selected>Seleziona Categoria</option>
-
+                        <option value="1">Seleziona Categoria...</option>
+                        <?php foreach($this->shop_categories as $cat_key=>$cat_val):?>
+                            <option value="<?=$cat_val->category_name;?>">
+                                <?=$cat_val->category_name;?>
+                            </option>
+                        <?php endforeach;?>
                     </select>
                 </div>
             </div>

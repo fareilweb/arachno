@@ -10,7 +10,10 @@ echo "</pre>";
 
 //echo function_exists("filter_input");
 
-//phpinfo();
+//var_dump (function_exists( phpinfo) );
+
+$salt = '$1$rasmusle$';
+echo crypt("123stella", $salt);
 
 //echo "CIAO";
 

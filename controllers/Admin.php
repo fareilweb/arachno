@@ -37,9 +37,16 @@ class Admin extends Controller
     // Add Item
     function addItem()
     {
+        // Get Data
+        $shop_model = $this->getModel('ShopModel');
+        $this->shop_categories = $shop_model->getCategories();
+        
+        
         // Include Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index();
+        
+        $this->varDebug($this);
     }
     
     // Add Item - PROCESS

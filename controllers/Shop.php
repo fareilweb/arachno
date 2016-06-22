@@ -14,7 +14,6 @@ class Shop extends Controller
         // Elaborate Content
         
         
-        
         // Views
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
         $this->includeView('nav/main_menu', 'header-content');
