@@ -25,8 +25,8 @@
                     <label>Categoria</label>
                     <select name="fk_category_id" class="form-control" >
                         <option value="1">Seleziona Categoria...</option>
-                        <?php foreach($this->shop_categories as $cat_key=>$cat_val):?>
-                            <option value="<?=$cat_val->category_name;?>">
+                        <?php foreach($this->shop_categories as $cat_val):?>
+                            <option value="<?=$cat_val->category_id;?>">
                                 <?=$cat_val->category_name;?>
                             </option>
                         <?php endforeach;?>
@@ -109,8 +109,12 @@
                 <div class="form-group">
                     <label>Lingua</label>
                     <select name="fk_lang_id" class="form-control">
-                        <option value="1" selected>Seleziona Lingua</option>
-                        
+                        <option value="1" selected>Seleziona Lingua...</option>
+                        <?php foreach($this->languages as $lang):?>
+                            <option value="<?=$lang->lang_id;?>">
+                                <?=$lang->lang_name?> (<?=$lang->lang_internal_code;?>)
+                            </option>
+                        <?php endforeach;?>
                     </select>
                 </div>
             </div>

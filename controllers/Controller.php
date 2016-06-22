@@ -9,6 +9,7 @@ class Controller
     // Proprierties
     public $includes = array("positions"=>array());
     public $menus = array();
+    public $languages = array();
     
    
     // Get Model Method
@@ -39,7 +40,7 @@ class Controller
     }
     
     
-    // 
+    // Get Include in a Specific Position
     public function getInclude($position="")
     {
         if( isset($this->includes['positions'][$position]) )
@@ -48,7 +49,6 @@ class Controller
             require_once( $this->includes['positions'][$position] );    
         }
     }
-    
     
     public function varDebug($var='')
     {

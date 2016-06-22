@@ -40,8 +40,9 @@ class Admin extends Controller
         // Get Data
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getCategories();
-        
-        
+        $loc_model = $this->getModel('LocalizationModel');
+        $this->languages = $loc_model->getLanguages();
+
         // Include Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index();
