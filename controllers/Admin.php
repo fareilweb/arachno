@@ -47,7 +47,7 @@ class Admin extends Controller
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index();
         
-        $this->varDebug($this);
+        //$this->varDebug($this);
     }
     
     // Add Item - PROCESS
