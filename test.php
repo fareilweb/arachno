@@ -12,8 +12,8 @@ echo "</pre>";
 
 //var_dump (function_exists( phpinfo) );
 
-$salt = '$1$rasmusle$';
-echo crypt("123stella", $salt);
+//$salt = '$1$rasmusle$';
+//echo crypt("123stella", $salt);
 
 //echo "CIAO";
 
@@ -31,7 +31,7 @@ echo crypt("123stella", $salt);
 
 //phpinfo();
 
-//echo $_SERVER["SERVER_NAME"];
+echo $_SERVER["SERVER_NAME"];
 
 //$date = new DateTime();
 
