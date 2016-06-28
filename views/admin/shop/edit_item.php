@@ -6,7 +6,7 @@
         </div>
     </div><hr/>
     
-    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/addItemProcess">
+    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess">
        
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" value="<?=isset($this->item->item_id) ? $this->item->item_id : "";?>" />
