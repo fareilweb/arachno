@@ -34,7 +34,6 @@ class Database
             echo "Error: " . $this->mysqli->error . "<br>";
             exit;
         }
-
         // remember to
         //-->>$results->free();
         //-->>$mysqli->close();

@@ -28,4 +28,31 @@ class ShopModel extends Model
     }
     
     
+    function getItems($fk_category_id=NULL, $item_code=NULL)
+    {
+        $query = "SELECT * FROM #_shop_items ";
+        
+        if($fk_category_id!==NULL){
+            $query .= " WHERE #_shop_items.fk_category_id = $fk_category_id ";
+        }
+        
+        if($item_code!==NULL){
+            $query .= " WHERE #_shop_items.item_code = '$item_code' ";
+        }
+        
+        $result = $this->queryExec($query);
+           
+        $data = array();
+        while($row = $result->fetch_object()){
+            array_push($data, $row);
+        }
+        
+        if(!$result){
+            return FALSE;
+        }else{
+            return $data;
+        }   
+    }
+    
+    
 }

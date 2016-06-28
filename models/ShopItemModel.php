@@ -57,8 +57,7 @@ class ShopItemModel extends Model
     }
     
     
-    public function insert()
-    {
+    public function insert(){
         $fields = "`item_code`,";
         $fields.= "`fk_category_id`,";
         $fields.= "`item_status`,";
@@ -72,7 +71,6 @@ class ShopItemModel extends Model
         $fields.= "`item_meta_keywords`,";
         $fields.= "`item_meta_description`,";
         $fields.= "`fk_lang_id`";
-
         $values = "'" . $this->item_code .     "',";
         $values.= "'" . $this->fk_category_id ."',";
         $values.= "'" . $this->item_status .   "',";
@@ -85,9 +83,7 @@ class ShopItemModel extends Model
         $values.= "'" . $this->item_long_desc . "',";
         $values.= "'" . $this->item_meta_keywords . "',";
         $values.= "'" . $this->item_meta_description . "',";
-        $values.= "'" . $this->fk_lang_id . "'";
-
-     
+        $values.= "'" . $this->fk_lang_id . "'";     
         $query = "INSERT INTO #_shop_items( $fields ) VALUES ( $values );";
         if(!$this->queryExec($query)){ return FALSE; }else{ return TRUE; }
     }
