@@ -111,6 +111,14 @@ class Admin extends Controller
     }
     
     
+    function deleteItem($args)
+    {
+        $this->args = $args;
+        
+        echo "Remove Item - Work in progress";
+    }
+    
+    
     
     /*==========================================================================
      *  Items list [Open One/Open One]
@@ -127,6 +135,17 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/items_list', 'main-content');
         $this->index($this->args);
+    }   
+    
+    
+    /*==========================================================================
+     *  Items Categories
+     *==========================================================================*/
+    function showCategories($args)
+    {
+        $this->args = $args;
+        
+        echo "List of the categories - Work in Progress";
     }
     
     
