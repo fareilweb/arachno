@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 26, 2016 alle 17:57
--- Versione del server: 10.1.13-MariaDB
--- Versione PHP: 5.6.21
+-- Generation Time: Jun 29, 2016 at 08:06 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_languages`
+-- Table structure for table `acms_languages`
 --
 
 CREATE TABLE `acms_languages` (
@@ -33,18 +33,10 @@ CREATE TABLE `acms_languages` (
   `lang_name` varchar(80) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dump dei dati per la tabella `acms_languages`
---
-
-INSERT INTO `acms_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, `lang_name`) VALUES
-(1, 'it', 'it-IT', 'Italiano'),
-(2, 'en', 'en-GB', 'English');
-
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_menu_items`
+-- Table structure for table `acms_menu_items`
 --
 
 CREATE TABLE `acms_menu_items` (
@@ -57,7 +49,7 @@ CREATE TABLE `acms_menu_items` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `acms_menu_items`
+-- Dumping data for table `acms_menu_items`
 --
 
 INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
@@ -71,7 +63,7 @@ INSERT INTO `acms_menu_items` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_menu_list`
+-- Table structure for table `acms_menu_list`
 --
 
 CREATE TABLE `acms_menu_list` (
@@ -81,7 +73,7 @@ CREATE TABLE `acms_menu_list` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `acms_menu_list`
+-- Dumping data for table `acms_menu_list`
 --
 
 INSERT INTO `acms_menu_list` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
@@ -90,7 +82,7 @@ INSERT INTO `acms_menu_list` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_pages`
+-- Table structure for table `acms_pages`
 --
 
 CREATE TABLE `acms_pages` (
@@ -105,7 +97,7 @@ CREATE TABLE `acms_pages` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dump dei dati per la tabella `acms_pages`
+-- Dumping data for table `acms_pages`
 --
 
 INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_title`, `page_content`, `page_meta_description`, `page_meta_keywords`, `fk_lang_id(11)`) VALUES
@@ -115,27 +107,28 @@ INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_tit
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_shop_categories`
+-- Table structure for table `acms_shop_categories`
 --
 
 CREATE TABLE `acms_shop_categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(80) DEFAULT NULL,
   `category_status` tinyint(1) DEFAULT '1',
-  `fk_lang_id` int(11) NOT NULL
+  `fk_lang_id` int(11) NOT NULL,
+  `fk_parent_category_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `acms_shop_categories`
+-- Dumping data for table `acms_shop_categories`
 --
 
-INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `fk_lang_id`) VALUES
-(1, 'Categoria Oggetti 01', 1, 1);
+INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `fk_lang_id`, `fk_parent_category_id`) VALUES
+(1, 'Categoria Oggetti 01', 1, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_shop_images`
+-- Table structure for table `acms_shop_images`
 --
 
 CREATE TABLE `acms_shop_images` (
@@ -150,7 +143,7 @@ CREATE TABLE `acms_shop_images` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_shop_items`
+-- Table structure for table `acms_shop_items`
 --
 
 CREATE TABLE `acms_shop_items` (
@@ -170,10 +163,18 @@ CREATE TABLE `acms_shop_items` (
   `fk_lang_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `acms_shop_items`
+--
+
+INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_color`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`, `fk_lang_id`) VALUES
+(0, 'AAA001', 1, 1, 100, 99.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.', 1),
+(18, 'AAA002', 1, 1, 100, 199.99, 'Titolo Secondo Prodotto di Esempio', '22', 'Verde', 'Breve testo descrittivo del secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ', 'Descrizione Testuale Estesa del Secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'secondo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Secondo Prodotto di Esempio.', 1);
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `acms_users`
+-- Table structure for table `acms_users`
 --
 
 CREATE TABLE `acms_users` (
@@ -192,59 +193,60 @@ CREATE TABLE `acms_users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `acms_users`
+-- Dumping data for table `acms_users`
 --
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
 (1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `acms_languages`
+-- Indexes for table `acms_languages`
 --
 ALTER TABLE `acms_languages`
   ADD PRIMARY KEY (`lang_id`);
 
 --
--- Indici per le tabelle `acms_menu_items`
+-- Indexes for table `acms_menu_items`
 --
 ALTER TABLE `acms_menu_items`
   ADD PRIMARY KEY (`link_id`),
   ADD KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indici per le tabelle `acms_menu_list`
+-- Indexes for table `acms_menu_list`
 --
 ALTER TABLE `acms_menu_list`
   ADD PRIMARY KEY (`menu_id`),
   ADD KEY `fk_acms_menu_list_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indici per le tabelle `acms_pages`
+-- Indexes for table `acms_pages`
 --
 ALTER TABLE `acms_pages`
   ADD PRIMARY KEY (`page_id`,`page_slug`),
   ADD KEY `fk_acms_pages_acsm_languages1_idx` (`fk_lang_id(11)`);
 
 --
--- Indici per le tabelle `acms_shop_categories`
+-- Indexes for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
   ADD PRIMARY KEY (`category_id`),
-  ADD KEY `fk_acms_shop_categories_acsm_languages1_idx` (`fk_lang_id`);
+  ADD KEY `fk_acms_shop_categories_acsm_languages1_idx` (`fk_lang_id`),
+  ADD KEY `fk_acms_shop_categories_acms_shop_categories_idx` (`fk_parent_category_id`);
 
 --
--- Indici per le tabelle `acms_shop_images`
+-- Indexes for table `acms_shop_images`
 --
 ALTER TABLE `acms_shop_images`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `fk_acms_items_images_acms_shop_items1_idx` (`fk_item_id`);
 
 --
--- Indici per le tabelle `acms_shop_items`
+-- Indexes for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
   ADD PRIMARY KEY (`item_id`),
@@ -252,53 +254,53 @@ ALTER TABLE `acms_shop_items`
   ADD KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indici per le tabelle `acms_users`
+-- Indexes for table `acms_users`
 --
 ALTER TABLE `acms_users`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `fk_acms_users_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `acms_languages`
+-- AUTO_INCREMENT for table `acms_languages`
 --
 ALTER TABLE `acms_languages`
   MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `acms_menu_items`
+-- AUTO_INCREMENT for table `acms_menu_items`
 --
 ALTER TABLE `acms_menu_items`
   MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT per la tabella `acms_menu_list`
+-- AUTO_INCREMENT for table `acms_menu_list`
 --
 ALTER TABLE `acms_menu_list`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT per la tabella `acms_pages`
+-- AUTO_INCREMENT for table `acms_pages`
 --
 ALTER TABLE `acms_pages`
   MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `acms_shop_categories`
+-- AUTO_INCREMENT for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT per la tabella `acms_shop_images`
+-- AUTO_INCREMENT for table `acms_shop_images`
 --
 ALTER TABLE `acms_shop_images`
   MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `acms_shop_items`
+-- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT per la tabella `acms_users`
+-- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
