@@ -38,13 +38,11 @@ class ShopItemModel extends Model
     // Populate Proprierties By Item ID
     public function loadById($item_id = NULL)
     {
-        Lang::$lang_id;
-        
         $query = 
             "SELECT * FROM #_shop_items 
-            LEFT JOIN #_shop_categories ON category_id = #_shop_items.fk_category_id 
-            WHERE item_id = $item_id 
-            AND #_shop_items.fk_lang_id = " . Lang::$lang_id . ";";
+            LEFT JOIN #_shop_categories ON #_shop_categories.category_id = #_shop_items.fk_category_id 
+            LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id 
+            WHERE item_id = $item_id;";
         
         $item_data = $this->getObjectData($query);
         if($item_data){
@@ -53,7 +51,6 @@ class ShopItemModel extends Model
                 $this->$item_key = $item_val;
             }
         }
-        
     }
     
     

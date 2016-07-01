@@ -51,7 +51,8 @@ class Admin extends Controller
         // Get Data
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getCategories();
-
+        $this->item = $this->getModel('ShopItemModel');
+        
         // Include Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index();
@@ -62,12 +63,20 @@ class Admin extends Controller
     // Edit Item ---------------------------------------------------------------
     function editItem($args)
     {
+        // Data
         $this->args = $args;
-        //$this->args[0] <- user for the item id to edit
+        $shop_model = $this->getModel('ShopModel');
+        $this->shop_categories = $shop_model->getCategories();
+        $this->item = $this->getModel('ShopItemModel');
         
+        if(isset($args[0])){
+            $this->item->loadById($args[0]);
+        }
         
+        // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index();
+       
     }
     
     // Add Item - PROCESS ------------------------------------------------------
@@ -85,6 +94,8 @@ class Admin extends Controller
     // Add Item - UPDATE MODE --------------------------------------------------
     function updateItemProcess()
     {
+        echo "updateItemProcess() Work in Progress";
+        
         // TODO - Get The Stored Item From DB and Populate the Object Proprierties
         
         // TODO - Update Data To The Object Instance

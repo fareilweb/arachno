@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2016 at 08:06 PM
+-- Generation Time: Jul 01, 2016 at 10:54 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -32,6 +32,14 @@ CREATE TABLE `acms_languages` (
   `lang_internal_code` varchar(8) DEFAULT NULL,
   `lang_name` varchar(80) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_languages`
+--
+
+INSERT INTO `acms_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, `lang_name`) VALUES
+(1, 'it', 'it-IT', 'Italiano'),
+(2, 'en', 'en-GB', 'English');
 
 -- --------------------------------------------------------
 
@@ -169,7 +177,7 @@ CREATE TABLE `acms_shop_items` (
 
 INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_color`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`, `fk_lang_id`) VALUES
 (0, 'AAA001', 1, 1, 100, 99.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.', 1),
-(18, 'AAA002', 1, 1, 100, 199.99, 'Titolo Secondo Prodotto di Esempio', '22', 'Verde', 'Breve testo descrittivo del secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ', 'Descrizione Testuale Estesa del Secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'secondo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Secondo Prodotto di Esempio.', 1);
+(18, 'AAA002', 1, 1, 100, 199.99, 'Titolo Secondo Prodotto di Esempio', '22', 'Verde', 'Breve testo descrittivo del secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ', 'Descrizione Testuale Estesa del Secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'secondo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Secondo Prodotto di Esempio.', 0);
 
 -- --------------------------------------------------------
 
@@ -268,7 +276,7 @@ ALTER TABLE `acms_users`
 -- AUTO_INCREMENT for table `acms_languages`
 --
 ALTER TABLE `acms_languages`
-  MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `acms_menu_items`
 --
@@ -298,7 +306,7 @@ ALTER TABLE `acms_shop_images`
 -- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --
