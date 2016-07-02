@@ -6,22 +6,22 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="<?=Config::$web_path;?>" target="_blank">
-                            Vai al Sito
+                            <?=Lang::$go_to_site?>
                         </a>
                     </li>
                     <li>
-                        <a href="<?=Config::$web_path;?>/Admin/addItem">
-                            Aggiungi Oggetto
+                        <a href="<?=Config::$web_path;?>/Admin/editItem">
+                            <?=Lang::$add_item?>
                         </a>
                     </li>
                     <li>
                         <a href="<?=Config::$web_path;?>/Admin/showItems">
-                            Oggetti
+                            <?=Lang::$products?>
                         </a>
                     </li>
                     <li>
                         <a href="<?=Config::$web_path;?>/Admin/showCategories">
-                            Categorie
+                            <?=Lang::$categories?>
                         </a>
                     </li>
                   <!--li class="dropdown">

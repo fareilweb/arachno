@@ -2,8 +2,8 @@
 
 class Database
 {
-
     public $mysqli;
+    public $results;
 
     public function __construct()
     {
@@ -19,38 +19,46 @@ class Database
         }
     }
     
+    // Freeing Memory And Close Connection
+    public function cleanAndClose()
+    {
+        if(!is_bool($this->results))
+        {
+            $this->results->free();
+        }
+        
+        $this->mysqli->close();
+        
+    }
+    
 
-/*==============================================================================*
- * Generic Query Execution
- *==============================================================================*/
+    /*==========================================================================*
+     * Generic Query Execution
+     *==========================================================================*/
     public function queryExec($query='')
     {
         $_query = str_replace("#_", Config::$db_prefix, $query);
         
-        if (!$result = $this->mysqli->query($_query)) {
+        if (!$this->results = $this->mysqli->query($_query)) {
             echo "<b>Database() say: </b>query problems<br>";
             echo "Query: " . $_query . "<br>";
             echo "Errno: " . $this->mysqli->errno . "<br>";
             echo "Error: " . $this->mysqli->error . "<br>";
             exit;
         }
-        // remember to
-        //-->>$results->free();
-        //-->>$mysqli->close();
-        // but not here, becouse you will need to fetch results
-        return $result;
+        // Remeber To Call: $this->cleanAndClose() method after saved your data
+        return $this->results;
     }
 
     
-    
-/*==============================================================================*
- * Return An ARRAY Of The Object Retrieved By The Query
- *==============================================================================*/
+    /*=========================================================================*
+     * Return An ARRAY Of The Object Retrieved By The Query
+     *=========================================================================*/
     public function getArrayData($query='')
     {
         $_query = str_replace("#_", Config::$db_prefix, $query);
         
-        if (!$result = $this->mysqli->query($_query)) {
+        if (!$this->results = $this->mysqli->query($_query)) {
             echo "<b>Database() say: </b>query problems<br>";
             echo "Query: " . $_query . "<br>";
             echo "Errno: " . $this->mysqli->errno . "<br>";
@@ -58,29 +66,28 @@ class Database
             exit;
         }
 
-        if ($result->num_rows === 0) {
+        if ($this->results->num_rows === 0) {
             echo "<b>Database() say: </b>no query results<br>";
             exit;
         }
 
-        $data = $result->fetch_assoc();
+        $data = $this->results->fetch_assoc();
         
-        $result->free();
-        $this->mysqli->close();
-
+        $this->cleanAndClose();
+        
         return $data;
     }
 
     
 
-/*==============================================================================*
- * Return An OBJECT Of The Object Retrieved By The Query
- *==============================================================================*/
+   /*==========================================================================*
+    * Return An OBJECT Of The Row Retrieved By The Query
+    *==========================================================================*/
     public function getObjectData($query='')
     {
         $_query = str_replace("#_", Config::$db_prefix, $query);
         
-        if (!$result = $this->mysqli->query($_query)) {
+        if (!$this->results = $this->mysqli->query($_query)) {
             echo "<b>Database() say: </b>query problems<br>";
             echo "Query: " . $_query . "<br>";
             echo "Errno: " . $this->mysqli->errno . "<br>";
@@ -88,18 +95,17 @@ class Database
             exit;
         }
 
-        if ($result->num_rows === 0) {
+        if ($this->results->num_rows === 0) {
             //echo "<b>Database() say: </b>no query results<br>";
             //$data = new stdClass();
             $data = FALSE;
         }else{
-            $data = $result->fetch_object();
-            $data->num_rows = $result->num_rows;
+            $data = $this->results->fetch_object();
+            $data->num_rows = $this->results->num_rows;
         }
-
-        //$result->free();
-        //$this->mysqli->close();
-
+        
+        $this->cleanAndClose();
+        
         return $data;
     }
 

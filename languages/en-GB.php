@@ -1,14 +1,14 @@
 <?php
-
 /*==============================================================================*
  * English Language for Arachno CMS
  *==============================================================================*/
 class Lang
 {
-    /* System Strings */
-    public static $lang_id = 2;
-    public static $lang_internal_code = "en-GB";
-    /* General */
+    /* System Strings Never Change */
+    public static $lang_id = 2; // The Id Of The Language on the DB
+    public static $lang_internal_code = "en-GB"; // The Internal ID/Code Of The Language
+    /* Edit From Here ----------------------------------------------------------*/
+    public static $language = "Lingua";
     public static $select_language = 'Seleziona la lingua';
     public static $welcome = 'Benvenuto';
     public static $goodbye = 'A Presto';
@@ -17,29 +17,44 @@ class Lang
     public static $err_logout = "Disconnessione Fallita";
     public static $yes = "S&igrave;";
     public static $no = "No";
-    /* Shop */
-    public static $products_list_title = "Prodotti";
-    public static $insert_item_fail = "Inserimento Oggetto Fallito";
-    public static $insert_item_ok = "Inserimento Oggetto Riuscito";
-    public static $update_item_fail = "Aggiornamento Oggetto Fallito";
-    public static $update_item_ok = "Aggiornamento Oggetto Riuscito";
-    public static $item_status_true = "S&igrave;";
-    public static $item_status_false = "No";
-    public static $edit_item_title = "Aggiungi/Modifica Oggetto";
-    public static $lbl_item_id = "ID";
-    public static $lbl_item_code = "Codice";
-    public static $lbl_item_category = "Categoria";
-    public static $lbl_item_status = "Oggetto Disponibile";
-    public static $lbl_item_stock = "Qt&agrave;. Magazzino";
-    public static $lbl_item_price = "Prezzo &euro;";
-    public static $lbl_item_discount = "Sconto";
-    public static $lbl_item_title = "Titolo";
-    public static $lbl_item_weight = "Peso";
-    public static $lbl_item_colors = "Colori";
-    public static $lbl_item_short_desc = "Riepilogo";
-    public static $lbl_item_long_desc = "Descrizione";
-    public static $lbl_item_meta_desc = "Descrizione Meta Tag";
-    public static $lbl_item_meta_keys = "Parole Chiave Meta Tag";
-    public static $lbl_item_lang = "Lingua";
-    public static $lbl_item_save = "Salva";   
+    public static $go_to_site = "Vai al Sito";
+    public static $id = "ID";
+    public static $meta_desc = "Descrizione Meta Tag";
+    public static $meta_keys = "Parole Chiave Meta Tag";
+    public static $save = "Salva";
+    public static $published = "Pubblicato";
+    public static $suspended = "Sospeso";
+    public static $products = "Prodotti";
+    public static $images = "Immagini";
+    public static $categories = "Categorie"; 
+    public static $add_item = "Aggiungi Prodotto";
+    public static $edit_item = "Aggiungi/Modifica Oggetto";
+    public static $add_category = "Aggiungi Categoria";
+    public static $edit_category = "Aggiungi/Modifica Categoria";
+    public static $delete = "Cancella";
+    public static $delete_confirm_request = "Sei Sicuro di Voler Procedere alla Cancellazione?";
+    public static $delete_fail = "Cancellazione Fallita";
+    public static $delete_success = "Cancellazione Riuscita";
+    public static $edit = "Modifica";
+    public static $action_confirm = "Esegui Operazione";
+    public static $insert_fail = "Inserimento Fallito";
+    public static $insert_success = "Inserimento Riuscito";
+    public static $update_fail = "Aggiornamento Fallito";
+    public static $update_success = "Aggiornamento Riuscito";
+    public static $actions = "Azioni";
+    public static $status = "Stato";
+    public static $available = "Disponibile";
+    public static $unavailable = "Non Disponibile";
+    public static $name = "Nome";
+    public static $item_code = "Codice";
+    public static $item_category = "Categoria";
+    public static $item_stock = "Qt&agrave; Magazzino";
+    public static $item_price = "Prezzo &euro;";
+    public static $item_discount = "Sconto";
+    public static $item_title = "Titolo/Nome";
+    public static $item_weight = "Peso";
+    public static $item_colors = "Colori";
+    public static $item_short_desc = "Riepilogo";
+    public static $item_long_desc = "Descrizione";
+    public static $category_parent = "Categoria Superiore";
 }

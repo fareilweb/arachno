@@ -1,26 +1,16 @@
 <?php
 
-class ShopItemModel extends Model
+class ShopCategoryModel extends Model
 {
-    
-    // Class Private Internal State Proprierties
-    private $item_id = NULL;
-    private $item_code = NULL;
-    private $fk_category_id = NULL;
-    private $item_status = NULL; 
-    private $item_stock = NULL; 
-    private $item_price = NULL; 
-    private $item_title = NULL; 
-    private $item_weight = NULL;
-    private $item_colors = NULL; 
-    private $item_short_desc = NULL; 
-    private $item_long_desc = NULL; 
-    private $item_meta_keywords = NULL;
-    private $item_meta_description = NULL;
+    /* Class Private Internal State Proprierties */
+    private $category_id = NULL;
+    private $category_name = NULL;
+    private $category_status = NULL;
     private $fk_lang_id = NULL;
-    private $item_images = array();
-    
-    // Getter/Setter Magic Methods
+    private $fk_parent_id = NULL;
+    private $category_parent_name = NULL;
+
+    /* Getter/Setter Magic Methods */
     public function __get($property){
         if (property_exists($this, $property)){
             return $this->$property;
@@ -34,39 +24,30 @@ class ShopItemModel extends Model
     }
     
     
-    
-    // Populate Proprierties From DB Data By Item ID
-    public function loadById($item_id=NULL, $lang_id=NULL)
+    /* Populate Proprierties From DB Data By Item ID */
+    public function loadById($category_id=NULL, $lang=NULL)
     {
-        $query = "SELECT * FROM #_shop_items ";
-        $query.= "LEFT JOIN #_shop_categories ON #_shop_categories.category_id = #_shop_items.fk_category_id ";
-        $query.= "LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id ";
-        $query.= "WHERE #_shop_items.item_id = '$item_id' ";
-        if($lang_id!=NULL){
-            $query.="AND #_shop_items.fk_lang_id = " . $lang_id;
+        $query = "SELECT * FROM #_shop_categories ";
+        $query.= "LEFT JOIN #_languages ON #_languages.lang_id = #_shop_categories.fk_lang_id ";
+        $query.= "WHERE #_shop_categories.category_id = $category_id ";
+        if($lang!=NULL){
+            $query.="AND #_shop_categories.fk_lang_id = " . Lang::$lang_id;
         }
         $query.= ";";
+        
         $item_data = $this->getObjectData($query);
         if($item_data!=FALSE){
             foreach($item_data as $item_key => $item_val){
                 $this->$item_key = $item_val;
             }
         }
-        
-        // Load Item Images
-        //$images_query = "SELECT * FROM #_shop_images WHERE #_shop_images.fk_item_id = '$item_id';";
-        //$this->results = $this->queryExec($images_query);
-        //while($img_row_obj = $this->results->fetch_object()){
-        //    array_push($this->item_images, $img_row_obj);
-        //}
-        //$this->cleanAndClose();
     }
     
-    // Insert Current Item To DB
-    public function insertItem()
+    /* Insert Current Category To DB *==========================================*/
+    public function insertCategory()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results");
+        $excluded_fields = array("mysqli");
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){
@@ -92,7 +73,7 @@ class ShopItemModel extends Model
             }
         }
         // Compose Query
-        $query = "INSERT INTO #_shop_items( $fields_string ) "
+        $query = "INSERT INTO #_shop_categories( $fields_string ) "
                . "VALUES ( $values_string ); ";
         // Exec Query
         if(!$this->queryExec($query)){
@@ -103,8 +84,8 @@ class ShopItemModel extends Model
         }
     }
     
-    // Update Item
-    public function updateItem($item_id=NULL)
+    /* Insert Current Category To DB *==========================================*/
+    public function updateCategory()
     {
         // Collect Current Field And Data
         $excluded_fields = array("mysqli", "results");
@@ -122,10 +103,23 @@ class ShopItemModel extends Model
             }
         }
         // Compose Query
-        $query = "UPDATE #_shop_items ";
+        $query = "UPDATE #_shop_categories ";
         $query.= "SET $set_string ";
-        $query.= "WHERE #_shop_items.item_id = '$this->item_id';";
+        $query.= "WHERE #_shop_categories.category_id = '$this->category_id';";
         
+        // Exec Query
+        if(!$this->queryExec($query)){
+            return FALSE;
+        }else{
+            $this->cleanAndClose();
+            return TRUE;
+        }
+    }
+    
+    public function deleteCategory($category_id=NULL)
+    {
+        // Compose Query
+        $query = "DELETE FROM #_shop_categories WHERE `category_id`='$category_id';";
         // Exec Query
         if(!$this->queryExec($query)){
             return FALSE;
@@ -135,17 +129,6 @@ class ShopItemModel extends Model
         }      
     }
     
-    public function deleteItem($item_id=NULL)
-    {
-        // Compose Query
-        $query = "DELETE FROM #_shop_items WHERE `item_id`='$item_id';";
-        // Exec Query
-        if(!$this->queryExec($query)){
-            return FALSE;
-        }else{
-            $this->cleanAndClose();
-            return TRUE;
-        }      
-    }
+    
     
 }

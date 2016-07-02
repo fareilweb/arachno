@@ -50,11 +50,11 @@ class Controller
         }
     }
     
-    public function varDebug($var='')
+    public function debug($debug_data="")
     {
-        echo "<pre>";
-        print_r($var);
-        echo "</pre>";
+        echo "<pre><h1>[Debug]</h1><hr/>";
+        print_r($debug_data);
+        echo "</pre><hr/>";
     }
 
 

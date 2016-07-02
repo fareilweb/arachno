@@ -7,11 +7,11 @@ class Model extends Database
         parent::__construct();
     }
     
-    public function varDebug($var='')
+    public function debug($data="")
     {
-        echo "<pre>";
-        print_r($var);
-        echo "</pre>";
+        echo "<pre><h1>[Debug]</h1><hr/>";
+        print_r($data);
+        echo "</pre><hr/>";
     }
     
 }

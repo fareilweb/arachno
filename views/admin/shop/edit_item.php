@@ -2,31 +2,38 @@
     
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2>Aggiungi/Modifica Oggetto</h2>
+            <h2><?=Lang::$edit_item?></h2>
         </div>
     </div><hr/>
     
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess">
         <!-- Hidden Data -->
-        <input type="hidden" name="item_id" value="<?=$this->item->item_id;?>" />
+        <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
         
         <div class="row">
-            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="form-group">
+                    <label><?=Lang::$images?></label>
+                </div>
+            </div>
+        </div><hr/>
+        
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Codice</label>
-                    <input type="text" name="item_code" value="<?=$this->item->item_code;?>" class="form-control" />
+                    <label><?=Lang::$item_code?></label>
+                    <input type="text" name="item_code" value="<?=$this->item->item_code?>" class="form-control" />
                 </div>
             </div>
             
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Categoria</label>
+                    <label><?=Lang::$item_category?></label>
                     <select name="fk_category_id" class="form-control" >
                         <option value="1">Seleziona Categoria...</option>
-                        <?php foreach($this->shop_categories as $cat_val):?>
-                            <option value="<?=$cat_val->category_id;?>" <?=($this->item->fk_category_id==$cat_val->category_id) ? " selected" : "";?>>
-                                <?=$cat_val->category_name;?>
+                        <?php foreach($this->shop_categories as $category):?>
+                            <option value="<?=$category->category_id?>" <?=($this->item->fk_category_id==$category->category_id) ? " selected" : "";?>>
+                                <?=$category->category_name;?>
                             </option>
                         <?php endforeach;?>
                     </select>
@@ -35,86 +42,86 @@
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Oggetto Disponibile</label><br/>
+                    <label><?=Lang::$status?></label><br/>
                     <label>
                         <input type="radio" name="item_status" value="1" <?=($this->item->item_status==1) ? "checked" : "";?> /> 
-                        S&igrave;
+                        <?=Lang::$available?>
                     </label>
                     <label>
                         <input type="radio" name="item_status" value="0" <?=($this->item->item_status==0) ? "checked" : "";?> /> 
-                        No
+                        <?=Lang::$unavailable?>
                     </label>
                 </div>
             </div>
                 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Qt&agrave; Magazzino</label>
+                    <label><?=Lang::$item_stock?></label>
                     <input type="text" name="item_stock" value="<?=$this->item->item_stock;?>" class="form-control" />
                 </div>
             </div>
                 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Prezzo</label>
+                    <label><?=Lang::$item_price ?></label>
                     <input type="text" name="item_price" value="<?=$this->item->item_price;?>" class="form-control" />
                 </div>
             </div>
                 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Titolo/Nome</label>
+                    <label><?=Lang::$item_title?></label>
                     <input type="text" name="item_title" value="<?=$this->item->item_title;?>" class="form-control" />
                 </div>
             </div>
                 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Peso</label>
+                    <label><?=Lang::$item_weight?></label>
                     <input type="text" name="item_weight" value="<?=$this->item->item_weight;?>" class="form-control" />
                 </div>
             </div>
-                
+            <!-- Colors -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Colore</label>
-                    <input type="text" name="item_color" value="<?=$this->item->item_color;?>" class="form-control" />
+                    <label><?=Lang::$item_colors?></label>
+                    <input type="text" name="item_colors" value="<?=$this->item->item_colors;?>" class="form-control" />
                 </div>
             </div>
-                
+            <!-- Short Description -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Riepilogo</label>
+                    <label><?=Lang::$item_short_desc?></label>
                     <textarea name="item_short_desc" class="form-control"><?=$this->item->item_short_desc;?></textarea>
                 </div>
             </div>
-
+            <!-- Long Description -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Descrizione</label>
+                    <label><?=Lang::$item_long_desc?></label>
                     <textarea name="item_long_desc" class="form-control"><?=$this->item->item_long_desc;?></textarea>
                 </div>
             </div>
-                
+            <!-- Meta Keywords -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Parole Chiave (meta tag)</label>
+                    <label><?=Lang::$meta_keys?></label>
                     <textarea name="item_meta_keywords" class="form-control"><?=$this->item->item_meta_keywords;?></textarea>
                 </div>
             </div>
-                
+            <!-- Meta Description -->  
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Descrizione (meta tag)</label>
+                    <label><?=Lang::$meta_desc?></label>
                     <textarea name="item_meta_description" class="form-control"><?=$this->item->item_meta_description;?></textarea>
                 </div>
             </div>
-                
+            <!-- Language -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Lingua</label>
+                    <label><?=Lang::$language?></label>
                     <select name="fk_lang_id" class="form-control">
-                        <option value="0">Seleziona Lingua...</option>
+                        <option value="0"><?=Lang::$select_language?></option>
                         <?php foreach($this->languages as $lang):?>
                             <option value="<?=$lang->lang_id;?>" <?=$lang->lang_id == $this->item->fk_lang_id ? "selected" : "";?>>
                                   <?=$lang->lang_name?> (<?=$lang->lang_internal_code;?>)
@@ -124,14 +131,18 @@
                 </div>
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        </div>
+        
+        <div class="row">
+            <!-- Submit Button -->
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xs-offset-3 col-sm-offset-4 col-md-offset-4 col-lg-offset-5">
                 <div class="form-group">
-                    <button type="submit" value="edit_item_submit" class="btn btn-default form-control">
-                        Salva
+                    <button type="submit" value="edit_item_submit" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-save"></span>
+                        <?=Lang::$save?>
                     </button>
                 </div>
             </div>
-            
         </div>
     </form>
     

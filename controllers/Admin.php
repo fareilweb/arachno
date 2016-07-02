@@ -41,26 +41,131 @@ class Admin extends Controller
     
     
     
-    /*==========================================================================
-     *  Single Item [Create/Read/Update/Delete]
-     *==========================================================================*/
+    /* =========================================================================
+     * Categories Methods
+     * =========================================================================*/
     
-    // Add Item ----------------------------------------------------------------
-    function addItem()
+    // Show Categories
+    function showCategories($args)
     {
-        // Get Data
+        // Data
+        $this->args = $args;
+        $shop_model = $this->getModel('ShopModel');
+        $this->categories = $shop_model->getCategories();
+        
+        // Views
+        $this->includeView('admin/shop/list_categories', 'main-content');
+        $this->index($args);
+        //$this->debug($this->categories);
+    }
+    
+    // Edit/Add Category
+    function editCategory($args)
+    {
+        // Data
+        $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getCategories();
-        $this->item = $this->getModel('ShopItemModel');
+        $this->category = $this->getModel('ShopCategoryModel');
         
-        // Include Views
-        $this->includeView('admin/shop/edit_item', 'main-content');
-        $this->index();
+        if(isset($args[0])){
+            $this->category->loadById($args[0]);
+        }
         
-        //$this->varDebug($this);
+        // Views
+        $this->includeView('admin/shop/edit_category', 'main-content');
+        $this->index($args);
+        
+        $this->debug($this->category);
     }
+    
+    // Category Process
+    function categoryProcess($args)
+    {
+        $this->args = $args;
+        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        // Switch If Is a New Category or and existing one
+        if(isset($this->post['category_id']) && $this->post['category_id']!==""){
+            $this->updateCategory($args);
+        }else{
+            $this->createCategory($args);
+        }
+    }
+    
+    // Create Category
+    function createCategory($args)
+    {
+        $new_category = $this->getModel('ShopCategoryModel');
+        foreach ($this->post as $category_key => $category_val){
+            $new_category->$category_key = $category_val;
+        }
+        if(!$new_category->insertCategory()){ //<--- Note, the category insert it self
+            $this->notice = Lang::$insert_fail;
+        }else{
+            $this->notice = Lang::$insert_success;
+        }
+        $this->index($args);
+    }
+    
+    // Update Category
+    function updateCategory($args)
+    {
+        $new_category = $this->getModel('ShopCategoryModel');
+        foreach ($this->post as $category_key => $category_val){
+            $new_category->$category_key = $category_val;
+        }
+        if(!$new_category->updateCategory()){ //<--- Note, the category update it self
+            $this->notice = Lang::$update_fail;
+        }else{
+            $this->notice = Lang::$update_success;
+        }
+        $this->index($args);
+    }
+    
+    // Delete Category
+    function deleteCategory($args)
+    {
+        // Data
+        $this->args = $args;
+        // Process
+        if(is_numeric($args[0]) && in_array("confirm_delete", $args))
+        {
+            $category_model = $this->getModel('ShopCategoryModel');
+            $del_result = $category_model->deleteCategory($args[0]);
+            if(!$del_result){
+                $this->notice = Lang::$delete_fail;
+            }else{
+                $this->notice = Lang::$delete_success;
+            }
+        }else{
+            // Confirm Delete View
+            $this->includeView('admin/shop/delete_category', 'main-content');
+        }
+        // Views
+        $this->index($args);
+    }
+    
+    
+    
+    /* =========================================================================
+     * Items Methods
+     * =========================================================================*/
+    
+    // Show Items List (also with filter if required)
+    function showItems($args)
+    {
+        // Data
+        $this->args = $args;
+        $shop_model = $this->getModel('ShopModel');
+        $this->items = $shop_model->getItems();
+        
+        // Views
+        $this->includeView('admin/shop/list_items', 'main-content');
+        $this->index($this->args);
+        //$this->debug($this->items);
+    }   
 
-    // Edit Item ---------------------------------------------------------------
+    // Edit/Add Item
     function editItem($args)
     {
         // Data
@@ -75,89 +180,80 @@ class Admin extends Controller
         
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
-        $this->index();
-       
+        $this->index($args);
+        
+        //$this->debug($this);
     }
     
-    // Add Item - PROCESS ------------------------------------------------------
+    // Process The Posted Data by Switching The Right Method
     function itemProcess($args)
     {
         $this->args = $args;
         $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        // Switch If Is a New Item or and existing one
         if(isset($this->post['item_id']) && $this->post['item_id']!==""){
-            $this->updateItemProcess($args);
+            $this->updateItem($args);
         }else{
-            $this->createItemProcess($args);
+            $this->createItem($args);
         }
+        //$this->debug($this);
     }
-    
-    // Add Item - UPDATE MODE --------------------------------------------------
-    function updateItemProcess()
-    {
-        echo "updateItemProcess() Work in Progress";
-        
-        // TODO - Get The Stored Item From DB and Populate the Object Proprierties
-        
-        // TODO - Update Data To The Object Instance
-        
-        // TODO - Update Data With The New Data in the Object Instance
-        
-        
-    }
-    
-    // Add Item - CREATE MODE --------------------------------------------------
-    function createItemProcess($args)
+   
+    // Create New Item And Insert
+    function createItem($args)
     {
         $new_item = $this->getModel('ShopItemModel');
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
         
-        if(!$new_item->insert()){ //<--- Note, the item insert it self
-            $this->notice = "Inserimento Oggetto Fallito";
+        if(!$new_item->insertItem()){ //<--- Note, the item insert it self
+            $this->notice = Lang::$insert_fail;
         }else{
-            $this->notice = "Inserimento Oggetto Riuscito";
+            $this->notice = Lang::$insert_success;
         }
         $this->index($args);
+        //$this->debug($this);
     }
-    
-    
-    function deleteItem($args)
+     
+    // Update An Existing Item
+    function updateItem($args)
     {
-        $this->args = $args;
-        
-        echo "Remove Item - Work in progress";
+        $new_item = $this->getModel('ShopItemModel');
+        foreach ($this->post as $item_key => $item_val){
+            $new_item->$item_key = $item_val;
+        }
+        if(!$new_item->updateItem()){ //<--- Note, the item update it self
+            $this->notice = Lang::$update_fail;
+        }else{
+            $this->notice = Lang::$update_success;
+        }
+        $this->index($args);
+        //$this->debug($this);
     }
     
-    
-    
-    /*==========================================================================
-     *  Items list [Open One/Open One]
-     *==========================================================================*/
-    
-    // Show Items List (also with filter if required) --------------------------
-    function showItems($args)
+    // Delete Item
+    function deleteItem($args)
     {
         // Data
         $this->args = $args;
-        $shop_model = $this->getModel('ShopModel');
-        $this->items = $shop_model->getItems();
-        
+        // Process
+        if(is_numeric($args[0]) && in_array("confirm_delete", $args))
+        {
+            $item_model = $this->getModel('ShopItemModel');
+            $del_result = $item_model->deleteItem($args[0]);
+            if(!$del_result){
+                $this->notice = Lang::$delete_fail;
+            }else{
+                $this->notice = Lang::$delete_success;
+            }
+        }else{
+            // Confirm Delete View
+            $this->includeView('admin/shop/delete_item', 'main-content');
+        }
         // Views
-        $this->includeView('admin/shop/items_list', 'main-content');
-        $this->index($this->args);
-    }   
-    
-    
-    /*==========================================================================
-     *  Items Categories
-     *==========================================================================*/
-    function showCategories($args)
-    {
-        $this->args = $args;
-        
-        echo "List of the categories - Work in Progress";
+        $this->index($args);
+        //$this->debug($this);
     }
-    
     
 }

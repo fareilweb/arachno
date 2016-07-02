@@ -7,16 +7,15 @@ class LocalizationModel extends Model
     public function getLanguages()
     {
         $query = "SELECT * FROM #_languages;";
-        $results = $this->queryExec($query);
-        if(!$results){
+        $this->results = $this->queryExec($query);
+        if(!$this->results){
             return FALSE;
         }else{
             $data = array();
-            while($row = $results->fetch_object()){
+            while($row = $this->results->fetch_object()){
                 array_push($data, $row);
             }
-            $results->free();
-            $this->mysqli->close();
+            $this->cleanAndClose();
             return $data;
         }
     }

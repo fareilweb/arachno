@@ -1,10 +1,10 @@
 <div class="products">
     
-    <h1><?=Lang::$products_list_title?></h1>
+    <h1><?=Lang::$products?></h1>
     
     <div class="items_list">
         
-        <?=$this->varDebug($this);?>
+        <?=$this->debug($this);?>
         
     </div>
     
