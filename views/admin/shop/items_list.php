@@ -14,6 +14,15 @@
                     <option value="">Solo Prodotti Pubblicati</option>
                     <option value="">Solo Prodotti Non Pubblicati</option>
                 </select>
+                <script>
+                    jQuery("#items_list_filter").change(function(){
+                        swal({
+                           title: "Presto Disponibile",
+                           text: "",
+                           type: "success"
+                        });
+                    });
+                </script>
             </div>
         </div>
         <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
