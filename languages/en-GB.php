@@ -26,6 +26,9 @@ class Lang
     public static $suspended = "Sospeso";
     public static $products = "Prodotti";
     public static $images = "Immagini";
+    public static $title = "Titolo";
+    public static $alt_text = "Testo Alternativo";
+    public static $main_image = "Immagine Principale";
     public static $select_images = "Seleziona Immagini";
     public static $preview = "Anteprima";
     public static $categories = "Categorie"; 
