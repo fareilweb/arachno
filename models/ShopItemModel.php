@@ -109,7 +109,7 @@ class ShopItemModel extends Model
             $query_images.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
             $query_images.= "VALUES ";
             foreach ($this->item_images as $key => $val) {
-                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', $val->image_alt', '$val->is_main', '$item_ins_id') ";
+                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', '$val->image_alt', '$val->is_main', '$item_ins_id') ";
                 if($key < count($this->item_images)-1){
                     $query_images.= ", ";
                 }else{
