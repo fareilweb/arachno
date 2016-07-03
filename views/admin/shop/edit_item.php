@@ -6,19 +6,58 @@
         </div>
     </div><hr/>
     
+    <div class="row">
+        <!-- Images Upload -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <label><?=Lang::$images?></label>
+                <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="<?=Config::$web_path?>/Upload/itemImagesProcess">
+                    <input type="hidden" name="image_form_submit" value="1"/>
+                    <label><?=Lang::$select_images?></label>
+                    <input type="file" name="images[]" id="images" multiple class="form-control">
+                    <div class="uploading" style="display: none;">
+                        <label>&nbsp;</label>
+                        <img src="<?=Config::$web_path;?>/views/pages/images/preloader.gif" alt="uploading..."/>
+                    </div>
+                </form>     
+            </div>
+        </div>
+    </div>
+    <!-- Images Upload JavaScript -->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('#images').on('change',function(){
+                jQuery('#multiple_upload_form').ajaxForm({
+                    //display the uploaded images
+                    target:'#images_preview',
+                    beforeSubmit:function(e){
+                        $('.uploading').show();
+                    },
+                    success:function(e){
+                        $('.uploading').hide();
+                    },
+                    error:function(e){
+
+                    }
+                }).submit();
+            });
+        });
+    </script>
+        
+    
+    
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
         
         <div class="row">
+            
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
-                    <label><?=Lang::$images?></label>
+                    <div id="images_preview"></div>
                 </div>
             </div>
-        </div><hr/>
-        
-        <div class="row">
+            
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label><?=Lang::$item_code?></label>

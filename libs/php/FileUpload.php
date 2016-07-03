@@ -1,22 +1,37 @@
 <?php
 
-class Upload 
+class FileUpload 
 {
-    /* -------------------------------------------
+   /*===========================================================================
     * Settings 
-    * ---------------------------------------- */
+    *===========================================================================*/
     
-    public $savePath        = '';
-    public $fileName        = '';
-    public $prefix          = '';       // EX. -> date("Y_F_d_l_H_i_s", time() ) . "___";
-    public $maxSize         = 10485760; // Default is 10485760 (10MB)
-    public $permittedTypes  = [];       // EX. [ 'image/jpeg', 'image/png', 'image/gif', 'image/bmp' ]
+    private $formInputName   = "file";
+    private $savePath        = "";
+    private $fileName        = "";       // 
+    private $prefix          = "";       // EX. -> date("Y_F_d_l_H_i_s", time() ) . "___";
+    private $maxSize         = 10485760; // Default is 10485760 (10MB)
+    private $permittedTypes  = array();  // EX. [ 'image/jpeg', 'image/png', 'image/gif', 'image/bmp' ]
+    
+    
+    // Getter/Setter Magic Methods
+    public function __get($property){
+        if (property_exists($this, $property)){
+            return $this->$property;
+        }
+    }
+    public function __set($property, $value){
+        if (property_exists($this, $property)){
+            $this->$property = $value;
+        }
+        return $this;
+    }
     
     
     
-    /* -------------------------------------------
-    * Functions ----------------------------------
-    * ----------------------------------------- */
+   /*===========================================================================
+    * Methods
+    *===========================================================================*/
     
     // Do All Controls
     public function checkAll()
@@ -33,8 +48,6 @@ class Upload
         }
     }
     
-    
-    
     // Check if there is a file uploaded by the form
     public function findFile()
     {
@@ -45,54 +58,46 @@ class Upload
         }
     }
     
-    
-    
     // Check if the file is one of the permitted types
     public function checkType()
     {   
-        $type = $_FILES["afile"]["type"];
-        $res = 0;
+        $type = $_FILES["file"]["type"];
+        $res = FALSE;
         
         foreach ($this->permittedTypes as $value){
             if($type != $value){
-                $res = 0;
+                $res = FALSE;
             }else{
-                $res = 1;
+                $res = TRUE;
             }
         }
         
         return $res;
-        
     }
-    
-    
     
     // Check if the size of the file is right
     public function checkSize()
     {
-        if($_FILES["afile"]["size"] > $this->maxSize){
+        if($_FILES["file"]["size"] > $this->maxSize){
             return FALSE;
         }else{
             return TRUE;
         }
     }
     
-    
-    
     // Save the file to the target directory (savePath)
     public function saveFile()
     {   
         $target_file = $this->savePath . $this->prefix . basename($_FILES["afile"]["name"]);
       
-        if (move_uploaded_file($_FILES["afile"]["tmp_name"], $target_file)) {
-            $this->fileName =  basename($_FILES["afile"]["name"]);
+        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+            $this->fileName = basename($_FILES["file"]["name"]);
         } else {
             return FALSE;
         }
     }
     
-    
-    
+    // Get Final File Name
     public function getFileName()
     {
         return $this->prefix . $this->fileName;

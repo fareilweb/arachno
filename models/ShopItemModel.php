@@ -18,7 +18,6 @@ class ShopItemModel extends Model
     private $item_meta_keywords = NULL;
     private $item_meta_description = NULL;
     private $fk_lang_id = NULL;
-    private $item_images = array();
     
     // Getter/Setter Magic Methods
     public function __get($property){
@@ -70,7 +69,7 @@ class ShopItemModel extends Model
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields)){
+            if(!in_array($field_name, $excluded_fields) && property_exists($this, $field_name)){
                 array_push($fields, $field_name);
                 array_push($values, $field_val);
             }

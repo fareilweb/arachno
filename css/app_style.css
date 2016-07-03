@@ -60,3 +60,19 @@ span.big-icon{
 .pagination .current_page{
     font-size: 16pt;
 }
+
+
+
+/* ========================================
+ * Multiple Images Upload
+ * ======================================== */
+
+#images_preview{
+    min-height: 64px;
+    padding:6px;
+    border: 1px solid #ccc;
+}
+#images_preview img{
+    max-height: 80px;
+}
+

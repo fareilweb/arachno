@@ -213,7 +213,8 @@ class Admin extends Controller
             $this->notice = Lang::$insert_success;
         }
         $this->index($args);
-        //$this->debug($this);
+        
+        $this->debug($this);
     }
      
     // Update An Existing Item
