@@ -18,6 +18,7 @@ class ShopItemModel extends Model
     private $item_meta_keywords = NULL;
     private $item_meta_description = NULL;
     private $fk_lang_id = NULL;
+    private $item_images = array();
     
     // Getter/Setter Magic Methods
     public function __get($property){
@@ -65,7 +66,7 @@ class ShopItemModel extends Model
     public function insertItem()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results");
+        $excluded_fields = array("mysqli", "results", "item_images");
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){
@@ -74,6 +75,7 @@ class ShopItemModel extends Model
                 array_push($values, $field_val);
             }
         }
+        
         // Compose Fields String
         $fields_string = "";
         foreach($fields as $key=>$val){
@@ -82,6 +84,7 @@ class ShopItemModel extends Model
                 $fields_string .= ", ";
             }
         }
+        
         // Compose Values String
         $values_string = "";
         foreach($values as $key => $val){
@@ -90,9 +93,11 @@ class ShopItemModel extends Model
                 $values_string .= ", ";
             }
         }
+        
         // Compose Query
         $query = "INSERT INTO #_shop_items( $fields_string ) "
                . "VALUES ( $values_string ); ";
+        
         // Exec Query
         if(!$this->queryExec($query)){
             return FALSE;
@@ -103,16 +108,16 @@ class ShopItemModel extends Model
     }
     
     // Update Item
-    public function updateItem($item_id=NULL)
+    public function updateItem()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results");
+        $excluded_fields = array("mysqli", "results", "item_images");
         $set_string = "";
         $counter = 0;
         $fields_count = ((count((array)$this)) - count($excluded_fields)) - 1;
         
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields)){
+            if(!in_array($field_name, $excluded_fields) && property_exists($this, $field_name)){
                 $set_string.= "`$field_name`='$field_val'";
                 if( $counter < $fields_count ){
                     $set_string.= ", ";
@@ -120,6 +125,7 @@ class ShopItemModel extends Model
                 $counter++;
             }
         }
+        
         // Compose Query
         $query = "UPDATE #_shop_items ";
         $query.= "SET $set_string ";

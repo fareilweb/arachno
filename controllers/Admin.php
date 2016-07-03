@@ -203,9 +203,25 @@ class Admin extends Controller
     function createItem($args)
     {
         $new_item = $this->getModel('ShopItemModel');
+        
+        // Push Values Into Object Proprierties
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
+        
+        // Push Images Into item_images Proprierty
+        $item_images = array();
+        foreach($this->post['images_src'] as $img_src_key=>$img_src_val){
+            $image_obj = new stdClass;
+            $image_obj->image_src      = $img_src_val;
+            $image_obj->image_name     = $this->post['images_name'][$img_src_key];
+            $image_obj->image_title    = $this->post['images_title'][$img_src_key];
+            $image_obj->image_alt      = $this->post['images_alt'][$img_src_key];
+            $image_obj->is_main        = $this->post['images_is_main'][$img_src_key];
+            //$image_obj->fk_item_id;
+            array_push($item_images, $image_obj);
+        }
+        $new_item->item_images = $item_images;
         
         if(!$new_item->insertItem()){ //<--- Note, the item insert it self
             $this->notice = Lang::$insert_fail;
@@ -221,16 +237,33 @@ class Admin extends Controller
     function updateItem($args)
     {
         $new_item = $this->getModel('ShopItemModel');
+        
+        // Push Values Into Object Proprierties
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
+        
+        // Push Images Into item_images Proprierty
+        $item_images = array();
+        foreach($this->post['images_src'] as $img_src_key=>$img_src_val){
+            $image_obj = new stdClass;
+            $image_obj->image_src      = $img_src_val;
+            $image_obj->image_name     = $this->post['images_name'][$img_src_key];
+            $image_obj->image_title    = $this->post['images_title'][$img_src_key];
+            $image_obj->image_alt      = $this->post['images_alt'][$img_src_key];
+            $image_obj->is_main        = $this->post['images_is_main'][$img_src_key];
+            $image_obj->fk_item_id     = $new_item->item_id;
+            array_push($item_images, $image_obj);
+        }
+        $new_item->item_images = $item_images;
+        
         if(!$new_item->updateItem()){ //<--- Note, the item update it self
             $this->notice = Lang::$update_fail;
         }else{
             $this->notice = Lang::$update_success;
         }
         $this->index($args);
-        //$this->debug($this);
+        $this->debug($this);
     }
     
     // Delete Item

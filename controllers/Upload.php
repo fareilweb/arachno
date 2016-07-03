@@ -34,9 +34,9 @@ class Upload extends Controller
                 <table><tbody>
                     <tr>
                         <th><?=Lang::$preview?></th>
-                        <th>Titolo</th>
-                        <th>Testo Alt</th>
-                        <th>Immagine Principale</th>
+                        <th><?=Lang::$title?></th>
+                        <th><?=Lang::$alt_text?></th>
+                        <th><?=Lang::$main_image?></th>
                     </tr>
             <?php
                 foreach($images_arr as $image_path)
@@ -50,7 +50,12 @@ class Upload extends Controller
                         <td><img src="<?=$image_src?>" alt="Image Preview" ></td>
                         <td><input type="text" name="images_title[]" value="" class="form-control" /></td>
                         <td><input type="text" name="images_alt[]" value="" class="form-control" /></td>
-                        <td><input type="checkbox" name="images_is_main[]" class="form-control" /></td>
+                        <td>
+                            <select name="images_is_main[]" class="form-control">
+                                <option value="FALSE"><?=Lang::$no?></option>
+                                <option value="TRUE"><?=Lang::$yes?></option>
+                            <select>
+                        </td>
                     </tr>
             <?php
                 }
