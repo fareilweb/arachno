@@ -94,16 +94,35 @@ class ShopItemModel extends Model
             }
         }
         
-        // Compose Query
-        $query = "INSERT INTO #_shop_items( $fields_string ) "
-               . "VALUES ( $values_string ); ";
-        
-        // Exec Query
-        if(!$this->queryExec($query)){
+        // Compose Query for Item
+        $query = "INSERT INTO #_shop_items( $fields_string ) ";
+        $query.= "VALUES ( $values_string ); ";
+
+        // Exec Queries
+        $item_res = $this->queryExec($query);
+        if(!$item_res){
             return FALSE;
         }else{
-            $this->cleanAndClose();
-            return TRUE;
+            // Compose Query for Item Images
+            $item_ins_id = $this->mysqli->insert_id;
+            $query_images = "INSERT INTO #_shop_images ";
+            $query_images.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
+            $query_images.= "VALUES ";
+            foreach ($this->item_images as $key => $val) {
+                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', $val->image_alt', '$val->is_main', '$item_ins_id') ";
+                if($key < count($this->item_images)-1){
+                    $query_images.= ", ";
+                }else{
+                    $query_images.= "; ";
+                }
+            }
+            $images_res = $this->queryExec($query_images);
+            if(!$images_res){
+                return FALSE;
+            }else{
+                $this->cleanAndClose();
+                return TRUE;
+            }
         }
     }
     
