@@ -29,7 +29,7 @@
             jQuery('#images').on('change',function(){
                 jQuery('#multiple_upload_form').ajaxForm({
                     //display the uploaded images
-                    target:'#images_preview',
+                    target:'#item_images_preview',
                     beforeSubmit:function(e){
                         $('.uploading').show();
                     },
@@ -45,7 +45,6 @@
     </script>
         
     
-    
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
@@ -54,7 +53,41 @@
             
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
-                    <div id="images_preview"></div>
+                    <div id="item_images_preview"></div>
+                    <?php if(count($this->item->item_images) > 0):?>
+                    <div id="item_images_loaded">
+                        <table><tbody>
+                            <tr>
+                                <th><?=Lang::$preview?></th>
+                                <th><?=Lang::$title?></th>
+                                <th><?=Lang::$alt_text?></th>
+                                <th><?=Lang::$main_image?></th>
+                                <th></th>
+                            </tr>
+                            <?php foreach($this->item->item_images as $img_obj):?>
+                            <input type="hidden" name="images_src[]" value="<?=$img_obj->image_src?>" />
+                            <input type="hidden" name="images_name[]" value="<?=$img_obj->image_name?>" />
+                    
+                            <tr>
+                                <td><img src="<?=$img_obj->image_src?>" alt="Image Preview" ></td>
+                                <td><input type="text" name="images_title[]" value="<?=$img_obj->image_title?>" class="form-control" /></td>
+                                <td><input type="text" name="images_alt[]" value="<?=$img_obj->image_alt?>" class="form-control" /></td>
+                                <td>
+                                    <select name="images_is_main[]" class="form-control">
+                                        <option value="FALSE"><?=Lang::$no?></option>
+                                        <option value="TRUE" <?=$img_obj->is_main == 1 ? " selected" : "";?>><?=Lang::$yes?></option>
+                                    <select>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default remove-image" type="button">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php endforeach;?>
+                        </tbody></table>
+                    </div>
+                    <?php endif;?>
                 </div>
             </div>
             
@@ -174,9 +207,9 @@
         
         <div class="row">
             <!-- Submit Button -->
-            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 col-xs-offset-3 col-sm-offset-4 col-md-offset-4 col-lg-offset-5">
-                <div class="form-group">
-                    <button type="submit" value="edit_item_submit" class="btn btn-default btn-lg">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
+                <div class="form-group text-center">
+                    <button type="submit" value="edit_item_submit" class="btn btn-default btn-lg" style="margin:0 auto 0 auto;">
                         <span class="glyphicon glyphicon-save"></span>
                         <?=Lang::$save?>
                     </button>

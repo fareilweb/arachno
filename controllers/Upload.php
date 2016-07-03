@@ -37,6 +37,7 @@ class Upload extends Controller
                         <th><?=Lang::$title?></th>
                         <th><?=Lang::$alt_text?></th>
                         <th><?=Lang::$main_image?></th>
+                        <th></th>
                     </tr>
             <?php
                 foreach($images_arr as $image_path)
@@ -55,6 +56,11 @@ class Upload extends Controller
                                 <option value="FALSE"><?=Lang::$no?></option>
                                 <option value="TRUE"><?=Lang::$yes?></option>
                             <select>
+                        </td>
+                        <td>
+                            <button class="btn btn-default remove-image" type="button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
                         </td>
                     </tr>
             <?php

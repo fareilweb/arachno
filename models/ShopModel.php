@@ -21,7 +21,7 @@ class ShopModel extends Model
             while($row_obj = $this->results->fetch_object()){
                 array_push($data, $row_obj); 
             }
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return $data;
         }
     }

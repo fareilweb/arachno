@@ -67,12 +67,14 @@ span.big-icon{
  * Multiple Images Upload
  * ======================================== */
 
-#images_preview{
+#item_images_preview,
+#item_images_loaded{
     min-height: 64px;
     padding:6px;
     border: 1px solid #ccc;
 }
-#images_preview img{
+#item_images_preview img,
+#item_images_loaded img{
     max-height: 80px;
 }
 

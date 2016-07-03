@@ -73,7 +73,7 @@ class Database
 
         $data = $this->results->fetch_assoc();
         
-        $this->cleanAndClose();
+        //$this->cleanAndClose();
         
         return $data;
     }
@@ -104,10 +104,14 @@ class Database
             $data->num_rows = $this->results->num_rows;
         }
         
-        $this->cleanAndClose();
+        //$this->cleanAndClose();
         
         return $data;
     }
 
+    // Destruct Method
+    function __destruct(){
+        $this->cleanAndClose();
+    }
 
 }

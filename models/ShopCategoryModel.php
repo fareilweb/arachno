@@ -79,7 +79,7 @@ class ShopCategoryModel extends Model
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return TRUE;
         }
     }
@@ -111,7 +111,7 @@ class ShopCategoryModel extends Model
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return TRUE;
         }
     }
@@ -124,7 +124,7 @@ class ShopCategoryModel extends Model
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return TRUE;
         }      
     }

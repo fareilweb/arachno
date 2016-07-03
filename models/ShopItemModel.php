@@ -47,20 +47,28 @@ class ShopItemModel extends Model
         }
         $query.= ";";
         $item_data = $this->getObjectData($query);
-        if($item_data!=FALSE){
+        if(!$item_data){
+            return FALSE;
+        }else{
+
+            // Populate Item Proprierties
             foreach($item_data as $item_key => $item_val){
                 $this->$item_key = $item_val;
             }
-        }
+
+            // Load Item Images
+            $images_query = "SELECT * FROM #_shop_images WHERE #_shop_images.fk_item_id = '$item_id';";
+            $this->results = $this->queryExec($images_query);
+            while($img_row_obj = $this->results->fetch_object()){
+                array_push($this->item_images, $img_row_obj);
+            }
         
-        // Load Item Images
-        //$images_query = "SELECT * FROM #_shop_images WHERE #_shop_images.fk_item_id = '$item_id';";
-        //$this->results = $this->queryExec($images_query);
-        //while($img_row_obj = $this->results->fetch_object()){
-        //    array_push($this->item_images, $img_row_obj);
-        //}
-        //$this->cleanAndClose();
+            //$this->cleanAndClose();
+
+            return TRUE;
+        }  
     }
+
     
     // Insert Current Item To DB
     public function insertItem()
@@ -120,7 +128,7 @@ class ShopItemModel extends Model
             if(!$images_res){
                 return FALSE;
             }else{
-                $this->cleanAndClose();
+                //$this->cleanAndClose();
                 return TRUE;
             }
         }
@@ -150,11 +158,36 @@ class ShopItemModel extends Model
         $query.= "SET $set_string ";
         $query.= "WHERE #_shop_items.item_id = '$this->item_id';";
         
-        // Exec Query
-        if(!$this->queryExec($query)){
+        // Exec Queries
+        $item_res = $this->queryExec($query);
+        if(!$item_res){
             return FALSE;
         }else{
-            $this->cleanAndClose();
+
+            // Compose Query for Item Images
+            /*
+            $item_ins_id = $this->mysqli->insert_id;
+            $query_images = "INSERT INTO #_shop_images ";
+            $query_images.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
+            $query_images.= "VALUES ";
+            foreach ($this->item_images as $key => $val) {
+                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', '$val->image_alt', '$val->is_main', '$item_ins_id') ";
+                if($key < count($this->item_images)-1){
+                    $query_images.= ", ";
+                }else{
+                    $query_images.= "; ";
+                }
+            }
+            $images_res = $this->queryExec($query_images);
+            if(!$images_res){
+                return FALSE;
+            }else{
+                //$this->cleanAndClose();
+                return TRUE;
+            }
+            */
+
+            //$this->cleanAndClose();
             return TRUE;
         }      
     }
@@ -167,7 +200,7 @@ class ShopItemModel extends Model
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return TRUE;
         }      
     }

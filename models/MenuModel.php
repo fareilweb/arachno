@@ -22,7 +22,7 @@ class MenuModel extends Model
         }
 
         /*** 4. - Free/Close (clean memory) ===================================*/
-        $this->cleanAndClose();
+        //$this->cleanAndClose();
         
         /*** 5. - Return Data to Caller =======================================*/
         return $data;

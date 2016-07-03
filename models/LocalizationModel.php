@@ -15,7 +15,7 @@ class LocalizationModel extends Model
             while($row = $this->results->fetch_object()){
                 array_push($data, $row);
             }
-            $this->cleanAndClose();
+            //$this->cleanAndClose();
             return $data;
         }
     }
