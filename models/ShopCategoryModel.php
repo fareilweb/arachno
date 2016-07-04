@@ -2,6 +2,8 @@
 
 class ShopCategoryModel extends Model
 {
+    private $excluded_fields = array("mysqli", "results");
+    
     /* Class Private Internal State Proprierties */
     private $category_id = NULL;
     private $category_name = NULL;
@@ -47,11 +49,10 @@ class ShopCategoryModel extends Model
     public function insertCategory()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results");
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields)){
+            if(!in_array($field_name, $this->excluded_fields)){
                 array_push($fields, $field_name);
                 array_push($values, $field_val);
             }
@@ -88,13 +89,12 @@ class ShopCategoryModel extends Model
     public function updateCategory()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results");
         $set_string = "";
         $counter = 0;
-        $fields_count = ((count((array)$this)) - count($excluded_fields)) - 1;
+        $fields_count = ((count((array)$this)) - count($this->excluded_fields)) - 1;
         
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields)){
+            if(!in_array($field_name, $this->excluded_fields)){
                 $set_string.= "`$field_name`='$field_val'";
                 if( $counter < $fields_count ){
                     $set_string.= ", ";

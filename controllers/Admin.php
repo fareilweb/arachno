@@ -55,7 +55,6 @@ class Admin extends Controller
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
         $this->categories = $shop_model->getCategories();
-        
         // Views
         $this->includeView('admin/shop/list_categories', 'main-content');
         $this->index($args);
@@ -70,23 +69,19 @@ class Admin extends Controller
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getCategories();
         $this->category = $this->getModel('ShopCategoryModel');
-        
         if(isset($args[0])){
             $this->category->loadById($args[0]);
         }
-        
         // Views
         $this->includeView('admin/shop/edit_category', 'main-content');
         $this->index($args);
-        
-        $this->debug($this->category);
+        //$this->debug($this->category);
     }
     
     // Category Process
     function categoryProcess($args)
     {
         $this->args = $args;
-        
         // Switch If Is a New Category or and existing one
         if(isset($this->post['category_id']) && $this->post['category_id']!==""){
             $this->updateCategory($args);
@@ -160,8 +155,7 @@ class Admin extends Controller
         // Data
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
-        $this->items = $shop_model->getItems();
-        
+        $this->items = $shop_model->getItems();   
         // Views
         $this->includeView('admin/shop/list_items', 'main-content');
         $this->index($this->args);
@@ -176,23 +170,19 @@ class Admin extends Controller
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getCategories();
         $this->item = $this->getModel('ShopItemModel');
-        
         if(isset($args[0])){
             $this->item->loadById($args[0]);
         }
-        
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index($args);
-        
-        $this->debug($this);
+        //$this->debug($this);
     }
     
     // Process The Posted Data by Switching The Right Method
     function itemProcess($args)
     {
         $this->args = $args;
-        //$this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         // Switch If Is a New Item or and existing one
         if(isset($this->post['item_id']) && $this->post['item_id']!==""){
             $this->updateItem($args);
@@ -206,68 +196,34 @@ class Admin extends Controller
     function createItem($args)
     {
         $new_item = $this->getModel('ShopItemModel');
-        
         // Push Values Into Object Proprierties
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
-        
-        // Push Images Into item_images Proprierty
-        $item_images = array();
-        foreach($this->post['images_src'] as $img_src_key=>$img_src_val){
-            $image_obj = new stdClass;
-            $image_obj->image_src      = $img_src_val;
-            $image_obj->image_name     = $this->post['images_name'][$img_src_key];
-            $image_obj->image_title    = $this->post['images_title'][$img_src_key];
-            $image_obj->image_alt      = $this->post['images_alt'][$img_src_key];
-            $image_obj->is_main        = $this->post['images_is_main'][$img_src_key];
-            //$image_obj->fk_item_id;
-            array_push($item_images, $image_obj);
-        }
-        $new_item->item_images = $item_images;
-        
         if(!$new_item->insertItem()){ //<--- Note, the item insert it self
             $this->notice = Lang::$insert_fail;
         }else{
             $this->notice = Lang::$insert_success;
         }
         $this->index($args);
-        
-        $this->debug($this);
+        //$this->debug($this);
     }
      
     // Update An Existing Item
     function updateItem($args)
     {
         $new_item = $this->getModel('ShopItemModel');
-        
         // Push Values Into Object Proprierties
         foreach ($this->post as $item_key => $item_val){
             $new_item->$item_key = $item_val;
         }
-        
-        // Push Images Into item_images Proprierty
-        $item_images = array();
-        foreach($this->post['images_src'] as $img_src_key=>$img_src_val){
-            $image_obj = new stdClass;
-            $image_obj->image_src      = $img_src_val;
-            $image_obj->image_name     = $this->post['images_name'][$img_src_key];
-            $image_obj->image_title    = $this->post['images_title'][$img_src_key];
-            $image_obj->image_alt      = $this->post['images_alt'][$img_src_key];
-            $image_obj->is_main        = $this->post['images_is_main'][$img_src_key];
-            $image_obj->fk_item_id     = $new_item->item_id;
-            array_push($item_images, $image_obj);
-        }
-        $new_item->item_images = $item_images;
-        
         if(!$new_item->updateItem()){ //<--- Note, the item update it self
             $this->notice = Lang::$update_fail;
         }else{
             $this->notice = Lang::$update_success;
         }
-        $this->index($args);
-        
-        $this->debug($this);
+        $this->index($args);        
+        //$this->debug($this);
     }
     
     // Delete Item

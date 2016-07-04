@@ -2,6 +2,7 @@
 
 class ShopItemModel extends Model
 {
+    private $excluded_fields = array("mysqli", "results", "item_images");
     
     // Class Private Internal State Proprierties
     private $item_id = NULL;
@@ -19,6 +20,7 @@ class ShopItemModel extends Model
     private $item_meta_description = NULL;
     private $fk_lang_id = NULL;
     private $item_images = array();
+    
     
     // Getter/Setter Magic Methods
     public function __get($property){
@@ -74,11 +76,10 @@ class ShopItemModel extends Model
     public function insertItem()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results", "item_images");
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields) && property_exists($this, $field_name)){
+            if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
                 array_push($fields, $field_name);
                 array_push($values, $field_val);
             }
@@ -111,40 +112,22 @@ class ShopItemModel extends Model
         if(!$item_res){
             return FALSE;
         }else{
-            // Compose Query for Item Images
             $item_ins_id = $this->mysqli->insert_id;
-            $query_images = "INSERT INTO #_shop_images ";
-            $query_images.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
-            $query_images.= "VALUES ";
-            foreach ($this->item_images as $key => $val) {
-                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', '$val->image_alt', '$val->is_main', '$item_ins_id') ";
-                if($key < count($this->item_images)-1){
-                    $query_images.= ", ";
-                }else{
-                    $query_images.= "; ";
-                }
-            }
-            $images_res = $this->queryExec($query_images);
-            if(!$images_res){
-                return FALSE;
-            }else{
-                //$this->cleanAndClose();
-                return TRUE;
-            }
+            return TRUE;
         }
+        
     }
     
     // Update Item
     public function updateItem()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli", "results", "item_images");
         $set_string = "";
         $counter = 0;
-        $fields_count = ((count((array)$this)) - count($excluded_fields)) - 1;
+        $fields_count = ((count((array)$this)) - count($this->excluded_fields)) - 1;
         
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $excluded_fields) && property_exists($this, $field_name)){
+            if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
                 $set_string.= "`$field_name`='$field_val'";
                 if( $counter < $fields_count ){
                     $set_string.= ", ";
@@ -163,31 +146,6 @@ class ShopItemModel extends Model
         if(!$item_res){
             return FALSE;
         }else{
-
-            // Compose Query for Item Images
-            /*
-            $item_ins_id = $this->mysqli->insert_id;
-            $query_images = "INSERT INTO #_shop_images ";
-            $query_images.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
-            $query_images.= "VALUES ";
-            foreach ($this->item_images as $key => $val) {
-                $query_images.= "('$val->image_src', '$val->image_name', '$val->image_title', '$val->image_alt', '$val->is_main', '$item_ins_id') ";
-                if($key < count($this->item_images)-1){
-                    $query_images.= ", ";
-                }else{
-                    $query_images.= "; ";
-                }
-            }
-            $images_res = $this->queryExec($query_images);
-            if(!$images_res){
-                return FALSE;
-            }else{
-                //$this->cleanAndClose();
-                return TRUE;
-            }
-            */
-
-            //$this->cleanAndClose();
             return TRUE;
         }      
     }
