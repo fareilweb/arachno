@@ -17,10 +17,12 @@ class Lang
     public static $err_logout = "Disconnessione Fallita";
     public static $yes = "S&igrave;";
     public static $no = "No";
+    public static $add = "Aggiungi";
     public static $go_to_site = "Vai al Sito";
     public static $id = "ID";
     public static $meta_desc = "Descrizione Meta Tag";
     public static $meta_keys = "Parole Chiave Meta Tag";
+    public static $file = "File";
     public static $save = "Salva";
     public static $published = "Pubblicato";
     public static $suspended = "Sospeso";
@@ -28,7 +30,7 @@ class Lang
     public static $images = "Immagini";
     public static $title = "Titolo";
     public static $alt_text = "Testo Alternativo";
-    public static $main_image = "Immagine Principale";
+    public static $main = "Principale";
     public static $select_images = "Seleziona Immagini";
     public static $preview = "Anteprima";
     public static $categories = "Categorie"; 
