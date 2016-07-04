@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2016 at 11:55 AM
+-- Generation Time: Jul 04, 2016 at 11:06 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -134,7 +134,8 @@ CREATE TABLE `acms_shop_categories` (
 INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
 (2, 'Categoria Oggetti 02', 1, 1, 1, 'Categoria Oggetti 01'),
 (3, 'Un altro nome', 1, 2, 2, 'Categoria Oggetti 02'),
-(4, 'Ero senza nome', 0, 1, 2, 'Categoria Oggetti 02');
+(4, 'Ero senza nome', 0, 1, 2, 'Categoria Oggetti 02'),
+(7, 'Nuova Categoria', 1, 1, 2, 'Categoria Oggetti 02');
 
 -- --------------------------------------------------------
 
@@ -180,10 +181,9 @@ CREATE TABLE `acms_shop_items` (
 --
 
 INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(1, 'AAA001', 1, 1, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio MOD 5', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
-(18, 'AAA002', 1, 1, 1, 100, 199.99, 'Titolo Secondo Prodotto di Esempio', '22', 'Verde', 'Breve testo descrittivo del secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ', 'Descrizione Testuale Estesa del Secondo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'secondo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Secondo Prodotto di Esempio.'),
-(23, '', 1, 0, 0, 0, 0, '', '', '', '', '', '', ''),
-(24, '', 1, 0, 0, 0, 0, '', '', '', '', '', '', '');
+(1, 'AAA001', 3, 2, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
+(23, 'AAA002', 2, 1, 1, 100, 99, 'Titolo Nuovo Oggetto', '100', 'Verde, Giallo', 'Riepilogo', 'Descrizione', 'parole, chiave', 'Descrizione Meta'),
+(41, 'IMG000', 3, 1, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,7 @@ CREATE TABLE `acms_users` (
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
 (1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
-(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@diatech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
+(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
 -- Indexes for dumped tables
@@ -303,17 +303,17 @@ ALTER TABLE `acms_pages`
 -- AUTO_INCREMENT for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `acms_shop_images`
 --
 ALTER TABLE `acms_shop_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --
