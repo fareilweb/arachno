@@ -2,7 +2,7 @@
 
 class ShopCategoryModel extends Model
 {
-    private $excluded_fields = array("mysqli", "results");
+    private $excluded_fields = array("excluded_fields", "mysqli", "results");
     
     /* Class Private Internal State Proprierties */
     private $category_id = NULL;

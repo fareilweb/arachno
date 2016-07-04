@@ -2,7 +2,7 @@
 
 class ShopItemModel extends Model
 {
-    private $excluded_fields = array("mysqli", "results", "item_images");
+    private $excluded_fields = array("excluded_fields", "mysqli", "results", "item_images");
     
     // Class Private Internal State Proprierties
     private $item_id = NULL;

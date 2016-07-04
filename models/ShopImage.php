@@ -2,7 +2,7 @@
 
 class ShopImage extends Model
 {
-    private $excluded_fields = array("mysqli", "results");
+    private $excluded_fields = array("excluded_fields", "mysqli", "results");
 
     private $image_src;
     private $image_name;
