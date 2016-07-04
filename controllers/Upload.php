@@ -40,29 +40,31 @@ class Upload extends Controller
                         <th></th>
                     </tr>
             <?php
-                foreach($images_arr as $image_path)
+                foreach($images_arr as $img_key =>  $image_path)
                 {
                     $image_src = Config::$web_path . "/views/shop/uploads/" . basename($image_path);
             ?>
-                    <input type="hidden" name="images_src[]" value="<?=$image_src?>" />
-                    <input type="hidden" name="images_name[]" value="<?=basename($image_path)?>" />
-                    
-                    <tr>
-                        <td><img src="<?=$image_src?>" alt="Image Preview" ></td>
-                        <td><input type="text" name="images_title[]" value="" class="form-control" /></td>
-                        <td><input type="text" name="images_alt[]" value="" class="form-control" /></td>
-                        <td>
-                            <select name="images_is_main[]" class="form-control">
-                                <option value="FALSE"><?=Lang::$no?></option>
-                                <option value="TRUE"><?=Lang::$yes?></option>
-                            <select>
-                        </td>
-                        <td>
-                            <button class="btn btn-default remove-image" type="button">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </td>
-                    </tr>
+                    <div id="image_wrapper_<?=$img_key?>">
+                        <input type="hidden" name="images_src[]" value="<?=$image_src?>" />
+                        <input type="hidden" name="images_name[]" value="<?=basename($image_path)?>" />
+
+                        <tr>
+                            <td><img src="<?=$image_src?>" alt="Image Preview" ></td>
+                            <td><input type="text" name="images_title[]" value="" class="form-control" /></td>
+                            <td><input type="text" name="images_alt[]" value="" class="form-control" /></td>
+                            <td>
+                                <select name="images_is_main[]" class="form-control">
+                                    <option value="FALSE"><?=Lang::$no?></option>
+                                    <option value="TRUE"><?=Lang::$yes?></option>
+                                <select>
+                            </td>
+                            <td>
+                                <button class="btn btn-default remove-image" type="button" data-numToRemove="<?=$img_key?>">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </div>
             <?php
                 }
             ?>

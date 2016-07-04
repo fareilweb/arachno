@@ -23,27 +23,6 @@
             </div>
         </div>
     </div>
-    <!-- Images Upload JavaScript -->
-    <script type="text/javascript">
-        jQuery(document).ready(function(){
-            jQuery('#images').on('change',function(){
-                jQuery('#multiple_upload_form').ajaxForm({
-                    //display the uploaded images
-                    target:'#item_images_preview',
-                    beforeSubmit:function(e){
-                        $('.uploading').show();
-                    },
-                    success:function(e){
-                        $('.uploading').hide();
-                    },
-                    error:function(e){
-
-                    }
-                }).submit();
-            });
-        });
-    </script>
-        
     
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess">
         <!-- Hidden Data -->
@@ -64,29 +43,36 @@
                                 <th><?=Lang::$main_image?></th>
                                 <th></th>
                             </tr>
-                            <?php foreach($this->item->item_images as $img_obj):?>
-                            <input type="hidden" name="images_src[]" value="<?=$img_obj->image_src?>" />
-                            <input type="hidden" name="images_name[]" value="<?=$img_obj->image_name?>" />
-                    
-                            <tr>
-                                <td><img src="<?=$img_obj->image_src?>" alt="Image Preview" ></td>
-                                <td><input type="text" name="images_title[]" value="<?=$img_obj->image_title?>" class="form-control" /></td>
-                                <td><input type="text" name="images_alt[]" value="<?=$img_obj->image_alt?>" class="form-control" /></td>
-                                <td>
-                                    <select name="images_is_main[]" class="form-control">
-                                        <option value="FALSE"><?=Lang::$no?></option>
-                                        <option value="TRUE" <?=$img_obj->is_main == 1 ? " selected" : "";?>><?=Lang::$yes?></option>
-                                    <select>
-                                </td>
-                                <td>
-                                    <button class="btn btn-default remove-image" type="button">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                </td>
-                            </tr>
+                            <?php foreach($this->item->item_images as $img_key => $img_obj):?>
+                                <div id="image_wrapper_<?=$img_key?>">
+                                    <input type="hidden" name="images_src[]" value="<?=$img_obj->image_src?>" />
+                                    <input type="hidden" name="images_name[]" value="<?=$img_obj->image_name?>" />
+                                    <tr>
+                                        <td><img src="<?=$img_obj->image_src?>" alt="Image Preview" ></td>
+                                        <td><input type="text" name="images_title[]" value="<?=$img_obj->image_title?>" class="form-control" /></td>
+                                        <td><input type="text" name="images_alt[]" value="<?=$img_obj->image_alt?>" class="form-control" /></td>
+                                        <td>
+                                            <select name="images_is_main[]" class="form-control">
+                                                <option value="FALSE"><?=Lang::$no?></option>
+                                                <option value="TRUE" <?=$img_obj->is_main == 1 ? " selected" : "";?>><?=Lang::$yes?></option>
+                                            <select>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default remove-image" data-numToRemove="<?=$img_key?>">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </div>
                             <?php endforeach;?>
                         </tbody></table>
                     </div>
+                    <?php else:?>
+                        <input type="hidden" name="images_src[]" value="" />
+                        <input type="hidden" name="images_name[]" value="" />
+                        <input type="hidden" name="images_title[]" value="" />
+                        <input type="hidden" name="images_alt[]" value="" />
+                        <input type="hidden" name="images_is_main[]" value="" />
                     <?php endif;?>
                 </div>
             </div>
@@ -219,3 +205,35 @@
     </form>
     
 </div>
+
+ <!-- Images Upload JavaScript -->
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('#images').on('change',function(){
+            jQuery('#multiple_upload_form').ajaxForm({
+                //display the uploaded images
+                target:'#item_images_preview',
+                beforeSubmit:function(e){
+                    $('.uploading').show();
+                },
+                success:function(e){
+                    $('.uploading').hide();
+                },
+                error:function(e){
+
+                }
+            }).submit();
+        });
+        
+        // Remove Image Input From Form
+        jQuery(document).on("click", ".remove-image", function() {
+            var num = jQuery(this).attr("data-numToRemove");
+            var id_to_remove = "#image_wrapper_" + num;
+            
+            alert(id_to_remove);
+            
+            jQuery(id_to_remove).remove();
+        });
+    });
+</script>
+        

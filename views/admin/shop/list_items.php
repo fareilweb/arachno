@@ -66,7 +66,7 @@
                             <span class="glyphicon glyphicon-edit"></span> 
                             <?=Lang::$edit?>
                         </a>
-                        <a href="<?=Config::$web_path;?>/Admin/deleteItem/<?=$item_val->item_id;?>" class="btn btn-default">
+                        <a href="<?=Config::$web_path;?>/Admin/deleteItem/<?=$item_val->item_id;?>/redirect/" class="btn btn-default">
                             <span class="glyphicon glyphicon-remove"></span> 
                             <?=Lang::$delete?>
                         </a>

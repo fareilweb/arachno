@@ -4,8 +4,10 @@
 
 //$input = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
 
+echo $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI'];
+
 echo "<pre>";
-//print_r($input);
+//print_r($_SERVER);
 echo "</pre>";
 
 //echo function_exists("filter_input");
@@ -31,7 +33,7 @@ echo "</pre>";
 
 //phpinfo();
 
-echo $_SERVER["SERVER_NAME"];
+//echo $_SERVER["SERVER_NAME"];
 
 //$date = new DateTime();
 

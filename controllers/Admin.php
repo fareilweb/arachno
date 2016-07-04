@@ -8,7 +8,10 @@ class Admin extends Controller
 {
     // Constructor
     function __construct()
-    {   // Auth And Privilege Check
+    {   
+        parent::__construct();
+        
+        // Auth And Privilege Check
         if( !Session::get('auth')){
             // redirect to login or exit
            if(!header('location: ' . Config::$web_path . '/User/login/redirect/Admin')){
@@ -83,7 +86,7 @@ class Admin extends Controller
     function categoryProcess($args)
     {
         $this->args = $args;
-        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        
         // Switch If Is a New Category or and existing one
         if(isset($this->post['category_id']) && $this->post['category_id']!==""){
             $this->updateCategory($args);
@@ -189,7 +192,7 @@ class Admin extends Controller
     function itemProcess($args)
     {
         $this->args = $args;
-        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        //$this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         // Switch If Is a New Item or and existing one
         if(isset($this->post['item_id']) && $this->post['item_id']!==""){
             $this->updateItem($args);
@@ -263,6 +266,7 @@ class Admin extends Controller
             $this->notice = Lang::$update_success;
         }
         $this->index($args);
+        
         $this->debug($this);
     }
     

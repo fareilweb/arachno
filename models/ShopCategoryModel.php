@@ -47,7 +47,7 @@ class ShopCategoryModel extends Model
     public function insertCategory()
     {
         // Collect Current Field And Data
-        $excluded_fields = array("mysqli");
+        $excluded_fields = array("mysqli", "results");
         $fields = array();
         $values = array();
         foreach($this as $field_name => $field_val){

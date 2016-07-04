@@ -10,8 +10,19 @@ class Controller
     public $includes = array("positions"=>array());
     public $menus = array();
     public $languages = array();
+    public $current_url;
+    public $post;
+    public $get;
     
-   
+    // Constructor
+    function __construct()
+    {
+        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $this->get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        $server = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
+        $this->current_url = "http://" . $server['HTTP_HOST'] . $server['REQUEST_URI'];
+    }
+    
     // Get Model Method
     public function getModel($model='')
     {
