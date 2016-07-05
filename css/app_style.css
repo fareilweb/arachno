@@ -61,20 +61,20 @@ span.big-icon{
     font-size: 16pt;
 }
 
-
-
 /* ========================================
  * Multiple Images Upload
  * ======================================== */
-
-#item_images_preview,
-#item_images_loaded{
-    min-height: 64px;
-    padding:6px;
-    border: 1px solid #ccc;
+#new-images-wrapper{
+    padding:12px 6px;
+    background: #fcfcfc;
+    border:1px solid #cfcfcf;
 }
-#item_images_preview img,
-#item_images_loaded img{
-    max-height: 80px;
+.item-image-preview{
+    padding:12px 6px;
+    background: #fcfcfc;
+    border:1px solid #cfcfcf;
+    max-height: 96px;
 }
-
+.item-image-preview span{
+    font-size: 48pt;
+}
