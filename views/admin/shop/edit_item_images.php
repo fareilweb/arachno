@@ -1,5 +1,6 @@
-<hr/>
+<?php require(__DIR__ . '/edit_item_image_ilk.php');?>
 
+<hr/>
 <div class="row image_row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h3><?=Lang::$images;?>
@@ -11,38 +12,39 @@
     </div>
 </div><br/>
 
-<div id="new-images-wrapper">
-</div>
-
-<?php if(count($this->item->item_images) > 0):?>
-<div class="row">
-    <h2></h2>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
-        <label><?=Lang::$preview?></label>
+<form name="item_images_form" action="<?=Config::$web_path?>/Upload/itemImagesProcess">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div id="images-wrapper">
+                <?php if(count($this->item->item_images) > 0):?>
+                    <?php
+                        $show_ilk = 1;
+                        foreach ($this->item->item_images as $img_key=>$img_val){    
+                            require(__DIR__ . '/edit_item_image_ilk.php');
+                        }
+                    ?>
+                <?php endif;?>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <button type="button" id="item_images_submit" class="btn btn-default form-control">
+                    <strong>
+                        <span class="glyphicon glyphicon-cloud-upload"></span>
+                        <?= Lang::$upload . " " .Lang::$images?>
+                    </strong>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
-        <label><?=Lang::$title?></label>
-        <input type="text" name="images_title[]" value="" class="form-control" />
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
-        <label><?=Lang::$alt_text?></label>
-        <input type="text" name="images_alt[]" value="" class="form-control" />
-    </div>
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center">
-        <label><?=Lang::$main_image?></label>
-        <select name="images_is_main[]" class="form-control" >
-            <option value="0"><?=Lang::$no;?></option>
-            <option value="1"><?=Lang::$yes;?></option>
-        </select>
-    </div>
-</div>
-<?php endif;?>
+</form>
 <hr/>
 
 
 <script>
 jQuery("#add-image").click(function(){
-    jQuery("#new-images-wrapper").append(
+    jQuery("#images-wrapper").append(
         jQuery("#item-image-ilk").html()
     );
 });

@@ -1,5 +1,3 @@
-<?php require(__DIR__ . '/edit_item_image_ilk.php');?>
-
 <div class="edit_item">
     
     <div class="row">
@@ -8,13 +6,13 @@
         </div>
     </div>
     
+    <!--Item Images =====================================================-->
+        <?php require(__DIR__ . '/edit_item_images.php'); ?>
+    <!--Item Images END =================================================-->
+    
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess" enctype="multipart/form-data">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
-        
-        <!--Item Images =====================================================-->
-            <?php require(__DIR__ . '/edit_item_images.php'); ?>
-        <!--Item Images END =================================================-->
             
         <div class="row">    
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

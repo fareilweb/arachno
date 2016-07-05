@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2016 at 11:06 PM
+-- Generation Time: Jul 05, 2016 at 09:22 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -152,6 +152,13 @@ CREATE TABLE `acms_shop_images` (
   `is_main` tinyint(1) DEFAULT '0',
   `fk_item_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_shop_images`
+--
+
+INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
+(5, 'http://localhost/arachno/views/shop/uploads/heart-2.png', 'heart-2.png', 'Heart', 'Heart', 1, 41);
 
 -- --------------------------------------------------------
 
@@ -308,7 +315,7 @@ ALTER TABLE `acms_shop_categories`
 -- AUTO_INCREMENT for table `acms_shop_images`
 --
 ALTER TABLE `acms_shop_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `acms_shop_items`
 --

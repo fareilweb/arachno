@@ -64,7 +64,7 @@ span.big-icon{
 /* ========================================
  * Multiple Images Upload
  * ======================================== */
-#new-images-wrapper{
+#images-wrapper{
     padding:12px 6px;
     background: #fcfcfc;
     border:1px solid #cfcfcf;
@@ -73,8 +73,13 @@ span.big-icon{
     padding:12px 6px;
     background: #fcfcfc;
     border:1px solid #cfcfcf;
-    max-height: 96px;
+    width: 100%;
+    max-height: 74px;
 }
 .item-image-preview span{
-    font-size: 48pt;
+    font-size: 32pt;
+}
+.item-image-preview img{
+    width:auto;
+    max-height: 64px;
 }

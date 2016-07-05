@@ -15,7 +15,7 @@ class Upload extends Controller
     }
     
     
-    function process()
+    function itemImagesProcess()
     {
         
         

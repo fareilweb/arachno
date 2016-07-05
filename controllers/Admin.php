@@ -176,7 +176,7 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index($args);
-        //$this->debug($this);
+        $this->debug($this->item);
     }
     
     // Process The Posted Data by Switching The Right Method

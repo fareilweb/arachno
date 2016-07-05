@@ -18,6 +18,7 @@ class Lang
     public static $yes = "S&igrave;";
     public static $no = "No";
     public static $add = "Aggiungi";
+    public static $upload = "Carica";
     public static $go_to_site = "Vai al Sito";
     public static $id = "ID";
     public static $meta_desc = "Descrizione Meta Tag";

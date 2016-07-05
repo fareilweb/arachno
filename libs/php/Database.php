@@ -22,13 +22,12 @@ class Database
     // Freeing Memory And Close Connection
     public function cleanAndClose()
     {
-        if(!is_bool($this->results))
+        if(isset($this->results) && !is_bool($this->results))
         {
             $this->results->free();
+            
         }
-        
         $this->mysqli->close();
-        
     }
     
 
