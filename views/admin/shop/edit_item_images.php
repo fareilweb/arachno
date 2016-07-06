@@ -41,6 +41,7 @@
 </form>
 <hr/>
 
+<script src="<?=Config::$web_path?>/js/libs/images-manager.js"></script>
 
 <script>
 jQuery("#add-image").click(function(){
