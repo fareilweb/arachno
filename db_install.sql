@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2016 at 09:10 PM
+-- Generation Time: Jul 07, 2016 at 11:17 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -190,7 +190,7 @@ CREATE TABLE `acms_shop_items` (
 INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
 (1, 'AAA001', 3, 2, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
 (23, 'AAA002', 2, 1, 1, 100, 99, 'Titolo Nuovo Oggetto', '100', 'Verde, Giallo', 'Riepilogo', 'Descrizione', 'parole, chiave', 'Descrizione Meta'),
-(41, 'IMG000', 3, 1, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
+(41, 'IMG000', 3, 2, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
 
 -- --------------------------------------------------------
 
@@ -320,7 +320,7 @@ ALTER TABLE `acms_shop_images`
 -- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --
