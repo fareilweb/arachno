@@ -2,9 +2,9 @@
 
 <script>
     
-    function uploadMe(index_id){
-        alert(index_id);
-    }
+function uploadMe(index_id){
+    alert(index_id);
+}
     
 /* =============================================================================
  * Image Class
@@ -90,9 +90,7 @@ jQuery(document).ready(function(){
                 <?=$val->fk_item_id;?>);
         <?php endforeach; ?>
     <?php endif;?>
-    
-    
-    console.log(images);
+
     
     // Add Image
     jQuery("#add-image").click(function(){
@@ -113,7 +111,7 @@ jQuery(document).ready(function(){
 
     // Remove Image
     jQuery(document).on("click", ".remove-image", function() {
-        jQuery(this).closest(".image_row").remove();
+        jQuery(this).closest(".images_row").remove();
     });
 
     // Upload Images (submit)
@@ -126,14 +124,12 @@ jQuery(document).ready(function(){
         
     });
     
-    jQuery( "#item_images_form" ).on( "change", ".image_file_input", function() {
+    jQuery( "#item_images_form" ).on( "click", ".image_file_input", function() {
         alert();
     });
 
     
             
 });
-
-
 
 </script>
