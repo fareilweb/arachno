@@ -1,20 +1,25 @@
-<div id="item-image-ilk" class="<?=!isset($show_ilk) ? 'hidden' : '';?>">
-    <!-- 
-        Hidden Data 
-    -->
-    <input type="hidden" name="images_id[]" value="<?=isset($this->item->image_id) ? $this->item->image_id : '';?>" />
-    <input type="hidden" name="images_src[]" value="<?=isset($this->item->image_id) ? $this->item->image_id : '';?>" />
-    <input type="hidden" name="images_fk_item_id[]" value="<?=isset($this->item->item_id) ? $this->item->item_id : '';?>" />
+<div id="images-ilk" class="hidden">
     
-    <div class="row image_row">
+    <div class="row images_row" id="#row_id#" >
+        
+        <!-- 
+            Hidden Data 
+        -->
+        <input type="hidden" name="images_fk_item_id[]" value="#fk_item_id#" />
+        <input type="hidden" name="images_id[]" value="#image_id#" />
+        <input type="hidden" name="images_src[]" value="#image_src#" />
+
+        
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
             <div class="form-group">
                 <label><?=Lang::$preview;?></label>
                 <!-- 
                     Preview 
                 -->
-                <div class="item-image-preview text-center">                
-                    <span class="glyphicon glyphicon-picture"></span>
+                <div class="image-preview text-center">
+                    <!--span class="glyphicon glyphicon-picture" class="hidden"></span-->
+                    <img src="#image_src#" alt="<?=Lang::$preview;?>" title="<?=Lang::$preview;?>" onerror="javascript:jQuery(this).remove()" />
+                    <!--onerror="javascript:jQuery(this).remove()"-->
                 </div>
             </div>
         </div>
@@ -24,7 +29,7 @@
                 <!-- 
                     Image (file)
                 -->
-                <input type="file" name="images[]" class="form-control" />
+                <input type="file" name="images[]" class="form-control" class="image_file_input" onchange='javascript:uploadMe("#row_id#");' />
                 
             </div>
         </div>
@@ -34,7 +39,7 @@
                 <!-- 
                     Image Title
                 -->
-                <input type="text" name="images_title[]" value="" class="form-control" />
+                <input type="text" name="images_title[]" value="#image_title#" class="form-control" />
             </div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -43,7 +48,7 @@
                 <!-- 
                     Image Alternative Text 
                 -->
-                <input type="text" name="images_alt[]" value="" class="form-control" />
+                <input type="text" name="images_alt[]" value="#image_alt#" class="form-control" />
             </div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -52,9 +57,9 @@
                 <!-- 
                     Image "Is Main" Flag 
                 -->
-                <select name="images_is_main[]" class="form-control" >
-                    <option value="0"><?=Lang::$no;?></option>
-                    <option value="1"><?=Lang::$yes;?></option>
+                <select name="images_is_main[]" class="form-control">
+                    <option value="0" class="#is_main_0#"><?=Lang::$no;?></option>
+                    <option value="1" class="#is_main_1#"><?=Lang::$yes;?></option>
                 </select>
             </div>
         </div>
@@ -72,8 +77,6 @@
         </div>
     </div>
 </div>
-    
-
 
 <!--   
 image_id

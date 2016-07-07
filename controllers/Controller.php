@@ -11,16 +11,17 @@ class Controller
     public $menus = array();
     public $languages = array();
     public $current_url;
-    public $post;
-    public $get;
+    public $post = array();
+    public $get = array();
     
     // Constructor
     function __construct()
     {
-        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $this->get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
         $server = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
         $this->current_url = "http://" . $server['HTTP_HOST'] . $server['REQUEST_URI'];
+        $this->request_uri = $server['REQUEST_URI'];
+        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $this->get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
     }
     
     // Get Model Method

@@ -10,9 +10,9 @@
     <hr/><?php $this->getView('admin/shop/edit_item_images/edit_item_images');?><hr/>
     <!--Item Images END ==========================================================-->
     
-    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess/redirect/" enctype="multipart/form-data">
+    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess/redirect/<?=$this->get['url']?>" enctype="multipart/form-data">
         <!-- Hidden Data -->
-        <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
+        <input type="hidden" name="item_id" id="item_id" value="<?=$this->item->item_id?>" />
             
         <div class="row">    
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

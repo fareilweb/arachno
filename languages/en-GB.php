@@ -12,6 +12,7 @@ class Lang
     public static $select_language = 'Seleziona la lingua';
     public static $welcome = 'Benvenuto';
     public static $goodbye = 'A Presto';
+    public static $warning = 'Attenzione';
     public static $access_denied = 'Accesso Negato';
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";
@@ -28,11 +29,12 @@ class Lang
     public static $published = "Pubblicato";
     public static $suspended = "Sospeso";
     public static $products = "Prodotti";
-    public static $images = "Immagini";
     public static $title = "Titolo";
     public static $alt_text = "Testo Alternativo";
     public static $main = "Principale";
+    public static $images = "Immagini";
     public static $select_images = "Seleziona Immagini";
+    public static $save_before = "Necessario Salvare l'Oggetto Prima di Proseguire";
     public static $preview = "Anteprima";
     public static $categories = "Categorie"; 
     public static $add_item = "Aggiungi Prodotto";

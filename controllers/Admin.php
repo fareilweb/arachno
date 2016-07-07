@@ -43,106 +43,6 @@ class Admin extends Controller
     }
     
     
-    
-    /* =========================================================================
-     * Categories Methods
-     * =========================================================================*/
-    
-    // Show Categories
-    function showCategories($args)
-    {
-        // Data
-        $this->args = $args;
-        $shop_model = $this->getModel('ShopModel');
-        $this->categories = $shop_model->getCategories();
-        // Views
-        $this->includeView('admin/shop/list_categories', 'main-content');
-        $this->index($args);
-    }
-    
-    // Edit/Add Category
-    function editCategory($args)
-    {
-        // Data
-        $this->args = $args;
-        $shop_model = $this->getModel('ShopModel');
-        $this->shop_categories = $shop_model->getCategories();
-        $this->category = $this->getModel('ShopCategoryModel');
-        if(isset($args[0])){
-            $this->category->loadById($args[0]);
-        }
-        // Views
-        $this->includeView('admin/shop/edit_category', 'main-content');
-        $this->index($args);
-    }
-    
-    // Category Process
-    function categoryProcess($args)
-    {
-        $this->args = $args;
-        // Switch If Is a New Category or and existing one
-        if(isset($this->post['category_id']) && $this->post['category_id']!==""){
-            $this->updateCategory($args);
-        }else{
-            $this->createCategory($args);
-        }
-    }
-    
-    // Create Category
-    function createCategory($args)
-    {
-        $new_category = $this->getModel('ShopCategoryModel');
-        foreach ($this->post as $category_key => $category_val){
-            $new_category->$category_key = $category_val;
-        }
-        if(!$new_category->insertCategory()){ //<--- Note, the category insert it self
-            $this->notice = Lang::$insert_fail;
-        }else{
-            $this->notice = Lang::$insert_success;
-        }
-        $this->index($args);
-    }
-    
-    // Update Category
-    function updateCategory($args)
-    {
-        $new_category = $this->getModel('ShopCategoryModel');
-        foreach ($this->post as $category_key => $category_val){
-            $new_category->$category_key = $category_val;
-        }
-        if(!$new_category->updateCategory()){ //<--- Note, the category update it self
-            $this->notice = Lang::$update_fail;
-        }else{
-            $this->notice = Lang::$update_success;
-        }
-        $this->index($args);
-    }
-    
-    // Delete Category
-    function deleteCategory($args)
-    {
-        // Data
-        $this->args = $args;
-        // Process
-        if(is_numeric($args[0]) && in_array("confirm_delete", $args))
-        {
-            $category_model = $this->getModel('ShopCategoryModel');
-            $del_result = $category_model->deleteCategory($args[0]);
-            if(!$del_result){
-                $this->notice = Lang::$delete_fail;
-            }else{
-                $this->notice = Lang::$delete_success;
-            }
-        }else{
-            // Confirm Delete View
-            $this->includeView('admin/shop/delete_category', 'main-content');
-        }
-        // Views
-        $this->index($args);
-    }
-    
-    
-    
     /* =========================================================================
      * Items Methods
      * =========================================================================*/
@@ -190,33 +90,39 @@ class Admin extends Controller
     // Create New Item And Insert
     function createItem($args)
     {
-        $new_item = $this->getModel('ShopItemModel');
-        // Push Values Into Object Proprierties
-        foreach ($this->post as $item_key => $item_val){
-            $new_item->$item_key = $item_val;
+        if($this->post)
+        {
+            $new_item = $this->getModel('ShopItemModel');
+            // Push Values Into Object Proprierties
+            foreach ($this->post as $item_key => $item_val){
+                $new_item->$item_key = $item_val;
+            }
+            if(!$new_item->insertItem()){ //<--- Note, the item insert it self
+                $this->notice = Lang::$insert_fail;
+            }else{
+                $this->notice = Lang::$insert_success;
+            }
+            $this->index($args);
         }
-        if(!$new_item->insertItem()){ //<--- Note, the item insert it self
-            $this->notice = Lang::$insert_fail;
-        }else{
-            $this->notice = Lang::$insert_success;
-        }
-        $this->index($args);
     }
      
     // Update An Existing Item
     function updateItem($args)
     {
-        $new_item = $this->getModel('ShopItemModel');
-        // Push Values Into Object Proprierties
-        foreach ($this->post as $item_key => $item_val){
-            $new_item->$item_key = $item_val;
+        if($this->post)
+        {
+            $new_item = $this->getModel('ShopItemModel');
+            // Push Values Into Object Proprierties
+            foreach ($this->post as $item_key => $item_val){
+                $new_item->$item_key = $item_val;
+            }
+            if(!$new_item->updateItem()){ //<--- Note, the item update it self
+                $this->notice = Lang::$update_fail;
+            }else{
+                $this->notice = Lang::$update_success;
+            }
+            $this->index($args);
         }
-        if(!$new_item->updateItem()){ //<--- Note, the item update it self
-            $this->notice = Lang::$update_fail;
-        }else{
-            $this->notice = Lang::$update_success;
-        }
-        $this->index($args);
     }
     
     // Delete Item
@@ -241,5 +147,116 @@ class Admin extends Controller
         // Views
         $this->index($args);
     }
+    
+    
+    
+    /* =========================================================================
+     * Categories Methods
+     * =========================================================================*/
+    
+    // Show Categories
+    function showCategories($args)
+    {
+        // Data
+        $this->args = $args;
+        $shop_model = $this->getModel('ShopModel');
+        $this->categories = $shop_model->getCategories();
+        
+        // Views
+        $this->includeView('admin/shop/list_categories', 'main-content');
+        $this->index($args);
+    }
+    
+    // Edit/Add Category
+    function editCategory($args)
+    {
+        // Data
+        $this->args = $args;
+        $shop_model = $this->getModel('ShopModel');
+        $this->shop_categories = $shop_model->getCategories();
+        $this->category = $this->getModel('ShopCategoryModel');
+        if(isset($args[0])){
+            $this->category->loadById($args[0]);
+        }
+        
+        // Views
+        $this->includeView('admin/shop/edit_category', 'main-content');
+        $this->index($args);
+    }
+    
+    // Category Process
+    function categoryProcess($args)
+    {
+        $this->args = $args;
+        if($this->post)
+        {
+            // Switch If Is a New Category or and existing one
+            if(isset($this->post['category_id']) && $this->post['category_id']!==""){
+                $this->updateCategory($args);
+            }else{
+                $this->createCategory($args);
+            }
+        }
+    }
+    
+    // Create Category
+    function createCategory($args)
+    {
+        if($this->post)
+        {
+            $new_category = $this->getModel('ShopCategoryModel');
+            foreach ($this->post as $category_key => $category_val){
+                $new_category->$category_key = $category_val;
+            }
+            if(!$new_category->insertCategory()){ //<--- Note, the category insert it self
+                $this->notice = Lang::$insert_fail;
+            }else{
+                $this->notice = Lang::$insert_success;
+            }
+            $this->index($args);
+        }
+    }
+    
+    // Update Category
+    function updateCategory($args)
+    {
+        if($this->post)
+        {
+            $new_category = $this->getModel('ShopCategoryModel');
+            foreach ($this->post as $category_key => $category_val){
+                $new_category->$category_key = $category_val;
+            }
+            if(!$new_category->updateCategory()){ //<--- Note, the category update it self
+                $this->notice = Lang::$update_fail;
+            }else{
+                $this->notice = Lang::$update_success;
+            }
+            $this->index($args);
+        }
+    }
+    
+    // Delete Category
+    function deleteCategory($args)
+    {
+        // Data
+        $this->args = $args;
+        // Process
+        if(is_numeric($args[0]) && in_array("confirm_delete", $args))
+        {
+            $category_model = $this->getModel('ShopCategoryModel');
+            $del_result = $category_model->deleteCategory($args[0]);
+            if(!$del_result){
+                $this->notice = Lang::$delete_fail;
+            }else{
+                $this->notice = Lang::$delete_success;
+            }
+        }else{
+            // Confirm Delete View
+            $this->includeView('admin/shop/delete_category', 'main-content');
+        }
+        // Views
+        $this->index($args);
+    }
+    
     
 }
