@@ -6,11 +6,11 @@
         </div>
     </div>
     
-    <!--Item Images =====================================================-->
-        <?php require(__DIR__ . '/edit_item_images.php'); ?>
-    <!--Item Images END =================================================-->
+    <!--Item Images ==============================================================-->
+    <hr/><?php $this->getView('admin/shop/edit_item_images/edit_item_images');?><hr/>
+    <!--Item Images END ==========================================================-->
     
-    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess" enctype="multipart/form-data">
+    <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess/redirect/" enctype="multipart/form-data">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" value="<?=$this->item->item_id?>" />
             

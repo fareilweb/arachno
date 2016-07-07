@@ -136,7 +136,11 @@
 
         <!-- Debug -->
         <div class="debug">
-            <!--?=$this->varDebug($this)?-->
+            <?php
+            if( in_array("debug", $this->args) ){
+                $this->debug($this);    
+            }
+            ?>
         </div>
 
     </body>

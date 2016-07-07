@@ -58,7 +58,6 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/list_categories', 'main-content');
         $this->index($args);
-        //$this->debug($this->categories);
     }
     
     // Edit/Add Category
@@ -75,7 +74,6 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/edit_category', 'main-content');
         $this->index($args);
-        //$this->debug($this->category);
     }
     
     // Category Process
@@ -159,7 +157,6 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/list_items', 'main-content');
         $this->index($this->args);
-        //$this->debug($this->items);
     }   
 
     // Edit/Add Item
@@ -176,7 +173,6 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index($args);
-        $this->debug($this->item);
     }
     
     // Process The Posted Data by Switching The Right Method
@@ -189,7 +185,6 @@ class Admin extends Controller
         }else{
             $this->createItem($args);
         }
-        //$this->debug($this);
     }
    
     // Create New Item And Insert
@@ -206,7 +201,6 @@ class Admin extends Controller
             $this->notice = Lang::$insert_success;
         }
         $this->index($args);
-        //$this->debug($this);
     }
      
     // Update An Existing Item
@@ -222,8 +216,7 @@ class Admin extends Controller
         }else{
             $this->notice = Lang::$update_success;
         }
-        $this->index($args);        
-        //$this->debug($this);
+        $this->index($args);
     }
     
     // Delete Item
@@ -247,7 +240,6 @@ class Admin extends Controller
         }
         // Views
         $this->index($args);
-        //$this->debug($this);
     }
     
 }
