@@ -137,9 +137,7 @@
         <!-- Debug -->
         <div class="debug">
             <?php
-            if( in_array("debug", $this->args) ){
-                $this->debug($this);    
-            }
+                $this->debug($this);
             ?>
         </div>
 

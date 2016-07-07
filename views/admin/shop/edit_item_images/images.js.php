@@ -1,15 +1,32 @@
 <?php require(__DIR__ . '/images_ilk.php');?>
 
 <script>
-
-var FormImages = 
+// Image Class
+var Image =
 {
-    prop1: 0,
-    prop2: 0,
-    
-    get: function()
-    {
-        return this.prop1 + this.prop2;
+    image_id: 0,
+    image_src: "",
+    image_name: "",
+    image_title: "",
+    image_alt: "",
+    is_main: false,
+    fk_item_id: 0
+
+}
+
+// Images Manager
+var Images = 
+{
+    containerId: "#container",
+    imagesList: [],    
+    add: function(){
+        
+    },
+    update: function(){
+
+    },
+    remove: function(){
+
     }
 };
 
