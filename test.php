@@ -1,10 +1,24 @@
+<script>
+
+var fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+
+fruits.splice(4, 1);
+
+for(var i=0; i<5; i++){
+    console.log(i + " " +fruits[i]);
+
+}
+
+
+</script>
+
 <?php
 
 //echo __DIR__;
 
 //$input = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
 
-echo $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI'];
+//echo $_SERVER['HTTP_HOST']  . $_SERVER['REQUEST_URI'];
 
 echo "<pre>";
 //print_r($_SERVER);

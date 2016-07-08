@@ -5,9 +5,9 @@
         <!-- 
             Hidden Data 
         -->
-        <input type="hidden" name="images_fk_item_id[]" value="#fk_item_id#" />
-        <input type="hidden" name="images_id[]" value="#image_id#" />
-        <input type="hidden" name="images_src[]" value="#image_src#" />
+        <input type="hidden" name="images_fk_item_id[]" data-index="#index#" value="#fk_item_id#" />
+        <input type="hidden" name="images_id[]" data-index="#index#" value="#image_id#" />
+        <input type="hidden" name="images_src[]" data-index="#index#" value="#image_src#" />
 
         
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -16,7 +16,7 @@
                 <!-- 
                     Preview 
                 -->
-                <div class="image-preview text-center">
+                <div class="image-preview text-center" data-index="#index#">
                     <!--span class="glyphicon glyphicon-picture" class="hidden"></span-->
                     <img src="#image_src#" alt="<?=Lang::$preview;?>" title="<?=Lang::$preview;?>" onerror="javascript:jQuery(this).remove()" />
                     <!--onerror="javascript:jQuery(this).remove()"-->
@@ -29,7 +29,7 @@
                 <!-- 
                     Image (file)
                 -->
-                <input type="file" name="images[]" class="form-control" class="image_file_input" onchange='javascript:uploadMe("#row_id#");' />
+                <input type="file" name="images[]" class="form-control" class="image_file_input" data-index="#index#" onchange='javascript:uploadMe("#row_id#");' />
                 
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <!-- 
                     Image Title
                 -->
-                <input type="text" name="images_title[]" value="#image_title#" class="form-control" />
+                <input type="text" name="images_title[]" value="#image_title#" data-index="#index#" class="form-control" />
             </div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -48,7 +48,7 @@
                 <!-- 
                     Image Alternative Text 
                 -->
-                <input type="text" name="images_alt[]" value="#image_alt#" class="form-control" />
+                <input type="text" name="images_alt[]" value="#image_alt#" data-index="#index#" class="form-control" />
             </div>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -57,7 +57,7 @@
                 <!-- 
                     Image "Is Main" Flag 
                 -->
-                <select name="images_is_main[]" class="form-control">
+                <select name="images_is_main[]" class="form-control" data-index="#index#">
                     <option value="0" class="#is_main_0#"><?=Lang::$no;?></option>
                     <option value="1" class="#is_main_1#"><?=Lang::$yes;?></option>
                 </select>
@@ -69,7 +69,7 @@
                 <!--
                     Remove Image Button
                 -->
-                <button class="btn btn-default remove-image" type="button" data-remove="">
+                <button class="btn btn-default remove-image" type="button" data-index="#index#">
                     <span class="glyphicon glyphicon-remove"></span>
                     <?=Lang::$delete?>
                 </button>

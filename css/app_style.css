@@ -74,12 +74,12 @@ span.big-icon{
     background: #fff;
     border:1px solid #cfcfcf;
     width: 100%;
-    height: 96px;
+    height: 108px;
 }
 .image-preview span{
     font-size: 32pt;
 }
 .image-preview img{
     width:auto;
-    height: 84px;
+    height: 94px;
 }
