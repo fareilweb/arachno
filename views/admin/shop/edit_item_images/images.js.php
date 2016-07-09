@@ -38,6 +38,10 @@ var Images = function(container_id)
         if( this.imagesList.push(newImage) ){
             this.currentIndex = (this.imagesList.length-1);
             this.add(newImage, this.currentIndex);
+
+            console.log("\nImage ["+this.currentIndex+"] Created: ");
+            console.log(this.imagesList);
+
         }
     },
     
@@ -49,6 +53,10 @@ var Images = function(container_id)
         if( this.imagesList.push(newImage) ){
             this.currentIndex = (this.imagesList.length-1);
             this.add(newImage, this.currentIndex);
+
+            console.log("\nImage ["+this.currentIndex+"] Loaded: ");
+            console.log(this.imagesList);
+
         }
     },
             
@@ -66,33 +74,41 @@ var Images = function(container_id)
         image_html = image_html.replace(/#fk_item_id/gi, image_obj.fk_item_id);
         image_html = image_html.replace('class="#is_main_'+image_obj.is_main+'#"', 'selected');
         jQuery("#images-wrapper").append(image_html);
+
+        console.log("\nImage ["+this.currentIndex+"] Added: ");
+        console.log(this.imagesList);
     },
             
     // Update
     this.update = function(index){
-        
+        this.currentIndex = index;
+
+        console.log("\nImage ["+this.currentIndex+"] Updated: ");
+        console.log(this.imagesList);    
     },
             
     // Remove
     this.remove = function(index){
+        console.log("\nBefore Remove: ");
+        console.log(this.imagesList);
+
         if(this.imagesList.splice(index, 1)){
-            //console.log(index + "\n");
-            console.log("\nPRIMA: ");
-            console.log(this.imagesList);
-            
+            //console.log(index + "\n");            
             jQuery(this.containerId).html("");
             for(var i=0; i<this.imagesList.length; i++){
                 this.add(this.imagesList[i]);
             }
             
-            console.log("\nDOPO: ");
+            console.log("\nAfter Remove: ");
             console.log(this.imagesList);
-            
         }
     },
             
     this.upload = function(index){
-        alert(index);
+        this.currentIndex = index;
+
+        console.log("\nImage ["+this.currentIndex+"] Uploaded: ");
+        console.log(this.imagesList);
     };
 };
 
@@ -101,8 +117,10 @@ var Images = function(container_id)
  * ============================================================================= */
 jQuery(document).ready(function(){
     
+    // Create Instance of Images Manager
     var images = new Images("#images-wrapper");
     
+    // Load Saved Images
     <?php if(count($this->item->item_images) > 0):?>
         <?php foreach($this->item->item_images as $key=>$val): ?>
             images.load(
@@ -116,14 +134,15 @@ jQuery(document).ready(function(){
         <?php endforeach; ?>
     <?php endif;?>
 
-    
-    // Add Image
+    console.log("\nINIZIO: ");
+    console.log(images.imagesList);
+
+    // Add an Empty Image Object
     jQuery("#add-image").click(function(){
+        // Check Before if the Item is Saved (Have the Id)
         var item_id = jQuery("#item_id").val();
         if(item_id !== "" && item_id !== "0" && item_id !== 0){
-            
             images.create();
-            
         }else{
             swal({
                 title: "<?=Lang::$warning;?>!",
@@ -140,23 +159,21 @@ jQuery(document).ready(function(){
         var index = jQuery(this).attr("data-index");
         images.remove(index);
     });
-
-    // Upload Images (submit)
-    jQuery("#item_images_submit").click(function(){
-
-    });            
     
     // On Image File Input Change
     jQuery(".image_file_input").change(function(){
-        
+        alert("normal");
     });
-    
-    jQuery( "#item_images_form" ).on( "click", ".image_file_input", function() {
-        
+    jQuery("#images-wrapper").on("change", ".image_file_input", function() {
+        alert("delegate");
     });
 
-    
-            
+    // Images Form Submit Clicked
+    jQuery("#item_images_submit").click(function(){
+        var data = jQuery("#item_images_form").serialize();
+        console.log("\nSerialized Data: ");
+        console.log(data);
+    });
 });
 
 </script>

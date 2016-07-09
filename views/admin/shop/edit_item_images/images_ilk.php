@@ -18,7 +18,7 @@
                 -->
                 <div class="image-preview text-center" data-index="#index#">
                     <!--span class="glyphicon glyphicon-picture" class="hidden"></span-->
-                    <img src="#image_src#" alt="<?=Lang::$preview;?>" title="<?=Lang::$preview;?>" onerror="javascript:jQuery(this).remove()" />
+                    <img src="#image_src#" alt="<?=Lang::$preview;?>" title="<?=Lang::$preview;?>" />
                     <!--onerror="javascript:jQuery(this).remove()"-->
                 </div>
             </div>

@@ -32,7 +32,7 @@
                 <button type="button" id="item_images_submit" class="btn btn-default form-control">
                     <strong>
                         <span class="glyphicon glyphicon-cloud-upload"></span>
-                        <?=Lang::$upload . " " .Lang::$images;?>
+                        <?=Lang::$uploads . " " .Lang::$images;?>
                     </strong>
                 </button>
             </div>
