@@ -6,13 +6,12 @@ class FileUpload
     * Settings 
     *===========================================================================*/
     
-    private $formInputName   = "file";
-    private $savePath        = "";
+    private $allow           = array();  // EX. [ 'image/jpeg', 'image/png', 'image/gif', 'image/bmp' ]
+    private $maxSize         = 10485760; // Default is 10485760 (10MB)    
+    private $inputName       = "file";
+    private $savePath        = "C:\\uploads\\";
     private $fileName        = "";       // 
     private $prefix          = "";       // EX. -> date("Y_F_d_l_H_i_s", time() ) . "___";
-    private $maxSize         = 10485760; // Default is 10485760 (10MB)
-    private $permittedTypes  = array();  // EX. [ 'image/jpeg', 'image/png', 'image/gif', 'image/bmp' ]
-    
     
     // Getter/Setter Magic Methods
     public function __get($property){
@@ -45,13 +44,15 @@ class FileUpload
             return "NO_SIZE";
         }else if($this->saveFile($this->prefix)){
             return TRUE;
+        }else{
+            return FALSE;
         }
     }
     
     // Check if there is a file uploaded by the form
     public function findFile()
     {
-        if($_FILES && $_FILES["file"]["name"]){ 
+        if($_FILES && $_FILES["$this->inputName"]["name"]){ 
             return TRUE;
         }else{
             return FALSE;
@@ -61,10 +62,10 @@ class FileUpload
     // Check if the file is one of the permitted types
     public function checkType()
     {   
-        $type = $_FILES["file"]["type"];
+        $type = $_FILES["$this->inputName"]["type"];
         $res = FALSE;
-        
-        foreach ($this->permittedTypes as $value){
+        //TODO usare in_array()
+        foreach ($this->allowed as $value){
             if($type != $value){
                 $res = FALSE;
             }else{
@@ -78,7 +79,7 @@ class FileUpload
     // Check if the size of the file is right
     public function checkSize()
     {
-        if($_FILES["file"]["size"] > $this->maxSize){
+        if($_FILES["$this->inputName"]["size"] > $this->maxSize){
             return FALSE;
         }else{
             return TRUE;
@@ -88,10 +89,10 @@ class FileUpload
     // Save the file to the target directory (savePath)
     public function saveFile()
     {   
-        $target_file = $this->savePath . $this->prefix . basename($_FILES["afile"]["name"]);
+        $target_file = $this->savePath . $this->prefix . basename($_FILES["$this->inputName"]["name"]);
       
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            $this->fileName = basename($_FILES["file"]["name"]);
+        if (move_uploaded_file($_FILES["$this->inputName"]["tmp_name"], $target_file)) {
+            $this->fileName = basename($_FILES["$this->inputName"]["name"]);
         } else {
             return FALSE;
         }
