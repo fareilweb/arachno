@@ -76,11 +76,18 @@ var Images = function(container_id)
     // Remove
     this.remove = function(index){
         if(this.imagesList.splice(index, 1)){
-            console.log(index + "\n");
+            //console.log(index + "\n");
+            console.log("\nPRIMA: ");
+            console.log(this.imagesList);
+            
             jQuery(this.containerId).html("");
             for(var i=0; i<this.imagesList.length; i++){
                 this.add(this.imagesList[i]);
             }
+            
+            console.log("\nDOPO: ");
+            console.log(this.imagesList);
+            
         }
     },
             
