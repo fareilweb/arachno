@@ -1,43 +1,43 @@
-<div class="row image_row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h3>
-            <?=Lang::$images;?>
-            <!-- 
-                Add Image Button 
-            -->
-            <button  type="button" id="add-image" class="btn btn-default add-image">
-                <span class="glyphicon glyphicon-plus"></span>
-                <?=Lang::$add;?>
-            </button>
-        </h3>
-    </div>
-</div><br/>
-
-<form name="item_images_form" id="item_images_form" action="<?=Config::$web_path?>/Upload/itemImagesProcess">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <!--
-                Images
-            -->
-            <div id="images-wrapper">
-                
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="row">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <h3><?=Lang::$select_images?></h3>
+        <!-- Upload Form =============================================== -->
+        <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="<?=Config::$web_path?>/Upload/itemImagesProcess">
+            <input type="hidden" name="image_form_submit" value="1"/>
             <div class="form-group">
-                <label>&nbsp;</label>
-                <!-- 
-                    Upload Images Button 
-                -->
-                <button type="button" id="item_images_submit" class="btn btn-default form-control">
-                    <strong>
-                        <span class="glyphicon glyphicon-cloud-upload"></span>
-                        <?=Lang::$save . " " .Lang::$images;?>
-                    </strong>
-                </button>
+                <input type="file" name="images[]" id="images" class="btn btn-default form-control" multiple>
             </div>
-        </div>
-        
+        </form>
     </div>
-</form>
-<?php $this->getView('admin/shop/edit_item_images/images.js');?>
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+        <label><?=Lang::$preview?></label>
+        <div id="images_preview">
+
+        </div>
+    </div>
+        <!--span class="glyphicon glyphicon-cloud-upload"></span-->
+        <!--?=Lang::$save . " " .Lang::$images;?-->
+        <!-- Upload Form END =========================================== -->
+    
+</div>
+
+<script>
+    jQuery(document).ready(function(){
+        jQuery('#images').on('change',function(){
+            jQuery('#multiple_upload_form').ajaxForm({
+                //display the uploaded images
+                target:'#images_preview',
+                beforeSubmit:function(e){
+                    jQuery('#page-preloader').show();
+                },
+                success:function(e){
+                    
+                    jQuery('#page-preloader').hide();
+                },
+                error:function(e){
+                }
+            }).submit();
+        });
+    });
+    
+</script>

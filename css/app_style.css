@@ -64,12 +64,7 @@ span.big-icon{
 /* ========================================
  * Multiple Images Upload
  * ======================================== */
-#images-wrapper{
-    padding:12px 6px;
-    background: #fcfcfc;
-    border:1px solid #cfcfcf;
-}
-.image-preview{
+#images_preview{
     padding:6px;
     background: #fff;
     border:1px solid #cfcfcf;
@@ -82,4 +77,19 @@ span.big-icon{
 .image-preview img{
     width:auto;
     height: 94px;
+}
+
+
+/* ========================================
+ * Multiple Images Upload With Dropzone
+ * ======================================== */
+#item_images_form_dz{
+    width: 100%;
+    min-height: 96px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding: 12px;
+    background: #fcfcfc;
+    border: 1px solid #ccc;
+    text-align: center;
 }

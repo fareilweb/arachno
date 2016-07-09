@@ -3,7 +3,7 @@
 <script>
     
 function uploadMe(index_id){
-    alert(index_id);
+    //alert(index_id);
 }
     
 /* =============================================================================
@@ -162,15 +162,15 @@ jQuery(document).ready(function(){
     
     // On Image File Input Change
     jQuery(".image_file_input").change(function(){
-        alert("normal");
+        //alert("normal");
     });
     jQuery("#images-wrapper").on("change", ".image_file_input", function() {
-        alert("delegate");
+        //alert("delegate");
     });
 
     // Images Form Submit Clicked
     jQuery("#item_images_submit").click(function(){
-        var data = jQuery("#item_images_form").serialize();
+        var data = jQuery('#item_images_form input[name="images[]"]').val();
         console.log("\nSerialized Data: ");
         console.log(data);
     });

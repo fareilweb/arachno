@@ -41,7 +41,7 @@
         <script src="<?=Config::$web_path;?>/js/libs/jonthornton-jquery-timepicker/jquery.timepicker.min.js"></script>
         <script src="<?=Config::$web_path;?>/js/libs/sweetalert-master/dist/sweetalert.min.js"></script>
         <script src="<?=Config::$web_path;?>/js/libs/jquery.form.js"></script>
-        <!--script src="<?=Config::$web_path;?>/js/libs/dropzone.js"></script-->
+        <script src="<?=Config::$web_path;?>/js/libs/dropzone.js"></script>
 
         <!-- Bootstrap JavaScripts -->
         <script src="<?=Config::$web_path;?>/libs/bootstrap/js/bootstrap.min.js"></script>

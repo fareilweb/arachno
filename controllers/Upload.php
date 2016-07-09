@@ -15,9 +15,11 @@ class Upload extends Controller
     }
     
     
-    function itemImagesProcess()
+    function itemImagesProcess($args)
     {
+        $this->args = $args;
         
+        $this->debug($_FILES);
         
     }
    
