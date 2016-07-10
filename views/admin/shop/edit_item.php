@@ -19,7 +19,21 @@
 
         <label><?=Lang::$images?></label>
         <div id="item_images" class="row">
-            
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <?php foreach($this->item->item_images as $item_image):?>
+                <?=$item_image->image_id?><br>
+                <?=$item_image->image_src?><br>
+                <?=$item_image->image_path?><br>
+                <?=$item_image->image_name?><br>
+                <?=$item_image->image_title?><br>
+                <?=$item_image->image_alt?><br>
+                <?=$item_image->is_main?><br>
+                <?=$item_image->fk_item_id?><br><hr>
+                <!--TODO: fare file eliminazione in AJAX-->
+            <?php endforeach;?>
+
+            </div>
         </div><hr/>
 
         <div class="row">

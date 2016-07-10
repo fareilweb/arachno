@@ -1,15 +1,16 @@
 <?php
 
-class ShopImage extends Model
+class ShopImageModel extends Model
 {
     private $excluded_fields = array("excluded_fields", "mysqli", "results");
 
-    private $image_src;
-    private $image_name;
-    private $image_title;
-    private $image_alt;
-    private $is_main;
-    private $fk_item_id;
+    private $image_src = NULL;
+    private $image_path = NULL;
+    private $image_name = NULL;
+    private $image_title = NULL;
+    private $image_alt = NULL;
+    private $is_main = NULL;
+    private $fk_item_id = NULL;
     
     // Getter/Setter Magic Methods
     public function __get($property){
@@ -29,14 +30,20 @@ class ShopImage extends Model
     function load()
     {
         
+        
     }
     
     // Insert
     function insert()
     {
         $query_insert = "INSERT INTO #_shop_images ";
-        $query_insert.= "(image_src, image_name, image_title, image_alt, is_main, fk_item_id) ";
-        $query_insert.= "VALUES (image_src, image_name, image_title, image_alt, is_main, fk_item_id);";
+        $query_insert.= "(image_src, image_path, image_name, image_title, image_alt, is_main, fk_item_id) ";
+        $query_insert.= "VALUES ('$this->image_src', '$this->image_path', '$this->image_name', '$this->image_title', '$this->image_alt', '$this->is_main', '$this->fk_item_id');";
+        if(!$this->queryExec($query_insert)){
+            return FALSE;
+        }else{
+            return $this->mysqli->insert_id;
+        }
     }
      
     // Update

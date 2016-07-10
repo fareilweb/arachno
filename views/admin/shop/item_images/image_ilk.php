@@ -13,5 +13,5 @@
             <img src="#image_src#" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" />
         </p>
     </div>
-    
+
 </div>

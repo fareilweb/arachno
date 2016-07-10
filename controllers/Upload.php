@@ -36,9 +36,22 @@ class Upload extends Controller
         }
     }
     
-    public function storeImage($name, $target, $src)
+    public function storeImage($file_name, $target_path, $img_src, $fk_item_id)
     {
-        
+        $img_mod = $this->getModel('ShopImageModel');
+        $img_mod->image_src = $img_src;
+        $img_mod->image_path = $target_path;
+        $img_mod->image_name = $file_name;
+        $img_mod->image_title = NULL;
+        $img_mod->image_alt = NULL;
+        $img_mod->is_main = 0;
+        $img_mod->fk_item_id = $fk_item_id;
+        $insert_res = $img_mod->insert();
+        if(!$insert_res){
+            return FALSE;
+        }else{
+            return $insert_res;
+        }
     }
     
     
@@ -82,24 +95,32 @@ class Upload extends Controller
                 $cFile->size     = $sizes[$i];
                 $save_target = Config::$abs_path . Config::$shop_images . DIRECTORY_SEPARATOR . $cFile->name;
                 $img_src = Config::$web_path . '/views/shop/images/' . $cFile->name;
+                $fk_item_id = $this->args[0];
                 
                 // Testing File
                 if($this->checkType($cFile->type))
                 { 
                     if($this->checkSize($cFile->size))
                     {
-                        if($this->saveFile($cFile->tmp_name, $save_target) &&
-                           $this->storeImage($cFile->name, $save_target, $img_src))
+                        $save_res  = $this->saveFile($cFile->tmp_name, $save_target);
+                        $store_res = $this->storeImage($cFile->name, $save_target, $img_src, $fk_item_id);
+                        if($save_res && $store_res)
                         {
                             ?> 
                             <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 text-center preview_image_wrapper" id="index<?=$i?>">
                                 <p>
                                     <button class="btn btn-default btn-primary add"
-                                        data-index="<?=$i?>" data-src="<?=$img_src?>" data-id=""
+                                        data-index="<?=$i?>" 
+                                        data-src="<?=$img_src?>" 
+                                        data-id="<?=$store_res?>" 
+                                        data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                     <button class="btn btn-default btn-danger rem"
-                                        data-index="<?=$i?>" data-src="<?=$img_src?>" data-id=""
+                                        data-index="<?=$i?>" 
+                                        data-src="<?=$img_src?>" 
+                                        data-id="<?=$store_res?>" 
+                                        data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </p>

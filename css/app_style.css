@@ -65,10 +65,8 @@ span.big-icon{
  * Multiple Images Upload
  * ======================================== */
 #images_preview{
-    padding:6px;
     background: #fff;
     border:1px solid #cfcfcf;
-    width: 100%;
     min-height: 108px;
 }
 .item_image_wrapper img,

@@ -4,19 +4,22 @@
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <h3><?=Lang::$select_images?></h3>
         <!-- Upload Form =============================================== -->
-        <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="<?=Config::$web_path?>/Upload/itemImagesProcess">
+        <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="<?=Config::$web_path?>/Upload/itemImagesProcess/<?=$this->item->item_id?>">
             <input type="hidden" name="image_form_submit" value="1"/>
             <div class="form-group">
+                <!--input type="hidden" name="fk_item_id" value="<?=$this->item->item_id?>" /-->
                 <input type="file" name="images[]" id="images" class="btn btn-default form-control" multiple>
             </div>
         </form>
     </div>
     
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-        <label><?=Lang::$preview?></label>
-        <div id="images_preview" class="row">
+        
+            <label><?=Lang::$preview?></label>
+            <div id="images_preview" class="row">
               
-        </div>
+            </div>
+        
     </div>
     
         <!--span class="glyphicon glyphicon-cloud-upload"></span-->
@@ -48,12 +51,18 @@ jQuery(document).ready(function(){
             }
         });
     });
-    
+
+    // Images Preview - Remove Image From Preview
+    jQuery("#images_preview").on("click", "button.rem", function(e){
+        var index = jQuery(this).attr("data-index"); 
+        jQuery(".preview_image_wrapper#index"+index).remove();
+    });
+
     // Images Preview - Add Image to Item
     jQuery("#images_preview").on("click", "button.add", function(e){
-        var image_src = jQuery(this).attr("data-src");
         var index = jQuery(this).attr("data-index");
-        var image_id = 1;
+        var image_src = jQuery(this).attr("data-src");
+        var image_id = jQuery(this).attr("data-id");
         
         var html = jQuery("#image_ilk").html();
         html = html.replace(/#index#/gi, index);
@@ -62,15 +71,10 @@ jQuery(document).ready(function(){
         
         if(jQuery("#item_images").append(html)){
             jQuery(".preview_image_wrapper#index"+index).remove();
-        }
-        
+        } 
     });
     
-    // Images Preview - Remove Image to Item
-    jQuery("#images_preview").on("click", "button.rem", function(e){
-        var index = jQuery(this).attr("data-index"); 
-        jQuery(".imageWrapper#index"+index).remove();
-    });
+    
 
 });
 </script>
