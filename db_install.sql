@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2016 at 11:17 PM
+-- Generation Time: Jul 10, 2016 at 04:02 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -146,6 +146,7 @@ INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_st
 CREATE TABLE `acms_shop_images` (
   `image_id` int(11) NOT NULL,
   `image_src` varchar(256) DEFAULT NULL,
+  `image_path` varchar(256) DEFAULT NULL,
   `image_name` varchar(100) DEFAULT NULL,
   `image_title` varchar(100) DEFAULT NULL,
   `image_alt` varchar(100) DEFAULT NULL,
@@ -157,8 +158,8 @@ CREATE TABLE `acms_shop_images` (
 -- Dumping data for table `acms_shop_images`
 --
 
-INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
-(5, 'http://localhost/arachno/views/shop/uploads/heart-2.png', 'heart-2.png', 'Heart', 'Heart', 1, 41);
+INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
+(5, 'http://localhost/arachno/views/shop/uploads/heart-2.png', NULL, 'heart-2.png', 'Heart', 'Heart', 1, 41);
 
 -- --------------------------------------------------------
 
