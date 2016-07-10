@@ -16,7 +16,13 @@
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess/redirect/<?=$this->get['url']?>" enctype="multipart/form-data">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" id="item_id" value="<?=$this->item->item_id?>" />
-            
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                
+            </div>
+        </div>
+
         <div class="row">    
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">

@@ -79,5 +79,6 @@ span.big-icon{
     height: 94px;
 }
 .imageWrapper img{
-    width: 100%;
+    width: auto;
+    max-height: 64px
 }

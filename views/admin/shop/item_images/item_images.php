@@ -28,7 +28,7 @@ jQuery(document).ready(function(){
     
     jQuery('#images').on('change', function(e){
         
-         jQuery("#multiple_upload_form").ajaxForm({
+         jQuery("#multiple_upload_form").ajaxSubmit({
             target:"#images_preview",
             beforeSubmit:function(e){
                 jQuery('#page-preloader').show();
@@ -44,9 +44,19 @@ jQuery(document).ready(function(){
                     html: true
                 });
             }
-        }).submit();
-        
+        });
     });
     
+    jQuery("#images_preview").on("click", "button.add", function(e){
+        alert(
+            jQuery(this).attr("data-src")
+        );
+    });
+
+    jQuery("#images_preview").on("click", "button.rem", function(e){
+        var index = jQuery(this).attr("data-index"); 
+        var src = jQuery(this).attr("data-src");
+    });
+
 });
 </script>

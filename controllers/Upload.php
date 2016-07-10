@@ -56,56 +56,61 @@ class Upload extends Controller
         $this->maxSize = 10485760;
         $this->inputName = "images";
         
-        // Get Posted Files
-        $names = $this->files[$this->inputName]['name'];
-        $types = $this->files[$this->inputName]['type'];
-        $tmp_names = $this->files[$this->inputName]['tmp_name'];
-        $errors = $this->files[$this->inputName]['error']; 
-        $sizes = $this->files[$this->inputName]['size'];
-        $html = "";
-        
-        for($i=0; $i<count($names); $i++)
-        { 
-            $cFile = new stdClass;
+        if(isset($this->files[$this->inputName]) && count($this->files[$this->inputName])>0)
+        {
+            // Get Posted Files
+            $names = $this->files[$this->inputName]['name'];
+            $types = $this->files[$this->inputName]['type'];
+            $tmp_names = $this->files[$this->inputName]['tmp_name'];
+            $errors = $this->files[$this->inputName]['error']; 
+            $sizes = $this->files[$this->inputName]['size'];
+            $html = "";
             
-            $cFile->name     = $names[$i];
-            $cFile->type     = $types[$i];
-            $cFile->tmp_name = $tmp_names[$i];
-            $cFile->error    = $errors[$i];
-            $cFile->size     = $sizes[$i];
-            $save_target = Config::$abs_path . Config::$shop_images . DIRECTORY_SEPARATOR . $cFile->name;
-            $img_src = Config::$web_path . '/views/shop/images/' . $cFile->name;
-            
-            // Testing File
-            if($this->checkType($cFile->type))
+            for($i=0; $i<count($names); $i++)
             { 
-                if($this->checkSize($cFile->size))
-                {
-                    if($this->saveFile($cFile->tmp_name, $save_target)){
-                        
-                        $html .= 
-                        "<div class=\"col-xs-4 col-sm-3 col-md-2 col-lg-2 imageWrapper\">
-                            <img 
-                                src=\"$img_src\"
-                                alt=\"\" 
-                                title=\"\" 
-                                data-key=\"<?=$i?>\"
-                            />
-                        </div>";
-                        
+                $cFile = new stdClass;
+                
+                $cFile->name     = $names[$i];
+                $cFile->type     = $types[$i];
+                $cFile->tmp_name = $tmp_names[$i];
+                $cFile->error    = $errors[$i];
+                $cFile->size     = $sizes[$i];
+                $save_target = Config::$abs_path . Config::$shop_images . DIRECTORY_SEPARATOR . $cFile->name;
+                $img_src = Config::$web_path . '/views/shop/images/' . $cFile->name;
+                
+                // Testing File
+                if($this->checkType($cFile->type))
+                { 
+                    if($this->checkSize($cFile->size))
+                    {
+                        if($this->saveFile($cFile->tmp_name, $save_target)){
+                            ?> 
+                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 text-center imageWrapper" id="index<?=$i?>">
+                                <p>
+                                    <button class="btn btn-default btn-primary add"
+                                        data-index="<?=$i?>" data-src="<?=$img_src?>" 
+                                    ><span class="glyphicon glyphicon-ok"></span>
+                                    </button>
+                                    <button class="btn btn-default btn-danger rem"
+                                        data-index="<?=$i?>" data-src="<?=$img_src?>"
+                                    ><span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </p>
+                                <p><img src="<?=$img_src?>" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" /></p>
+                            </div>
+                            <?php
+                        }else{
+                            // Saving ERR
+                        }
                     }else{
-                        // Saving ERR
+                        // Size ERR
                     }
                 }else{
-                    // Size ERR
+                    // Type ERR
                 }
-            }else{
-                // Type ERR
-            }     
+            } // for() END
+            
         }
-        
-        echo $html;
-         
     }
    
 }
