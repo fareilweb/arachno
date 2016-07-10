@@ -63,17 +63,11 @@ class FileUpload
     public function checkType()
     {   
         $type = $_FILES["$this->inputName"]["type"];
-        $res = FALSE;
-        //TODO usare in_array()
-        foreach ($this->allowed as $value){
-            if($type != $value){
-                $res = FALSE;
-            }else{
-                $res = TRUE;
-            }
+        if(in_array($type, $this->allowed)){
+            return TRUE;
+        }else{
+            return FALSE;
         }
-        
-        return $res;
     }
     
     // Check if the size of the file is right

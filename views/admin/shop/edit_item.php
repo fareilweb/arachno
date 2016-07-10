@@ -8,7 +8,7 @@
     
     <!--Item Images ==============================================================-->
     <hr/><?php
-        $this->getView('admin/shop/edit_item_images/edit_item_images');
+        $this->getView('admin/shop/item_images/item_images');
     ?><hr/>
     <!--Item Images END ==========================================================-->
     

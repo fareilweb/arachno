@@ -13,9 +13,10 @@
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <label><?=Lang::$preview?></label>
         <div id="images_preview">
-
+              
         </div>
     </div>
+    
         <!--span class="glyphicon glyphicon-cloud-upload"></span-->
         <!--?=Lang::$save . " " .Lang::$images;?-->
         <!-- Upload Form END =========================================== -->
