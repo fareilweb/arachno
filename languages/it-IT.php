@@ -51,6 +51,8 @@ class Lang
     public static $insert_success = "Inserimento Riuscito";
     public static $update_fail = "Aggiornamento Fallito";
     public static $update_success = "Aggiornamento Riuscito";
+    public static $upload_success = "Caricamento Riuscito";
+    public static $upload_fail = "Caricamento Fallito";
     public static $actions = "Azioni";
     public static $status = "Stato";
     public static $available = "Disponibile";

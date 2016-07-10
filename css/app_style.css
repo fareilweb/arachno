@@ -78,18 +78,6 @@ span.big-icon{
     width:auto;
     height: 94px;
 }
-
-
-/* ========================================
- * Multiple Images Upload With Dropzone
- * ======================================== */
-#item_images_form_dz{
+.imageWrapper img{
     width: 100%;
-    min-height: 96px;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    padding: 12px;
-    background: #fcfcfc;
-    border: 1px solid #ccc;
-    text-align: center;
 }

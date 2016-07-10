@@ -12,7 +12,7 @@
     
     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
         <label><?=Lang::$preview?></label>
-        <div id="images_preview">
+        <div id="images_preview" class="row">
               
         </div>
     </div>
@@ -23,23 +23,30 @@
     
 </div>
 
-<script>
-    jQuery(document).ready(function(){
-        jQuery('#images').on('change',function(){
-            jQuery('#multiple_upload_form').ajaxForm({
-                //display the uploaded images
-                target:'#images_preview',
-                beforeSubmit:function(e){
-                    jQuery('#page-preloader').show();
-                },
-                success:function(e){
-                    
-                    jQuery('#page-preloader').hide();
-                },
-                error:function(e){
-                }
-            }).submit();
-        });
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    
+    jQuery('#images').on('change', function(e){
+        
+         jQuery("#multiple_upload_form").ajaxForm({
+            target:"#images_preview",
+            beforeSubmit:function(e){
+                jQuery('#page-preloader').show();
+            },
+            success:function(e){
+                jQuery('#page-preloader').hide();
+            },
+            error:function(e){
+                swal({
+                    title: "err",
+                    text: "err",
+                    type: "warning",
+                    html: true
+                });
+            }
+        }).submit();
+        
     });
     
+});
 </script>

@@ -57,7 +57,7 @@ class App
                 }
                 
             }
-
+            
             /* Get and Set params from the remaining $url vars */
             $this->params = $url ? array_values($url) : array();
 

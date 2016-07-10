@@ -17,7 +17,7 @@ class Controller
     // Constructor
     function __construct()
     {
-        $server = filter_input_array(INPUT_SERVER, FILTER_SANITIZE_STRING);
+        $server = $_SERVER;
         $this->current_url = "http://" . $server['HTTP_HOST'] . $server['REQUEST_URI'];
         $this->request_uri = $server['REQUEST_URI'];
         $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

@@ -12,6 +12,7 @@
     ?><hr/>
     <!--Item Images END ==========================================================-->
     
+    
     <form name="edit_item_form" method="post" action="<?=Config::$web_path?>/Admin/itemProcess/redirect/<?=$this->get['url']?>" enctype="multipart/form-data">
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" id="item_id" value="<?=$this->item->item_id?>" />
@@ -145,25 +146,4 @@
     </form>
     
 </div>
-
- <!-- Images Upload JavaScript -->
-<script type="text/javascript">
-jQuery(document).ready(function(){
-    /*jQuery('#images').on('change',function(){
-        jQuery('#multiple_upload_form').ajaxForm({
-            //display the uploaded images
-            target:'#item_images_preview',
-            beforeSubmit:function(e){
-                $('.uploading').show();
-            },
-            success:function(e){
-                $('.uploading').hide();
-            },
-            error:function(e){
-
-            }
-        }).submit();
-    });*/
-});
-</script>
-        
+   
