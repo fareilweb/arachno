@@ -36,6 +36,12 @@ class Upload extends Controller
         }
     }
     
+    public function storeImage($name, $target, $src)
+    {
+        
+    }
+    
+    
     public function saveFile($tmp_name=NULL, $target=NULL){
         if (move_uploaded_file($tmp_name, $target)) {
             return TRUE;
@@ -64,7 +70,6 @@ class Upload extends Controller
             $tmp_names = $this->files[$this->inputName]['tmp_name'];
             $errors = $this->files[$this->inputName]['error']; 
             $sizes = $this->files[$this->inputName]['size'];
-            $html = "";
             
             for($i=0; $i<count($names); $i++)
             { 
@@ -83,16 +88,18 @@ class Upload extends Controller
                 { 
                     if($this->checkSize($cFile->size))
                     {
-                        if($this->saveFile($cFile->tmp_name, $save_target)){
+                        if($this->saveFile($cFile->tmp_name, $save_target) &&
+                           $this->storeImage($cFile->name, $save_target, $img_src))
+                        {
                             ?> 
-                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 text-center imageWrapper" id="index<?=$i?>">
+                            <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 text-center preview_image_wrapper" id="index<?=$i?>">
                                 <p>
                                     <button class="btn btn-default btn-primary add"
-                                        data-index="<?=$i?>" data-src="<?=$img_src?>" 
+                                        data-index="<?=$i?>" data-src="<?=$img_src?>" data-id=""
                                     ><span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                     <button class="btn btn-default btn-danger rem"
-                                        data-index="<?=$i?>" data-src="<?=$img_src?>"
+                                        data-index="<?=$i?>" data-src="<?=$img_src?>" data-id=""
                                     ><span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </p>

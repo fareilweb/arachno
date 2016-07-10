@@ -71,14 +71,8 @@ span.big-icon{
     width: 100%;
     min-height: 108px;
 }
-.image-preview span{
-    font-size: 32pt;
-}
-.image-preview img{
-    width:auto;
-    height: 94px;
-}
-.imageWrapper img{
+.item_image_wrapper img,
+.preview_image_wrapper img{
     width: auto;
     max-height: 64px
 }

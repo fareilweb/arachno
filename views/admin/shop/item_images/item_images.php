@@ -1,3 +1,5 @@
+<?php $this->getView('admin/shop/item_images/image_ilk'); ?>
+
 <div class="row">
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
         <h3><?=Lang::$select_images?></h3>
@@ -26,8 +28,8 @@
 <script type="text/javascript">
 jQuery(document).ready(function(){
     
+    // AJAX Submit Upload
     jQuery('#images').on('change', function(e){
-        
          jQuery("#multiple_upload_form").ajaxSubmit({
             target:"#images_preview",
             beforeSubmit:function(e){
@@ -47,15 +49,27 @@ jQuery(document).ready(function(){
         });
     });
     
+    // Images Preview - Add Image to Item
     jQuery("#images_preview").on("click", "button.add", function(e){
-        alert(
-            jQuery(this).attr("data-src")
-        );
+        var image_src = jQuery(this).attr("data-src");
+        var index = jQuery(this).attr("data-index");
+        var image_id = 1;
+        
+        var html = jQuery("#image_ilk").html();
+        html = html.replace(/#index#/gi, index);
+        html = html.replace(/#image_src#/gi, image_src);
+        html = html.replace(/#image_id#/gi, image_id);
+        
+        if(jQuery("#item_images").append(html)){
+            jQuery(".preview_image_wrapper#index"+index).remove();
+        }
+        
     });
-
+    
+    // Images Preview - Remove Image to Item
     jQuery("#images_preview").on("click", "button.rem", function(e){
         var index = jQuery(this).attr("data-index"); 
-        var src = jQuery(this).attr("data-src");
+        jQuery(".imageWrapper#index"+index).remove();
     });
 
 });
