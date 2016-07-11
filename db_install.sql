@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2016 at 04:52 PM
+-- Generation Time: Jul 11, 2016 at 06:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -108,7 +108,7 @@ CREATE TABLE `acms_menu_links` (
 INSERT INTO `acms_menu_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
 (1, 1, 'Home', '/', 'NULL', 1),
 (2, 1, 'Test Page', '/test-page', '', 1),
-(3, 1, 'Shop', '/Shop/showItems/all', '', 1),
+(3, 1, 'Shop', '/Shop/showCategories', '', 1),
 (5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
 (6, 1, 'Registrati', '/User/register', '', 1),
 (7, 1, 'Amministrazione', '/Admin', '', 1);
@@ -197,6 +197,7 @@ CREATE TABLE `acms_shop_categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(80) DEFAULT NULL,
   `category_status` tinyint(1) DEFAULT '1',
+  `category_image_src` varchar(256) DEFAULT NULL,
   `fk_lang_id` int(11) NOT NULL,
   `fk_parent_id` int(11) NOT NULL DEFAULT '0',
   `category_parent_name` varchar(45) DEFAULT NULL
@@ -206,11 +207,11 @@ CREATE TABLE `acms_shop_categories` (
 -- Dumping data for table `acms_shop_categories`
 --
 
-INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
-(2, 'Categoria Oggetti 02', 1, 1, 1, 'Categoria Oggetti 01'),
-(3, 'Un altro nome', 1, 2, 2, 'Categoria Oggetti 02'),
-(4, 'Ero senza nome', 0, 1, 2, 'Categoria Oggetti 02'),
-(7, 'Nuova Categoria', 1, 1, 2, 'Categoria Oggetti 02');
+INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
+(2, 'Categoria Oggetti 02', 1, NULL, 1, 1, 'Categoria Oggetti 01'),
+(3, 'Un altro nome', 1, NULL, 2, 2, 'Categoria Oggetti 02'),
+(4, 'Ero senza nome', 0, NULL, 1, 2, 'Categoria Oggetti 02'),
+(7, 'Nuova Categoria', 1, NULL, 1, 2, 'Categoria Oggetti 02');
 
 -- --------------------------------------------------------
 
@@ -264,9 +265,9 @@ CREATE TABLE `acms_shop_items` (
 --
 
 INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(1, 'AAA001', 3, 2, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
+(1, 'AAA001', 3, 1, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
 (23, 'AAA002', 2, 1, 1, 100, 99, 'Titolo Nuovo Oggetto', '100', 'Verde, Giallo', 'Riepilogo', 'Descrizione', 'parole, chiave', 'Descrizione Meta'),
-(41, 'IMG000', 3, 2, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
+(41, 'IMG000', 3, 1, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
 
 -- --------------------------------------------------------
 

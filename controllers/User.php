@@ -12,7 +12,6 @@ class User extends Controller
         $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
         // Views
         $this->includeView('nav/main_menu', 'header-content');
-        $this->includeView('nav/lang_menu', 'footer-content');
         $this->getView('pages/page_default');
         
     }
@@ -29,7 +28,6 @@ class User extends Controller
         // Views Includes
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('user/login', 'main-content');        
-        $this->includeView('nav/lang_menu', 'footer-content'); 
         
         // Page View
         $this->getView('pages/page_default');
@@ -75,7 +73,6 @@ class User extends Controller
             // Views Includes
             $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
             $this->includeView('nav/main_menu', 'header-content');
-            $this->includeView('nav/lang_menu', 'footer-content'); 
 
             // Page View
             $this->getView('pages/page_default');

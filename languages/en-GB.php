@@ -36,7 +36,9 @@ class Lang
     public static $select_images = "Seleziona Immagini";
     public static $save_before = "Necessario Salvare l'Oggetto Prima di Proseguire";
     public static $preview = "Anteprima";
-    public static $categories = "Categorie"; 
+    public static $categories = "Categorie";
+    public static $category_is_empty = "Questa Categoria &egrave; Vuota";
+    public static $categories_none = "Nessuna Categoria Disponibile";
     public static $add_item = "Aggiungi Prodotto";
     public static $edit_item = "Aggiungi/Modifica Oggetto";
     public static $add_category = "Aggiungi Categoria";

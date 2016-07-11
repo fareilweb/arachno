@@ -103,8 +103,25 @@ footer .footer-content{
 /*=============================================================================*
  * Shop
  *=============================================================================*/
-
-
+.categories{
+    
+}
+.categories .categories_list{
+    
+}
+.categories .category_wrapper{
+    
+}
+.categories .category_wrapper .category_title{
+    
+}
+.categories .category_wrapper .category_image{
+    
+}
+.categories .category_wrapper .category_image img{
+    width: 100%;
+    text-align: center;
+}
 
 /*=============================================================================*
  * Tables

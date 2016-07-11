@@ -3,14 +3,14 @@
 class ShopModel extends Model
 {
     
-    function getCategories($fk_lang_id=NULL)
+    function getCategories($lang_id=NULL)
     {
         $query = "SELECT * FROM #_shop_categories ";
         $query.= "LEFT JOIN #_languages ON #_shop_categories.fk_lang_id = #_languages.lang_id";
         
-        // Optional Conditions
-        if($fk_lang_id!==NULL){
-            $query .= " WHERE #_shop_items.fk_lang_id = '$fk_lang_id' ";
+        // Add Language Filter
+        if($lang_id!==NULL){
+            $query .= " WHERE #_shop_categories.fk_lang_id = '$lang_id' ";
         }
         
         $this->results = $this->queryExec($query);
@@ -27,25 +27,15 @@ class ShopModel extends Model
     }
     
     
-    function getItems($fk_category_id=NULL, $item_code=NULL, $fk_lang_id=NULL)
+    function getItems($lang_id=NULL)
     {
         $query = "SELECT * FROM #_shop_items ";
         $query.= "LEFT JOIN #_shop_categories ON #_shop_items.fk_category_id = #_shop_categories.category_id ";
-        $query.= "LEFT JOIN #_languages ON #_shop_items.fk_lang_id = #_languages.lang_id";
-        
-        // Optional Conditions
-        if($fk_category_id!==NULL){
-            $query .= " WHERE #_shop_items.fk_category_id = $fk_category_id ";
+        $query.= "LEFT JOIN #_languages ON #_shop_items.fk_lang_id = #_languages.lang_id";        
+        // Add Language Filter
+        if($lang_id!==NULL){
+            $query .= " WHERE #_shop_items.fk_lang_id = '$lang_id' ";
         }
-        
-        if($item_code!==NULL){
-            $query .= " WHERE #_shop_items.item_code = '$item_code' ";
-        }
-        
-        if($fk_lang_id!==NULL){
-            $query .= " WHERE #_shop_items.fk_lang_id = '$fk_lang_id' ";
-        }
-        
         $this->results = $this->queryExec($query);
            
         $data = array();
@@ -59,6 +49,32 @@ class ShopModel extends Model
             return $data;
         }   
     }
+    
+    function getItemsByCategory($category_id, $lang_id=NULL)
+    {
+        $query = "SELECT * FROM #_shop_items ";
+        $query.= "LEFT JOIN #_shop_categories ON #_shop_items.fk_category_id = #_shop_categories.category_id ";
+        $query.= "LEFT JOIN #_languages ON #_shop_items.fk_lang_id = #_languages.lang_id";
+        $query .= " WHERE #_shop_items.fk_category_id = $category_id ";
+        // Add Language Filter
+        if($lang_id!==NULL){
+            $query .= " AND #_shop_items.fk_lang_id = '$lang_id' ";
+        }
+        $this->results = $this->queryExec($query);
+           
+        $data = array();
+        while($row = $this->results->fetch_object()){
+            array_push($data, $row);
+        }
+        
+        if(!$this->results){
+            return FALSE;
+        }else{
+            return $data;
+        }   
+    }
+    
+    
     
     
 }
