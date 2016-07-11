@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2016 at 10:48 AM
+-- Generation Time: Jul 11, 2016 at 04:52 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -19,6 +19,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `arachno`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_coupons`
+--
+
+CREATE TABLE `acms_coupons` (
+  `coupon_id` int(11) NOT NULL,
+  `coupon_name` varchar(80) DEFAULT NULL,
+  `coupon_start_date` date DEFAULT NULL,
+  `coupon_end_date` date DEFAULT NULL,
+  `coupon_value_type` varchar(10) DEFAULT NULL,
+  `coupon_value_amount` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_coupons_has_items`
+--
+
+CREATE TABLE `acms_coupons_has_items` (
+  `fk_coupon_id` int(11) NOT NULL,
+  `fk_item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -115,6 +141,55 @@ INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_tit
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `acms_payments`
+--
+
+CREATE TABLE `acms_payments` (
+  `payment_id` int(11) NOT NULL,
+  `payment_name` varchar(80) DEFAULT NULL,
+  `payment_cost` float DEFAULT NULL,
+  `payment_details` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_payments_has_items`
+--
+
+CREATE TABLE `acms_payments_has_items` (
+  `fk_payment_id` int(11) NOT NULL,
+  `fk_item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_shippings`
+--
+
+CREATE TABLE `acms_shippings` (
+  `shipping_id` int(11) NOT NULL,
+  `shipping_name` varchar(45) DEFAULT NULL,
+  `shipping_cost` float DEFAULT NULL,
+  `shipping_details` text,
+  `shipping_status` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_shippings_has_items`
+--
+
+CREATE TABLE `acms_shippings_has_items` (
+  `fk_shipping_id` int(11) NOT NULL,
+  `fk_item_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `acms_shop_categories`
 --
 
@@ -159,7 +234,7 @@ CREATE TABLE `acms_shop_images` (
 --
 
 INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
-(58, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 41);
+(58, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -227,6 +302,20 @@ INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_u
 --
 
 --
+-- Indexes for table `acms_coupons`
+--
+ALTER TABLE `acms_coupons`
+  ADD PRIMARY KEY (`coupon_id`);
+
+--
+-- Indexes for table `acms_coupons_has_items`
+--
+ALTER TABLE `acms_coupons_has_items`
+  ADD PRIMARY KEY (`fk_coupon_id`,`fk_item_id`),
+  ADD KEY `fk_acms_coupons_has_acms_shop_items_acms_shop_items1_idx` (`fk_item_id`),
+  ADD KEY `fk_acms_coupons_has_acms_shop_items_acms_coupons1_idx` (`fk_coupon_id`);
+
+--
 -- Indexes for table `acms_languages`
 --
 ALTER TABLE `acms_languages`
@@ -254,6 +343,34 @@ ALTER TABLE `acms_pages`
   ADD KEY `fk_acms_pages_acsm_languages1_idx` (`fk_lang_id(11)`);
 
 --
+-- Indexes for table `acms_payments`
+--
+ALTER TABLE `acms_payments`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `acms_payments_has_items`
+--
+ALTER TABLE `acms_payments_has_items`
+  ADD PRIMARY KEY (`fk_payment_id`,`fk_item_id`),
+  ADD KEY `fk_acms_payments_has_acms_shop_items_acms_shop_items1_idx` (`fk_item_id`),
+  ADD KEY `fk_acms_payments_has_acms_shop_items_acms_payments1_idx` (`fk_payment_id`);
+
+--
+-- Indexes for table `acms_shippings`
+--
+ALTER TABLE `acms_shippings`
+  ADD PRIMARY KEY (`shipping_id`);
+
+--
+-- Indexes for table `acms_shippings_has_items`
+--
+ALTER TABLE `acms_shippings_has_items`
+  ADD PRIMARY KEY (`fk_shipping_id`,`fk_item_id`),
+  ADD KEY `fk_acms_shippings_has_acms_shop_items_acms_shop_items1_idx` (`fk_item_id`),
+  ADD KEY `fk_acms_shippings_has_acms_shop_items_acms_shippings1_idx` (`fk_shipping_id`);
+
+--
 -- Indexes for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
@@ -266,7 +383,7 @@ ALTER TABLE `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_images`
   ADD PRIMARY KEY (`image_id`),
-  ADD KEY `fk_acms_items_images_acms_shop_items1_idx` (`fk_item_id`);
+  ADD KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`);
 
 --
 -- Indexes for table `acms_shop_items`
@@ -327,6 +444,31 @@ ALTER TABLE `acms_shop_items`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `acms_coupons_has_items`
+--
+ALTER TABLE `acms_coupons_has_items`
+  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_coupons1` FOREIGN KEY (`fk_coupon_id`) REFERENCES `acms_coupons` (`coupon_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `acms_payments_has_items`
+--
+ALTER TABLE `acms_payments_has_items`
+  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_payments1` FOREIGN KEY (`fk_payment_id`) REFERENCES `acms_payments` (`payment_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `acms_shippings_has_items`
+--
+ALTER TABLE `acms_shippings_has_items`
+  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shippings1` FOREIGN KEY (`fk_shipping_id`) REFERENCES `acms_shippings` (`shipping_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
