@@ -65,12 +65,15 @@ span.big-icon{
  * Multiple Images Upload
  * ======================================== */
 #images_preview{
-    background: #fff;
-    border:1px solid #cfcfcf;
-    min-height: 108px;
+    
 }
-.item_image_wrapper img,
-.preview_image_wrapper img{
+ #images_preview .preview_image_wrapper img{
     width: auto;
-    max-height: 64px
+    max-height: 80px;
+    box-shadow: 3px 3px 12px #222;
+}
+#item_images .item_image_wrapper img{
+    width: auto;
+    max-height: 128px;
+    box-shadow: 3px 3px 12px #222;
 }

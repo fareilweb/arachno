@@ -47,6 +47,19 @@ class Admin extends Controller
      * Items Methods
      * =========================================================================*/
     
+    // Remove Item Image From Database
+    function removeItemImage($args){
+        $this->args = $args;
+        if(isset($this->post['image_id'])){
+            $img_mod = $this->getModel('ShopImageModel');    
+            if(!$img_mod->delete($this->post['image_id'])){
+                echo json_encode(["status"=>0, "message"=>"Failed"]);
+            }else{
+                echo json_encode(["status"=>1, "message"=>"Success"]);
+            }
+        }
+    }
+    
     // Show Items List (also with filter if required)
     function showItems($args)
     {

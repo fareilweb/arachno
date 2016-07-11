@@ -137,7 +137,7 @@
         <!-- Debug -->
         <div class="debug">
             <?php
-                $this->debug($this);
+                //$this->debug($this);
             ?>
         </div>
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2016 at 04:02 PM
+-- Generation Time: Jul 11, 2016 at 10:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -159,7 +159,7 @@ CREATE TABLE `acms_shop_images` (
 --
 
 INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
-(5, 'http://localhost/arachno/views/shop/uploads/heart-2.png', NULL, 'heart-2.png', 'Heart', 'Heart', 1, 41);
+(58, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 41);
 
 -- --------------------------------------------------------
 
@@ -316,7 +316,7 @@ ALTER TABLE `acms_shop_categories`
 -- AUTO_INCREMENT for table `acms_shop_images`
 --
 ALTER TABLE `acms_shop_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `acms_shop_items`
 --

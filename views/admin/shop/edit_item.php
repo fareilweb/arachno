@@ -17,24 +17,34 @@
         <!-- Hidden Data -->
         <input type="hidden" name="item_id" id="item_id" value="<?=$this->item->item_id?>" />
 
-        <label><?=Lang::$images?></label>
+        <h3><?=Lang::$images?></h3><br/>
+        
         <div id="item_images" class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-            <?php foreach($this->item->item_images as $item_image):?>
-                <?=$item_image->image_id?><br>
-                <?=$item_image->image_src?><br>
-                <?=$item_image->image_path?><br>
-                <?=$item_image->image_name?><br>
-                <?=$item_image->image_title?><br>
-                <?=$item_image->image_alt?><br>
-                <?=$item_image->is_main?><br>
-                <?=$item_image->fk_item_id?><br><hr>
-                <!--TODO: fare file eliminazione in AJAX-->
-            <?php endforeach;?>
-
-            </div>
+            <?php
+                foreach($this->item->item_images as $curr_key => $curr_img)
+                {
+                    /*
+                    $curr_img->image_id;
+                    $curr_img->image_src;
+                    $curr_img->image_path;
+                    $curr_img->image_name;
+                    $curr_img->image_title;
+                    $curr_img->image_alt;
+                    $curr_img->is_main;
+                    $curr_img->fk_item_id;
+                    */
+                    $html = file_get_contents(Config::$abs_path . '/views/admin/shop/item_images/item_image_ilk.php');
+                    $html = str_replace("#index#", $curr_key, $html);
+                    $html = str_replace("#image_id#", $curr_img->image_id, $html);
+                    $html = str_replace("#image_src#", $curr_img->image_src, $html);
+                    $html = str_replace("#image_alt#", $curr_img->image_alt, $html);
+                    $html = str_replace("#image_title#", $curr_img->image_title, $html);
+                    
+                    echo  $html; 
+                }
+            ?>
         </div><hr/>
+        <!--TODO: fare file eliminazione in AJAX-->
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

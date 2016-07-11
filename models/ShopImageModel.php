@@ -58,9 +58,14 @@ class ShopImageModel extends Model
     }
     
     // Delete
-    function delete()
+    function delete($image_id=NULL)
     {
-        
+        $query_delete = "DELETE FROM #_shop_images WHERE #_shop_images.image_id = '$image_id'";
+        if(!$this->queryExec($query_delete)){
+            return FALSE;
+        }else{
+            return TRUE;
+        }        
     }
     
 }

@@ -112,14 +112,14 @@ class Upload extends Controller
                                     <button class="btn btn-default btn-primary add"
                                         data-index="<?=$i?>" 
                                         data-src="<?=$img_src?>" 
-                                        data-id="<?=$store_res?>" 
+                                        data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                     <button class="btn btn-default btn-danger rem"
                                         data-index="<?=$i?>" 
                                         data-src="<?=$img_src?>" 
-                                        data-id="<?=$store_res?>" 
+                                        data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-remove"></span>
                                     </button>
