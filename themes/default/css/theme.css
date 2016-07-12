@@ -99,30 +99,6 @@ footer .footer-content{
 }
 
 
-
-/*=============================================================================*
- * Shop
- *=============================================================================*/
-.categories{
-    
-}
-.categories .categories_list{
-    
-}
-.categories .category_wrapper{
-    
-}
-.categories .category_wrapper .category_title{
-    
-}
-.categories .category_wrapper .category_image{
-    
-}
-.categories .category_wrapper .category_image img{
-    width: 100%;
-    text-align: center;
-}
-
 /*=============================================================================*
  * Tables
  *=============================================================================*/
@@ -227,23 +203,28 @@ td.text-right {
 }
 
 
-/* ===========================================
- * Bootstrap Media Queries  ==================
- * ======================================== */
 
-/* Small Devices/Extra Small, Tablets, Phones */
-@media only screen and (min-width : 768px) {
+/*==============================================================================*
+ * Bootstrap Media Queries
+ *==============================================================================*/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+
+
+/* Small Devices/Extra Small, Tablets, Phones ==================================*/
+@media only screen and (min-width: 768px) {
 
 }
 
 
-/* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
+/* Medium Devices, Desktops ====================================================*/
+@media only screen and (min-width: 992px) {
 
 }
 
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
+/* Large Devices, Wide Screens =================================================*/
+@media only screen and (min-width: 1200px) {
 
 }

@@ -25,6 +25,7 @@
 
         <!-- Theme CSS -->
         <link href="<?=Config::$web_path;?>/themes/<?=Config::$theme;?>/css/theme.css" rel="stylesheet">
+        <link href="<?=Config::$web_path;?>/themes/<?=Config::$theme;?>/css/theme_shop.css" rel="stylesheet">
 
         <!-- jQuery UI CSS -->
         <link type="text/css" rel="stylesheet" href="<?=Config::$web_path;?>/js/libs/jquery-ui-1.11.4/jquery-ui.min.css" />
@@ -137,9 +138,7 @@
         <!-- Debug -->
         <div class="debug">
             <?php
-                if(Session::get('debug')){
-                    $this->debug($this);
-                }
+                $this->debug($this);
             ?>
         </div>
 

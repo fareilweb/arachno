@@ -7,8 +7,6 @@ class Shop extends Controller
         // Get Args
         $this->args = $args;
         
-       
-        
     }
     
     // List All Categories
