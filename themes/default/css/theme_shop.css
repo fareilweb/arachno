@@ -30,15 +30,51 @@
 .items_list{}
 .items_list{}
 .items_list .item_wrapper{}
-.items_list .item_wrapper th.item_title{
+.items_list .item_wrapper item{
+    margin: 12px;
+}
+.items_list .item_wrapper .item_title{
     text-align: center;
 }
-.items_list .item_wrapper td.item_image{
+.items_list .item_wrapper .item_image{
     text-align: center;
 }
-.items_list .item_wrapper td.item_price{
+.items_list .item_wrapper .item_image img{
+    width: 100%;
+}
+.items_list .item_wrapper .item_price{
     text-align: center;
 }
+
+
+/*==============================================================================*
+ * Items List
+ *==============================================================================*/
+.item{}
+.item_wrapper{}
+.item_wrapper .item_id{}
+.item_wrapper .item_code{}
+.item_wrapper .category_name{}
+.item_wrapper .item_status{}
+.item_wrapper .item_stock{}
+.item_wrapper .item_price{}
+.item_wrapper .item_title{}
+.item_wrapper .item_weight{}
+.item_wrapper .item_colors{}
+.item_wrapper .item_short_desc{}
+.item_wrapper .item_long_desc{}
+.item_wrapper .item_images{
+    width: 100%;
+}
+.item_wrapper .item_image{
+    float:left;
+}
+.item_wrapper .item_image img{
+    width: 30%;
+}
+.item_wrapper .item_image_wrapper{}
+.item_wrapper .item_image_name{}
+
 
 
 /*==============================================================================*
