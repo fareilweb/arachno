@@ -5,9 +5,9 @@ class Shop extends Controller
     
     public function index($args){
         // Get Args
-        $this->args = $args;
-        
+        $this->args = $args;   
     }
+    
     
     // List All Categories
     public function showCategories($args)
@@ -25,6 +25,7 @@ class Shop extends Controller
         $this->includeView('shop/categories', 'main-content');       
         $this->getView('pages/page_default');
     }
+    
     
     // List All or Fitered Items (ex. by Category)
     public function showItems($args)
@@ -46,6 +47,7 @@ class Shop extends Controller
         $this->includeView('shop/items', 'main-content');       
         $this->getView('pages/page_default');
     }
+    
  
     // Show One Item
     public function showItem($args)
