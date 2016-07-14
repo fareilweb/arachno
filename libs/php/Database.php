@@ -19,7 +19,9 @@ class Database
         }
     }
     
-    // Freeing Memory And Close Connection
+    /*==========================================================================*
+     * Clean Memory and Cose Connection
+     *==========================================================================*/
     public function cleanAndClose()
     {
         if(isset($this->results) && !is_bool($this->results))
@@ -30,6 +32,14 @@ class Database
         $this->mysqli->close();
     }
     
+    
+    /*==========================================================================*
+     * Escape a String
+     *==========================================================================*/
+    public function escape($string=NULL)
+    {
+        return $this->mysqli->real_escape_string($string);
+    }
 
     /*==========================================================================*
      * Generic Query Execution

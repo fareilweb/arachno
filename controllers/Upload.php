@@ -36,14 +36,14 @@ class Upload extends Controller
         }
     }
     
-    public function storeImage($file_name, $target_path, $img_src, $fk_item_id)
+    public function storeImage($file_name, $image_path, $image_src, $fk_item_id)
     {
         $img_mod = $this->getModel('ShopImageModel');
-        $img_mod->image_src = $img_src;
-        $img_mod->image_path = $target_path;
+        $img_mod->image_src = $image_src;
+        $img_mod->image_path = $image_path;
         $img_mod->image_name = $file_name;
-        $img_mod->image_title = NULL;
-        $img_mod->image_alt = NULL;
+        $img_mod->image_title = "";
+        $img_mod->image_alt = "";
         $img_mod->is_main = 0;
         $img_mod->fk_item_id = $fk_item_id;
         $insert_res = $img_mod->insert();
@@ -63,6 +63,17 @@ class Upload extends Controller
         }
     }
     
+    
+    public function deleteFile($file=NULL)
+    {
+        if($file!==NULL){
+            if (!unlink($file)){
+              return FALSE;
+            }else{
+              return TRUE;
+            }
+        }
+    }
      
     
     function itemImagesProcess($args)
@@ -87,14 +98,13 @@ class Upload extends Controller
             for($i=0; $i<count($names); $i++)
             { 
                 $cFile = new stdClass;
-                
-                $cFile->name     = $names[$i];
+                $cFile->name     = date("Y_F_d_l_H_i_s", time() ) ."___". $names[$i];
                 $cFile->type     = $types[$i];
                 $cFile->tmp_name = $tmp_names[$i];
                 $cFile->error    = $errors[$i];
                 $cFile->size     = $sizes[$i];
-                $save_target = Config::$abs_path . Config::$shop_images . DIRECTORY_SEPARATOR . $cFile->name;
-                $img_src = Config::$web_path . '/views/shop/images/' . $cFile->name;
+                $save_target    = Config::$abs_path . Config::$shop_images . "\\" . $cFile->name;
+                $image_src      = Config::$web_path . '/views/shop/images/' . $cFile->name;
                 $fk_item_id = $this->args[0];
                 
                 // Testing File
@@ -103,7 +113,7 @@ class Upload extends Controller
                     if($this->checkSize($cFile->size))
                     {
                         $save_res  = $this->saveFile($cFile->tmp_name, $save_target);
-                        $store_res = $this->storeImage($cFile->name, $save_target, $img_src, $fk_item_id);
+                        $store_res = $this->storeImage($cFile->name, $save_target, $image_src, $fk_item_id);
                         if($save_res && $store_res)
                         {
                             ?> 
@@ -111,20 +121,20 @@ class Upload extends Controller
                                 <p>
                                     <button class="btn btn-default btn-primary add"
                                         data-index="<?=$i?>" 
-                                        data-src="<?=$img_src?>" 
+                                        data-src="<?=$image_src?>" 
                                         data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                     <button class="btn btn-default btn-danger rem"
                                         data-index="<?=$i?>" 
-                                        data-src="<?=$img_src?>" 
+                                        data-src="<?=$image_src?>" 
                                         data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </p>
-                                <p><img src="<?=$img_src?>" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" /></p>
+                                <p><img src="<?=$image_src?>" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" /></p>
                             </div>
                             <?php
                         }else{

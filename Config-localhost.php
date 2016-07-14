@@ -3,7 +3,7 @@ class Config
 {
     public static $abs_path     = 'D:\xampp\htdocs\arachno';
     public static $web_path     = 'http://localhost/arachno';
-    public static $shop_images  = '\views\shop\images';
+    public static $shop_images  = '\\views\\shop\\images';
     public static $home_slug 	= 'home';
     public static $db_host 	= 'localhost';
     public static $db_name 	= 'arachno';

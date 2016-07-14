@@ -3,7 +3,9 @@
     <?php if(isset($this->item) && $this->item->item_id!==NULL): ?>
     <div class="item_wrapper">
         <div class="row">
-            <!-- FIRST COL -->
+            <!-- ===============================================================
+                FIRST COL 
+            ================================================================ -->
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="item_id">
                     <label><?=Lang::$id;?> </label>
@@ -51,23 +53,38 @@
                 </div>
             </div>
             
-            <!-- SECOND COL -->
+            <!-- ===============================================================
+                SECOND COL 
+            ================================================================ -->
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="item_images">
+                    <!-- Main Image ====================================== -->
                     <?php foreach($this->item->item_images as $item_image): ?>
-                    <div class="item_image">
-                        <div class="item_image_wrapper">
-                            <img src="<?=$item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
-                        </div>
-                        <div class="item_image_name">
-                            <?=$item_image->image_name;?>
-                        </div>
-                    </div>    
-                        <!--
-                        
-                        <?=$item_image->is_main;?>
-                        -->
+                        <?php if($item_image->is_main==TRUE):?>
+                            <div class="item_main_image">
+                                <img src="<?=$item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
+                            </div>
+                        <?php endif;?>
                     <?php endforeach;?>
+                    
+                    <!-- Images ========================================== -->
+                    <div class="row">
+                    <?php foreach($this->item->item_images as $item_image): ?>
+                        <?php if($item_image->is_main==FALSE):?>
+                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                <div class="item_image_wrapper">
+                                    <div class="item_image">
+                                        <img src="<?=$item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
+                                    </div>
+                                    <div class="item_image_title">
+                                        <?=$item_image->image_title;?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                    </div>
+                    
                 </div>
             </div>
         </div>

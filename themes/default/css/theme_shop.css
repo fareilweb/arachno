@@ -27,53 +27,89 @@
  * Items List
  *==============================================================================*/
 .items{}
-.items_list{}
-.items_list{}
-.items_list .item_wrapper{}
-.items_list .item_wrapper item{
-    margin: 12px;
-}
-.items_list .item_wrapper .item_title{
-    text-align: center;
-}
-.items_list .item_wrapper .item_image{
-    text-align: center;
-}
-.items_list .item_wrapper .item_image img{
+.items .items_list{}
+.items .current_item_wrapper{}
+.items .current_item{
     width: 100%;
+    border: 6px solid #fcfcfc;
+    box-shadow: 1px 1px 12px #c2c2c2;
 }
-.items_list .item_wrapper .item_price{
+.items .current_item:hover{
+    border: 6px solid #cfcfcf;
+}
+.items .current_item a{
+    text-decoration: none;
+    color: #222;
+}
+.items .current_item a:hover,
+.items .current_item a:focus,
+.items .current_item a:active{
+    text-decoration: none;
+    color: #222;
+}
+.items .current_item_title{
+    padding: 6px 3px 6px 3px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+.items .current_item_image{
+    width: 100%;
+    text-align: center;
+}
+.items .current_item_image img{
+    width: auto;
+    max-height: 256px;
+    box-shadow: 0px 0px 2px #ccc;
+}
+.items .current_item_price{
+    padding: 12px 3px 12px 3px;
     text-align: center;
 }
 
 
 /*==============================================================================*
- * Items List
+ * Item
  *==============================================================================*/
 .item{}
-.item_wrapper{}
-.item_wrapper .item_id{}
-.item_wrapper .item_code{}
-.item_wrapper .category_name{}
-.item_wrapper .item_status{}
-.item_wrapper .item_stock{}
-.item_wrapper .item_price{}
-.item_wrapper .item_title{}
-.item_wrapper .item_weight{}
-.item_wrapper .item_colors{}
-.item_wrapper .item_short_desc{}
-.item_wrapper .item_long_desc{}
-.item_wrapper .item_images{
+.item .item_wrapper{}
+.item .item_id{}
+.item .item_code{}
+.item .category_name{}
+.item .item_status{}
+.item .item_stock{}
+.item .item_price{}
+.item .item_title{}
+.item .item_weight{}
+.item .item_colors{}
+.item .item_short_desc{}
+.item .item_long_desc{}
+.item .item_images{
     width: 100%;
 }
-.item_wrapper .item_image{
-    float:left;
+.item .item_main_image{
+    width: 100%;
 }
-.item_wrapper .item_image img{
-    width: 30%;
+.item .item_main_image img{
+    width: 100%
 }
-.item_wrapper .item_image_wrapper{}
-.item_wrapper .item_image_name{}
+.item .item_image_wrapper{
+    
+}
+.item .item_image{
+    float: left;
+    width: 33%;
+    height: auto;
+    text-align: center;
+}
+.item .item_image img{
+    width: 100%;
+    height: auto;
+}
+.item .item_image_name{
+    
+}
+
 
 
 

@@ -51,11 +51,21 @@ class Admin extends Controller
     function removeItemImage($args){
         $this->args = $args;
         if(isset($this->post['image_id'])){
-            $img_mod = $this->getModel('ShopImageModel');    
-            if(!$img_mod->delete($this->post['image_id'])){
-                echo json_encode(["status"=>0, "message"=>"Failed"]);
+            $image_model = $this->getModel('ShopImageModel');
+            $image_id = $this->post['image_id'];
+            
+            if(!$image_model->load($image_id)){
+                echo json_encode(["status"=>0, "message"=>"Load Image Failed"]);
+            }
+            
+            if(!$image_model->deleteFile()){
+                echo json_encode(["status"=>0, "message"=>"disk-fail"]);
+            }
+            
+            if(!$image_model->delete()){
+                echo json_encode(["status"=>0, "message"=>"db-fail"]);
             }else{
-                echo json_encode(["status"=>1, "message"=>"Success"]);
+                echo json_encode(["status"=>1, "message"=>"delete-succes"]);
             }
         }
     }

@@ -77,3 +77,14 @@ span.big-icon{
     max-height: 128px;
     box-shadow: 3px 3px 12px #222;
 }
+
+
+
+
+/* ========================================
+ * Admin Area
+ * ======================================== */
+.is_main_checkbox{
+    width: 20px;
+    height: 20px;
+}

@@ -65,6 +65,17 @@ jQuery(document).ready(function(){
             }
         });
     });
+    
+    // Set an Image As Main OR Not
+    jQuery("#item_images").on("change", ".is_main_checkbox", function(e){
+        var image_id = jQuery(this).attr("data-image_id");
+        var isChecked = jQuery(this).is(':checked');
+        
+        alert(
+            "Image ID = " + image_id + "\n" +
+            "Is Cheched? = " + isChecked
+        );
+    });
 
     // Remove Image From Preview
     jQuery("#images_preview").on("click", "button.rem", function(e){
@@ -86,7 +97,7 @@ jQuery(document).ready(function(){
     jQuery("#images_preview").on("click", "button.add", function(e){
         var index = jQuery(this).attr("data-index");
         var image_src = jQuery(this).attr("data-src");
-        var image_id = jQuery(this).attr("data-id");
+        var image_id = jQuery(this).attr("data-image_id");
         
         var html = jQuery("#image_ilk").html();
         html = html.replace(/#index#/gi, index);
@@ -97,6 +108,6 @@ jQuery(document).ready(function(){
             jQuery(".preview_image_wrapper#index"+index).remove();
         } 
     });
-    
+        
 });
 </script>

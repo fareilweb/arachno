@@ -30,7 +30,6 @@
                     $curr_img->image_name;
                     $curr_img->image_title;
                     $curr_img->image_alt;
-                    $curr_img->is_main;
                     $curr_img->fk_item_id;
                     */
                     $html = file_get_contents(Config::$abs_path . '/views/admin/shop/item_images/item_image_ilk.php');
@@ -39,7 +38,7 @@
                     $html = str_replace("#image_src#", $curr_img->image_src, $html);
                     $html = str_replace("#image_alt#", $curr_img->image_alt, $html);
                     $html = str_replace("#image_title#", $curr_img->image_title, $html);
-                    
+                    $curr_img->is_main ? '' : $html = str_replace("checked", "", $html) ;
                     echo  $html; 
                 }
             ?>
