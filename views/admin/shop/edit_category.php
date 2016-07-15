@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label><?=Lang::$category_parent?></label>
                     <select name="fk_parent_id" id="fk_parent_id" class="form-control" >
-                        <option value="1">Seleziona Categoria...</option>
+                        <option value="0">Seleziona Categoria...</option>
                         <?php foreach($this->shop_categories as $category):?>
                             <option value="<?=$category->category_id?>" <?=($this->category->fk_parent_id==$category->category_id) ? " selected" : "";?>>
                                 <?=$category->category_name;?>

@@ -43,7 +43,6 @@
                 }
             ?>
         </div><hr/>
-        <!--TODO: fare file eliminazione in AJAX-->
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
@@ -56,7 +55,7 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label><?=Lang::$item_category?></label>
-                    <select name="fk_category_id" class="form-control" >
+                    <select name="fk_category_id" class="form-control">
                         <option value="1">Seleziona Categoria...</option>
                         <?php foreach($this->shop_categories as $category):?>
                             <option value="<?=$category->category_id?>" <?=($this->item->fk_category_id==$category->category_id) ? " selected" : "";?>>
@@ -65,6 +64,39 @@
                         <?php endforeach;?>
                     </select>
                 </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                    <label>Categorie Multiple</label>
+                    <br/>
+                        <?php
+                            $cats = array();
+                            foreach($this->shop_categories as $curr_cat)
+                            {
+                                $cats[$curr_cat->category_id] = $curr_cat;
+                                $cats[$curr_cat->category_id]->childs = array();
+                                array_push($cats[$curr_cat->fk_parent_id]->childs, $curr_cat);                            
+                            }
+
+                        ?>
+                        <!--
+                            category_id
+                            category_name
+                            category_status
+                            category_image_src
+                            fk_lang_id
+                            fk_parent_id
+                            category_parent_name
+                            lang_id
+                            lang_iso_code
+                            lang_internal_code
+                            lang_name
+                        -->
+                </div>
+                <pre>
+                <?=print_r($cats);?>
+                </pre>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">

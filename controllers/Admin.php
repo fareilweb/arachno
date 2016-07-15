@@ -139,11 +139,13 @@ class Admin extends Controller
             foreach ($this->post as $item_key => $item_val){
                 $new_item->$item_key = $item_val;
             }
+            /*
             if(!$new_item->updateItem()){ //<--- Note, the item update it self
                 $this->notice = Lang::$update_fail;
             }else{
                 $this->notice = Lang::$update_success;
             }
+            */
             $this->index($args);
         }
     }
