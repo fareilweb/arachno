@@ -78,7 +78,6 @@
                                 $cats[$curr_cat->category_id]->childs = array();
                                 array_push($cats[$curr_cat->fk_parent_id]->childs, $curr_cat);                            
                             }
-
                         ?>
                         <!--
                             category_id
