@@ -70,15 +70,27 @@
                 <div class="form-group">
                     <label>Categorie Multiple</label>
                     <br/>
-                        <?php
-                            $cats = array();
-                            foreach($this->shop_categories as $curr_cat)
-                            {
-                                $cats[$curr_cat->category_id] = $curr_cat;
-                                $cats[$curr_cat->category_id]->childs = array();
-                                array_push($cats[$curr_cat->fk_parent_id]->childs, $curr_cat);                            
-                            }
-                        ?>
+                        
+                    <?php foreach($this->shop_categories as $cat):?>
+                        <?php if($cat->fk_parent_id==='0'):?>
+                            <?=$cat->category_name;?>
+                            <?php foreach ($this->shop_categories as $first_child):?>
+                                <?php if($first_child->fk_parent_id === $cat->category_id):?>
+                                    <div class="child-category">
+                                        <?=$first_child->category_name;?>
+                                        <?php foreach ($this->shop_categories as $second_child):?>
+                                            <?php if($second_child->fk_parent_id === $first_child->category_id):?>
+                                                <div class="child-category">
+                                                    <?=$second_child->category_name;?>
+                                                </div>
+                                            <?php endif;?>
+                                        <?php endforeach;?>
+                                    </div>
+                                <?php endif;?>
+                            <?php endforeach;?>
+                        <?php endif;?>
+                    <?php endforeach;?>
+                    
                         <!--
                             category_id
                             category_name
@@ -94,7 +106,7 @@
                         -->
                 </div>
                 <pre>
-                <?=print_r($cats);?>
+                <!--?=print_r($categories);?-->
                 </pre>
             </div>
 
