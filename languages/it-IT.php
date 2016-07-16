@@ -62,6 +62,7 @@ class Lang
     public static $name = "Nome";
     public static $item_code = "Codice";
     public static $item_category = "Categoria";
+    public static $item_categories = "Categorie Oggetto";
     public static $item_stock = "Qt&agrave; Magazzino";
     public static $item_price = "Prezzo &euro;";
     public static $item_discount = "Sconto";

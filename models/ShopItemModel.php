@@ -8,6 +8,7 @@ class ShopItemModel extends Model
     private $item_id = NULL;
     private $item_code = NULL;
     private $fk_category_id = NULL;
+    private $item_categories = array();
     private $item_status = NULL; 
     private $item_stock = NULL; 
     private $item_price = NULL; 
@@ -55,7 +56,12 @@ class ShopItemModel extends Model
 
             // Populate Item Proprierties
             foreach($item_data as $item_key => $item_val){
-                $this->$item_key = $item_val;
+                if($item_key == "item_categories_json"){
+                    $this->item_categories = json_decode($item_val, true);
+                }else{
+                    $this->$item_key = $item_val;
+                }
+                
             }
 
             // Load Item Images
@@ -80,8 +86,13 @@ class ShopItemModel extends Model
         $values = array();
         foreach($this as $field_name => $field_val){
             if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
-                array_push($fields, $field_name);
-                array_push($values, $field_val);
+                if($field_name=="item_categories"){
+                    array_push($fields, "item_categories_json");
+                    array_push($values, json_encode($field_val));
+                }else{
+                    array_push($fields, $field_name);
+                    array_push($values, $field_val);
+                }
             }
         }
         
@@ -128,7 +139,13 @@ class ShopItemModel extends Model
         
         foreach($this as $field_name => $field_val){
             if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
-                $set_string.= "`$field_name`='$field_val'";
+                if($field_name=="item_categories"){
+                    $json = json_encode($field_val);
+                    $set_string.= "`item_categories_json`='$json'";
+                }else{
+                    $set_string.= "`$field_name`='$field_val'";
+                }
+                
                 if( $counter < $fields_count ){
                     $set_string.= ", ";
                 }

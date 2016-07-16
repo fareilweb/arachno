@@ -52,7 +52,7 @@
                 </div>
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <!--div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label><?=Lang::$item_category?></label>
                     <select name="fk_category_id" class="form-control">
@@ -64,50 +64,71 @@
                         <?php endforeach;?>
                     </select>
                 </div>
-            </div>
+            </div-->
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
-                    <label>Categorie Multiple</label>
-                    <br/>
-                        
-                    <?php foreach($this->shop_categories as $cat):?>
+                    <label><?=Lang::$item_categories?></label>
+                    <div class="shop_categories">
+                        <!--Main Level Categories Iteration-->
+                        <ul class="categories main-level">
+                        <?php foreach($this->shop_categories as $cat):?>
                         <?php if($cat->fk_parent_id==='0'):?>
-                            <?=$cat->category_name;?>
-                            <?php foreach ($this->shop_categories as $first_child):?>
+                            <li class="category">
+                                <label>
+                                    <input type="checkbox" name="item_categories[<?=$cat->category_id;?>]" <?=isset($this->item->item_categories[$cat->category_id]) ? " checked " : "";?> />
+                                    <?=$cat->category_name;?>
+                                </label>
+                                
+                                <!--First Level Childs Iteration-->
+                                <ul class="categories first-level">
+                                <?php foreach ($this->shop_categories as $first_child):?>
                                 <?php if($first_child->fk_parent_id === $cat->category_id):?>
-                                    <div class="child-category">
-                                        <?=$first_child->category_name;?>
+                                    <li class="category">
+                                        <label>
+                                            <input type="checkbox" name="item_categories[<?=$first_child->category_id;?>]" <?=isset($this->item->item_categories[$first_child->category_id]) ? " checked " : "";?> />
+                                            <?=$first_child->category_name;?>
+                                        </label>
+                                        
+                                        <!--Second Level Childs Iteration-->
+                                        <ul class="categories second-level">
                                         <?php foreach ($this->shop_categories as $second_child):?>
-                                            <?php if($second_child->fk_parent_id === $first_child->category_id):?>
-                                                <div class="child-category">
+                                        <?php if($second_child->fk_parent_id === $first_child->category_id):?>
+                                            <li class="category">
+                                                <label>
+                                                    <input type="checkbox" name="item_categories[<?=$second_child->category_id;?>]" <?=isset($this->item->item_categories[$second_child->category_id]) ? " checked " : "";?> />
                                                     <?=$second_child->category_name;?>
-                                                </div>
-                                            <?php endif;?>
+                                                </label>
+                                            </li>
+                                        <?php endif;?>
                                         <?php endforeach;?>
-                                    </div>
+                                        </ul>
+
+                                    </li>
                                 <?php endif;?>
-                            <?php endforeach;?>
+                                <?php endforeach;?>
+                                </ul>
+
+                            </li>
                         <?php endif;?>
-                    <?php endforeach;?>
+                        <?php endforeach;?>
+                        </ul>
+                    </div>
+                    <!--
+                        category_id
+                        category_name
+                        category_status
+                        category_image_src
+                        fk_lang_id
+                        fk_parent_id
+                        category_parent_name
+                        lang_id
+                        lang_iso_code
+                        lang_internal_code
+                        lang_name
+                    -->
                     
-                        <!--
-                            category_id
-                            category_name
-                            category_status
-                            category_image_src
-                            fk_lang_id
-                            fk_parent_id
-                            category_parent_name
-                            lang_id
-                            lang_iso_code
-                            lang_internal_code
-                            lang_name
-                        -->
                 </div>
-                <pre>
-                <!--?=print_r($categories);?-->
-                </pre>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
