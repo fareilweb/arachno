@@ -36,7 +36,7 @@ class Admin extends Controller
         $loc_model = $this->getModel('LocalizationModel');
         $this->languages = $loc_model->getLanguages();
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        
+
         // Views
         $this->includeView('admin/nav/menu', 'header-content');
         $this->getView('pages/page_default');
