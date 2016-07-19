@@ -34,7 +34,8 @@ class Lang
     public static $main = "Principale";
     public static $images = "Immagini";
     public static $select_images = "Seleziona Immagini";
-    public static $save_before = "Necessario Salvare l'Oggetto Prima di Proseguire";
+    public static $almost_done = "Ci Sei Quasi";
+    public static $save_before = "&Egrave; Necessario Salvare l'Oggetto Prima di Proseguire";
     public static $preview = "Anteprima";
     public static $categories = "Categorie";
     public static $category_is_empty = "Questa Categoria &egrave; Vuota";

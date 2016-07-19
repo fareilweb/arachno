@@ -46,26 +46,40 @@ jQuery(document).ready(function(){
     }
     
     // AJAX Submit Upload
-    jQuery('#images').on('change', function(e){
-         jQuery("#multiple_upload_form").ajaxSubmit({
-            target:"#images_preview",
-            beforeSubmit:function(e){
-                jQuery('#page-preloader').show();
-            },
-            success:function(e){
-                jQuery('#page-preloader').hide();
-            },
-            error:function(e){
-                swal({
-                    title: "err",
-                    text: "err",
-                    type: "warning",
-                    html: true
-                });
-            }
+    <?php if($this->item->item_id!=""):?>
+        jQuery('#images').on('change', function(e){
+            jQuery("#multiple_upload_form").ajaxSubmit({
+                target:"#images_preview",
+                beforeSubmit:function(e){
+                    jQuery('#page-preloader').show();
+                },
+                success:function(e){
+                    jQuery('#page-preloader').hide();
+                },
+                error:function(e){
+                    swal({
+                        title: "err",
+                        text: "err",
+                        type: "warning",
+                        html: true
+                    });
+                }
+            });
         });
-    });
-    
+    <?php else:?>
+        jQuery("#images").click(function(e){
+            e.preventDefault();
+            swal({
+                title: "<?=Lang::$almost_done;?>!",
+                text: "<?=Lang::$save_before;?>",
+                type: "warning",
+                html: true
+            });
+            return false;
+        });
+    <?php endif;?>
+
+
     // Set an Image As Main OR Not
     jQuery("#item_images").on("change", ".is_main_checkbox", function(e){
         var image_id = jQuery(this).attr("data-image_id");
