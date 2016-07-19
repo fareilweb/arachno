@@ -10,7 +10,7 @@ class ShopModel extends Model
         
         // Add Language Filter
         if($lang_id !== NULL){
-            $query .= "WHERE #_shop_categories.fk_lang_id = '$lang_id' ";
+            $query .= "AND #_shop_categories.fk_lang_id = '$lang_id' ";
         }
         
         // Add Status Filter
