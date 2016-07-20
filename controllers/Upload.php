@@ -36,7 +36,7 @@ class Upload extends Controller
         }
     }
     
-    public function storeImage($file_name, $image_path, $image_src, $fk_item_id)
+    public function storeItemImage($file_name, $image_path, $image_src, $fk_item_id)
     {
         $img_mod = $this->getModel('ShopImageModel');
         $img_mod->image_src = $image_src;
@@ -103,8 +103,8 @@ class Upload extends Controller
                 $cFile->tmp_name = $tmp_names[$i];
                 $cFile->error    = $errors[$i];
                 $cFile->size     = $sizes[$i];
-                $save_target    = Config::$abs_path . Config::$shop_images . "\\" . $cFile->name;
-                $image_src      = Config::$web_path . '/views/shop/images/' . $cFile->name;
+                $save_target     = Config::$abs_path . "/views/images/shop/items/" . $cFile->name;
+                $image_src       = Config::$web_path . '/views/images/shop/items/' . $cFile->name;
                 $fk_item_id = $this->args[0];
                 
                 // Testing File
@@ -113,7 +113,7 @@ class Upload extends Controller
                     if($this->checkSize($cFile->size))
                     {
                         $save_res  = $this->saveFile($cFile->tmp_name, $save_target);
-                        $store_res = $this->storeImage($cFile->name, $save_target, $image_src, $fk_item_id);
+                        $store_res = $this->storeItemImage($cFile->name, $save_target, $image_src, $fk_item_id);
                         if($save_res && $store_res)
                         {
                             ?> 

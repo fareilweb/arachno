@@ -13,6 +13,17 @@
         <input type="hidden" name="category_parent_name" id="category_parent_name" value="<?=$this->category->category_parent_name?>" />
         
         <div class="row">
+            <!-- Image -->
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                    <label><?=Lang::$image?></label>
+                    <input type="file" name="category_image" class="form-control"/>
+                    
+                    <div class="category_image_preview">
+                        <img src="<?=Config::$web_path?>/views/images/bonifico.png" />
+                    </div>
+                </div>
+            </div>
             <!-- Name -->
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">

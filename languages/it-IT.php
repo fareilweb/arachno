@@ -33,6 +33,7 @@ class Lang
     public static $alt_text = "Testo Alternativo";
     public static $main = "Principale";
     public static $images = "Immagini";
+    public static $image = "Immagine";
     public static $select_images = "Seleziona Immagini";
     public static $almost_done = "Ci Sei Quasi";
     public static $save_before = "&Egrave; Necessario Salvare l'Oggetto Prima di Proseguire";
