@@ -11,6 +11,7 @@ class ShopCategoryModel extends Model
     private $fk_lang_id = NULL;
     private $fk_parent_id = NULL;
     private $category_parent_name = NULL;
+    private $category_image_src = NULL;
 
     /* Getter/Setter Magic Methods */
     public function __get($property){

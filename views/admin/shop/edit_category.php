@@ -20,7 +20,8 @@
                     <input type="file" name="category_image" class="form-control"/>
                     
                     <div class="category_image_preview">
-                        <img src="<?=Config::$web_path?>/views/images/bonifico.png" />
+
+                        <img src="<?=$this->category_image_src;?>" />
                     </div>
                 </div>
             </div>
