@@ -88,7 +88,7 @@ class Admin extends Controller
         // Data
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
-        $this->shop_categories = $shop_model->getCategories();
+        $this->shop_categories = $shop_model->getAllCategories();
         $this->item = $this->getModel('ShopItemModel');
         if(isset($args[0])){
             $this->item->loadById($args[0]);
@@ -179,13 +179,13 @@ class Admin extends Controller
      * Categories Methods
      * =========================================================================*/
     
-    // Show Categories
-    function showCategories($args)
+    // Show Main Categories
+    function showMainCategories($args)
     {
         // Data
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
-        $this->categories = $shop_model->getCategories();
+        $this->categories = $shop_model->getAllCategories();
         
         // Views
         $this->includeView('admin/shop/list_categories', 'main-content');
@@ -198,7 +198,7 @@ class Admin extends Controller
         // Data
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
-        $this->shop_categories = $shop_model->getCategories();
+        $this->shop_categories = $shop_model->getAllCategories();
         $this->category = $this->getModel('ShopCategoryModel');
         if(isset($args[0])){
             $this->category->loadById($args[0]);

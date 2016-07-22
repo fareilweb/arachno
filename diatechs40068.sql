@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: sql.dia-techshop.it
--- Generato il: 17 Lug, 2016 at 04:50 PM
+-- Generato il: 22 Lug, 2016 at 07:02 PM
 -- Versione MySQL: 5.1.49
 -- Versione PHP: 4.3.10-22
 -- 
@@ -257,30 +257,6 @@ INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_st
 -- --------------------------------------------------------
 
 -- 
--- Struttura della tabella `acms_shop_images`
--- 
-
-CREATE TABLE `acms_shop_images` (
-  `image_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image_src` varchar(256) DEFAULT NULL,
-  `image_path` varchar(256) DEFAULT NULL,
-  `image_name` varchar(100) DEFAULT NULL,
-  `image_title` varchar(100) DEFAULT NULL,
-  `image_alt` varchar(100) DEFAULT NULL,
-  `is_main` tinyint(1) DEFAULT '0',
-  `fk_item_id` int(11) NOT NULL,
-  PRIMARY KEY (`image_id`),
-  KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=72 DEFAULT CHARSET=utf8 AUTO_INCREMENT=72 ;
-
--- 
--- Dump dei dati per la tabella `acms_shop_images`
--- 
-
-
--- --------------------------------------------------------
-
--- 
 -- Struttura della tabella `acms_shop_items`
 -- 
 
@@ -309,7 +285,32 @@ CREATE TABLE `acms_shop_items` (
 -- Dump dei dati per la tabella `acms_shop_items`
 -- 
 
-INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_categories_json`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES (49, '051212001', 14, '[]', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_categories_json`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES (49, '051212001', 0, '{"8":"on"}', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+
+-- --------------------------------------------------------
+
+-- 
+-- Struttura della tabella `acms_shop_items_images`
+-- 
+
+CREATE TABLE `acms_shop_items_images` (
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_src` varchar(256) DEFAULT NULL,
+  `image_path` varchar(256) DEFAULT NULL,
+  `image_name` varchar(100) DEFAULT NULL,
+  `image_title` varchar(100) DEFAULT NULL,
+  `image_alt` varchar(100) DEFAULT NULL,
+  `is_main` tinyint(1) DEFAULT '0',
+  `fk_item_id` int(11) NOT NULL,
+  PRIMARY KEY (`image_id`),
+  KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
+
+-- 
+-- Dump dei dati per la tabella `acms_shop_items_images`
+-- 
+
+INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES (81, 'http://www.dia-techshop.it/views/images/shop/items/2016_July_22_Friday_19_00_58___heart-2.png', '/home/mhd-01/www.dia-techshop.it/htdocs/views/images/shop/items/2016_July_22_Friday_19_00_58___heart-2.png', '2016_July_22_Friday_19_00_58___heart-2.png', '', '', 0, 49);
 
 -- --------------------------------------------------------
 

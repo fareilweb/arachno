@@ -31,7 +31,7 @@ class ShopImageModel extends Model
     function load($image_id=NULL)
     {
         if($image_id!==NULL){
-            $query = "SELECT * FROM #_shop_images WHERE image_id = '$image_id'";
+            $query = "SELECT * FROM #_shop_items_images WHERE image_id = '$image_id'";
             $img_data = $this->getObjectData($query);
             if(!$img_data){
                 return FALSE;
@@ -58,7 +58,7 @@ class ShopImageModel extends Model
         $this->image_title = $this->escape($this->image_title);
         $this->image_alt = $this->escape($this->image_alt);
         
-        $query_insert = "INSERT INTO #_shop_images ";
+        $query_insert = "INSERT INTO #_shop_items_images ";
         $query_insert.= "(image_src, image_path, image_name, image_title, image_alt, is_main, fk_item_id) ";
         $query_insert.= "VALUES (
             '$this->image_src', 
@@ -83,9 +83,9 @@ class ShopImageModel extends Model
         // Compose Query
         $fk_item_id = 0;
         $set_string = "";
-        $query_update = "UPDATE #_shop_images ";
+        $query_update = "UPDATE #_shop_items_images ";
         $query_update.= "SET $set_string ";
-        $query_update.= "WHERE #_shop_images.fk_item_id = '$fk_item_id'; ";
+        $query_update.= "WHERE #_shop_items_images.fk_item_id = '$fk_item_id'; ";
     }
     
     public function deleteFile($file_path=NULL)
@@ -109,7 +109,7 @@ class ShopImageModel extends Model
         if($image_id!==NULL)
         {
             // Delete The File From Disk And Database
-            $query_delete = "DELETE FROM #_shop_images WHERE #_shop_images.image_id = '$image_id'";
+            $query_delete = "DELETE FROM #_shop_items_images WHERE #_shop_items_images.image_id = '$image_id'";
             if(!$this->queryExec($query_delete)){
                 return FALSE;
             }else{

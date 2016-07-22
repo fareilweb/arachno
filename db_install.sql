@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2016 at 11:08 AM
+-- Generation Time: Jul 22, 2016 at 06:59 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -208,46 +208,14 @@ CREATE TABLE `acms_shop_categories` (
 --
 
 INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
-(1, 'Prima Categoria Test', 1, NULL, 1, 1, 'Categoria Oggetti 01'),
-(2, 'Seconda Categoria Test', 1, NULL, 1, 2, 'Categoria Oggetti 02'),
-(3, 'Terza Categoria Test', 1, NULL, 1, 2, 'Categoria Oggetti 02'),
-(4, 'Quarta Categoria Test', 1, NULL, 1, 2, 'Categoria Oggetti 02');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `acms_shop_images`
---
-
-CREATE TABLE `acms_shop_images` (
-  `image_id` int(11) NOT NULL,
-  `image_src` varchar(256) DEFAULT NULL,
-  `image_path` varchar(256) DEFAULT NULL,
-  `image_name` varchar(100) DEFAULT NULL,
-  `image_title` varchar(100) DEFAULT NULL,
-  `image_alt` varchar(100) DEFAULT NULL,
-  `is_main` tinyint(1) DEFAULT '0',
-  `fk_item_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `acms_shop_images`
---
-
-INSERT INTO `acms_shop_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
-(58, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 3),
-(59, 'http://localhost/arachno/views/shop/images/butterfly-1.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-1.jpg', 'butterfly-1.jpg', '', '', 0, 2),
-(60, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 2),
-(61, 'http://localhost/arachno/views/shop/images/butterfly-3.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-3.jpg', 'butterfly-3.jpg', '', '', 0, 2),
-(62, 'http://localhost/arachno/views/shop/images/heart-1.png', 'D:xampphtdocsarachnoviewsshopimagesheart-1.png', 'heart-1.png', '', '', 0, 2),
-(63, 'http://localhost/arachno/views/shop/images/heart-2.png', 'D:xampphtdocsarachnoviewsshopimagesheart-2.png', 'heart-2.png', '', '', 0, 2),
-(64, 'http://localhost/arachno/views/shop/images/heart-3.png', 'D:xampphtdocsarachnoviewsshopimagesheart-3.png', 'heart-3.png', '', '', 0, 2),
-(65, 'http://localhost/arachno/views/shop/images/heart-4.jpg', 'D:xampphtdocsarachnoviewsshopimagesheart-4.jpg', 'heart-4.jpg', '', '', 0, 2),
-(66, 'http://localhost/arachno/views/shop/images/butterfly-1.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-1.jpg', 'butterfly-1.jpg', '', '', 0, 1),
-(67, 'http://localhost/arachno/views/shop/images/butterfly-2.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-2.jpg', 'butterfly-2.jpg', '', '', 0, 1),
-(68, 'http://localhost/arachno/views/shop/images/butterfly-1.jpg', 'D:xampphtdocsarachnoviewsshopimagesutterfly-1.jpg', 'butterfly-1.jpg', '', '', 0, 3),
-(69, 'http://localhost/arachno/views/shop/images/heart-1.png', 'D:xampphtdocsarachnoviewsshopimagesheart-1.png', 'heart-1.png', '', '', 0, 3),
-(70, 'http://localhost/arachno/views/shop/images/heart-1.png', 'D:xampphtdocsarachnoviewsshopimagesheart-1.png', 'heart-1.png', '', '', 0, 3);
+(14, 'Strumenti', 1, NULL, 1, 8, 'Pediatria'),
+(13, 'Test su feci', 1, NULL, 1, 9, 'Test Medici Rapidi'),
+(12, 'Test su urine', 1, NULL, 1, 9, 'Test Medici Rapidi'),
+(11, 'Test su tampone', 1, NULL, 1, 9, 'Test Medici Rapidi'),
+(8, 'Pediatria', 1, NULL, 1, 0, ''),
+(9, 'Test Medici Rapidi', 1, NULL, 1, 8, 'Pediatria'),
+(10, 'Test su Sangue', 1, NULL, 1, 9, 'Test Medici Rapidi'),
+(15, 'Monouso', 1, NULL, 1, 8, 'Pediatria');
 
 -- --------------------------------------------------------
 
@@ -259,6 +227,7 @@ CREATE TABLE `acms_shop_items` (
   `item_id` int(11) NOT NULL,
   `item_code` varchar(45) DEFAULT NULL,
   `fk_category_id` int(11) DEFAULT NULL,
+  `item_categories_json` varchar(256) DEFAULT NULL,
   `fk_lang_id` int(11) NOT NULL,
   `item_status` tinyint(1) DEFAULT '0',
   `item_stock` int(11) DEFAULT NULL,
@@ -276,10 +245,25 @@ CREATE TABLE `acms_shop_items` (
 -- Dumping data for table `acms_shop_items`
 --
 
-INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(1, 'AAA001', 1, 1, 1, 100, 999.99, 'Titolo Primo Prodotto di Esempio', '11', 'Rosso', 'Breve testo descrittivo del primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ul', 'Descrizione Testuale Estesa del Primo Prodotto di Esempio. Donec erat elit, pulvinar vel tempus quis, ullamcorper eget mi. Proin sit amet massa odio. Phasellus ligula nisl, gravida vel tortor consequat, ullamcorper porta ligula. Cras viverra ligula ac dolor aliquam, cursus auctor mi venenatis. Sed laoreet vehicula sem, quis ultrices libero rhoncus vitae. Pellentesque porttitor tellus et dui gravida, sollicitudin pretium magna bibendum. Etiam efficitur turpis nulla, auctor sodales nisl viverra eget.', 'primo, prodotto, esempio, parole, chiave, meta tag', 'Descrizione Meta Tag del Primo Prodotto di Esempio.'),
-(2, 'AAA002', 1, 1, 1, 100, 99, 'Titolo Nuovo Oggetto', '100', 'Verde, Giallo', 'Riepilogo', 'Descrizione', 'parole, chiave', 'Descrizione Meta'),
-(3, 'IMG000', 1, 1, 1, 10, 99, 'Test Inserimento Item con Immagini 01', '10', 'Rosso, Nero', 'Test Inserimento Item con Immagini 01', 'Test Inserimento Item con Immagini 01', 'Test, Inserimento, Item, Immagini', 'Test Inserimento Item con Immagini 01');
+INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_categories_json`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
+(49, '051212001', 0, '{"8":"on"}', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_shop_items_images`
+--
+
+CREATE TABLE `acms_shop_items_images` (
+  `image_id` int(11) NOT NULL,
+  `image_src` varchar(256) DEFAULT NULL,
+  `image_path` varchar(256) DEFAULT NULL,
+  `image_name` varchar(100) DEFAULT NULL,
+  `image_title` varchar(100) DEFAULT NULL,
+  `image_alt` varchar(100) DEFAULT NULL,
+  `is_main` tinyint(1) DEFAULT '0',
+  `fk_item_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -392,19 +376,19 @@ ALTER TABLE `acms_shop_categories`
   ADD KEY `fk_acms_shop_categories_acms_shop_categories_idx` (`fk_parent_id`);
 
 --
--- Indexes for table `acms_shop_images`
---
-ALTER TABLE `acms_shop_images`
-  ADD PRIMARY KEY (`image_id`),
-  ADD KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`);
-
---
 -- Indexes for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
   ADD PRIMARY KEY (`item_id`),
   ADD KEY `fk_shop_items_shop_categories_idx` (`fk_category_id`),
   ADD KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`);
+
+--
+-- Indexes for table `acms_shop_items_images`
+--
+ALTER TABLE `acms_shop_items_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`);
 
 --
 -- Indexes for table `acms_users`
@@ -441,17 +425,17 @@ ALTER TABLE `acms_pages`
 -- AUTO_INCREMENT for table `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `acms_shop_images`
---
-ALTER TABLE `acms_shop_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+--
+-- AUTO_INCREMENT for table `acms_shop_items_images`
+--
+ALTER TABLE `acms_shop_items_images`
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --

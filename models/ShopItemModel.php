@@ -65,7 +65,7 @@ class ShopItemModel extends Model
             }
 
             // Load Item Images
-            $images_query = "SELECT * FROM #_shop_images WHERE #_shop_images.fk_item_id = '$item_id';";
+            $images_query = "SELECT * FROM #_shop_items_images WHERE #_shop_items_images.fk_item_id = '$item_id';";
             $this->results = $this->queryExec($images_query);
             while($img_row_obj = $this->results->fetch_object()){
                 array_push($this->item_images, $img_row_obj);

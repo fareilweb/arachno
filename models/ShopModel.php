@@ -3,7 +3,11 @@
 class ShopModel extends Model
 {
     
-    function getCategories($lang_id=NULL, $status=NULL)
+    /* =========================================================================
+     * Categories
+     * =========================================================================*/
+    
+    function getAllCategories($lang_id=NULL, $status=NULL)
     {
         $query = "SELECT * FROM #_shop_categories ";
         $query.= "LEFT JOIN #_languages ON #_shop_categories.fk_lang_id = #_languages.lang_id ";
@@ -31,6 +35,10 @@ class ShopModel extends Model
         }
     }
     
+    
+    /* =========================================================================
+     * Items
+     * =========================================================================*/
     
     function getItems($lang_id=NULL, $status=NULL)
     {
@@ -91,7 +99,7 @@ class ShopModel extends Model
         // Add Images To Every Item
         foreach($data as $item_obj){
             $item_obj->item_images = array();
-            $query_images = "SELECT * FROM #_shop_images WHERE #_shop_images.fk_item_id = '$item_obj->item_id'";
+            $query_images = "SELECT * FROM #_shop_items_images WHERE #_shop_items_images.fk_item_id = '$item_obj->item_id'";
             $item_images_results = $this->queryExec($query_images);
             while($img_obj = $item_images_results->fetch_object()){
                 array_push($item_obj->item_images, $img_obj);

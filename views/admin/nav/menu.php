@@ -20,7 +20,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="<?=Config::$web_path;?>/Admin/showCategories">
+                        <a href="<?=Config::$web_path;?>/Admin/showMainCategories">
                             <?=Lang::$categories?>
                         </a>
                     </li>

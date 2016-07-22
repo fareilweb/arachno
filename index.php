@@ -21,3 +21,5 @@ require_once(Config::$abs_path.'/controllers/Controller.php');
 require_once(Config::$abs_path.'/App.php');
 
 (new App());
+
+
