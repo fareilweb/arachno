@@ -256,7 +256,6 @@ class Admin extends Controller
             require_once(Config::$abs_path.'/controllers/Upload.php');
             $upl = new Upload();        
             if($upl->files['category_image']['error'] != 4){ // Error 4 mean NO FILE UPLOADED
-                $this->debug($upl->files);
                 if($upl->files['category_image']['size'] < $upl->maxSize){
                     if( in_array($upl->files['category_image']['type'], $upl->allow) ){
                         
@@ -264,15 +263,15 @@ class Admin extends Controller
                         $file_name = "category_".$category_model->category_id . '.' . $file_ext;
                         $file_path = Config::$abs_path . '/views/images/shop/categories/' . $file_name;
                         $file_src = Config::$web_path . '/views/images/shop/categories/' . $file_name;
-                        
                         if($upl->saveFile($upl->files['category_image']['tmp_name'], $file_path)){
                             $category_model->category_image_src = $file_src;
                         }
+
                     }else{
-                        $this->notice = ""; // Type ERR
+                        $this->notice = Lang::$err_file_type; // Type ERR
                     }
                 }else{
-                    $this->notice = ""; // Size ERR
+                    $this->notice = Lang::$err_file_size; // Size ERR
                 }
             }
             // Upload Image END
