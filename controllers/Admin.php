@@ -229,11 +229,11 @@ class Admin extends Controller
     {
         if($this->post)
         {
-            $new_category = $this->getModel('ShopCategoryModel');
+            $category_model = $this->getModel('ShopCategoryModel');
             foreach ($this->post as $category_key => $category_val){
-                $new_category->$category_key = $category_val;
+                $category_model->$category_key = $category_val;
             }
-            if(!$new_category->insertCategory()){ //<--- Note, the category insert it self
+            if(!$category_model->insertCategory()){ //<--- Note, the category insert it self
                 $this->notice = Lang::$insert_fail;
             }else{
                 $this->notice = Lang::$insert_success;
@@ -247,11 +247,37 @@ class Admin extends Controller
     {
         if($this->post)
         {
-            $new_category = $this->getModel('ShopCategoryModel');
+            $category_model = $this->getModel('ShopCategoryModel');
             foreach ($this->post as $category_key => $category_val){
-                $new_category->$category_key = $category_val;
+                $category_model->$category_key = $category_val;
             }
-            if(!$new_category->updateCategory()){ //<--- Note, the category update it self
+            
+            // Upload Image
+            require_once(Config::$abs_path.'/controllers/Upload.php');
+            $upl = new Upload();        
+            if($upl->files['category_image']['error'] != 4){ // Error 4 mean NO FILE UPLOADED
+                $this->debug($upl->files);
+                if($upl->files['category_image']['size'] < $upl->maxSize){
+                    if( in_array($upl->files['category_image']['type'], $upl->allow) ){
+                        
+                        $file_ext = pathinfo($upl->files['category_image']['name'], PATHINFO_EXTENSION);
+                        $file_name = "category_".$category_model->category_id . '.' . $file_ext;
+                        $file_path = Config::$abs_path . '/views/images/shop/categories/' . $file_name;
+                        $file_src = Config::$web_path . '/views/images/shop/categories/' . $file_name;
+                        
+                        if($upl->saveFile($upl->files['category_image']['tmp_name'], $file_path)){
+                            $category_model->category_image_src = $file_src;
+                        }
+                    }else{
+                        $this->notice = ""; // Type ERR
+                    }
+                }else{
+                    $this->notice = ""; // Size ERR
+                }
+            }
+            // Upload Image END
+            
+            if(!$category_model->updateCategory()){ //<--- Note, the category update it self
                 $this->notice = Lang::$update_fail;
             }else{
                 $this->notice = Lang::$update_success;
@@ -281,7 +307,5 @@ class Admin extends Controller
         }
         // Views
         $this->index($args);
-    }
-    
-    
+    }   
 }

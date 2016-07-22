@@ -3,8 +3,8 @@
 class Upload extends Controller
 {
     
-    public $allow;
-    public $maxSize;
+    public $allow = array('image/jpeg', 'image/png', 'image/gif', 'image/bmp');
+    public $maxSize = 10485760;
     public $inputName;
     public $fileName;
     public $prefix;
@@ -20,7 +20,7 @@ class Upload extends Controller
         $this->args = $args;    
     }
     
-    public function checkType($mime=NULL){   
+    public function checkType($mime=NULL){
         if(in_array($mime, $this->allow)){
             return TRUE;
         }else{

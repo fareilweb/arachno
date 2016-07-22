@@ -117,3 +117,20 @@ ul.categories.first-level{
 ul.categories.second-level{
     margin-left: 24px;
 }
+
+
+/* =============================
+ *  Edit Category View
+ * =============================*/
+.category_image{
+    
+}
+.category_image .category_image_preview{
+    
+}
+.category_image .category_image_preview img{
+    width: 96%;
+    margin: 2%;
+    box-shadow: 1px 1px 6px #222;
+}
+.category_data{}
