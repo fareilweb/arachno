@@ -95,7 +95,6 @@ class ShopModel extends Model
     function getItems($lang_id=NULL, $status=NULL)
     {
         $query = "SELECT * FROM #_shop_items ";
-        $query.= "LEFT JOIN #_shop_categories ON #_shop_items.fk_category_id = #_shop_categories.category_id ";
         $query.= "LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id ";
         
         // Add Language Filter
@@ -122,12 +121,12 @@ class ShopModel extends Model
         }   
     }
     
-    function getItemsByCategory($category_id, $status, $lang_id=NULL)
+    function getItemsByCategory($category_id, $status=NULL, $lang_id=NULL)
     {
-        $query = "SELECT * FROM #_shop_items ";
-        $query.= "LEFT JOIN #_shop_categories ON #_shop_categories.category_id = #_shop_items.fk_category_id ";
-        $query.= "LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id ";
-        $query.= "WHERE #_shop_items.fk_category_id = '$category_id' ";
+        $query = 
+           "SELECT * FROM #_shop_items 
+            JOIN #_items_has_categories ON #_shop_items.item_id = #_items_has_categories.item_id 
+            WHERE #_items_has_categories.category_id = '$category_id' ";
         
         // Add Language Filter
         if($lang_id!==NULL){

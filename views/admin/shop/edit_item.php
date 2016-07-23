@@ -42,21 +42,7 @@
                     <input type="text" name="item_code" value="<?=$this->item->item_code?>" class="form-control" />
                 </div>
             </div>
-            
-            <!--div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                    <label><?=Lang::$item_category?></label>
-                    <select name="fk_category_id" class="form-control">
-                        <option value="1">Seleziona Categoria...</option>
-                        <?php foreach($this->shop_categories as $category):?>
-                            <option value="<?=$category->category_id?>" <?=($this->item->fk_category_id==$category->category_id) ? " selected" : "";?>>
-                                <?=$category->category_name;?>
-                            </option>
-                        <?php endforeach;?>
-                    </select>
-                </div>
-            </div-->
-
+           
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
                     <label><?=Lang::$item_categories?></label>
@@ -229,4 +215,3 @@
     </form>
     
 </div>
-   

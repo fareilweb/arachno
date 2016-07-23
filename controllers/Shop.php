@@ -71,8 +71,8 @@ class Shop extends Controller
         
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
-        $shop_model = $this->getModel('ShopModel');
         
+        $shop_model = $this->getModel('ShopModel');
         if( isset($args[0]) && is_numeric($args[0]) ){
             $this->items = $shop_model->getItemsByCategory($args[0], TRUE, Lang::$lang_id);
         }else{

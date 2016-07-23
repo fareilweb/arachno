@@ -29,6 +29,7 @@ class Admin extends Controller
         }
     }
     
+    
     // Index/Main Method
     function index()
     {   
@@ -41,6 +42,7 @@ class Admin extends Controller
         $this->includeView('admin/nav/menu', 'header-content');
         $this->getView('pages/page_default');
     }
+    
     
     
     /* =========================================================================
@@ -70,18 +72,21 @@ class Admin extends Controller
         }
     }
     
+    
     // Show Items List (also with filter if required)
     function showItems($args)
     {
         // Data
         $this->args = $args;
         $shop_model = $this->getModel('ShopModel');
-        $this->items = $shop_model->getItems();   
+        $this->items = $shop_model->getItems();
+        
         // Views
         $this->includeView('admin/shop/list_items', 'main-content');
         $this->index($this->args);
     }   
 
+    
     // Edit/Add Item
     function editItem($args)
     {
@@ -96,7 +101,10 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index($args);
+        
+        $this->debug($this->item);
     }
+    
     
     // Process The Posted Data by Switching The Right Method
     function itemProcess($args)
@@ -110,6 +118,7 @@ class Admin extends Controller
         }
     }
    
+    
     // Create New Item And Insert
     function createItem($args) 
     {
@@ -128,6 +137,7 @@ class Admin extends Controller
             $this->index($args);
         }
     }
+    
      
     // Update An Existing Item
     function updateItem($args)
@@ -149,6 +159,7 @@ class Admin extends Controller
             $this->index($args);
         }
     }
+    
     
     // Delete Item
     function deleteItem($args)
@@ -192,6 +203,7 @@ class Admin extends Controller
         $this->index($args);
     }
     
+    
     // Edit/Add Category
     function editCategory($args)
     {
@@ -209,6 +221,7 @@ class Admin extends Controller
         $this->index($args);
     }
     
+    
     // Category Process
     function categoryProcess($args)
     {
@@ -223,6 +236,7 @@ class Admin extends Controller
             }
         }
     }
+    
     
     // Create Category
     function createCategory($args)
@@ -241,6 +255,7 @@ class Admin extends Controller
             $this->index($args);
         }
     }
+    
     
     // Update Category
     function updateCategory($args)
@@ -285,6 +300,7 @@ class Admin extends Controller
         }
     }
     
+    
     // Delete Category
     function deleteCategory($args)
     {
@@ -307,4 +323,5 @@ class Admin extends Controller
         // Views
         $this->index($args);
     }   
+    
 }

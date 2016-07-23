@@ -42,7 +42,6 @@
                 <th><?=Lang::$id?></th>
                 <th><?=Lang::$item_code?></th>
                 <th><?=Lang::$item_title?></th>
-                <th><?=Lang::$item_category?></th>    
                 <th><?=Lang::$status?></th>
                 <th><?=Lang::$item_stock?></th>
                 <th><?=Lang::$item_price?></th>
@@ -54,7 +53,6 @@
                     <td><?=$item_val->item_id;?></td>
                     <td><?=$item_val->item_code;?></td>
                     <td><?=$item_val->item_title;?></td>
-                    <td><?=$item_val->category_name;?></td>
                     <td>
                         <?=$item_val->item_status ? '<i class="glyphicon glyphicon-ok"></i> '.Lang::$available : '<i class="glyphicon glyphicon-warning-sign"></i> '.Lang::$unavailable;?>
                     </td>
