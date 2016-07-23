@@ -14,7 +14,7 @@ class ShopModel extends Model
         
         // Add Language Filter
         if($lang_id !== NULL){
-            $query .= "AND #_shop_categories.fk_lang_id = '$lang_id' ";
+            $query .= "WHERE #_shop_categories.fk_lang_id = '$lang_id' ";
         }
         
         // Add Status Filter
@@ -34,6 +34,58 @@ class ShopModel extends Model
             return $data;
         }
     }
+    
+    function getMainCategories($lang_id=NULL, $status=NULL)
+    {
+        $query = "SELECT * FROM #_shop_categories 
+                  LEFT JOIN #_languages ON #_shop_categories.fk_lang_id = #_languages.lang_id 
+                  WHERE #_shop_categories.fk_parent_id = 0 ";
+        
+        // Add Language Filter
+        if($lang_id !== NULL){
+            $query .= "AND #_shop_categories.fk_lang_id = '$lang_id' ";
+        }
+        
+        // Add Status Filter
+        if($status !== NULL){
+            $query .= "AND #_shop_categories.category_status = '$status' ";
+        }
+        
+        $this->results = $this->queryExec($query);
+        if(!$this->results){
+            return FALSE;
+        }else{
+            $data = array();
+            while($row_obj = $this->results->fetch_object()){
+                array_push($data, $row_obj); 
+            }
+            //$this->cleanAndClose();
+            return $data;
+        }
+    }
+    
+    function getCategoryChildren($category_id=NULL)
+    {
+        $query = 
+         "SELECT * FROM #_shop_categories 
+          LEFT JOIN #_languages ON #_shop_categories.fk_lang_id = #_languages.lang_id 
+          WHERE #_shop_categories.fk_parent_id = $category_id;";
+          
+        $this->results = $this->queryExec($query);
+        
+        if(!$this->results){
+            return FALSE;
+        }else{
+            $data = array();
+            while($row_obj = $this->results->fetch_object()){
+                array_push($data, $row_obj); 
+            }
+            //$this->cleanAndClose();
+            return $data;
+        }          
+    }
+    
+    
     
     
     /* =========================================================================

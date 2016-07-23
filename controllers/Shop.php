@@ -5,20 +5,29 @@ class Shop extends Controller
     
     public function index($args){
         // Get Args
-        $this->args = $args;   
+        $this->args = $args;
     }
     
+    /* =========================================================================
+     * Categories
+     * ========================================================================= */
     
     // List Main Categories
-    public function showMainCategories($args)
+    public function home($args)
     {
         // Get Args
         $this->args = $args;
         
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
+        
+        // Categories
         $shop_model = $this->getModel('ShopModel');
-        $this->categories = $shop_model->getAllCategories(Lang::$lang_id, 1);
+        $this->categories = $shop_model->getMainCategories(Lang::$lang_id, 1);
+        // Add Categories Children
+        foreach($this->categories as $curr_cat){
+            $curr_cat->children = $shop_model->getCategoryChildren($curr_cat->category_id);
+        }
         
         // Views
         $this->includeView('nav/main_menu', 'header-content');
@@ -26,6 +35,33 @@ class Shop extends Controller
         $this->getView('pages/page_default');
     }
     
+    
+    public function catChildren($args=NULL)
+    {
+        // Get Args
+        $this->args = $args;
+        
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
+
+        // Categories
+        $shop_model = $this->getModel('ShopModel');
+        $this->categories = $shop_model->getCategoryChildren($args[0]);
+        // Add Categories Children
+        foreach($this->categories as $curr_cat){
+            $curr_cat->children = $shop_model->getCategoryChildren($curr_cat->category_id);
+        }
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/categories', 'main-content');       
+        $this->getView('pages/page_default');
+    }
+    
+    
+    /* =========================================================================
+     * Items
+     * ========================================================================= */
     
     // List All or Fitered Items (ex. by Category)
     public function showItems($args)

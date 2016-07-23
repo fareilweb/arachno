@@ -9,7 +9,7 @@ class MenuModel extends Model
         $query = 
             "SELECT * "
           . "FROM #_menus "
-          . "LEFT JOIN #_menu_links ON #_menu_links.fk_menu_id = $menu_id "
+          . "LEFT JOIN #_menus_links ON #_menus_links.fk_menu_id = $menu_id "
           . "WHERE #_menus.menu_id = $menu_id";
         
         /*** 2. - Execute Query, Save Results =================================*/

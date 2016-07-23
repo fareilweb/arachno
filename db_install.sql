@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2016 at 06:59 PM
+-- Generation Time: Jul 23, 2016 at 05:19 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -89,10 +89,10 @@ INSERT INTO `acms_menus` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_menu_links`
+-- Table structure for table `acms_menus_links`
 --
 
-CREATE TABLE `acms_menu_links` (
+CREATE TABLE `acms_menus_links` (
   `link_id` int(11) NOT NULL,
   `fk_menu_id` int(11) NOT NULL,
   `link_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -102,13 +102,13 @@ CREATE TABLE `acms_menu_links` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `acms_menu_links`
+-- Dumping data for table `acms_menus_links`
 --
 
-INSERT INTO `acms_menu_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
+INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
 (1, 1, 'Home', '/', 'NULL', 1),
 (2, 1, 'Test Page', '/test-page', '', 1),
-(3, 1, 'Shop', '/Shop/showCategories', '', 1),
+(3, 1, 'Shop', '/Shop/home', '', 1),
 (5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
 (6, 1, 'Registrati', '/User/register', '', 1),
 (7, 1, 'Amministrazione', '/Admin', '', 1);
@@ -326,9 +326,9 @@ ALTER TABLE `acms_menus`
   ADD KEY `fk_acms_menu_list_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indexes for table `acms_menu_links`
+-- Indexes for table `acms_menus_links`
 --
-ALTER TABLE `acms_menu_links`
+ALTER TABLE `acms_menus_links`
   ADD PRIMARY KEY (`link_id`),
   ADD KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`);
 
@@ -412,9 +412,9 @@ ALTER TABLE `acms_languages`
 ALTER TABLE `acms_menus`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `acms_menu_links`
+-- AUTO_INCREMENT for table `acms_menus_links`
 --
-ALTER TABLE `acms_menu_links`
+ALTER TABLE `acms_menus_links`
   MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `acms_pages`
