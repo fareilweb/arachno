@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: sql.dia-techshop.it
--- Generato il: 24 Lug, 2016 at 11:24 AM
+-- Generato il: 24 Lug, 2016 at 05:23 PM
 -- Versione MySQL: 5.1.49
 -- Versione PHP: 4.3.10-22
 -- 
@@ -268,14 +268,14 @@ CREATE TABLE `acms_shop_categories` (
 -- Dump dei dati per la tabella `acms_shop_categories`
 -- 
 
-INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES (14, 'Strumenti', 1, NULL, 1, 8, 'Pediatria'),
-(13, 'Test su feci', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(12, 'Test su urine', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(11, 'Test su tampone', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(8, 'Pediatria', 1, NULL, 1, 0, ''),
-(9, 'Test Medici Rapidi', 1, NULL, 1, 8, 'Pediatria'),
-(10, 'Test su Sangue', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(15, 'Monouso', 1, NULL, 1, 8, 'Pediatria');
+INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES (14, 'Strumenti', 1, 'http://localhost/arachno/views/images/shop/categories/category_14.png', 1, 8, 'Pediatria'),
+(13, 'Test su feci', 1, 'http://localhost/arachno/views/images/shop/categories/category_13.png', 1, 9, 'Test Medici Rapidi'),
+(12, 'Test su urine', 1, 'http://localhost/arachno/views/images/shop/categories/category_12.png', 1, 9, 'Test Medici Rapidi'),
+(11, 'Test su tampone', 1, 'http://localhost/arachno/views/images/shop/categories/category_11.png', 1, 9, 'Test Medici Rapidi'),
+(8, 'Pediatria', 1, 'http://localhost/arachno/views/images/shop/categories/category_8.png', 1, 0, ''),
+(9, 'Test Medici Rapidi', 1, 'http://localhost/arachno/views/images/shop/categories/category_9.png', 1, 8, 'Pediatria'),
+(10, 'Test su Sangue', 1, 'http://localhost/arachno/views/images/shop/categories/category_10.png', 1, 9, 'Test Medici Rapidi'),
+(15, 'Monouso', 1, 'http://localhost/arachno/views/images/shop/categories/category_15.png', 1, 8, 'Pediatria');
 
 -- --------------------------------------------------------
 
@@ -324,12 +324,13 @@ CREATE TABLE `acms_shop_items_images` (
   `fk_item_id` int(11) NOT NULL,
   PRIMARY KEY (`image_id`),
   KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
 
 -- 
 -- Dump dei dati per la tabella `acms_shop_items_images`
 -- 
 
+INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES (81, 'http://www.dia-techshop.it/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/home/mhd-01/www.dia-techshop.it/htdocs/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 0, 49);
 
 -- --------------------------------------------------------
 
