@@ -41,6 +41,8 @@ class Lang
     public static $save_before = "&Egrave; Necessario Salvare Prima di Proseguire";
     public static $preview = "Anteprima";
     public static $categories = "Categorie";
+    public static $subcategories = "Sottocategorie";
+    public static $category_items = "Oggetti Categoria";
     public static $category_is_empty = "Questa Categoria &egrave; Vuota";
     public static $categories_none = "Nessuna Categoria Disponibile";
     public static $add_item = "Aggiungi Prodotto";

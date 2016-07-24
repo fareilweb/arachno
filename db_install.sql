@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2016 at 05:19 PM
+-- Generation Time: Jul 24, 2016 at 11:24 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -45,6 +45,27 @@ CREATE TABLE `acms_coupons_has_items` (
   `fk_coupon_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acms_items_has_categories`
+--
+
+CREATE TABLE `acms_items_has_categories` (
+  `item_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_items_has_categories`
+--
+
+INSERT INTO `acms_items_has_categories` (`item_id`, `category_id`) VALUES
+(3, 4),
+(49, 0),
+(49, 8),
+(49, 14);
 
 -- --------------------------------------------------------
 
@@ -208,14 +229,14 @@ CREATE TABLE `acms_shop_categories` (
 --
 
 INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
-(14, 'Strumenti', 1, NULL, 1, 8, 'Pediatria'),
-(13, 'Test su feci', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(12, 'Test su urine', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(11, 'Test su tampone', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(8, 'Pediatria', 1, NULL, 1, 0, ''),
-(9, 'Test Medici Rapidi', 1, NULL, 1, 8, 'Pediatria'),
-(10, 'Test su Sangue', 1, NULL, 1, 9, 'Test Medici Rapidi'),
-(15, 'Monouso', 1, NULL, 1, 8, 'Pediatria');
+(14, 'Strumenti', 1, 'http://localhost/arachno/views/images/shop/categories/category_14.png', 1, 8, 'Pediatria'),
+(13, 'Test su feci', 1, 'http://localhost/arachno/views/images/shop/categories/category_13.png', 1, 9, 'Test Medici Rapidi'),
+(12, 'Test su urine', 1, 'http://localhost/arachno/views/images/shop/categories/category_12.png', 1, 9, 'Test Medici Rapidi'),
+(11, 'Test su tampone', 1, 'http://localhost/arachno/views/images/shop/categories/category_11.png', 1, 9, 'Test Medici Rapidi'),
+(8, 'Pediatria', 1, 'http://localhost/arachno/views/images/shop/categories/category_8.png', 1, 0, ''),
+(9, 'Test Medici Rapidi', 1, 'http://localhost/arachno/views/images/shop/categories/category_9.png', 1, 8, 'Pediatria'),
+(10, 'Test su Sangue', 1, 'http://localhost/arachno/views/images/shop/categories/category_10.png', 1, 9, 'Test Medici Rapidi'),
+(15, 'Monouso', 1, 'http://localhost/arachno/views/images/shop/categories/category_15.png', 1, 8, 'Pediatria');
 
 -- --------------------------------------------------------
 
@@ -226,8 +247,6 @@ INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_st
 CREATE TABLE `acms_shop_items` (
   `item_id` int(11) NOT NULL,
   `item_code` varchar(45) DEFAULT NULL,
-  `fk_category_id` int(11) DEFAULT NULL,
-  `item_categories_json` varchar(256) DEFAULT NULL,
   `fk_lang_id` int(11) NOT NULL,
   `item_status` tinyint(1) DEFAULT '0',
   `item_stock` int(11) DEFAULT NULL,
@@ -245,8 +264,8 @@ CREATE TABLE `acms_shop_items` (
 -- Dumping data for table `acms_shop_items`
 --
 
-INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_categories_json`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(49, '051212001', 0, '{"8":"on"}', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
+(49, '051212001', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -311,6 +330,14 @@ ALTER TABLE `acms_coupons_has_items`
   ADD PRIMARY KEY (`fk_coupon_id`,`fk_item_id`),
   ADD KEY `fk_acms_coupons_has_acms_shop_items_acms_shop_items1_idx` (`fk_item_id`),
   ADD KEY `fk_acms_coupons_has_acms_shop_items_acms_coupons1_idx` (`fk_coupon_id`);
+
+--
+-- Indexes for table `acms_items_has_categories`
+--
+ALTER TABLE `acms_items_has_categories`
+  ADD PRIMARY KEY (`item_id`,`category_id`),
+  ADD KEY `fk_acms_shop_items_has_acms_shop_categories_acms_shop_categ_idx` (`category_id`),
+  ADD KEY `fk_acms_shop_items_has_acms_shop_categories_acms_shop_items_idx` (`item_id`);
 
 --
 -- Indexes for table `acms_languages`
@@ -380,7 +407,6 @@ ALTER TABLE `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_items`
   ADD PRIMARY KEY (`item_id`),
-  ADD KEY `fk_shop_items_shop_categories_idx` (`fk_category_id`),
   ADD KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --

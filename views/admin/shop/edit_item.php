@@ -45,6 +45,20 @@
            
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
                 <div class="form-group">
+                    <label><?=Lang::$item_title?></label>
+                    <input type="text" name="item_title" value="<?=$this->item->item_title;?>" class="form-control" />
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-group">
+                    <label><?=Lang::$item_price ?></label>
+                    <input type="text" name="item_price" value="<?=$this->item->item_price;?>" class="form-control" />
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="form-group">
                     <label><?=Lang::$item_categories?></label>
                     <div class="shop_categories">
                         <!--Main Level Categories Iteration-->
@@ -90,21 +104,7 @@
                         <?php endif;?>
                         <?php endforeach;?>
                         </ul>
-                    </div>
-                    <!--
-                        category_id
-                        category_name
-                        category_status
-                        category_image_src
-                        fk_lang_id
-                        fk_parent_id
-                        category_parent_name
-                        lang_id
-                        lang_iso_code
-                        lang_internal_code
-                        lang_name
-                    -->
-                    
+                    </div>                   
                 </div>
             </div>
 
@@ -126,20 +126,6 @@
                 <div class="form-group">
                     <label><?=Lang::$item_stock?></label>
                     <input type="text" name="item_stock" value="<?=$this->item->item_stock;?>" class="form-control" />
-                </div>
-            </div>
-                
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                    <label><?=Lang::$item_price ?></label>
-                    <input type="text" name="item_price" value="<?=$this->item->item_price;?>" class="form-control" />
-                </div>
-            </div>
-                
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <div class="form-group">
-                    <label><?=Lang::$item_title?></label>
-                    <input type="text" name="item_title" value="<?=$this->item->item_title;?>" class="form-control" />
                 </div>
             </div>
                 

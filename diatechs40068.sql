@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: sql.dia-techshop.it
--- Generato il: 23 Lug, 2016 at 05:22 PM
+-- Generato il: 24 Lug, 2016 at 11:24 AM
 -- Versione MySQL: 5.1.49
 -- Versione PHP: 4.3.10-22
 -- 
@@ -53,6 +53,29 @@ CREATE TABLE `acms_coupons_has_items` (
 -- --------------------------------------------------------
 
 -- 
+-- Struttura della tabella `acms_items_has_categories`
+-- 
+
+CREATE TABLE `acms_items_has_categories` (
+  `item_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  PRIMARY KEY (`item_id`,`category_id`),
+  KEY `fk_acms_shop_items_has_acms_shop_categories_acms_shop_categ_idx` (`category_id`),
+  KEY `fk_acms_shop_items_has_acms_shop_categories_acms_shop_items_idx` (`item_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- 
+-- Dump dei dati per la tabella `acms_items_has_categories`
+-- 
+
+INSERT INTO `acms_items_has_categories` (`item_id`, `category_id`) VALUES (3, 4),
+(49, 0),
+(49, 8),
+(49, 14);
+
+-- --------------------------------------------------------
+
+-- 
 -- Struttura della tabella `acms_languages`
 -- 
 
@@ -74,34 +97,6 @@ INSERT INTO `acms_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, 
 -- --------------------------------------------------------
 
 -- 
--- Struttura della tabella `acms_menu_links`
--- 
-
-CREATE TABLE `acms_menu_links` (
-  `link_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_menu_id` int(11) NOT NULL,
-  `link_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `link_rel_uri` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `link_abs_uri` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `fk_lang_id` int(11) NOT NULL,
-  PRIMARY KEY (`link_id`),
-  KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
-
--- 
--- Dump dei dati per la tabella `acms_menu_links`
--- 
-
-INSERT INTO `acms_menu_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES (1, 1, 'Home', '/', 'NULL', 1),
-(2, 1, 'Test Page', '/test-page', '', 1),
-(3, 1, 'Shop', '/Shop/showCategories', '', 1),
-(5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
-(6, 1, 'Registrati', '/User/register', '', 1),
-(7, 1, 'Amministrazione', '/Admin', '', 1);
-
--- --------------------------------------------------------
-
--- 
 -- Struttura della tabella `acms_menus`
 -- 
 
@@ -118,6 +113,34 @@ CREATE TABLE `acms_menus` (
 -- 
 
 INSERT INTO `acms_menus` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES (1, 'Menu Principale', 1);
+
+-- --------------------------------------------------------
+
+-- 
+-- Struttura della tabella `acms_menus_links`
+-- 
+
+CREATE TABLE `acms_menus_links` (
+  `link_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fk_menu_id` int(11) NOT NULL,
+  `link_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `link_rel_uri` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `link_abs_uri` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `fk_lang_id` int(11) NOT NULL,
+  PRIMARY KEY (`link_id`),
+  KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+
+-- 
+-- Dump dei dati per la tabella `acms_menus_links`
+-- 
+
+INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES (1, 1, 'Home', '/', 'NULL', 1),
+(2, 1, 'Test Page', '/test-page', '', 1),
+(3, 1, 'Shop', '/Shop/home', '', 1),
+(5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
+(6, 1, 'Registrati', '/User/register', '', 1),
+(7, 1, 'Amministrazione', '/Admin', '', 1);
 
 -- --------------------------------------------------------
 
@@ -263,8 +286,6 @@ INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_st
 CREATE TABLE `acms_shop_items` (
   `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `item_code` varchar(45) DEFAULT NULL,
-  `fk_category_id` int(11) DEFAULT NULL,
-  `item_categories_json` varchar(256) DEFAULT NULL,
   `fk_lang_id` int(11) NOT NULL,
   `item_status` tinyint(1) DEFAULT '0',
   `item_stock` int(11) DEFAULT NULL,
@@ -277,7 +298,6 @@ CREATE TABLE `acms_shop_items` (
   `item_meta_keywords` varchar(150) DEFAULT NULL,
   `item_meta_description` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
-  KEY `fk_shop_items_shop_categories_idx` (`fk_category_id`),
   KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
@@ -285,7 +305,7 @@ CREATE TABLE `acms_shop_items` (
 -- Dump dei dati per la tabella `acms_shop_items`
 -- 
 
-INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_category_id`, `item_categories_json`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES (49, '051212001', 0, '{"8":"on"}', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES (49, '051212001', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -304,13 +324,12 @@ CREATE TABLE `acms_shop_items_images` (
   `fk_item_id` int(11) NOT NULL,
   PRIMARY KEY (`image_id`),
   KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8 AUTO_INCREMENT=81 ;
 
 -- 
 -- Dump dei dati per la tabella `acms_shop_items_images`
 -- 
 
-INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES (81, 'http://www.dia-techshop.it/views/images/shop/items/2016_July_22_Friday_19_00_58___heart-2.png', '/home/mhd-01/www.dia-techshop.it/htdocs/views/images/shop/items/2016_July_22_Friday_19_00_58___heart-2.png', '2016_July_22_Friday_19_00_58___heart-2.png', '', '', 0, 49);
 
 -- --------------------------------------------------------
 

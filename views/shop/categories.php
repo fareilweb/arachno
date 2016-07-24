@@ -10,14 +10,7 @@
                 <?php foreach($this->categories as $curr_category): ?>
 
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 category_wrapper">
-                        <?php
-                            if(count($curr_category->children) > 0){
-                                $category_link = Config::$web_path. "/Shop/catChildren/" . $curr_category->category_id;
-                            }else{
-                                $category_link = Config::$web_path. "/Shop/showItems/" . $curr_category->category_id;
-                            }
-                        ?>
-                        <a href="<?=$category_link;?>">
+                        <div class="category">
                             <div class="category_title">
                                 <h3>
                                     <?=$curr_category->category_name;?>
@@ -26,7 +19,23 @@
                             <div class="category_image">
                                 <img src="<?=$curr_category->category_image_src;?>" alt="<?=$curr_category->category_name;?>" title="<?=$curr_category->category_name;?>" />
                             </div>
-                        </a>
+                            
+                            <div class="category_links">
+                                <!-- Oggetti di Questa Categoria -->
+                                <a href="<?=Config::$web_path. "/Shop/showItems/" . $curr_category->category_id;?>" class="btn btn-info form-control">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    <?=Lang::$category_items;?>
+                                </a>
+                                <!-- Sottocategorie -->
+                                <?php if(count($curr_category->children) > 0): ?>
+                                    <a href="<?=Config::$web_path. "/Shop/catChildren/" . $curr_category->category_id;?>" class="btn btn-default form-control">
+                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                        <?=Lang::$subcategories;?>
+                                    </a>
+                                <?php endif;?>
+                            </div>
+                            
+                        </div>
                     </div>
 
                 <?php endforeach;?>

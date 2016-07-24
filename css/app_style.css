@@ -97,7 +97,7 @@ div.shop_categories{
     width: 100%;
     background: #fcfcfc;
     border: 1px solid #cfcfcf;
-    max-height: 96px;
+    max-height: 108px;
     overflow-y: auto;
 }
 ul.categories{
