@@ -98,11 +98,10 @@ class Admin extends Controller
         if(isset($args[0])){
             $this->item->loadById($args[0]);
         }
+        
         // Views
         $this->includeView('admin/shop/edit_item', 'main-content');
         $this->index($args);
-        
-        $this->debug($this->item);
     }
     
     

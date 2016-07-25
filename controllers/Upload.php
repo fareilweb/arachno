@@ -97,23 +97,23 @@ class Upload extends Controller
             
             for($i=0; $i<count($names); $i++)
             { 
-                $cFile = new stdClass;
-                $cFile->name     = date("Y_F_d_l_H_i_s", time() ) ."___". $names[$i];
-                $cFile->type     = $types[$i];
-                $cFile->tmp_name = $tmp_names[$i];
-                $cFile->error    = $errors[$i];
-                $cFile->size     = $sizes[$i];
-                $save_target     = Config::$abs_path . "/views/images/shop/items/" . $cFile->name;
-                $image_src       = Config::$web_path . '/views/images/shop/items/' . $cFile->name;
+                $file = new stdClass;
+                $file->name     = date("Y_F_d_l_H_i_s", time() ) ."___". $names[$i];
+                $file->type     = $types[$i];
+                $file->tmp_name = $tmp_names[$i];
+                $file->error    = $errors[$i];
+                $file->size     = $sizes[$i];
+                $save_target     = Config::$abs_path . "/views/images/shop/items/" . $file->name;
+                $image_src       = "/views/images/shop/items/" . $file->name;
                 $fk_item_id = $this->args[0];
                 
                 // Testing File
-                if($this->checkType($cFile->type))
+                if($this->checkType($file->type))
                 { 
-                    if($this->checkSize($cFile->size))
+                    if($this->checkSize($file->size))
                     {
-                        $save_res  = $this->saveFile($cFile->tmp_name, $save_target);
-                        $store_res = $this->storeItemImage($cFile->name, $save_target, $image_src, $fk_item_id);
+                        $save_res  = $this->saveFile($file->tmp_name, $save_target);
+                        $store_res = $this->storeItemImage($file->name, $save_target, $image_src, $fk_item_id);
                         if($save_res && $store_res)
                         {
                             ?> 
@@ -121,20 +121,20 @@ class Upload extends Controller
                                 <p>
                                     <button class="btn btn-default btn-primary add"
                                         data-index="<?=$i?>" 
-                                        data-src="<?=$image_src?>" 
+                                        data-src="<?=Config::$web_path . $image_src?>" 
                                         data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-ok"></span>
                                     </button>
                                     <button class="btn btn-default btn-danger rem"
                                         data-index="<?=$i?>" 
-                                        data-src="<?=$image_src?>" 
+                                        data-src="<?=Config::$web_path . $image_src?>" 
                                         data-image_id="<?=$store_res?>" 
                                         data-fk_item_id="<?=$fk_item_id?>"
                                     ><span class="glyphicon glyphicon-remove"></span>
                                     </button>
                                 </p>
-                                <p><img src="<?=$image_src?>" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" /></p>
+                                <p><img src="<?=Config::$web_path . $image_src?>" alt="<?=Lang::$preview?>" title="<?=Lang::$preview?>" /></p>
                             </div>
                             <?php
                         }else{
