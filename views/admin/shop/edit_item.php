@@ -26,11 +26,11 @@
                     $html = file_get_contents(Config::$abs_path . '/views/admin/shop/item_images/item_image_ilk.php');
                     $html = str_replace("#index#", $curr_key, $html);
                     $html = str_replace("#image_id#", $curr_img->image_id, $html);
-                    $html = str_replace("#image_src#", $curr_img->image_src, $html);
+                    $html = str_replace("#image_src#", (Config::$web_path.$curr_img->image_src), $html);
                     $html = str_replace("#image_alt#", $curr_img->image_alt, $html);
                     $html = str_replace("#image_title#", $curr_img->image_title, $html);
                     $curr_img->is_main ? '' : $html = str_replace("checked", "", $html) ;
-                    echo  $html; 
+                    echo  $html;
                 }
             ?>
         </div><hr/>

@@ -179,14 +179,8 @@ class ShopItemModel extends Model
         
         foreach($this as $field_name => $field_val){
             if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
-                if($field_name=="item_categories"){
-                    
-                    $json = json_encode($field_val);
-                    $set_string.= "`item_categories_json`='$json'";
-                    
-                }else{
-                    $set_string.= "`$field_name`='$field_val'";
-                }
+                
+                $set_string.= "`$field_name`='$field_val'";
                 
                 if( $counter < $fields_count ){
                     $set_string.= ", ";
