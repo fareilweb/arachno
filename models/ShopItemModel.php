@@ -46,7 +46,8 @@ class ShopItemModel extends Model
         $results = $this->queryExec($query);
         $data = array();
         while($cat_obj = $results->fetch_object()){
-            array_push($data, $cat_obj);
+            $data[$cat_obj->category_id] = "on";
+            //array_push($data, $cat_obj);
         }
         return $data;
     }
@@ -54,20 +55,20 @@ class ShopItemModel extends Model
     
     public function setItemCategories($item_id=NULL)
     {
-        foreach ($this->item_categories as $item_cat)
+        foreach ($this->item_categories as $cat_key => $cat_val)
         {
-            $category_id = $item_cat->category_id;
+            $category_id = $cat_key;
             
             $check_query = 
                 "SELECT * FROM #_items_has_categories WHERE item_id = '$item_id' 
                  AND category_id = '$category_id';";
             
             $check_result = $this->queryExec($check_query);
-            
+        
             if($check_result->num_rows == 0){
                 $insert_query = 
                    "INSERT INTO `#_items_has_categories` (`item_id`, `category_id`) 
-                    VALUES ('$item_id', '$item_cat->category_id');";
+                    VALUES ('$item_id', '$cat_key');";
                 
                 if(!$this->queryExec($insert_query)){
                     return FALSE;
