@@ -47,7 +47,6 @@ class ShopItemModel extends Model
         $data = array();
         while($cat_obj = $results->fetch_object()){
             $data[$cat_obj->category_id] = "on";
-            //array_push($data, $cat_obj);
         }
         return $data;
     }
@@ -55,15 +54,16 @@ class ShopItemModel extends Model
     
     public function setItemCategories($item_id=NULL)
     {
+        // Insert Category/Item if is Not There Already
         foreach ($this->item_categories as $cat_key => $cat_val)
         {
             $category_id = $cat_key;
             
-            $check_query = 
+            $check_categories_query = 
                 "SELECT * FROM #_items_has_categories WHERE item_id = '$item_id' 
                  AND category_id = '$category_id';";
             
-            $check_result = $this->queryExec($check_query);
+            $check_result = $this->queryExec($check_categories_query);
         
             if($check_result->num_rows == 0){
                 $insert_query = 
@@ -75,19 +75,40 @@ class ShopItemModel extends Model
                 }
             }
         }
+
+        // Remove Categories/Items That Are Not Sended From Form
+        $item_cats_query = "SELECT * FROM #_items_has_categories WHERE item_id = '$item_id'";
+        $cats_results = $this->queryExec($item_cats_query);
+        while($cat_obj = $cats_results->fetch_object()){
+            if(!array_key_exists($cat_obj->category_id, $this->item_categories)){
+                $delete_query = 
+                    "DELETE FROM #_items_has_categories 
+                     WHERE `item_id`='$cat_obj->item_id' 
+                     AND `category_id`='$cat_obj->category_id';";
+                if(!$this->queryExec($delete_query)){
+                    return FALSE;
+                }
+            }
+        }
+
+        return TRUE;
     }
     
     
     // Populate Proprierties From DB Data By Item ID
     public function loadById($item_id=NULL, $lang_id=NULL)
     {
-        $query = "SELECT * FROM #_shop_items ";
-        $query.= "LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id ";
-        $query.= "WHERE #_shop_items.item_id = '$item_id' ";
+        $query = 
+            "SELECT * FROM #_shop_items 
+             LEFT JOIN #_languages ON #_languages.lang_id = #_shop_items.fk_lang_id 
+             WHERE #_shop_items.item_id = '$item_id' ";
+
         if($lang_id!=NULL){
             $query.="AND #_shop_items.fk_lang_id = " . $lang_id;
         }
+
         $query.= ";";
+
         $item_data = $this->getObjectData($query);
         if(!$item_data){
             return FALSE;
@@ -102,7 +123,10 @@ class ShopItemModel extends Model
             $this->item_categories = $this->getItemCategories($item_data->item_id); 
 
             // Load Item Images
-            $images_query = "SELECT * FROM #_shop_items_images WHERE #_shop_items_images.fk_item_id = '$item_id';";
+            $images_query = 
+                "SELECT * FROM #_shop_items_images 
+                 WHERE #_shop_items_images.fk_item_id = '$item_id';";
+            
             $this->results = $this->queryExec($images_query);
             while($img_row_obj = $this->results->fetch_object()){
                 array_push($this->item_images, $img_row_obj);
@@ -151,8 +175,8 @@ class ShopItemModel extends Model
         }
         
         // Compose Query for Item
-        $query = "INSERT INTO #_shop_items( $fields_string ) ";
-        $query.= "VALUES ( $values_string ); ";
+        $query = 
+            "INSERT INTO #_shop_items( $fields_string ) VALUES ( $values_string ); ";
 
         // Exec Queries
         $item_res = $this->queryExec($query);
@@ -191,9 +215,9 @@ class ShopItemModel extends Model
         }
         
         // Compose Query
-        $query = "UPDATE #_shop_items ";
-        $query.= "SET $set_string ";
-        $query.= "WHERE #_shop_items.item_id = '$this->item_id';";
+        $query = 
+            "UPDATE #_shop_items SET $set_string 
+             WHERE #_shop_items.item_id = '$this->item_id';";
         
         // Exec Queries
         $item_res = $this->queryExec($query);
@@ -209,11 +233,11 @@ class ShopItemModel extends Model
     {
         // Compose Query
         $query = "DELETE FROM #_shop_items WHERE `item_id`='$item_id';";
+
         // Exec Query
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
-            //$this->cleanAndClose();
             return TRUE;
         }      
     }

@@ -109,11 +109,23 @@ class Admin extends Controller
     function itemProcess($args)
     {
         $this->args = $args;
+        $process_res = FALSE;
+
         // Switch If Is a New Item or and existing one
         if(isset($this->post['item_id']) && $this->post['item_id']!==""){
-            $this->updateItem($args);
+            $process_res = $this->updateItem($args);
         }else{
-            $this->createItem($args);
+            $process_res = $this->createItem($args);
+        }
+
+        // Redirect
+        $redirect = array_search("redirect", $args);
+        if($redirect!==FALSE){
+            $url = Config::$web_path;
+            for($i=$redirect+1; $i<count($args); $i++){
+                $url.= '/' . $args[$i];
+            }
+            header('location: ' . $url);
         }
     }
    
@@ -129,11 +141,13 @@ class Admin extends Controller
                 $new_item->$item_key = $item_val;
             }
             if(!$new_item->insertItem()){ //<--- Note, the item insert it self
-                $this->notice = Lang::$insert_fail;
+                //$this->notice = Lang::$insert_fail;
+                return FALSE;
             }else{
-                $this->notice = Lang::$insert_success;
+                //$this->notice = Lang::$insert_success;
+                return TRUE;
             }
-            $this->index($args);
+            //$this->index($args);
         }
     }
     
@@ -149,12 +163,13 @@ class Admin extends Controller
                 $new_item->$item_key = $item_val;
             }
             if(!$new_item->updateItem()){ //<--- Note, the item update it self
-                $this->notice = Lang::$update_fail;
+                //$this->notice = Lang::$update_fail;
+                return FALSE;            
             }else{
-                $this->notice = Lang::$update_success;
+                //$this->notice = Lang::$update_success;
+                return TRUE;
             }
-            
-            $this->index($args);
+            //$this->index($args);
         }
     }
     
