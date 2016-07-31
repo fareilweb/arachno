@@ -74,7 +74,9 @@ class Shop extends Controller
         
         $shop_model = $this->getModel('ShopModel');
         if( isset($args[0]) && is_numeric($args[0]) ){
+        
             $this->items = $shop_model->getItemsByCategory($args[0], TRUE, Lang::$lang_id);
+        
         }else{
             $this->items = $shop_model->getItems(Lang::$lang_id);
         }

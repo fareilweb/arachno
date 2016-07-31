@@ -62,26 +62,24 @@
                     <?php foreach($this->item->item_images as $item_image): ?>
                         <?php if($item_image->is_main==TRUE):?>
                             <div class="item_main_image">
-                                <img src="<?=$item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
+                                <img src="<?=Config::$web_path . $item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
                             </div>
                         <?php endif;?>
                     <?php endforeach;?>
                     
                     <!-- Images ========================================== -->
-                    <div class="row">
+                    <div class="row"><hr/>
                     <?php foreach($this->item->item_images as $item_image): ?>
-                        <?php if($item_image->is_main==FALSE):?>
-                            <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                <div class="item_image_wrapper">
-                                    <div class="item_image">
-                                        <img src="<?=$item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
-                                    </div>
-                                    <div class="item_image_title">
-                                        <?=$item_image->image_title;?>
-                                    </div>
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                            <div class="item_image_wrapper">
+                                <div class="item_image">
+                                    <img src="<?=Config::$web_path . $item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
+                                </div>
+                                <div class="item_image_title">
+                                    <?=$item_image->image_title;?>
                                 </div>
                             </div>
-                        <?php endif; ?>
+                        </div>
                     <?php endforeach;?>
                     </div>
                     
@@ -102,3 +100,20 @@
     <?php endif; ?>
     
 </div>
+
+
+<!--JavaScript-->
+<script>
+jQuery(document).ready(function(){
+
+    jQuery(".item_image img").click(function(e){
+        var img_src = jQuery(this).attr("src");
+        var img_title = jQuery(this).attr("title");
+        var img_alt = jQuery(this).attr("alt");
+        jQuery(".item_main_image img").attr("src", img_src);
+        jQuery(".item_main_image img").attr("title", img_title);
+        jQuery(".item_main_image img").attr("alt", img_alt);
+    });
+
+});
+</script>
