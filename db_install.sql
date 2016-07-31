@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2016 at 09:29 AM
+-- Generation Time: Jul 30, 2016 at 06:14 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -33,7 +33,7 @@ CREATE TABLE `acms_coupons` (
   `coupon_end_date` date DEFAULT NULL,
   `coupon_value_type` varchar(10) DEFAULT NULL,
   `coupon_value_amount` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,7 @@ CREATE TABLE `acms_coupons` (
 CREATE TABLE `acms_coupons_has_items` (
   `fk_coupon_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -170,7 +170,7 @@ CREATE TABLE `acms_payments` (
   `payment_name` varchar(80) DEFAULT NULL,
   `payment_cost` float DEFAULT NULL,
   `payment_details` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,7 @@ CREATE TABLE `acms_payments` (
 CREATE TABLE `acms_payments_has_items` (
   `fk_payment_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -195,7 +195,7 @@ CREATE TABLE `acms_shippings` (
   `shipping_cost` float DEFAULT NULL,
   `shipping_details` text,
   `shipping_status` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -206,7 +206,7 @@ CREATE TABLE `acms_shippings` (
 CREATE TABLE `acms_shippings_has_items` (
   `fk_shipping_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -283,6 +283,13 @@ CREATE TABLE `acms_shop_items_images` (
   `is_main` tinyint(1) DEFAULT '0',
   `fk_item_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_shop_items_images`
+--
+
+INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
+(81, '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 0, 49);
 
 -- --------------------------------------------------------
 
@@ -461,37 +468,12 @@ ALTER TABLE `acms_shop_items`
 -- AUTO_INCREMENT for table `acms_shop_items_images`
 --
 ALTER TABLE `acms_shop_items_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `acms_coupons_has_items`
---
-ALTER TABLE `acms_coupons_has_items`
-  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_coupons1` FOREIGN KEY (`fk_coupon_id`) REFERENCES `acms_coupons` (`coupon_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `acms_payments_has_items`
---
-ALTER TABLE `acms_payments_has_items`
-  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_payments1` FOREIGN KEY (`fk_payment_id`) REFERENCES `acms_payments` (`payment_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `acms_shippings_has_items`
---
-ALTER TABLE `acms_shippings_has_items`
-  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shippings1` FOREIGN KEY (`fk_shipping_id`) REFERENCES `acms_shippings` (`shipping_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -147,7 +147,8 @@ class ShopItemModel extends Model
         $values = array();
         foreach($this as $field_name => $field_val)
         {
-            if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name))
+            if(!in_array($field_name, $this->excluded_fields) 
+                    && property_exists($this, $field_name))
             {
                 array_push($fields, $field_name);
                 array_push($values, $field_val);
@@ -203,7 +204,8 @@ class ShopItemModel extends Model
         $fields_count = ((count((array)$this)) - count($this->excluded_fields)) - 1;
         
         foreach($this as $field_name => $field_val){
-            if(!in_array($field_name, $this->excluded_fields) && property_exists($this, $field_name)){
+            if(!in_array($field_name, $this->excluded_fields) 
+                    && property_exists($this, $field_name)){
                 
                 $set_string.= "`$field_name`='$field_val'";
                 

@@ -133,6 +133,7 @@ class Admin extends Controller
     // Create New Item And Insert
     function createItem($args) 
     {
+        $this->args = $args;
         if($this->post)
         {
             $new_item = $this->getModel('ShopItemModel');
@@ -155,6 +156,7 @@ class Admin extends Controller
     // Update An Existing Item
     function updateItem($args)
     {
+        $this->args = $args;
         if($this->post)
         {
             $new_item = $this->getModel('ShopItemModel');
@@ -177,7 +179,6 @@ class Admin extends Controller
     // Delete Item
     function deleteItem($args)
     {
-        // Data
         $this->args = $args;
         // Process
         if(is_numeric($args[0]) && in_array("confirm_delete", $args))
@@ -206,8 +207,9 @@ class Admin extends Controller
     // Show Main Categories
     function showMainCategories($args)
     {
-        // Data
         $this->args = $args;
+        
+        // Data
         $shop_model = $this->getModel('ShopModel');
         $this->categories = $shop_model->getAllCategories();
         
@@ -220,8 +222,9 @@ class Admin extends Controller
     // Edit/Add Category
     function editCategory($args)
     {
-        // Data
         $this->args = $args;
+        
+        // Data
         $shop_model = $this->getModel('ShopModel');
         $this->shop_categories = $shop_model->getAllCategories();
         $this->category = $this->getModel('ShopCategoryModel');
@@ -239,6 +242,7 @@ class Admin extends Controller
     function categoryProcess($args)
     {
         $this->args = $args;
+        
         if($this->post)
         {
             // Switch If Is a New Category or and existing one
@@ -254,6 +258,8 @@ class Admin extends Controller
     // Create Category
     function createCategory($args)
     {
+        $this->args = $args;
+        
         if($this->post)
         {
             $category_model = $this->getModel('ShopCategoryModel');
@@ -273,6 +279,7 @@ class Admin extends Controller
     // Update Category
     function updateCategory($args)
     {
+        $this->args = $args;
         if($this->post)
         {
             $category_model = $this->getModel('ShopCategoryModel');
@@ -285,12 +292,13 @@ class Admin extends Controller
             $upl = new Upload();        
             if($upl->files['category_image']['error'] != 4){ // Error 4 mean NO FILE UPLOADED
                 if($upl->files['category_image']['size'] < $upl->maxSize){
-                    if( in_array($upl->files['category_image']['type'], $upl->allow) ){
+                    if(in_array($upl->files['category_image']['type'], $upl->allow)){
                         
                         $file_ext = pathinfo($upl->files['category_image']['name'], PATHINFO_EXTENSION);
                         $file_name = "category_".$category_model->category_id . '.' . $file_ext;
                         $file_path = Config::$abs_path . '/views/images/shop/categories/' . $file_name;
                         $file_src = Config::$web_path . '/views/images/shop/categories/' . $file_name;
+                        
                         if($upl->saveFile($upl->files['category_image']['tmp_name'], $file_path)){
                             $category_model->category_image_src = $file_src;
                         }
@@ -317,8 +325,8 @@ class Admin extends Controller
     // Delete Category
     function deleteCategory($args)
     {
-        // Data
         $this->args = $args;
+        
         // Process
         if(is_numeric($args[0]) && in_array("confirm_delete", $args))
         {
