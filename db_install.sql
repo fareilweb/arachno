@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2016 at 06:14 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Creato il: Ago 03, 2016 alle 18:35
+-- Versione del server: 10.1.13-MariaDB
+-- Versione PHP: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_coupons`
+-- Struttura della tabella `acms_coupons`
 --
 
 CREATE TABLE `acms_coupons` (
@@ -38,7 +38,7 @@ CREATE TABLE `acms_coupons` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_coupons_has_items`
+-- Struttura della tabella `acms_coupons_has_items`
 --
 
 CREATE TABLE `acms_coupons_has_items` (
@@ -49,7 +49,7 @@ CREATE TABLE `acms_coupons_has_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_items_has_categories`
+-- Struttura della tabella `acms_items_has_categories`
 --
 
 CREATE TABLE `acms_items_has_categories` (
@@ -58,19 +58,24 @@ CREATE TABLE `acms_items_has_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_items_has_categories`
+-- Dump dei dati per la tabella `acms_items_has_categories`
 --
 
 INSERT INTO `acms_items_has_categories` (`item_id`, `category_id`) VALUES
 (3, 4),
-(49, 0),
 (49, 8),
-(49, 14);
+(49, 9),
+(49, 10),
+(49, 11),
+(49, 12),
+(49, 13),
+(49, 14),
+(49, 15);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_languages`
+-- Struttura della tabella `acms_languages`
 --
 
 CREATE TABLE `acms_languages` (
@@ -81,7 +86,7 @@ CREATE TABLE `acms_languages` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_languages`
+-- Dump dei dati per la tabella `acms_languages`
 --
 
 INSERT INTO `acms_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, `lang_name`) VALUES
@@ -91,7 +96,7 @@ INSERT INTO `acms_languages` (`lang_id`, `lang_iso_code`, `lang_internal_code`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_menus`
+-- Struttura della tabella `acms_menus`
 --
 
 CREATE TABLE `acms_menus` (
@@ -101,7 +106,7 @@ CREATE TABLE `acms_menus` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `acms_menus`
+-- Dump dei dati per la tabella `acms_menus`
 --
 
 INSERT INTO `acms_menus` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
@@ -110,7 +115,7 @@ INSERT INTO `acms_menus` (`menu_id`, `menu_title`, `fk_lang_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_menus_links`
+-- Struttura della tabella `acms_menus_links`
 --
 
 CREATE TABLE `acms_menus_links` (
@@ -123,7 +128,7 @@ CREATE TABLE `acms_menus_links` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `acms_menus_links`
+-- Dump dei dati per la tabella `acms_menus_links`
 --
 
 INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
@@ -137,7 +142,7 @@ INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_pages`
+-- Struttura della tabella `acms_pages`
 --
 
 CREATE TABLE `acms_pages` (
@@ -152,7 +157,7 @@ CREATE TABLE `acms_pages` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `acms_pages`
+-- Dump dei dati per la tabella `acms_pages`
 --
 
 INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_title`, `page_content`, `page_meta_description`, `page_meta_keywords`, `fk_lang_id(11)`) VALUES
@@ -162,7 +167,7 @@ INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_tit
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_payments`
+-- Struttura della tabella `acms_payments`
 --
 
 CREATE TABLE `acms_payments` (
@@ -175,7 +180,7 @@ CREATE TABLE `acms_payments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_payments_has_items`
+-- Struttura della tabella `acms_payments_has_items`
 --
 
 CREATE TABLE `acms_payments_has_items` (
@@ -186,7 +191,7 @@ CREATE TABLE `acms_payments_has_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_shippings`
+-- Struttura della tabella `acms_shippings`
 --
 
 CREATE TABLE `acms_shippings` (
@@ -200,7 +205,7 @@ CREATE TABLE `acms_shippings` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_shippings_has_items`
+-- Struttura della tabella `acms_shippings_has_items`
 --
 
 CREATE TABLE `acms_shippings_has_items` (
@@ -211,7 +216,7 @@ CREATE TABLE `acms_shippings_has_items` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_shop_categories`
+-- Struttura della tabella `acms_shop_categories`
 --
 
 CREATE TABLE `acms_shop_categories` (
@@ -225,7 +230,7 @@ CREATE TABLE `acms_shop_categories` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_shop_categories`
+-- Dump dei dati per la tabella `acms_shop_categories`
 --
 
 INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_status`, `category_image_src`, `fk_lang_id`, `fk_parent_id`, `category_parent_name`) VALUES
@@ -241,7 +246,7 @@ INSERT INTO `acms_shop_categories` (`category_id`, `category_name`, `category_st
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_shop_items`
+-- Struttura della tabella `acms_shop_items`
 --
 
 CREATE TABLE `acms_shop_items` (
@@ -261,16 +266,16 @@ CREATE TABLE `acms_shop_items` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_shop_items`
+-- Dump dei dati per la tabella `acms_shop_items`
 --
 
 INSERT INTO `acms_shop_items` (`item_id`, `item_code`, `fk_lang_id`, `item_status`, `item_stock`, `item_price`, `item_title`, `item_weight`, `item_colors`, `item_short_desc`, `item_long_desc`, `item_meta_keywords`, `item_meta_description`) VALUES
-(49, '051212001', 0, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
+(49, '051212001', 1, 1, 5, 95, 'NADALÂ® - Calprotectina - 10 test', '', '', 'Test qualitativo in cassetta per la determinazione della calprotectina nelle feci', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_shop_items_images`
+-- Struttura della tabella `acms_shop_items_images`
 --
 
 CREATE TABLE `acms_shop_items_images` (
@@ -285,16 +290,21 @@ CREATE TABLE `acms_shop_items_images` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_shop_items_images`
+-- Dump dei dati per la tabella `acms_shop_items_images`
 --
 
 INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES
-(81, '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 0, 49);
+(81, '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 1, 49),
+(86, '/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg', 'D:\\xampp\\htdocs\\arachno/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg', '2016_July_31_Sunday_20_11_11___butterfly-1.jpg', '', '', 0, 49),
+(87, '/views/images/shop/items/2016_July_31_Sunday_20_11_12___download.jpg', 'D:\\xampp\\htdocs\\arachno/views/images/shop/items/2016_July_31_Sunday_20_11_12___download.jpg', '2016_July_31_Sunday_20_11_12___download.jpg', '', '', 0, 49),
+(88, '/views/images/shop/items/2016_July_31_Sunday_20_11_12___farfalle-astratte-stabilite-33317399.jpg', 'D:\\xampp\\htdocs\\arachno/views/images/shop/items/2016_July_31_Sunday_20_11_12___farfalle-astratte-stabilite-33317399.jpg', '2016_July_31_Sunday_20_11_12___farfalle-astratte-stabilite-33317399.jpg', '', '', 0, 49),
+(89, '/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png', 'D:\\xampp\\htdocs\\arachno/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png', '2016_July_31_Sunday_20_11_12___heart-2.png', '', '', 0, 49),
+(90, '/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png', 'D:\\xampp\\htdocs\\arachno/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png', '2016_July_31_Sunday_20_11_12___heart-3.png', '', '', 0, 49);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acms_users`
+-- Struttura della tabella `acms_users`
 --
 
 CREATE TABLE `acms_users` (
@@ -313,7 +323,7 @@ CREATE TABLE `acms_users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `acms_users`
+-- Dump dei dati per la tabella `acms_users`
 --
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
@@ -321,17 +331,17 @@ INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_u
 (21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
--- Indexes for dumped tables
+-- Indici per le tabelle scaricate
 --
 
 --
--- Indexes for table `acms_coupons`
+-- Indici per le tabelle `acms_coupons`
 --
 ALTER TABLE `acms_coupons`
   ADD PRIMARY KEY (`coupon_id`);
 
 --
--- Indexes for table `acms_coupons_has_items`
+-- Indici per le tabelle `acms_coupons_has_items`
 --
 ALTER TABLE `acms_coupons_has_items`
   ADD PRIMARY KEY (`fk_coupon_id`,`fk_item_id`),
@@ -339,7 +349,7 @@ ALTER TABLE `acms_coupons_has_items`
   ADD KEY `fk_acms_coupons_has_acms_shop_items_acms_coupons1_idx` (`fk_coupon_id`);
 
 --
--- Indexes for table `acms_items_has_categories`
+-- Indici per le tabelle `acms_items_has_categories`
 --
 ALTER TABLE `acms_items_has_categories`
   ADD PRIMARY KEY (`item_id`,`category_id`),
@@ -347,40 +357,40 @@ ALTER TABLE `acms_items_has_categories`
   ADD KEY `fk_acms_shop_items_has_acms_shop_categories_acms_shop_items_idx` (`item_id`);
 
 --
--- Indexes for table `acms_languages`
+-- Indici per le tabelle `acms_languages`
 --
 ALTER TABLE `acms_languages`
   ADD PRIMARY KEY (`lang_id`);
 
 --
--- Indexes for table `acms_menus`
+-- Indici per le tabelle `acms_menus`
 --
 ALTER TABLE `acms_menus`
   ADD PRIMARY KEY (`menu_id`),
   ADD KEY `fk_acms_menu_list_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indexes for table `acms_menus_links`
+-- Indici per le tabelle `acms_menus_links`
 --
 ALTER TABLE `acms_menus_links`
   ADD PRIMARY KEY (`link_id`),
   ADD KEY `fk_acms_menu_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indexes for table `acms_pages`
+-- Indici per le tabelle `acms_pages`
 --
 ALTER TABLE `acms_pages`
   ADD PRIMARY KEY (`page_id`,`page_slug`),
   ADD KEY `fk_acms_pages_acsm_languages1_idx` (`fk_lang_id(11)`);
 
 --
--- Indexes for table `acms_payments`
+-- Indici per le tabelle `acms_payments`
 --
 ALTER TABLE `acms_payments`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `acms_payments_has_items`
+-- Indici per le tabelle `acms_payments_has_items`
 --
 ALTER TABLE `acms_payments_has_items`
   ADD PRIMARY KEY (`fk_payment_id`,`fk_item_id`),
@@ -388,13 +398,13 @@ ALTER TABLE `acms_payments_has_items`
   ADD KEY `fk_acms_payments_has_acms_shop_items_acms_payments1_idx` (`fk_payment_id`);
 
 --
--- Indexes for table `acms_shippings`
+-- Indici per le tabelle `acms_shippings`
 --
 ALTER TABLE `acms_shippings`
   ADD PRIMARY KEY (`shipping_id`);
 
 --
--- Indexes for table `acms_shippings_has_items`
+-- Indici per le tabelle `acms_shippings_has_items`
 --
 ALTER TABLE `acms_shippings_has_items`
   ADD PRIMARY KEY (`fk_shipping_id`,`fk_item_id`),
@@ -402,7 +412,7 @@ ALTER TABLE `acms_shippings_has_items`
   ADD KEY `fk_acms_shippings_has_acms_shop_items_acms_shippings1_idx` (`fk_shipping_id`);
 
 --
--- Indexes for table `acms_shop_categories`
+-- Indici per le tabelle `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
   ADD PRIMARY KEY (`category_id`),
@@ -410,67 +420,67 @@ ALTER TABLE `acms_shop_categories`
   ADD KEY `fk_acms_shop_categories_acms_shop_categories_idx` (`fk_parent_id`);
 
 --
--- Indexes for table `acms_shop_items`
+-- Indici per le tabelle `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
   ADD PRIMARY KEY (`item_id`),
   ADD KEY `fk_acms_shop_items_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- Indexes for table `acms_shop_items_images`
+-- Indici per le tabelle `acms_shop_items_images`
 --
 ALTER TABLE `acms_shop_items_images`
   ADD PRIMARY KEY (`image_id`),
   ADD KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`);
 
 --
--- Indexes for table `acms_users`
+-- Indici per le tabelle `acms_users`
 --
 ALTER TABLE `acms_users`
   ADD PRIMARY KEY (`user_id`),
   ADD KEY `fk_acms_users_acsm_languages1_idx` (`fk_lang_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT per le tabelle scaricate
 --
 
 --
--- AUTO_INCREMENT for table `acms_languages`
+-- AUTO_INCREMENT per la tabella `acms_languages`
 --
 ALTER TABLE `acms_languages`
   MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `acms_menus`
+-- AUTO_INCREMENT per la tabella `acms_menus`
 --
 ALTER TABLE `acms_menus`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `acms_menus_links`
+-- AUTO_INCREMENT per la tabella `acms_menus_links`
 --
 ALTER TABLE `acms_menus_links`
   MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
--- AUTO_INCREMENT for table `acms_pages`
+-- AUTO_INCREMENT per la tabella `acms_pages`
 --
 ALTER TABLE `acms_pages`
   MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `acms_shop_categories`
+-- AUTO_INCREMENT per la tabella `acms_shop_categories`
 --
 ALTER TABLE `acms_shop_categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT for table `acms_shop_items`
+-- AUTO_INCREMENT per la tabella `acms_shop_items`
 --
 ALTER TABLE `acms_shop_items`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
--- AUTO_INCREMENT for table `acms_shop_items_images`
+-- AUTO_INCREMENT per la tabella `acms_shop_items_images`
 --
 ALTER TABLE `acms_shop_items_images`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
--- AUTO_INCREMENT for table `acms_users`
+-- AUTO_INCREMENT per la tabella `acms_users`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
