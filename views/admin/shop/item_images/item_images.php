@@ -84,11 +84,40 @@ jQuery(document).ready(function(){
     jQuery("#item_images").on("change", ".is_main_checkbox", function(e){
         var image_id = jQuery(this).attr("data-image_id");
         var isChecked = jQuery(this).is(':checked');
+        var senderClass = jQuery(this).attr("class");
         
+        jQuery("#item_images input:checked").each(function(index, element){
+           if(jQuery(element).attr("class") !== jQuery(e.target).attr("class")){
+                jQuery(element).attr('checked', false);
+           } 
+        });
+        
+        
+        jQuery.post("<?=Config::$web_path?>/Admin/setMainImage", {
+            image_id: image_id
+        }).done(function(result){
+            var res = JSON.parse(result);
+            if(res.status === 1){
+                jQuery("#page-preloader").hide();
+            }else{
+                jQuery("#page-preloader").hide();
+                swal({
+                    title: "<?=Lang::$warning?>",
+                    text: "<strong><?=Lang::$update_fail?></strong>",
+                    type: "error",
+                    html: true
+                });
+            }
+        }).fail(function(err){
+            jQuery("#page-preloader").hide();
+            var result = JSON.parse(result);
+        });
+        
+        /*
         alert(
             "Image ID = " + image_id + "\n" +
             "Is Cheched? = " + isChecked
-        );
+        );*/
     });
 
     // Remove Image From Preview

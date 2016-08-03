@@ -73,6 +73,26 @@ class Admin extends Controller
     }
     
     
+    // Set Main Image
+    function setMainImage($args){
+        $this->args = $args;
+        
+        $image_model = $this->getModel('ShopImageModel');
+        $image_id = $this->post['image_id'];
+        
+        if(!$image_model->load($image_id)){
+            echo json_encode(["status"=>0, "message"=>"Load Image Failed"]);
+        }
+        
+        if(!$image_model->setAsMain()){
+            echo json_encode(["status"=>0, "message"=>"set-as-main-fail"]);
+        }else{
+            echo json_encode(["status"=>1, "message"=>"set-as-main-succes"]);
+        }
+        
+    }
+    
+    
     // Show Items List (also with filter if required)
     function showItems($args)
     {

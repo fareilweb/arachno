@@ -86,7 +86,20 @@ class ShopImageModel extends Model
         $query_update = "UPDATE #_shop_items_images ";
         $query_update.= "SET $set_string ";
         $query_update.= "WHERE #_shop_items_images.fk_item_id = '$fk_item_id'; ";
+        
+        // TODO -----
     }
+    
+    
+    // Set As Main
+    function setAsMain(){
+        
+        $this->image_id;
+        $this->fk_item_id;
+        
+        // TODO -----
+    }
+    
     
     public function deleteFile($file_path=NULL)
     {

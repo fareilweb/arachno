@@ -23,7 +23,7 @@
                             <div class="current_item_image">
                                 <?php foreach($curr_item->item_images as $curr_img_key => $curr_img_obj):?>
                                     <?php if($curr_img_obj->is_main == TRUE):?>
-                                        <img src="<?=$curr_item->item_images[$curr_img_key]->image_src;?>" alt="<?=$curr_item->item_images[$curr_img_key]->image_alt;?>" title="<?=$curr_item->item_images[$curr_img_key]->image_title;?>" />
+                                        <img src="<?=Config::$web_path . $curr_item->item_images[$curr_img_key]->image_src;?>" alt="<?=$curr_item->item_images[$curr_img_key]->image_alt;?>" title="<?=$curr_item->item_images[$curr_img_key]->image_title;?>" />
                                     <?php endif;?>
                                 <?php endforeach;?>
                             </div>

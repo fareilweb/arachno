@@ -2,7 +2,7 @@
     <input type="hidden" name="images_id[]" value="#image_id#" />
     <p style="text-align: right;">
         <label>
-            <input type="checkbox" name="is_main" class="is_main_checkbox" data-image_id="#image_id#" checked />
+            <input type="checkbox" name="is_main" class="is_main_checkbox #image_id#" data-image_id="#image_id#" checked />
         </label>
         <button class="btn btn-default btn-danger rem" data-index="#index#" data-image_id="#image_id#">
             <span class="glyphicon glyphicon-remove"></span>
