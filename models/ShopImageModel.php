@@ -81,13 +81,15 @@ class ShopImageModel extends Model
     function update()
     {
         // Compose Query
-        $fk_item_id = 0;
-        $set_string = "";
-        $query_update = "UPDATE #_shop_items_images ";
-        $query_update.= "SET $set_string ";
-        $query_update.= "WHERE #_shop_items_images.fk_item_id = '$fk_item_id'; ";
+        //$fk_item_id = 0;
+        //$set_string = "";
+        //$query_update = "UPDATE #_shop_items_images ";
+        //$query_update.= "SET $set_string ";
+        //$query_update.= "WHERE #_shop_items_images.fk_item_id = '$fk_item_id'; ";
         
         // TODO -----
+        
+        
     }
     
     
@@ -97,7 +99,20 @@ class ShopImageModel extends Model
         $this->image_id;
         $this->fk_item_id;
         
-        // TODO -----
+        $query = 
+            "UPDATE #_shop_items_images 
+             SET is_main = 0 
+             WHERE #_shop_items_images.fk_item_id = '$this->fk_item_id'; ";
+        $query_main = 
+            "UPDATE #_shop_items_images 
+             SET is_main = 1 
+             WHERE #_shop_items_images.image_id = '$this->image_id'; ";
+        
+        if(!$this->queryExec($query) || !$this->queryExec($query_main)){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
     }
     
     

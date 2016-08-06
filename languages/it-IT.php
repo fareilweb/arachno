@@ -30,7 +30,6 @@ class Lang
     public static $save = "Salva";
     public static $published = "Pubblicato";
     public static $suspended = "Sospeso";
-    public static $products = "Prodotti";
     public static $title = "Titolo";
     public static $alt_text = "Testo Alternativo";
     public static $main = "Principale";
@@ -39,16 +38,9 @@ class Lang
     public static $select_images = "Seleziona Immagini";
     public static $almost_done = "Ci Sei Quasi";
     public static $save_before = "&Egrave; Necessario Salvare Prima di Proseguire";
-    public static $preview = "Anteprima";
-    public static $categories = "Categorie";
-    public static $subcategories = "Sottocategorie";
-    public static $category_items = "Oggetti Categoria";
-    public static $category_is_empty = "Questa Categoria &egrave; Vuota";
-    public static $categories_none = "Nessuna Categoria Disponibile";
+    public static $preview = "Anteprima";    
     public static $add_item = "Aggiungi Prodotto";
     public static $edit_item = "Aggiungi/Modifica Oggetto";
-    public static $add_category = "Aggiungi Categoria";
-    public static $edit_category = "Aggiungi/Modifica Categoria";
     public static $delete = "Cancella";
     public static $delete_confirm_request = "Sei Sicuro di Voler Procedere alla Cancellazione?";
     public static $delete_fail = "Cancellazione Fallita";
@@ -66,6 +58,15 @@ class Lang
     public static $available = "Disponibile";
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
+    public static $products = "Prodotti";
+    public static $categories = "Categorie";
+    public static $add_category = "Aggiungi Categoria";
+    public static $edit_category = "Aggiungi/Modifica Categoria";
+    public static $subcategories = "Sottocategorie";
+    public static $category_items = "Oggetti Categoria";
+    public static $category_is_empty = "Questa Categoria &egrave; Vuota";
+    public static $categories_none = "Nessuna Categoria Disponibile";
+    public static $category_parent = "Categoria Superiore";
     public static $item_code = "Codice";
     public static $item_category = "Categoria";
     public static $item_categories = "Categorie Oggetto";
@@ -77,5 +78,8 @@ class Lang
     public static $item_colors = "Colori";
     public static $item_short_desc = "Riepilogo";
     public static $item_long_desc = "Descrizione";
-    public static $category_parent = "Categoria Superiore";
+    public static $cart = "Carrello";
+    public static $add_to_cart = "Aggiungi al Carrello";
+    public static $rem_from_cart = "Rimuovi dal Carrello";
+    public static $empty_cart = "Carrello Vuoto";
 } 

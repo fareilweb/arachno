@@ -1,4 +1,4 @@
-<div class="item">
+<div class="item container-fluid">
     
     <?php if(isset($this->item) && $this->item->item_id!==NULL): ?>
     <div class="item_wrapper">
@@ -51,6 +51,15 @@
                     <label><?=Lang::$item_long_desc;?> </label>
                     <?=$this->item->item_long_desc;?>
                 </div>
+                <hr/>
+                
+                <div class="buy_item">    
+                    <a href="<?=Config::$web_path;?>/Shop/addToCart/<?=$this->item->item_id?>" class="btn btn-info">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <?=Lang::$add_to_cart;?>
+                    </a>
+                </div>
+                
             </div>
             
             <!-- ===============================================================
@@ -61,16 +70,18 @@
                     <!-- Main Image ====================================== -->
                     <?php foreach($this->item->item_images as $item_image): ?>
                         <?php if($item_image->is_main==TRUE):?>
-                            <div class="item_main_image">
+                        <div class="row">
+                            <div class="item_main_image col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <img src="<?=Config::$web_path . $item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
                             </div>
+                        </div>
                         <?php endif;?>
                     <?php endforeach;?>
                     
                     <!-- Images ========================================== -->
                     <div class="row"><hr/>
                     <?php foreach($this->item->item_images as $item_image): ?>
-                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
                             <div class="item_image_wrapper">
                                 <div class="item_image">
                                     <img src="<?=Config::$web_path . $item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />

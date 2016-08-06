@@ -78,7 +78,9 @@
 /*==============================================================================*
  * Item View (public)
  *==============================================================================*/
-.item{}
+.item{
+    margin: 12px 6% 12px 6%;
+}
 .item .item_wrapper{}
 .item .item_id{}
 .item .item_code{}
@@ -94,25 +96,33 @@
 .item .item_images{
     width: 100%;
 }
+/* Main Item Image */
 .item .item_main_image{
-    width: 100%;
+    width: 90%;
+    margin: 5%;
+    padding: 5%;
+    box-shadow: 0px 0px 12px #222; 
 }
 .item .item_main_image img{
-    width: 100%
+    width: 100%;
 }
+/* Item Image */
 .item .item_image_wrapper{
-    
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .item .item_image{
-    margin: 6px 3px;
+    margin: 6px;
+    padding: 6px;
     text-align: center;
-    box-shadow:0px 0px 6px #222;
 }
 .item .item_image img{
-    width: auto;
-    height: 48px;
+    width: 100%;
+    box-shadow:0px 0px 6px #222;
+    cursor: pointer;
 }
-.item .item_image_name{
+.item .item_image_title{
     
 }
 

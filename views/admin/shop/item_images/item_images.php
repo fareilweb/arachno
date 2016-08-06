@@ -82,6 +82,9 @@ jQuery(document).ready(function(){
 
     // Set an Image As Main OR Not
     jQuery("#item_images").on("change", ".is_main_checkbox", function(e){
+        
+        jQuery("#page-preloader").show();
+        
         var image_id = jQuery(this).attr("data-image_id");
         var isChecked = jQuery(this).is(':checked');
         var senderClass = jQuery(this).attr("class");
@@ -91,7 +94,6 @@ jQuery(document).ready(function(){
                 jQuery(element).attr('checked', false);
            } 
         });
-        
         
         jQuery.post("<?=Config::$web_path?>/Admin/setMainImage", {
             image_id: image_id

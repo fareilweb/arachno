@@ -107,7 +107,70 @@ class Shop extends Controller
         $this->getView('pages/page_default');
     }
  
+ 
+        
+    /* =========================================================================
+     * Buy Process
+     * ========================================================================= */
     
+    function addToCart($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        // Init Cart If It's Not Ready
+        if(!$this->cart){
+            $this->cart = new stdClass;
+            $this->cart->items = array();
+        }
+        
+        // Get Item Data
+        $item_model = $this->getModel('ShopItemModel');
+        $item_model->loadById($args[0]);
+        
+        // Copy Needed Proprerties
+        $item = new stdClass();
+        $item->item_id = $item_model->item_id;
+        $item->item_code = $item_model->item_code;
+        $item->item_categories = $item_model->item_categories;
+        $item->item_status = $item_model->item_status;
+        $item->item_stock = $item_model->item_stock;
+        $item->item_price = $item_model->item_price;
+        $item->item_title = $item_model->item_title;
+        $item->item_weight = $item_model->item_weight;
+        $item->item_colors = $item_model->item_colors;
+        $item->item_short_desc = $item_model->item_short_desc;
+        $item->item_long_desc = $item_model->item_long_desc;
+        $item->item_meta_keywords = $item_model->item_meta_keywords;
+        $item->item_meta_description = $item_model->item_meta_description;
+        $item->fk_lang_id = $item_model->fk_lang_id;
+        $item->item_images = $item_model->item_images;
+        
+        array_push($this->cart->items, $item);
+        
+        Session::set("cart", $this->cart);
+        
+        $this->debug($this->args);       
+    }
+    
+    
+    function cart($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/cart', 'main-content');        
+        $this->getView('pages/page_default');
+        
+        //Session::destroy();
+        
+    }
     
     
 }
