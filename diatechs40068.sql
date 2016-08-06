@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: sql.dia-techshop.it
--- Generato il: 30 Lug, 2016 at 06:12 PM
+-- Generato il: 06 Ago, 2016 at 06:19 PM
 -- Versione MySQL: 5.1.49
 -- Versione PHP: 4.3.10-22
 -- 
@@ -324,13 +324,13 @@ CREATE TABLE `acms_shop_items_images` (
   `fk_item_id` int(11) NOT NULL,
   PRIMARY KEY (`image_id`),
   KEY `fk_acms_shop_images_acms_shop_items1_idx` (`fk_item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 AUTO_INCREMENT=82 ;
+) ENGINE=MyISAM AUTO_INCREMENT=86 DEFAULT CHARSET=utf8 AUTO_INCREMENT=86 ;
 
 -- 
 -- Dump dei dati per la tabella `acms_shop_items_images`
 -- 
 
-INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES (81, 'http://www.dia-techshop.it/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/home/mhd-01/www.dia-techshop.it/htdocs/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 0, 49);
+INSERT INTO `acms_shop_items_images` (`image_id`, `image_src`, `image_path`, `image_name`, `image_title`, `image_alt`, `is_main`, `fk_item_id`) VALUES (81, '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg', '2016_July_24_Sunday_11_29_27___heart-4.jpg', '', '', 0, 49);
 
 -- --------------------------------------------------------
 
