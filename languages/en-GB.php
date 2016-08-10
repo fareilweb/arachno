@@ -67,6 +67,7 @@ class Lang
     public static $category_is_empty = "Questa Categoria &egrave; Vuota";
     public static $categories_none = "Nessuna Categoria Disponibile";
     public static $category_parent = "Categoria Superiore";
+    public static $quantity = "Quantit&agrave;";
     public static $item_code = "Codice";
     public static $item_category = "Categoria";
     public static $item_categories = "Categorie Oggetto";

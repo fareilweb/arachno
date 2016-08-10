@@ -148,9 +148,10 @@ class Shop extends Controller
         
         array_push($this->cart->items, $item);
         
-        Session::set("cart", $this->cart);
+        if(Session::set("cart", $this->cart) != FALSE){
+            header('location: ' . Config::$web_path . '/Shop/cart');
+        }
         
-        $this->debug($this->args);       
     }
     
     
