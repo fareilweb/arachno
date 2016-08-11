@@ -155,6 +155,33 @@ class Shop extends Controller
     }
     
     
+    function removeFromCart($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        if($this->cart!=FALSE && isset($args[0]))
+        {   
+            unset($this->cart->items[$args[0]]);
+            
+            if(!Session::set("cart", $this->cart)){
+                echo Lang::$update_fail;
+                exit();
+            }else{
+                $redirect_i = array_search("redirect", $args);
+                if(!$redirect_i){
+                    echo Lang::$update_success;
+                }else{
+                    $url = Config::$web_path;
+                    for($i=($redirect_i+1); $i<count($args); $i++){
+                        $url .= "/" . $args[$i];
+                    }
+                    header('location: ' . $url);
+                }
+            }
+        }
+    }
+    
     function cart($args=NULL)
     {
         $this->args = $args;

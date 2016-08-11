@@ -25,11 +25,11 @@ class Session
     // Get All the session array
     public static function getSession()
     {
-            if(self::$SessionStarted = TRUE){
-                    return $_SESSION;	
-            }else{
-                    return FALSE;		
-            }
+        if(self::$SessionStarted = TRUE){
+                return $_SESSION;	
+        }else{
+                return FALSE;		
+        }
     }
     
     
