@@ -113,6 +113,25 @@ class Shop extends Controller
      * Buy Process
      * ========================================================================= */
     
+    function cart($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/cart', 'main-content');        
+        $this->getView('pages/page_default');
+        
+        //Session::destroy();
+        
+    }
+    
+
     function addToCart($args=NULL)
     {
         $this->args = $args;
@@ -145,6 +164,7 @@ class Shop extends Controller
         $item->item_meta_description = $item_model->item_meta_description;
         $item->fk_lang_id = $item_model->fk_lang_id;
         $item->item_images = $item_model->item_images;
+        $item->quantity = 1;
         
         array_push($this->cart->items, $item);
         
@@ -182,23 +202,21 @@ class Shop extends Controller
         }
     }
     
-    function cart($args=NULL)
+    function updateQuantity($args=NULL)
     {
         $this->args = $args;
         $this->cart = Session::get("cart");
         
-        // Get Data
-        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        
-        
-        // Views
-        $this->includeView('nav/main_menu', 'header-content');
-        $this->includeView('shop/cart', 'main-content');        
-        $this->getView('pages/page_default');
-        
-        //Session::destroy();
-        
+        if(isset($this->cart) && count($this->cart->items) > 0){
+            $this->cart->items[$this->post['key']]->quantity = $this->post['quantity'];
+            if(!Session::set("cart", $this->cart)){
+                echo json_encode(array("status"=>FALSE, "message"=>"upd-quantity-failed")); 
+            }else{
+                echo json_encode(array("status"=>TRUE, "message"=>"upd-quantity-success"));
+            }
+        }else{
+            echo json_encode(array("status"=>FALSE, "message"=>"upd-quantity-err-no-cart-or-items")); 
+        }
     }
-    
-    
+
 }

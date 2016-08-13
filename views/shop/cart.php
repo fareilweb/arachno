@@ -33,7 +33,7 @@
                             <tr>
                                 <td>
                                     <label><?=Lang::$quantity;?></label>
-                                    <input type="number" name="item_quantity" value="0" min="0" max="" class="form-control" />
+                                    <input type="number" id="item_quantity" value="<?=$item_val->quantity;?>" min="1" data-item_key="<?=$item_key;?>" class="form-control" />
                                 </td>
                             </tr>
                             <tr>
@@ -55,13 +55,61 @@
                 </div>
         
             <?php endforeach;?>
-                
-            <div class="row">
-                
-            </div>
-        
+            
         <?php endif;?>
         
     </div>
+
+    <div class="row"><hr/>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="#" class="btn btn-info">
+                <span class=""></span>
+                Torna Allo Shop
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="#" class="btn btn-info">
+                <span class=""></span>
+                Concludi Acquisto
+            </a>
+        </div>
+    </div>
     
 </div>
+
+<script>
+    // Update Cart Item Quantity
+    jQuery("#item_quantity").change(function(e){
+        jQuery("#page-preloader").show();
+
+        var _quantity = jQuery(this).val();
+        var _key = jQuery(this).attr("data-item_key");
+        
+        jQuery.post("<?=Config::$web_path;?>/Shop/updateQuantity",{
+            key: _key,
+            quantity: _quantity
+        }).done(function(data){
+            var res = JSON.parse(data);
+            if(res.status == false || res.status == 0){
+                swal({
+                    title: "<?=Lang::$warning;?>",
+                    text: "<?=Lang::$update_fail;?>",
+                    type: "warning",
+                    html: true
+                });
+            }
+        }).fail(function(data){
+            console.log(data);
+            swal({
+                title: "<?=Lang::$warning;?>",
+                text: "<?=Lang::$update_fail;?>",
+                type: "warning",
+                html: true
+            });
+        }).always(function(data){
+            jQuery("#page-preloader").hide();
+        });
+
+    });
+    
+</script>
