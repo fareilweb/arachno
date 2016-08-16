@@ -1,80 +1,85 @@
 <div class="cart container-fluid">
     
-    <div class="row">
-        
-        <h2><?=Lang::$cart;?></h2>
-        
-        
-        <?php if(!$this->cart):?>
-        
+    <h2><?=Lang::$cart;?></h2>
+
+    <?php if(!$this->cart || count($this->cart->items)==0) :?>
+        <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <?=Lang::$empty_cart;?>
             </div>
-        
-        <?php else:?>
-                
-            <?php foreach($this->cart->items as $item_key => $item_val):?>
-        
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <?=$item_val->item_title;?>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label><?=Lang::$item_price;?></label>
-                                    <?=$item_val->item_price;?>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label><?=Lang::$quantity;?></label>
-                                    <input type="number" id="item_quantity" value="<?=$item_val->quantity;?>" min="1" data-item_key="<?=$item_key;?>" class="form-control" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="<?=Config::$web_path;?>/Shop/removeFromCart/<?=$item_key;?>/redirect/Shop/cart" data-item_key="<?=$item_key;?>" class="btn btn-danger">
-                                        <span class="glyphicon glyphicon-remove"></span>
-                                        Rimuovi
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <!--<?=$item_val->item_id;?>-->
-                    <!--<?=$item_val->item_code;?>-->
-                    <!--?=$item_val->item_categories;?-->
-                    <!--?=$item_val->item_images;?-->
-
-                </div>
-        
-            <?php endforeach;?>
-            
-        <?php endif;?>
-        
-    </div>
-
-    <div class="row"><hr/>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <a href="#" class="btn btn-info">
-                <span class=""></span>
-                Torna Allo Shop
-            </a>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <a href="#" class="btn btn-info">
-                <span class=""></span>
-                Concludi Acquisto
-            </a>
+    <?php else:?>
+        
+        <!-- Top Items Row -->    
+        <div class="row">
+        <?php foreach($this->cart->items as $item_key => $item_val):?>
+
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <?=$item_val->item_title;?>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        <h4><br/>
+                                            <label><?=Lang::$item_price;?></label>
+                                            <?=$item_val->item_price;?>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <label><?=Lang::$quantity;?>
+                                            <input type="number" id="item_quantity" value="<?=$item_val->quantity;?>" min="1" data-item_key="<?=$item_key;?>" class="form-control" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="<?=Config::$web_path;?>/Shop/removeFromCart/<?=$item_key;?>/redirect/Shop/cart" data-item_key="<?=$item_key;?>" class="btn btn-danger">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    Rimuovi
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--<?=$item_val->item_id;?>-->
+                <!--<?=$item_val->item_code;?>-->
+                <!--?=$item_val->item_categories;?-->
+                <!--?=$item_val->item_images;?-->
+
+            </div>
+
+        <?php endforeach;?>
         </div>
-    </div>
+        
+        
+        <!-- Bottom Buttons Row -->
+        <div class="row"><hr/>
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <a href="<?=Config::$web_path;?>/Shop/home" class="btn btn-info">
+                    <span class="glyphicon glyphicon-backward"></span>
+                    Torna Allo Shop
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                <a href="<?=Config::$web_path;?>/Shop/shipping/" class="btn btn-info">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Concludi Acquisto
+                </a>
+            </div>
+        </div>
     
+    <?php endif;?>
+ 
 </div>
 
 <script>
@@ -90,7 +95,7 @@
             quantity: _quantity
         }).done(function(data){
             var res = JSON.parse(data);
-            if(res.status == false || res.status == 0){
+            if(res.status === false || res.status === 0){
                 swal({
                     title: "<?=Lang::$warning;?>",
                     text: "<?=Lang::$update_fail;?>",

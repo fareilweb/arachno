@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2016 at 06:19 PM
+-- Generation Time: Aug 16, 2016 at 07:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -33,7 +33,7 @@ CREATE TABLE `acms_coupons` (
   `coupon_end_date` date DEFAULT NULL,
   `coupon_value_type` varchar(10) DEFAULT NULL,
   `coupon_value_amount` varchar(45) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,7 @@ CREATE TABLE `acms_coupons` (
 CREATE TABLE `acms_coupons_has_items` (
   `fk_coupon_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -124,20 +124,19 @@ CREATE TABLE `acms_menus_links` (
   `link_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `link_rel_uri` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `link_abs_uri` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `fk_lang_id` int(11) NOT NULL
+  `fk_lang_id` int(11) NOT NULL,
+  `ordering` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `acms_menus_links`
 --
 
-INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`) VALUES
-(1, 1, 'Home', '/', 'NULL', 1),
-(2, 1, 'Test Page', '/test-page', '', 1),
-(3, 1, 'Shop', '/Shop/home', '', 1),
-(5, 1, 'Accesso', '/User/login/redirect/User/login', '', 1),
-(6, 1, 'Registrati', '/User/register', '', 1),
-(7, 1, 'Amministrazione', '/Admin', '', 1);
+INSERT INTO `acms_menus_links` (`link_id`, `fk_menu_id`, `link_title`, `link_rel_uri`, `link_abs_uri`, `fk_lang_id`, `ordering`) VALUES
+(1, 1, 'Home', '/', 'NULL', 1, 1),
+(2, 1, 'Test Page', '/test-page', 'NULL', 1, 2),
+(3, 1, 'Shop', '/Shop/home', 'NULL', 1, 3),
+(7, 1, 'Carrello', '/Shop/cart', 'NULL', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -175,7 +174,16 @@ CREATE TABLE `acms_payments` (
   `payment_name` varchar(80) DEFAULT NULL,
   `payment_cost` float DEFAULT NULL,
   `payment_details` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_payments`
+--
+
+INSERT INTO `acms_payments` (`payment_id`, `payment_name`, `payment_cost`, `payment_details`) VALUES
+(1, 'PayPal', 3, 'NULL'),
+(2, 'PostePay', 0, 'NULL'),
+(3, 'Bonifico', 0, 'NULL');
 
 -- --------------------------------------------------------
 
@@ -186,7 +194,7 @@ CREATE TABLE `acms_payments` (
 CREATE TABLE `acms_payments_has_items` (
   `fk_payment_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -200,7 +208,17 @@ CREATE TABLE `acms_shippings` (
   `shipping_cost` float DEFAULT NULL,
   `shipping_details` text,
   `shipping_status` tinyint(1) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_shippings`
+--
+
+INSERT INTO `acms_shippings` (`shipping_id`, `shipping_name`, `shipping_cost`, `shipping_details`, `shipping_status`) VALUES
+(1, 'Corriere Nazionale', 7, NULL, 1),
+(2, 'Corriere Internazionale', 24, NULL, 1),
+(3, 'Posta Ordinaria', 3, NULL, 1),
+(4, 'Posta Prioritaria', 5, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +229,7 @@ CREATE TABLE `acms_shippings` (
 CREATE TABLE `acms_shippings_has_items` (
   `fk_shipping_id` int(11) NOT NULL,
   `fk_item_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -456,12 +474,22 @@ ALTER TABLE `acms_menus`
 -- AUTO_INCREMENT for table `acms_menus_links`
 --
 ALTER TABLE `acms_menus_links`
-  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `link_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `acms_pages`
 --
 ALTER TABLE `acms_pages`
   MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `acms_payments`
+--
+ALTER TABLE `acms_payments`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `acms_shippings`
+--
+ALTER TABLE `acms_shippings`
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `acms_shop_categories`
 --
@@ -482,6 +510,31 @@ ALTER TABLE `acms_shop_items_images`
 --
 ALTER TABLE `acms_users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `acms_coupons_has_items`
+--
+ALTER TABLE `acms_coupons_has_items`
+  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_coupons1` FOREIGN KEY (`fk_coupon_id`) REFERENCES `acms_coupons` (`coupon_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_coupons_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `acms_payments_has_items`
+--
+ALTER TABLE `acms_payments_has_items`
+  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_payments1` FOREIGN KEY (`fk_payment_id`) REFERENCES `acms_payments` (`payment_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_payments_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `acms_shippings_has_items`
+--
+ALTER TABLE `acms_shippings_has_items`
+  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shippings1` FOREIGN KEY (`fk_shipping_id`) REFERENCES `acms_shippings` (`shipping_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_acms_shippings_has_acms_shop_items_acms_shop_items1` FOREIGN KEY (`fk_item_id`) REFERENCES `acms_shop_items` (`item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

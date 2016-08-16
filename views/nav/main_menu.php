@@ -40,10 +40,26 @@
                       </li-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <label style="margin: 18px 8px auto 8px;">
+                        <!--li>
+                            <label>
                                 Lingua
                             </label>
+                        </li-->
+                        <li>
+                            <p style="margin: 18px 8px auto 8px;">
+                                <a href="<?=Config::$web_path;?>/User/login/redirect/User/login">
+                                    <span class="glyphicon glyphicon-log-in"></span> 
+                                    <?=Lang::$login;?>
+                                </a>
+                            </p>
+                        </li>
+                        <li>
+                            <p style="margin: 18px 8px auto 8px;">
+                                <a href="<?=Config::$web_path;?>/User/register">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <?=Lang::$register;?>
+                                </a>
+                            </p>
                         </li>
                         <li>
                             <p>

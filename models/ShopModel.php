@@ -4,9 +4,8 @@ class ShopModel extends Model
 {
     
     /* =========================================================================
-     * Categories
+     * All Categories
      * =========================================================================*/
-    
     function getAllCategories($lang_id=NULL, $status=NULL)
     {
         $query = "SELECT * FROM #_shop_categories ";
@@ -35,6 +34,9 @@ class ShopModel extends Model
         }
     }
     
+    /* =========================================================================
+     * Main Categories
+     * =========================================================================*/
     function getMainCategories($lang_id=NULL, $status=NULL)
     {
         $query = "SELECT * FROM #_shop_categories 
@@ -64,6 +66,9 @@ class ShopModel extends Model
         }
     }
     
+    /* =========================================================================
+     * Category Children
+     * =========================================================================*/
     function getCategoryChildren($category_id=NULL)
     {
         $query = 
@@ -85,13 +90,9 @@ class ShopModel extends Model
         }          
     }
     
-    
-    
-    
     /* =========================================================================
-     * Items
+     * All Items
      * =========================================================================*/
-    
     function getItems($lang_id=NULL, $status=NULL)
     {
         $query = "SELECT * FROM #_shop_items ";
@@ -121,6 +122,9 @@ class ShopModel extends Model
         }   
     }
     
+    /* =========================================================================
+     * Category Items
+     * =========================================================================*/
     function getItemsByCategory($category_id, $status=NULL, $lang_id=NULL)
     {
         $query = 
@@ -165,7 +169,39 @@ class ShopModel extends Model
         }
     }
     
+    /* =========================================================================
+     * Shipping Methods
+     * =========================================================================*/
+    function getShipMethods()
+    {
+        $query = "SELECT * FROM #_shippings; ";
+        $this->results = $this->queryExec($query);
+        
+        // Get Data From Result
+        $data = array();
+        while($item_obj = $this->results->fetch_object()){
+            array_push($data, $item_obj);/*<--Add The Complete Item To Data*/
+        }
+        
+        return $data;
+    }
     
-    
+     
+    /* =========================================================================
+     * Payment Methods
+     * =========================================================================*/
+    function getPayMethods()
+    {
+        $query = "SELECT * FROM #_payments;";
+        $this->results = $this->queryExec($query);
+        
+        // Get Data From Result
+        $data = array();
+        while($item_obj = $this->results->fetch_object()){
+            array_push($data, $item_obj);/*<--Add The Complete Item To Data*/
+        }
+        
+        return $data;
+    }
     
 }

@@ -43,12 +43,7 @@ class Admin extends Controller
         $this->getView('pages/page_default');
     }
     
-    
-    
-    /* =========================================================================
-     * Items Methods
-     * =========================================================================*/
-    
+
     // Remove Item Image From Database
     function removeItemImage($args){
         $this->args = $args;
@@ -219,11 +214,6 @@ class Admin extends Controller
     }
     
     
-    
-    /* =========================================================================
-     * Categories Methods
-     * =========================================================================*/
-    
     // Show Main Categories
     function showMainCategories($args)
     {
@@ -363,6 +353,36 @@ class Admin extends Controller
         }
         // Views
         $this->index($args);
-    }   
+    }
+ 
+    
+    // Show Shippings
+    function shippings($args=NULL)
+    {
+        $this->args = $args;
+        
+        // Data
+        $shop_model = $this->getModel('ShopModel');
+        $this->ship_methods = $shop_model->getShipMethods();
+        
+        // Views
+        $this->includeView('admin/shop/list_shippings', 'main-content');
+        $this->index($args);
+    }
+    
+    
+    // Show Payments
+    function payments($args=NULL)
+    {
+        $this->args = $args;
+        
+        // Data
+        $shop_model = $this->getModel('ShopModel');
+        $this->pay_methods = $shop_model->getPayMethods();
+        
+        // Views
+        $this->includeView('admin/shop/list_payments', 'main-content');
+        $this->index($args);
+    }
     
 }

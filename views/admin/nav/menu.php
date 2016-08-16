@@ -24,6 +24,16 @@
                             <?=Lang::$categories?>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?=Config::$web_path;?>/Admin/shippings">
+                            <?=Lang::$shippings;?>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=Config::$web_path;?>/Admin/payments">
+                            <?=Lang::$payments;?>
+                        </a>
+                    </li>
                   <!--li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -38,21 +48,16 @@
                   </li-->
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-
-                    </li>
-                    <!--
-                    <li>
+                    <!--li>
                         <label style="margin: 18px 8px auto 8px;">
                             Lingua
                         </label>
-                    </li>
-                    <li>
+                    </li-->
+                    <!--li>
                         <p>
                             <?php include(__DIR__ . '/lang_menu.php');?>
                         </p>
-                    </li>
-                    -->
+                    </li-->
                 </ul>
             </div>
    

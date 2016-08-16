@@ -10,7 +10,8 @@ class MenuModel extends Model
             "SELECT * "
           . "FROM #_menus "
           . "LEFT JOIN #_menus_links ON #_menus_links.fk_menu_id = $menu_id "
-          . "WHERE #_menus.menu_id = $menu_id";
+          . "WHERE #_menus.menu_id = $menu_id " 
+          . "ORDER BY `ordering` ";
         
         /*** 2. - Execute Query, Save Results =================================*/
         $this->results = $this->queryExec($query);

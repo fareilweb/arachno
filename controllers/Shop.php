@@ -113,6 +113,40 @@ class Shop extends Controller
      * Buy Process
      * ========================================================================= */
     
+    function payment($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        $shop_model = $this->getModel('ShopModel');
+        $this->payments = $shop_model->getPayMethods();
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/payment', 'main-content');
+        $this->getView('pages/page_default');
+    }
+    
+    
+    function shipping($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        $shop_model = $this->getModel('ShopModel');
+        $this->shippings = $shop_model->getShipMethods();
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/shipping', 'main-content');
+        $this->getView('pages/page_default');
+    }
+    
+    
     function cart($args=NULL)
     {
         $this->args = $args;
@@ -130,7 +164,6 @@ class Shop extends Controller
         //Session::destroy();
         
     }
-    
 
     function addToCart($args=NULL)
     {

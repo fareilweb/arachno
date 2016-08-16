@@ -9,10 +9,12 @@ class Lang
     public static $lang_internal_code = "it-IT"; // The Internal ID/Code Of The Language
     /* Edit From Here ----------------------------------------------------------*/
     public static $language = "Lingua";
-    public static $select_language = 'Seleziona la lingua';
-    public static $welcome = 'Benvenuto';
-    public static $goodbye = 'A Presto';
-    public static $warning = 'Attenzione';
+    public static $select_language = "Seleziona la lingua";
+    public static $welcome = "Benvenuto";
+    public static $goodbye = "A Presto";
+    public static $warning = "Attenzione";
+    public static $login = "Accesso";
+    public static $register = "Registrazione";
     public static $access_denied = 'Accesso Negato';
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";
@@ -58,6 +60,8 @@ class Lang
     public static $available = "Disponibile";
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
+    public static $shippings = "Spedizioni";
+    public static $payments = "Pagamenti";
     public static $products = "Prodotti";
     public static $categories = "Categorie";
     public static $add_category = "Aggiungi Categoria";
