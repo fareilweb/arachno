@@ -368,6 +368,7 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/list_shippings', 'main-content');
         $this->index($args);
+        
     }
     
     
