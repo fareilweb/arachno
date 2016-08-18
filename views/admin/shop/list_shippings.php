@@ -1,6 +1,12 @@
 <div class="container-fluid list_shippings">
     
-    <h2><?=Lang::$shippings;?></h2>
+    <h2>
+        <?=Lang::$shippings;?>
+        <a href="<?=Config::$web_path;?>/Admin/editShipping" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus"></span>
+            <?=Lang::$add;?>
+        </a>
+    </h2>
     
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

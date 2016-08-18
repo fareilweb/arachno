@@ -187,7 +187,7 @@ class ShopModel extends Model
     }
     
     // Delete A Shipping Method From DB
-    function deleteShipMethod($shipping_id=NULL)
+    function deleteShipping($shipping_id=NULL)
     {
         if($shipping_id != NULL){
             $query = "DELETE FROM #_shippings WHERE shipping_id = $shipping_id; ";
@@ -200,7 +200,10 @@ class ShopModel extends Model
     }
     
     // Edit A Shipping Method
-    function updateShippingMethod(){}
+    function updateShipping()
+    {
+        
+    }
     
     
      

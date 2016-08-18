@@ -377,12 +377,7 @@ class Admin extends Controller
         $this->args = $args;
         
         if($args!==NULL && isset($args[0]) && is_numeric($args[0]))
-        {
-            $this->mode = "edit";
-            
-            
-        }else{
-            $this->mode = "add";
+        { // Load Saved Data
             
         }
         
