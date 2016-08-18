@@ -371,6 +371,51 @@ class Admin extends Controller
         
     }
     
+    // Edit / Add Shipping
+    function editShipping($args=NULL)
+    {
+        $this->args = $args;
+        
+        if($args!==NULL && isset($args[0]) && is_numeric($args[0]))
+        {
+            $this->mode = "edit";
+            
+            
+        }else{
+            $this->mode = "add";
+            
+        }
+        
+        // Views
+        $this->includeView('admin/shop/edit_shipping', 'main-content');
+        $this->index($args);
+    }
+    
+    // Remove Shipping
+    function removeShipping($args=NULL)
+    {
+        $this->args = $args;
+        if(isset($args[0]) && is_numeric($args[0]))
+        {
+            $shop_model = $this->getModel('ShopModel');
+            $res = $shop_model->deleteShipMethod($args[0]);
+            if(!$res){
+                echo Lang::$delete_fail;
+            }else{
+                $redirect = array_search("redirect", $args);
+                if($redirect!==FALSE){
+                    $url = Config::$web_path;
+                    for($i=$redirect+1; $i<count($args); $i++){
+                        $url.= "/" . $args[$i];
+                    }
+                    header("location: $url");
+                }
+            }
+        }
+        
+    }
+    
+    
     
     // Show Payments
     function payments($args=NULL)

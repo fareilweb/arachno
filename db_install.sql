@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2016 at 07:51 PM
+-- Generation Time: Aug 18, 2016 at 06:18 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -215,8 +215,6 @@ CREATE TABLE `acms_shippings` (
 --
 
 INSERT INTO `acms_shippings` (`shipping_id`, `shipping_name`, `shipping_cost`, `shipping_details`, `shipping_status`) VALUES
-(1, 'Corriere Nazionale', 7, NULL, 1),
-(2, 'Corriere Internazionale', 24, NULL, 1),
 (3, 'Posta Ordinaria', 3, NULL, 1),
 (4, 'Posta Prioritaria', 5, NULL, 1);
 

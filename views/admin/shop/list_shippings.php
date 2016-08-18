@@ -46,14 +46,15 @@
                                 <?=$ship_val->shipping_details;?>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-info">
-                                    <span class=""></span>
+                                <a href="<?=Config::$web_path;?>/Admin/editShipping/<?=$ship_val->shipping_id;?>" class="btn btn-info">
+                                    <span class="glyphicon glyphicon-edit"></span>
                                     <?=Lang::$edit;?>
-                                </button>
-                                <button type="button" class="btn btn-danger">
+                                </a>
+                                
+                                <a href="<?=Config::$web_path;?>/Admin/removeShipping/<?=$ship_val->shipping_id;?>/redirect/<?=$this->get['url'];?>" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove-sign"></span>
                                     <?=Lang::$delete;?>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach;?>

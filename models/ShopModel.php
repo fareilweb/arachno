@@ -186,6 +186,23 @@ class ShopModel extends Model
         return $data;
     }
     
+    // Delete A Shipping Method From DB
+    function deleteShipMethod($shipping_id=NULL)
+    {
+        if($shipping_id != NULL){
+            $query = "DELETE FROM #_shippings WHERE shipping_id = $shipping_id; ";
+            if(!$this->queryExec($query)){
+                return FALSE;
+            }else{
+                return TRUE;
+            }
+        }
+    }
+    
+    // Edit A Shipping Method
+    function updateShippingMethod(){}
+    
+    
      
     /* =========================================================================
      * Payment Methods
@@ -203,5 +220,21 @@ class ShopModel extends Model
         
         return $data;
     }
+    
+    // Delete A Pay Method From DB
+    function deletePayMethod($payment_id=NULL)
+    {
+        if($payment_id != NULL){
+            $query = "DELETE FROM #_payments WHERE payment_id = $payment_id; ";
+            if(!$this->queryExec($query)){
+                return FALSE;
+            }else{
+                return TRUE;
+            }
+        }
+    }
+    
+    // Edit A Pay Method
+    function updatePayMethod(){}
     
 }
