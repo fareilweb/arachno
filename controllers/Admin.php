@@ -397,16 +397,19 @@ class Admin extends Controller
     function saveShipping($args=NULL)
     {
         $this->args = $args;
+        $data = array();
+        parse_str($this->post['data'], $data);
+        
         $shipping_model = $this->getModel('ShippingModel');
-        if($this->post['shipping_id'] != ""){
-            $res = $shipping_model->update($this->post);
+        if($data['shipping_id'] != ""){
+            $res = $shipping_model->update($data);
         }else{
-            $res = $shipping_model->insert($this->post);
+            $res = $shipping_model->insert($data);
         }
         if($res!==FALSE){
-            echo Lang::$update_success . " [".$res."]";
+            echo json_encode(array("status"=>1, "insert_id"=>$shipping_model->mysqli->insert_id), TRUE);
         }else{
-            echo Lang::$update_fail;
+            echo json_encode(array("status"=>0, "message"=>"insert_fail"));
         }
     }
     

@@ -15,6 +15,8 @@ class Lang
     public static $warning = "Attenzione";
     public static $yes = "S&igrave;";
     public static $no = "No";
+    public static $operation_fail = "Operazione Fallita";
+    public static $operation_success = "Operazione Riuscita";
     public static $login = "Accesso";
     public static $register = "Registrazione";
     public static $access_denied = 'Accesso Negato';
