@@ -27,6 +27,7 @@ class Lang
     public static $go_to_site = "Vai al Sito";
     public static $id = "ID";
     public static $price = "Prezzo";
+    public static $cost = "Costo";
     public static $details = "Dettagli";
     public static $meta_desc = "Descrizione Meta Tag";
     public static $meta_keys = "Parole Chiave Meta Tag";

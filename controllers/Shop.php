@@ -138,7 +138,7 @@ class Shop extends Controller
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         $shop_model = $this->getModel('ShopModel');
-        $this->shippings = $shop_model->getShipMethods();
+        $this->shippings = $shop_model->getShippings();
         
         // Views
         $this->includeView('nav/main_menu', 'header-content');

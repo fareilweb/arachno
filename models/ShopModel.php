@@ -169,10 +169,11 @@ class ShopModel extends Model
         }
     }
     
+    
     /* =========================================================================
      * Shipping Methods
      * =========================================================================*/
-    function getShipMethods()
+    function getShippings()
     {
         $query = "SELECT * FROM #_shippings; ";
         $this->results = $this->queryExec($query);
@@ -186,17 +187,9 @@ class ShopModel extends Model
         return $data;
     }
     
-    // Delete A Shipping Method From DB
-    function deleteShipping($shipping_id=NULL)
+    function getShipping($shipping_id=NULL)
     {
-        if($shipping_id != NULL){
-            $query = "DELETE FROM #_shippings WHERE shipping_id = $shipping_id; ";
-            if(!$this->queryExec($query)){
-                return FALSE;
-            }else{
-                return TRUE;
-            }
-        }
+        
     }
     
     // Edit A Shipping Method
@@ -204,6 +197,7 @@ class ShopModel extends Model
     {
         
     }
+    
     
     
      

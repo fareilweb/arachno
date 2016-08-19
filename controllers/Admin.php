@@ -356,6 +356,10 @@ class Admin extends Controller
     }
  
     
+    /* ========================================================================= *
+     * Shippings
+     * ========================================================================= */
+    
     // Show Shippings
     function shippings($args=NULL)
     {
@@ -363,7 +367,7 @@ class Admin extends Controller
         
         // Data
         $shop_model = $this->getModel('ShopModel');
-        $this->ship_methods = $shop_model->getShipMethods();
+        $this->ship_methods = $shop_model->getShippings();
         
         // Views
         $this->includeView('admin/shop/list_shippings', 'main-content');
@@ -375,15 +379,35 @@ class Admin extends Controller
     function editShipping($args=NULL)
     {
         $this->args = $args;
+        $this->shipping = $this->getModel('ShippingModel');
         
-        if($args!==NULL && isset($args[0]) && is_numeric($args[0]))
-        { // Load Saved Data
-            
+        if($args!==NULL && isset($args[0]) && is_numeric($args[0])){ 
+            // Load Saved Data    
+            $this->shipping->load($args[0]);
+        }else{
+            $this->shipping = $this->getModel('ShippingModel');
         }
         
         // Views
         $this->includeView('admin/shop/edit_shipping', 'main-content');
         $this->index($args);
+    }
+    
+    // Save Shipping
+    function saveShipping($args=NULL)
+    {
+        $this->args = $args;
+        $shipping_model = $this->getModel('ShippingModel');
+        if($this->post['shipping_id'] != ""){
+            $res = $shipping_model->update($this->post);
+        }else{
+            $res = $shipping_model->insert($this->post);
+        }
+        if($res!==FALSE){
+            echo Lang::$update_success . " [".$res."]";
+        }else{
+            echo Lang::$update_fail;
+        }
     }
     
     // Remove Shipping
@@ -392,8 +416,8 @@ class Admin extends Controller
         $this->args = $args;
         if(isset($args[0]) && is_numeric($args[0]))
         {
-            $shop_model = $this->getModel('ShopModel');
-            $res = $shop_model->deleteShipMethod($args[0]);
+            $shipping_model = $this->getModel('ShippingModel');
+            $res = $shipping_model->delete($args[0]);
             if(!$res){
                 echo Lang::$delete_fail;
             }else{
@@ -411,6 +435,9 @@ class Admin extends Controller
     }
     
     
+    /* ========================================================================= *
+     * Payments
+     * ========================================================================= */
     
     // Show Payments
     function payments($args=NULL)
