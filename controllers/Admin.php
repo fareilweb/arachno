@@ -21,7 +21,7 @@ class Admin extends Controller
             // User Logged
             $user = $this->getModel('UserModel');
             $user->loadUserById( Session::get('user_data')['user_id'] );
-            // If User iS not Admin exit
+            // If User is not Admin exit
             if($user->user_type!=="admin"){
                 echo Lang::$access_denied;
                 exit();

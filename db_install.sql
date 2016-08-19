@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2016 at 06:18 PM
+-- Generation Time: Aug 20, 2016 at 12:33 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -215,8 +215,11 @@ CREATE TABLE `acms_shippings` (
 --
 
 INSERT INTO `acms_shippings` (`shipping_id`, `shipping_name`, `shipping_cost`, `shipping_details`, `shipping_status`) VALUES
-(3, 'Posta Ordinaria', 3, NULL, 1),
-(4, 'Posta Prioritaria', 5, NULL, 1);
+(3, 'Posta Ordinaria', 3, '', 1),
+(4, 'Posta Prioritaria', 5, NULL, 1),
+(5, 'Corriere Espresso', 7, 'Nessun Dettaglio', 1),
+(6, 'Spedizione USA', 17, 'Nessun Dettaglio', 1),
+(13, 'Test', 7, 'Ciao', 1);
 
 -- --------------------------------------------------------
 
@@ -487,7 +490,7 @@ ALTER TABLE `acms_payments`
 -- AUTO_INCREMENT for table `acms_shippings`
 --
 ALTER TABLE `acms_shippings`
-  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `acms_shop_categories`
 --
