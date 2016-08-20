@@ -43,10 +43,9 @@ class ShippingModel extends Model
     
     
     // Insert
-    public function insert($post)
+    public function insert($data)
     {
-        foreach ($post as $key => $val)
-        {
+        foreach($data as $key => $val){
             if(property_exists($this, $key)){
                 $this->$key = $val;
             }
@@ -70,14 +69,32 @@ class ShippingModel extends Model
         }else{
             return TRUE;
         }
-        
     }
     
     
     // Update
-    public function update($post)
+    public function update($data)
     {
-        
+        foreach($data as $key => $val){
+            if(property_exists($this, $key)){
+                $this->$key = $val;
+            }
+        }
+
+        $query = 
+            "UPDATE #_shippings 
+             SET " .
+                "shipping_name      = '" . $data['shipping_name'] . "'," . 
+                "shipping_cost      = '" . $data['shipping_cost'] . "'," . 
+                "shipping_details   = '" . $data['shipping_details'] . "'," . 
+                "shipping_status    = '" . $data['shipping_status'] . "'" .
+             "WHERE shipping_id = " . $data['shipping_id'] . "; ";
+
+        if(!$this->queryExec($query)){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
     }
     
     

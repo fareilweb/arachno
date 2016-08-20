@@ -364,7 +364,7 @@ class Admin extends Controller
     function shippings($args=NULL)
     {
         $this->args = $args;
-        
+   
         // Data
         $shop_model = $this->getModel('ShopModel');
         $this->ship_methods = $shop_model->getShippings();
@@ -403,13 +403,15 @@ class Admin extends Controller
         $shipping_model = $this->getModel('ShippingModel');
         if($data['shipping_id'] != ""){
             $res = $shipping_model->update($data);
+            $shipping_id = $data["shipping_id"];
         }else{
             $res = $shipping_model->insert($data);
+            $shipping_id = $shipping_model->mysqli->insert_id;
         }
         if($res!==FALSE){
-            echo json_encode(array("status"=>1, "insert_id"=>$shipping_model->mysqli->insert_id), TRUE);
+            echo json_encode(array("status"=>1, "message"=>"success", "shipping_id"=>$shipping_id), TRUE);
         }else{
-            echo json_encode(array("status"=>0, "message"=>"insert_fail"));
+            echo json_encode(array("status"=>0, "message"=>"fail", "shipping_id"=>$shipping_id), TRUE);
         }
     }
     
