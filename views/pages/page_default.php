@@ -138,7 +138,8 @@
         <!-- Debug -->
         <div class="debug">
             <?php
-               $this->debug($this);
+                $this->debug(Session::getSession());
+               //$this->debug($this);
             ?>
         </div>
 

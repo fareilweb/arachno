@@ -11,6 +11,7 @@ class Lang
     public static $language = "Lingua";
     public static $select_language = "Seleziona la lingua";
     public static $welcome = "Benvenuto";
+    public static $hello = "Ciao";
     public static $goodbye = "A Presto";
     public static $warning = "Attenzione";
     public static $yes = "S&igrave;";
@@ -18,6 +19,7 @@ class Lang
     public static $operation_fail = "Operazione Fallita";
     public static $operation_success = "Operazione Riuscita";
     public static $login = "Accesso";
+    public static $logout = "Uscita";
     public static $register = "Registrazione";
     public static $access_denied = 'Accesso Negato';
     public static $err_login = "Accesso Fallito";

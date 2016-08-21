@@ -5,14 +5,16 @@
     Utente autenticato 
 ============================================================================ -->
     <div class="form-group row">
-        <a href="<?=Config::$web_path?>/User/logout" class="btn btn-default col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <span class="glyphicon glyphicon-log-out"></span> Esci
-        </a>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <h3><?=Lang::$hello . " <strong><i>" . Session::get("user_data")["user_name"] . "</i></strong>";?></h3>
+            <a href="<?=Config::$web_path?>/User/logout" class="btn btn-default">
+                <span class="glyphicon glyphicon-log-out"></span> Esci
+            </a>
+        </div>
     </div>
-
-
     
 <?php else: ?>
+
 <!-- =========================================================================== 
     Utente non autenticato, mostra il form di accesso 
 ============================================================================ -->
