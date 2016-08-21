@@ -16,7 +16,7 @@
     <!-- Utente non autenticato (mostra il form di accesso) -->
 
     <form role="form" action="<?=Config::$web_path?>/User/loginProcess" method="post">
-    <!-- Hidden Data -->
+        <!-- Hidden Data -->
         <input 
             type="hidden" 
             name="redirect"
@@ -25,9 +25,10 @@
                     foreach($this->args as $key=>$value){ if($key>0){echo '/'.$value;} }
                 }?>"
         />
-    <!-- Data -->
+
+        <!-- Data -->
         <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-4 col-lg-3">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
                 <div class="form-group">
                     <label for="user_email">E-Mail</label>
                     <input type="email" id="user_email" name="user_email" class="form-control" placeholder="E-Mail"/>

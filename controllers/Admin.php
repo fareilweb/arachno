@@ -384,8 +384,6 @@ class Admin extends Controller
         if($args!==NULL && isset($args[0]) && is_numeric($args[0])){ 
             // Load Saved Data    
             $this->shipping->load($args[0]);
-        }else{
-            $this->shipping = $this->getModel('ShippingModel');
         }
         
         // Views
@@ -456,6 +454,68 @@ class Admin extends Controller
         // Views
         $this->includeView('admin/shop/list_payments', 'main-content');
         $this->index($args);
+    }
+
+    // Edit / Add Payment
+    function editPayment($args=NULL)
+    {
+        $this->args = $args;
+        $this->payment = $this->getModel('PaymentModel');
+        
+        if($args!==NULL && isset($args[0]) && is_numeric($args[0])){ 
+            // Load Saved Data    
+            $this->payment->load($args[0]);
+        }
+
+        // Views
+        $this->includeView('admin/shop/edit_payment', 'main-content');
+        $this->index($args);
+    }
+    
+    // Save Payment
+    function savePayment($args=NULL)
+    {
+        $this->args = $args;
+        $data = array();
+        parse_str($this->post['data'], $data);
+        
+        $payment_model = $this->getModel('PaymentModel');
+        if($data['payment_id'] != ""){
+            $res = $payment_model->update($data);
+            $payment_id = $data["payment_id"];
+        }else{
+            $res = $payment_model->insert($data);
+            $payment_id = $payment_model->mysqli->insert_id;
+        }
+        if($res!==FALSE){
+            echo json_encode(array("status"=>1, "message"=>"success", "payment_id"=>$payment_id), TRUE);
+        }else{
+            echo json_encode(array("status"=>0, "message"=>"fail", "payment_id"=>$payment_id), TRUE);
+        }
+    }
+    
+    // Remove Payment
+    function removePayment($args=NULL)
+    {
+        $this->args = $args;
+        if(isset($args[0]) && is_numeric($args[0]))
+        {
+            $payment_model = $this->getModel('PaymentModel');
+            $res = $payment_model->delete($args[0]);
+            if(!$res){
+                echo Lang::$delete_fail;
+            }else{
+                $redirect = array_search("redirect", $args);
+                if($redirect!==FALSE){
+                    $url = Config::$web_path;
+                    for($i=$redirect+1; $i<count($args); $i++){
+                        $url.= "/" . $args[$i];
+                    }
+                    header("location: $url");
+                }
+            }
+        }
+        
     }
     
 }
