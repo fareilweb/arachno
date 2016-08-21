@@ -113,6 +113,7 @@ class Shop extends Controller
      * Buy Process
      * ========================================================================= */
     
+    // Select Payment Method
     function payment($args=NULL)
     {
         $this->args = $args;
@@ -129,7 +130,7 @@ class Shop extends Controller
         $this->getView('pages/page_default');
     }
     
-    
+    // Select Shipping Method
     function shipping($args=NULL)
     {
         $this->args = $args;
@@ -145,8 +146,24 @@ class Shop extends Controller
         $this->includeView('shop/shipping', 'main-content');
         $this->getView('pages/page_default');
     }
-    
-    
+
+    // Cart Review
+    function review($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+
+        // Get Data
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        
+        // Views
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->includeView('shop/review', 'main-content');        
+        $this->getView('pages/page_default');
+        
+    }
+
+    // Show Cart
     function cart($args=NULL)
     {
         $this->args = $args;
@@ -155,16 +172,75 @@ class Shop extends Controller
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
-        
         // Views
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/cart', 'main-content');        
         $this->getView('pages/page_default');
         
-        //Session::destroy();
-        
+        //Session::destroy();        
     }
 
+    // Set Selected Shipping Method To Cart
+    function setShipping($args=NULL)
+    {
+        $this->args = $args;
+
+        if(isset($this->post['shipping_id']))
+        { 
+            $this->cart = Session::get("cart");
+            if(!$this->cart)
+            {
+                // No Cart Found
+                echo json_encode(["status"=>FALSE, "message"=>"err_no_cart_found"], TRUE);
+            }else{
+                $this->cart->shipping_id = $this->post['shipping_id'];
+                if(!Session::set("cart", $this->cart))
+                {
+                    // Cart Saving Error
+                    echo json_encode(["status"=>FALSE, "message"=>"err_no_cart_saving"], TRUE);
+                }else{
+                    // OK!
+                    echo json_encode(["status"=>TRUE, "message"=>"shipping_saved"], TRUE);
+                }
+            }
+        }else{
+            // No Shipping Data Sended
+            echo json_encode(["status"=>FALSE, "message"=>"err_no_shipping_data"], TRUE);
+        }
+    }
+
+    
+    
+    // Set Selected Payment Method To Cart
+    function setPayment($args=NULL)
+    {
+        $this->args = $args;
+
+        if(isset($this->post['payment_id']))
+        { 
+            $this->cart = Session::get("cart");
+            if(!$this->cart)
+            {
+                // No Cart Found
+                echo json_encode(["status"=>FALSE, "message"=>"err_no_cart_found"], TRUE);
+            }else{
+                $this->cart->payment_id = $this->post['payment_id'];
+                if(!Session::set("cart", $this->cart))
+                {
+                    // Cart Saving Error
+                    echo json_encode(["status"=>FALSE, "message"=>"err_no_cart_saving"], TRUE);
+                }else{
+                    // OK!
+                    echo json_encode(["status"=>TRUE, "message"=>"payment_saved"], TRUE);
+                }
+            }
+        }else{
+            // No Shipping Data Sended
+            echo json_encode(["status"=>FALSE, "message"=>"err_no_payment_data"], TRUE);
+        }
+    }
+
+    // Add An Item To Aart
     function addToCart($args=NULL)
     {
         $this->args = $args;
@@ -174,6 +250,8 @@ class Shop extends Controller
         if(!$this->cart){
             $this->cart = new stdClass;
             $this->cart->items = array();
+            $this->cart->shipping_id = NULL;
+            $this->cart->payment_id = NULL;
         }
         
         // Get Item Data
@@ -207,7 +285,7 @@ class Shop extends Controller
         
     }
     
-    
+    // Remove An Item To Cart
     function removeFromCart($args=NULL)
     {
         $this->args = $args;
@@ -235,6 +313,7 @@ class Shop extends Controller
         }
     }
     
+    // Update Quantity Of An Item To The Cart
     function updateQuantity($args=NULL)
     {
         $this->args = $args;

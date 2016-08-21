@@ -14,9 +14,14 @@ class Lang
     public static $hello = "Ciao";
     public static $goodbye = "A Presto";
     public static $warning = "Attenzione";
+    public static $confirm_and_pay = "Conferma e Paga";
+    public static $error = "Errore";
     public static $select = "Seleziona";
     public static $yes = "S&igrave;";
     public static $no = "No";
+    public static $review = "Riepilogo";
+    public static $purchase = "Acquisto";
+    public static $continue = "Continua";
     public static $operation_fail = "Operazione Fallita";
     public static $operation_success = "Operazione Riuscita";
     public static $login = "Accesso";
@@ -48,6 +53,7 @@ class Lang
     public static $select_images = "Seleziona Immagini";
     public static $almost_done = "Ci Sei Quasi";
     public static $save_before = "&Egrave; Necessario Salvare Prima di Proseguire";
+    public static $select_before = "&Egrave; Necessario Selezionare un Opzione Prima di Proseguire";
     public static $preview = "Anteprima";    
     public static $add_item = "Aggiungi Prodotto";
     public static $edit_item = "Aggiungi/Modifica Oggetto";
@@ -68,6 +74,7 @@ class Lang
     public static $available = "Disponibile";
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
+    public static $shipping = "Spedizione";
     public static $shippings = "Spedizioni";
     public static $edit_shipping = "Modifica/Aggiungi Spedizione";
     public static $payment = "Pagamento";

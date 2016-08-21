@@ -1,8 +1,15 @@
-<div class="list_categories">
+<div class="container-fluid list_categories">
     
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h2><?=Lang::$categories?></h2>
+            <h2>
+                <span class="glyphicon glyphicon-barcode"></span>
+                <?=Lang::$categories?>
+                <a href="<?=Config::$web_path;?>/Admin/editCategory" class="btn btn-info">
+                    <span class="glyphicon glyphicon-plus"></span> 
+                    <?=Lang::$add;?>
+                </a>
+            </h2>
         </div>
     </div><hr/>
     
@@ -28,10 +35,7 @@
         </div>
         <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2">
             <div class="form-group">
-                <a href="<?=Config::$web_path;?>/Admin/editCategory" class="btn btn-default form-control">
-                    <span class="glyphicon glyphicon-plus"></span> 
-                    <?=Lang::$add_category?>
-                </a>
+                
             </div>
         </div>
     </div>

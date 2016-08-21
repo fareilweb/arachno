@@ -1,12 +1,13 @@
 <div class="container-fluid list_payments">
     
     <h2>
+        <span class="glyphicon glyphicon-euro"></span>
         <?=Lang::$payments;?>
         <a href="<?=Config::$web_path;?>/Admin/editPayment" class="btn btn-info">
             <span class="glyphicon glyphicon-plus"></span>
             <?=Lang::$add;?>
         </a>
-    </h2>
+    </h2><hr/>
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
