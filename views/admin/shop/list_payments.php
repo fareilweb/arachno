@@ -2,7 +2,7 @@
     
     <h2>
         <?=Lang::$payments;?>
-        <a href="<?=Config::$web_path;?>/Admin/editPayments" class="btn btn-info">
+        <a href="<?=Config::$web_path;?>/Admin/editPayment" class="btn btn-info">
             <span class="glyphicon glyphicon-plus"></span>
             <?=Lang::$add;?>
         </a>
@@ -45,7 +45,13 @@
                                 <?=$pay_val->payment_cost;?>
                             </td>
                             <td>
-                                <?=$pay_val->payment_status;?>
+                                <?php if($pay_val->payment_status):?>
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    <?=Lang::$available;?>
+                                <?php else:?>
+                                    <span class="glyphicon glyphicon-ban-circle"></span>
+                                    <?=Lang::$unavailable;?>
+                                <?php endif;?>
                             </td>
                             <td>
                                 <?=$pay_val->payment_details;?>

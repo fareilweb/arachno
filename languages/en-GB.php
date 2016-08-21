@@ -14,6 +14,7 @@ class Lang
     public static $hello = "Ciao";
     public static $goodbye = "A Presto";
     public static $warning = "Attenzione";
+    public static $select = "Seleziona";
     public static $yes = "S&igrave;";
     public static $no = "No";
     public static $operation_fail = "Operazione Fallita";
@@ -69,6 +70,7 @@ class Lang
     public static $name = "Nome";
     public static $shippings = "Spedizioni";
     public static $edit_shipping = "Modifica/Aggiungi Spedizione";
+    public static $payment = "Pagamento";
     public static $payments = "Pagamenti";
     public static $edit_payment = "Modifica/Aggiungi Pagamento";
     public static $products = "Prodotti";

@@ -46,7 +46,13 @@
                                 <?=$ship_val->shipping_cost;?>
                             </td>
                             <td>
-                                <?=$ship_val->shipping_status;?>
+                                <?php if($ship_val->shipping_status):?>
+                                    <span class="glyphicon glyphicon-ok-circle"></span>
+                                    <?=Lang::$available;?>
+                                <?php else:?>
+                                    <span class="glyphicon glyphicon-ban-circle"></span>
+                                    <?=Lang::$unavailable;?>
+                                <?php endif;?>
                             </td>
                             <td>
                                 <?=$ship_val->shipping_details;?>
