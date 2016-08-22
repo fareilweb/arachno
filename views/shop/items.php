@@ -1,7 +1,8 @@
-<div class="items">
+<div class="container-fluid items">
     
-    <h1><?=Lang::$products?></h1>
-    
+    <h2><?=Lang::$products?></h2>
+    <hr/>
+
     <div class="items_list">
         <div class="row">
         <?php if(count($this->items) > 0):?>
@@ -22,7 +23,7 @@
                             
                             <div class="current_item_image">
                                 <?php foreach($curr_item->item_images as $curr_img_key => $curr_img_obj):?>
-                                    <?php if($curr_img_obj->is_main == TRUE):?>
+                                    <?php if($curr_img_obj->is_main):?>
                                         <img src="<?=Config::$web_path . $curr_item->item_images[$curr_img_key]->image_src;?>" alt="<?=$curr_item->item_images[$curr_img_key]->image_alt;?>" title="<?=$curr_item->item_images[$curr_img_key]->image_title;?>" />
                                     <?php endif;?>
                                 <?php endforeach;?>

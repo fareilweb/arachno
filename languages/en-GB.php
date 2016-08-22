@@ -31,6 +31,7 @@ class Lang
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";
     public static $add = "Aggiungi";
+    public static $remove = "Rimuovi";
     public static $upload = "Carica";
     public static $err_file_size = "Il File Eccede la Dimensione Massima";
     public static $err_file_type = "Il Formato del File Non &egrave; Permesso";

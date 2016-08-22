@@ -62,6 +62,14 @@
                         <?php else: ?>
                             <li>
                                 <p style="margin: 18px 8px auto 8px;">
+                                    <a href="<?=Config::$web_path;?>/Shop/cart">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        <?=Lang::$cart;?>
+                                    </a>
+                                </p>
+                            </li>
+                            <li>
+                                <p style="margin: 18px 8px auto 8px;">
                                     <a href="<?=Config::$web_path;?>/User/login/redirect/User/login">
                                         <span class="glyphicon glyphicon-log-in"></span> 
                                         <?=Lang::$login;?>

@@ -1,6 +1,7 @@
 /*==============================================================================*
- * Categories List View (public)
+ * Categories List View
  *==============================================================================*/
+
 .categories{
     
 }
@@ -30,9 +31,11 @@
 
 
 
+
 /*==============================================================================*
- * Items List View (public)
+ * Items List View
  *==============================================================================*/
+
 .items{}
 .items .items_list{}
 .items .current_item_wrapper{}
@@ -66,6 +69,8 @@
 }
 .items .current_item_image img{
     width: auto;
+    max-width: 256px;
+    height: auto;
     max-height: 256px;
     box-shadow: 0px 0px 2px #ccc;
 }
@@ -75,9 +80,12 @@
 }
 
 
+
+
 /*==============================================================================*
- * Item View (public)
+ * Item View
  *==============================================================================*/
+
 .item{
     margin: 12px 6% 12px 6%;
 }
@@ -98,10 +106,9 @@
 }
 /* Main Item Image */
 .item .item_main_image{
-    width: 90%;
-    margin: 5%;
-    padding: 5%;
-    box-shadow: 0px 0px 12px #222; 
+    width: 80%;
+    margin: 0 20%;
+    padding: 0 10% 0 10%;
 }
 .item .item_main_image img{
     width: 100%;
@@ -109,12 +116,12 @@
 /* Item Image */
 .item .item_image_wrapper{
     width: 100%;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 .item .item_image{
-    margin: 6px;
-    padding: 6px;
+    margin: 0px;
+    padding: 0px;
     text-align: center;
 }
 .item .item_image img{
@@ -133,7 +140,6 @@
  *==============================================================================*/
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
-
 
 
 /* Small Devices/Extra Small, Tablets, Phones ==================================*/
