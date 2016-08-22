@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2016 at 12:33 AM
+-- Generation Time: Aug 22, 2016 at 06:52 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -173,17 +173,18 @@ CREATE TABLE `acms_payments` (
   `payment_id` int(11) NOT NULL,
   `payment_name` varchar(80) DEFAULT NULL,
   `payment_cost` float DEFAULT NULL,
-  `payment_details` text
+  `payment_details` text,
+  `payment_status` tinyint(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acms_payments`
 --
 
-INSERT INTO `acms_payments` (`payment_id`, `payment_name`, `payment_cost`, `payment_details`) VALUES
-(1, 'PayPal', 3, 'NULL'),
-(2, 'PostePay', 0, 'NULL'),
-(3, 'Bonifico', 0, 'NULL');
+INSERT INTO `acms_payments` (`payment_id`, `payment_name`, `payment_cost`, `payment_details`, `payment_status`) VALUES
+(1, 'PayPal', 3, 'Nessuno Dettaglio', 1),
+(2, 'PostePay', 1, 'Nessuno Dettaglio', 1),
+(3, 'Bonifico', 0, 'Nessuno Dettaglio', 1);
 
 -- --------------------------------------------------------
 
@@ -215,11 +216,10 @@ CREATE TABLE `acms_shippings` (
 --
 
 INSERT INTO `acms_shippings` (`shipping_id`, `shipping_name`, `shipping_cost`, `shipping_details`, `shipping_status`) VALUES
-(3, 'Posta Ordinaria', 3, '', 1),
-(4, 'Posta Prioritaria', 5, NULL, 1),
+(3, 'Posta Ordinaria', 3, 'Nessun Dettaglio', 0),
+(4, 'Posta Prioritaria', 5, 'Nessun Dettaglio', 1),
 (5, 'Corriere Espresso', 7, 'Nessun Dettaglio', 1),
-(6, 'Spedizione USA', 17, 'Nessun Dettaglio', 1),
-(13, 'Test', 7, 'Ciao', 1);
+(6, 'Spedizione USA', 17, 'Nessun Dettaglio', 1);
 
 -- --------------------------------------------------------
 
@@ -490,7 +490,7 @@ ALTER TABLE `acms_payments`
 -- AUTO_INCREMENT for table `acms_shippings`
 --
 ALTER TABLE `acms_shippings`
-  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `acms_shop_categories`
 --
