@@ -106,12 +106,10 @@
 }
 /* Main Item Image */
 .item .item_main_image{
-    width: 80%;
-    margin: 0 20%;
-    padding: 0 10% 0 10%;
+    text-align: center;
 }
 .item .item_main_image img{
-    width: 100%;
+    width: 70%;
 }
 /* Item Image */
 .item .item_image_wrapper{

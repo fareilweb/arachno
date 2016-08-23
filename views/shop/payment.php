@@ -1,8 +1,8 @@
 <div class="payment container-fluid">
     
-    <h3><?=Lang::$select;?> <?=Lang::$payment;?></h3>
+    <h2><?=Lang::$select;?> <strong><?=Lang::$payment;?></strong></h2>
 
-    <?php foreach($this->payments as $pay_val):?>
+    <?php foreach($this->payments as $pay_val): ?>
         <?php if($pay_val->payment_status):?>
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

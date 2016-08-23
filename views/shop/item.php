@@ -10,12 +10,18 @@
                 
                 <?php if($this->item->item_title): ?>
                 <div class="item_title">
-                    <h3><?=$this->item->item_title;?></h3>
-                </div>
+                    <h2><?=$this->item->item_title;?></h2>
+                </div><hr/>
                 <?php endif;?>
                 
-                <hr/>
-
+                <div class="buy_item text-right">    
+                    <a href="<?=Config::$web_path;?>/Shop/addToCart/<?=$this->item->item_id?>" class="btn btn-info">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <?=Lang::$add_to_cart;?>
+                    </a>
+                </div>
+                <br/>
+                
                 <table>
                     <tbody>
                         <?php if($this->item->item_id): ?>
@@ -89,15 +95,6 @@
                         <?php endif;?>
                     </tbody>
                 </table>
-
-                <br/>
-
-                <div class="buy_item">    
-                    <a href="<?=Config::$web_path;?>/Shop/addToCart/<?=$this->item->item_id?>" class="btn btn-info">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                        <?=Lang::$add_to_cart;?>
-                    </a>
-                </div>
             </div>
         
         <!-- ===============================================================

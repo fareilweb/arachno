@@ -3,6 +3,10 @@
     <h2>
         <span class="glyphicon glyphicon-pushpin"></span>
         <strong><?=Lang::$review;?></strong> <?=Lang::$purchase;?>
+        <a href="" class="btn btn-lg btn-info">
+            <span class="glyphicon glyphicon-ok"></span>
+            <?=Lang::$confirm_and_pay;?>
+        </a>
     </h2>
     
     <hr/>
@@ -54,16 +58,5 @@
             //$this->cart->shipping_id
             //$this->cart->payment_id
         ?>
-
-    <hr/>
-    
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a href="" class="btn btn-info">
-                <span class="glyphicon glyphicon-ok"></span>
-                <?=Lang::$confirm_and_pay;?>
-            </a>
-        </div>
-    </div>
 
 </div>

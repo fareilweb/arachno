@@ -1,6 +1,8 @@
 <div class="categories">
     
-    <h1><?=Lang::$categories?></h1>
+    <h2>
+        <?=Lang::$categories?>
+    </h2>
     
     <div class="categories_list">
         <div class="row">
