@@ -29,7 +29,46 @@ class UserModel extends Model
         }
         return $this;
     }
+
     
+    // Add
+    function add($data=NULL)
+    {
+        $fields = "";
+        $values = "";
+        $count = 0;
+        foreach($data as $key => $val){
+            if(property_exists($this, $key) && $val){
+                $this->$key = $val;
+                $fields .= "$key ";
+                $values .= "'$val' ";
+
+                if($count < count($data)){
+                    $fields .= ", ";
+                    $values .= ", ";
+                }
+
+                $count++;
+            }   
+        }
+        $query = "INSERT INTO #_users ($fields) VALUES ($values);";
+        if(!$this->queryExec($query)){
+            return FALSE;
+        }else{
+            return $this->mysqli->insert_id;
+        }
+    }
+
+    // Update
+    function update($data=NULL)
+    {
+        foreach($data as $key => $val){
+            if(property_exists($this, $key) && $val){
+                $this->$key = $val;
+            }
+        }
+
+    }
     
     // Load User Data By ID ====================================================
     public function loadUserById($user_id=NULL)

@@ -3,14 +3,14 @@
         <span class="glyphicon glyphicon-pushpin"></span>
         <strong><?=Lang::$review;?></strong> <?=Lang::$purchase;?>
 
-        <a href="" class="btn btn-lg btn-info">
+        <a href="<?=Config::$web_path;?>/Shop/buy" class="btn btn-lg btn-info">
             <span class="glyphicon glyphicon-ok"></span>
             <?=Lang::$confirm_and_pay;?>
         </a>
     </h2>
 
     <div class="row">
-        <h3><?=Lang::$products;?></h3>
+        <h3><strong><?=Lang::$products;?></strong></h3>
         <hr/>
         
         <?php foreach($this->cart->items as $item):?>
@@ -51,19 +51,21 @@
     
     <br/>
     <div class="row">   
-        <br/><h3><?=Lang::$shipping;?></h3>
+        <br/><h3><strong><?=Lang::$shipping;?></strong></h3>
         <hr/>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <!--$this->cart->shipping_id-->
+            <h4><?=$this->shipping->shipping_name;?></h4>
         </div>
     </div>
 
     <br/>
     <div class="row">
-        <br/><h3><?=Lang::$payment;?></h3>
+        <br/><h3><strong><?=Lang::$payment;?></strong></h3>
         <hr/>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <!--$this->cart->payment_id-->
+            <h4><?=$this->payment->payment_name;?></h4>
         </div>
     </div>
 

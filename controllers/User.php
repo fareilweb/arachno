@@ -102,8 +102,13 @@ class User extends Controller
     public function registerProcess($args)
     {
         $this->args = $args;
-        $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        
+        $user_model = $this->getModel('UserModel');
+        $res = $user_model->add($this->post);
+        if(!$res){
+            $this->notice = Lang::$insert_fail;
+        }else{
+            $this->notice = Lang::$insert_success;
+        }
     }
     
     

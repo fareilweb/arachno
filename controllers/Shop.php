@@ -151,16 +151,45 @@ class Shop extends Controller
     function review($args=NULL)
     {
         $this->args = $args;
-        $this->cart = Session::get("cart");
 
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        
+        $this->cart = Session::get("cart");
+        $this->shipping = $this->getModel('ShippingModel');
+        $this->shipping->load($this->cart->shipping_id);
+        $this->payment = $this->getModel('PaymentModel');
+        $this->payment->load($this->cart->payment_id);
+
         // Views
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/review', 'main-content');        
         $this->getView('pages/page_default');
         
+    }
+
+
+    // Store Sale
+    function storeSale($args=NULL)
+    {
+        $this->args = $args;
+
+    }
+
+    // Payment 
+    function pay($args=NULL)
+    {
+        $this->args = $args;
+
+    }
+
+    // Buy
+    function buy($args=NULL)
+    {
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        if($this->cart){
+
+        }
     }
 
     // Show Cart

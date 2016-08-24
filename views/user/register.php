@@ -1,19 +1,14 @@
 <div class="registration">
     <form role="form" action="<?=Config::$web_path?>/User/registerProcess" method="post">
-    <!-- Hidden Data ========================================================= -->
-        <input 
-            type="hidden" 
-            name="redirect" 
+        <!-- Hidden Data ========================================================= -->
+        <input type="hidden" name="redirect" 
             value="<?php 
                 if(isset($data->args[0]) && $data->args[0]=='redirect'){
                     foreach($data->args as $key=>$value){
-                        if($key>0){
-                            echo '/'.$value;
-                        }
+                        if($key>0){ echo '/'.$value; }
                     }
-                }?>"
-        />
-    <!-- Data ================================================================ -->
+                }?>" />
+        <!-- Data ================================================================ -->
         <div class="form-group">
             <label for="user_name">Nome</label>
             <input type="text" id="user_name" name="user_name" class="form-control" placeholder="Nome" />
@@ -35,7 +30,7 @@
             <input type="password" id="user_password" name="user_password" class="form-control" placeholder="Password"/>
         </div>
         <div class="form-group">
-            <input type="submit" value="Invia Registrazione" class="form-control btn-default" />
+            <button type="submit" class="form-control btn-default">Invia Registrazione</button>
         </div>
     </form>
 </div>
