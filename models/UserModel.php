@@ -42,14 +42,12 @@ class UserModel extends Model
                 $this->$key = $val;
                 $fields .= "$key ";
                 $values .= "'$val' ";
-
-                if($count < count($data)){
+                if($count < count($data)-1){
                     $fields .= ", ";
                     $values .= ", ";
                 }
-
-                $count++;
-            }   
+            }
+            $count++;
         }
         $query = "INSERT INTO #_users ($fields) VALUES ($values);";
         if(!$this->queryExec($query)){
