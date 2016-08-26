@@ -20,7 +20,13 @@ a{
     font-size: 14pt;
     text-align: center;
 }
-
+#notice.error{
+    background: red;
+}
+#notice.warning{
+    background: yellow;
+    color: #222;
+}
 
 
 /*=============================================================================*

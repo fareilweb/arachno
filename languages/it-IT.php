@@ -27,6 +27,8 @@ class Lang
     public static $login = "Accesso";
     public static $logout = "Uscita";
     public static $register = "Registrazione";
+    public static $activation = "Attivazione";
+    public static $err_activation_email = "Invio E-Mail di Attivazione Fallito.";
     public static $access_denied = 'Accesso Negato';
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";

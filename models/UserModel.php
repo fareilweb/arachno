@@ -31,17 +31,32 @@ class UserModel extends Model
     }
 
     
-    // Add
-    function add($data=NULL)
+    // Insert a New User
+    function insert($data=NULL)
     {
-        $fields = "";
-        $values = "";
+        // Dependencies
+        require_once(Config::$abs_path . '/libs/php/Auth.php');
+        $lang_id = Lang::$lang_id; // Current Selected Language
+                
+        $fields = "user_activation, 
+                   user_type, 
+                   fk_lang_id, ";
+        $values = "'0', 
+                   'registered', 
+                   '$lang_id', ";
+        
         $count = 0;
         foreach($data as $key => $val){
             if(property_exists($this, $key) && $val){
                 $this->$key = $val;
                 $fields .= "$key ";
-                $values .= "'$val' ";
+                if($key === 'user_password'){
+                    $hash = Auth::hashPassword($val);
+                    $values .= "'$hash' ";
+                }else{
+                    $values .= "'$val' ";
+                }
+                
                 if($count < count($data)-1){
                     $fields .= ", ";
                     $values .= ", ";
@@ -50,6 +65,7 @@ class UserModel extends Model
             $count++;
         }
         $query = "INSERT INTO #_users ($fields) VALUES ($values);";
+        
         if(!$this->queryExec($query)){
             return FALSE;
         }else{
