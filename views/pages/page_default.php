@@ -55,7 +55,7 @@
         </div>
 
         <!-- Notifications Area -->
-        <div id="notice" <?php if(isset($this->error)):?>class="error"<?php endif;?>>
+        <div id="notice" <?php if(isset($this->error)):?>class="error"<?php elseif(isset($this->warning)):?>class="warning"<?php endif;?>>
             <?=isset($this->notice) ? $this->notice : '';?>
         </div>
 

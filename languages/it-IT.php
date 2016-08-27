@@ -28,7 +28,12 @@ class Lang
     public static $logout = "Uscita";
     public static $register = "Registrazione";
     public static $activation = "Attivazione";
-    public static $complete_activation = "Completa Attivazione Account";
+    public static $activation_failed = "Attivazione Fallita";
+    public static $activation_success = "Attivazione Riuscita";
+    public static $account_still_not_active = "Account non Ancora Attivato";
+    public static $activation_email_subject = "Completa Attivazione Account";
+    public static $check_email_to_complete_activation = "Controlla la Posta Elettronica e Segui le istruzioni per Completare L'Attivazione";
+    public static $user_already_registered = "L'E-Mail Inserita &egrave; gi&agrave; Registrata. Completa L'Attivazione o Accedi.";
     public static $err_activation_email = "Invio E-Mail di Attivazione Fallito.";
     public static $access_denied = 'Accesso Negato';
     public static $err_login = "Accesso Fallito";

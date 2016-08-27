@@ -77,9 +77,9 @@ class Database
 
         if ($this->results->num_rows === 0) {
             //echo "<b>Database() say: </b>no query results<br>";
-            return 0;
+            $data = FALSE;
         }
-
+        
         $data = $this->results->fetch_assoc();
         
         //$this->cleanAndClose();

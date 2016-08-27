@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2016 at 06:52 PM
+-- Generation Time: Aug 27, 2016 at 04:19 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -345,7 +345,17 @@ CREATE TABLE `acms_users` (
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
 (1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
-(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
+(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(27, '2016-08-26 17:01:29', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(26, '2016-08-26 17:01:21', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(25, '2016-08-26 16:53:37', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(28, '2016-08-26 17:02:31', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(29, '2016-08-26 17:03:03', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(30, '2016-08-26 17:03:19', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(31, '2016-08-26 17:04:01', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(32, '2016-08-26 17:04:19', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(33, '2016-08-26 17:04:45', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(34, '2016-08-26 17:05:19', 0, NULL, 'registered', 'Luca', 'Cilfone', 'info@fareilweb.com', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
 -- Indexes for dumped tables
@@ -510,7 +520,7 @@ ALTER TABLE `acms_shop_items_images`
 -- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- Constraints for dumped tables
 --
