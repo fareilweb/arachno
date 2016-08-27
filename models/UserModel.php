@@ -34,16 +34,17 @@ class UserModel extends Model
     // Insert a New User
     function insert($data=NULL)
     {
-        // Dependencies
         require_once(Config::$abs_path . '/libs/php/Auth.php');
         $lang_id = Lang::$lang_id; // Current Selected Language
-                
+        $hash_user_activation = Auth::generateRandomHash();
         $fields = "user_activation, 
                    user_type, 
-                   fk_lang_id, ";
+                   fk_lang_id, 
+                   hash_user_activation, ";
         $values = "'0', 
                    'registered', 
-                   '$lang_id', ";
+                   '$lang_id', 
+                   '$hash_user_activation', ";
         
         $count = 0;
         foreach($data as $key => $val){

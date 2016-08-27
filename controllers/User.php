@@ -109,6 +109,9 @@ class User extends Controller
     {
         $this->args = $args;
         $user_model = $this->getModel('UserModel');
+
+        // Check If User Already Exist
+        
         $insert_res_id = $user_model->insert($this->post);
         
         if(!$insert_res_id){
@@ -143,24 +146,29 @@ class User extends Controller
     {
         if($user_id!==NULL && $clear_password!==NULL){
             require_once(Config::$abs_path. '/libs/php/PHPMailer/PHPMailerAutoload.php');
-            
+            $user = $this->getModel('UserModel');
+            $user->loadUserById($user_id);
+
             //Create a new PHPMailer instance
             $mail = new PHPMailer;
             // Set PHPMailer to use the sendmail transport
             $mail->isSendmail();
             //Set who the message is to be sent from
-            $mail->setFrom('from@example.com', 'First Last');
+            $mail->setFrom(Config::$owner_email, Config::$site_name);
             //Set an alternative reply-to address
-            $mail->addReplyTo('replyto@example.com', 'First Last');
+            $mail->addReplyTo(Config::$owner_email, Config::$site_name);
             //Set who the message is to be sent to
-            $mail->addAddress('whoto@example.com', 'John Doe');
+            $mail->addAddress($user->user_email, $user->user_name . ' ' . $user->user_surname);
             //Set the subject line
-            $mail->Subject = 'PHPMailer sendmail test';
+            $mail->Subject = Lang::$complete_activation;
             //Read an HTML message body from an external file, convert referenced images to embedded,
             //convert HTML into a basic plain-text alternative body
-            $mail->msgHTML(file_get_contents('contents.html'), dirname(__FILE__));
+            $mail->msgHTML(
+                file_get_contents(Config::$abs_path.'/themes/emails/user_activation_'.Lang::$lang_internal_code.'.html'), 
+                Config::$abs_path.'/themes/emails/'
+            );
             //Replace the plain text body with one created manually
-            $mail->AltBody = 'This is a plain-text message body';
+            $mail->AltBody = '';
             //Attach an image file
             //$mail->addAttachment('images/phpmailer_mini.png');
 

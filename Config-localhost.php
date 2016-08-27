@@ -12,5 +12,6 @@ class Config
     public static $theme 	= 'default';
     public static $default_lang = 'it-IT';//'en-GB';
     public static $owner_email	= 'user@provider.ext';
+    public static $site_name = 'www.nomesito.dom';
     public static $paypal_fee 	= 3.5;
 }
