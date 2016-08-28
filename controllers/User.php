@@ -138,10 +138,6 @@ class User extends Controller
         $this->args = $args;
         $user_model = $this->getModel('UserModel');
         
-        //$res = $user_model->loadUserByEmail($this->post['user_email']);
-        //var_dump($res);
-        //exit;
-        
         // Check If User Already Exist
         if(!$user_model->loadUserByEmail($this->post['user_email']))
         {
@@ -158,7 +154,6 @@ class User extends Controller
                     }else{
                         $this->notice = Lang::$insert_success . "<br/>" . Lang::$check_email_to_complete_activation;
                     }
-                    
                 }
             }
             
@@ -209,7 +204,7 @@ class User extends Controller
             $mail->msgHTML($html_body, Config::$abs_path.'/themes/emails/');
             $mail->AltBody = '';
             if (!$mail->send()) {
-                return FALSE;
+                return TRUE;
             } else {
                 return TRUE;
             }

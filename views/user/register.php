@@ -7,8 +7,6 @@
             $red_url = Config::$web_path;
             $red_key = array_search('redirect', $this->args);
             
-            echo $red_key;
-            
             if($red_key !== FALSE){
                 for($i=($red_key+1); $i < count($this->args); $i++){
                     $red_url.= '/' . $this->args[$i];
