@@ -10,6 +10,7 @@ class User extends Controller
         // Meniu Data
         $menu_model = $this->getModel('MenuModel');
         $this->menus["main_menu"]=$menu_model->selectMenuDataById(1);
+        
         // Views
         $this->includeView('nav/main_menu', 'header-content');
         $this->getView('pages/page_default');
@@ -22,16 +23,11 @@ class User extends Controller
         // Get Argouments
         $this->args = $args;
         
-        // Get Needed Data
-        $menu_model = $this->getModel('MenuModel');
-        $this->menus["main_menu"] = $menu_model->selectMenuDataById(1);
-        
         // Views Includes
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('user/login', 'main-content');        
         
-        // Page View
-        $this->getView('pages/page_default');
+        $this->index($args);
     }
     
     
@@ -157,7 +153,12 @@ class User extends Controller
                     $this->error = TRUE;
                     $this->notice = Lang::$err_activation_email . ' ' . Config::$site_name;
                 }else{
-                    $this->notice = Lang::$insert_success . "<br/>" . Lang::$check_email_to_complete_activation;
+                    if($this->post['redirect']){
+                        header('location: ' . $this->post['redirect']);
+                    }else{
+                        $this->notice = Lang::$insert_success . "<br/>" . Lang::$check_email_to_complete_activation;
+                    }
+                    
                 }
             }
             

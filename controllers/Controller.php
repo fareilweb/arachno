@@ -10,18 +10,23 @@ class Controller
     public $includes = array("positions"=>array());
     public $menus = array();
     public $languages = array();
-    public $current_url;
+    public $current_url = NULL;
+    public $user = NULL;
     public $post = array();
     public $get = array();
     
     // Constructor
     function __construct()
     {
-        $this->current_url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        $this->current_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
         $this->request_uri = $_SERVER['REQUEST_URI'];
         $this->post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $this->get = filter_input_array(INPUT_GET, FILTER_SANITIZE_STRING);
+        if(Session::get('auth')){
+            $this->user = Session::get('user_data');
+        }
     }
+    
     
     // Get Model Method
     public function getModel($model='')
@@ -61,6 +66,8 @@ class Controller
         }
     }
     
+    
+    // Debug Utility Method
     public function debug($debug_data="")
     {
         echo "<pre><h1>[Debug]</h1><hr/>";

@@ -187,8 +187,15 @@ class Shop extends Controller
     {
         $this->args = $args;
         $this->cart = Session::get("cart");
-        if($this->cart){
-
+        if($this->cart)
+        {
+            if(Session::get('auth')){
+                // Auth
+                
+            }else{
+                // NO Auth
+                
+            }
         }
     }
 

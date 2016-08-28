@@ -43,7 +43,11 @@ jQuery(document).ready(function(){
     function unLockContinue()
     {
         jQuery("#link_continue").removeAttr("disabled");
-        jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/Shop/review");
+        <?php if(Session::get('auth')): ?>
+            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/Shop/review");
+        <?php else: ?>
+            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/User/register/redirect/Shop/review");
+        <?php endif;?>
     }
     
     <?php if( isset( Session::get("cart")->payment_id )): ?>

@@ -3,7 +3,7 @@
         <span class="glyphicon glyphicon-pushpin"></span>
         <strong><?=Lang::$review;?></strong> <?=Lang::$purchase;?>
 
-        <a href="<?=Config::$web_path;?>/Shop/buy" class="btn btn-lg btn-info">
+        <a href="<?=Config::$web_path;?>/Shop/buy" class="btn btn-info">
             <span class="glyphicon glyphicon-ok"></span>
             <?=Lang::$confirm_and_pay;?>
         </a>

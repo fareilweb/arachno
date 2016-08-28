@@ -1,13 +1,23 @@
 <div class="registration">
     <form role="form" action="<?=Config::$web_path?>/User/registerProcess" method="post">
         <!-- Hidden Data ========================================================= -->
-        <input type="hidden" name="redirect" 
-            value="<?php 
-                if(isset($data->args[0]) && $data->args[0]=='redirect'){
-                    foreach($data->args as $key=>$value){
-                        if($key>0){ echo '/'.$value; }
-                    }
-                }?>" />
+        <!-- Redirect -->
+        <?php 
+            $red="";
+            $red_url = Config::$web_path;
+            $red_key = array_search('redirect', $this->args);
+            
+            echo $red_key;
+            
+            if($red_key !== FALSE){
+                for($i=($red_key+1); $i < count($this->args); $i++){
+                    $red_url.= '/' . $this->args[$i];
+                }
+                $red = $red_url;
+            }
+        ?>
+        <input type="hidden" name="redirect" value="<?=$red;?>" />
+        
         <!-- Data ================================================================ -->
         <div class="form-group">
             <label for="user_name">Nome</label>
