@@ -117,7 +117,7 @@
                     <!-- Images ========================================== -->
                     <div class="row"><hr/>
                     <?php foreach($this->item->item_images as $item_image): ?>
-                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 item_image_col">
                             <div class="item_image_wrapper">
                                 <div class="item_image">
                                     <img src="<?=Config::$web_path . $item_image->image_src;?>" alt="<?=$item_image->image_alt;?>" title="<?=$item_image->image_title;?>" />
