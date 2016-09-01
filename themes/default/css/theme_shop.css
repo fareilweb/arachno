@@ -110,10 +110,11 @@
 }
 .item .item_main_image img{
     width: 70%;
+    box-shadow: 0px 0px 12px #222;
 }
 /* Item Image */
 .item .item_image_col{
-    background: red;
+    
 }
 .item .item_image_wrapper{
     width: 100%;
@@ -123,13 +124,16 @@
     width: 100%;
 }
 .item .item_image img{
-    width: 100%;
+    width: 90%;
     height: auto;
+    margin: 10%;
+    box-shadow: 0px 0px 12px #222;
 }
 .item .item_image_title{
      float: left;
      width: 100%;
 }
+
 
 
 /*==============================================================================*

@@ -175,28 +175,13 @@ class Shop extends Controller
 
     }
 
-    // Payment 
-    function pay($args=NULL)
-    {
-        $this->args = $args;
-
-    }
 
     // Buy
     function buy($args=NULL)
     {
         $this->args = $args;
         $this->cart = Session::get("cart");
-        if($this->cart)
-        {
-            if(Session::get('auth')){
-                // Auth
-                
-            }else{
-                // NO Auth
-                
-            }
-        }
+        
     }
 
     // Show Cart

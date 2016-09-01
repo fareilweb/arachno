@@ -1,6 +1,6 @@
 <?php
 // Set to 0 once you're ready to go live
-define("USE_SANDBOX", 0);
+define("USE_SANDBOX", 1);
 
 if(USE_SANDBOX == 1) {
      //sandbox
