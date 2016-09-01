@@ -124,12 +124,12 @@
 }
 .item .item_image img{
     width: 100%;
+    height: auto;
 }
 .item .item_image_title{
      float: left;
      width: 100%;
 }
-
 
 
 /*==============================================================================*
