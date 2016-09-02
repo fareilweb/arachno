@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 -- 
 -- Host: sql.dia-techshop.it
--- Generato il: 01 Set, 2016 at 07:53 PM
+-- Generato il: 02 Set, 2016 at 08:05 PM
 -- Versione MySQL: 5.1.49
 -- Versione PHP: 4.3.10-22
 -- 
