@@ -1,7 +1,18 @@
 <script>
     
     jQuery(window).load(function(){
-        jQuery("#page-preloader").hide();	
+        jQuery("#page-preloader").hide();
+        
+        jQuery("img").each(function(index, elem){
+
+            if(jQuery(this).attr("src") === ""){
+            
+            }
+            if(jQuery(this).error()){
+            
+            }
+        });
+        
     });
 
     jQuery(document).ready(function () {
@@ -27,4 +38,5 @@
         }
 
     });
+
 </script>
