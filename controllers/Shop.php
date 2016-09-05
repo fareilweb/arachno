@@ -155,11 +155,20 @@ class Shop extends Controller
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         $this->cart = Session::get("cart");
+        
+        foreach($this->cart->items as $item){
+            $item_tot = $item->item_price * $item->quantity;
+            $this->cart->total += $item_tot;
+        }
+        
         $this->shipping = $this->getModel('ShippingModel');
         $this->shipping->load($this->cart->shipping_id);
+        
         $this->payment = $this->getModel('PaymentModel');
         $this->payment->load($this->cart->payment_id);
 
+        Session::set("cart", $this->cart);
+        
         // Views
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/review', 'main-content');        
@@ -175,6 +184,14 @@ class Shop extends Controller
 
     }
 
+    
+    // Pay
+    function pay($args=NULL)
+    {
+        $this->args = $args;
+        
+    }
+    
 
     // Buy
     function buy($args=NULL)
@@ -182,11 +199,16 @@ class Shop extends Controller
         $this->args = $args;
         $this->cart = Session::get("cart");
         
+        $this->storeSale($this->cart);
+        
+        $this->pay($this->cart);
+        
     }
 
     // Show Cart
     function cart($args=NULL)
     {
+        
         $this->args = $args;
         $this->cart = Session::get("cart");
         
@@ -273,6 +295,7 @@ class Shop extends Controller
             $this->cart->items = array();
             $this->cart->shipping_id = NULL;
             $this->cart->payment_id = NULL;
+            $this->cart->total = 0;
         }
         
         // Get Item Data
