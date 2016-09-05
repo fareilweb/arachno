@@ -151,14 +151,14 @@ class Shop extends Controller
     function review($args=NULL)
     {
         $this->args = $args;
-
+        
         // Get Data
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         $this->cart = Session::get("cart");
-        
+        $this->total = 0;
         foreach($this->cart->items as $item){
             $item_tot = $item->item_price * $item->quantity;
-            $this->cart->total += $item_tot;
+            $this->total += $item_tot;
         }
         
         $this->shipping = $this->getModel('ShippingModel');
@@ -167,8 +167,6 @@ class Shop extends Controller
         $this->payment = $this->getModel('PaymentModel');
         $this->payment->load($this->cart->payment_id);
 
-        Session::set("cart", $this->cart);
-        
         // Views
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/review', 'main-content');        
@@ -176,33 +174,47 @@ class Shop extends Controller
         
     }
 
-
-    // Store Sale
-    function storeSale($args=NULL)
-    {
-        $this->args = $args;
-
-    }
-
-    
     // Pay
-    function pay($args=NULL)
-    {
+    function pay($args=NULL){
         $this->args = $args;
         
     }
     
+    // Confirm Sale
+    function saleConfirmEmail($args=NULL){
+        $this->args = $args;
+        
+    }
 
     // Buy
     function buy($args=NULL)
     {
         $this->args = $args;
         $this->cart = Session::get("cart");
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
-        $this->storeSale($this->cart);
+        $sale_model = $this->getModel('SaleModel');
+        $ins_res = $sale_model->insert();
         
-        $this->pay($this->cart);
+        if(!$ins_res){
+            
+            $this->error = TRUE;
+            $this->notice = Lang::$operation_fail;
+            
+        }else{
+            
+            $pay_res = $this->pay($this->cart);
+            
+            if(!$pay_res){
+                $this->error = TRUE;
+                $this->notice = Lang::$operation_fail;
+            }else{
+                $this->notice = Lang::$sale_confirm;
+            }
+            
+        }
         
+        $this->getView('pages/page_default');
     }
 
     // Show Cart
@@ -219,8 +231,7 @@ class Shop extends Controller
         $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/cart', 'main-content');        
         $this->getView('pages/page_default');
-        
-        //Session::destroy();        
+            
     }
 
     // Set Selected Shipping Method To Cart
@@ -295,7 +306,6 @@ class Shop extends Controller
             $this->cart->items = array();
             $this->cart->shipping_id = NULL;
             $this->cart->payment_id = NULL;
-            $this->cart->total = 0;
         }
         
         // Get Item Data

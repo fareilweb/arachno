@@ -2,16 +2,10 @@
     <h2>
         <span class="glyphicon glyphicon-pushpin"></span>
         <strong><?=Lang::$review;?></strong> <?=Lang::$purchase;?>
-
-        <a href="<?=Config::$web_path;?>/Shop/buy" class="btn btn-info">
-            <span class="glyphicon glyphicon-ok"></span>
-            <?=Lang::$confirm_and_pay;?>
-        </a>
     </h2>
 
     <div class="row">
-        <h3><strong><?=Lang::$products;?></strong></h3>
-        <hr/>
+        <h3><strong><?=Lang::$products;?></strong></h3><br/>
         
         <?php foreach($this->cart->items as $item):?>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -52,7 +46,6 @@
     <br/>
     <div class="row">   
         <br/><h3><strong><?=Lang::$shipping;?></strong></h3>
-        <hr/>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <!--$this->cart->shipping_id-->
             <h4><?=$this->shipping->shipping_name;?></h4>
@@ -62,11 +55,30 @@
     <br/>
     <div class="row">
         <br/><h3><strong><?=Lang::$payment;?></strong></h3>
-        <hr/>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             <!--$this->cart->payment_id-->
             <h4><?=$this->payment->payment_name;?></h4>
         </div>
     </div>
-
+    
+    <br/>
+    <div class="row">   
+        <br/><h3><strong><?=Lang::$total;?></strong></h3>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <!--$this->cart->shipping_id-->
+            <h4>&euro; <?=$this->total;?></h4>
+        </div>
+    </div>
+    
+    <div class="row">
+        <hr/>
+        <br/>
+        <div class="col-xs-0 col-sm-0 col-md-0 col-lg-0">
+            <a href="<?=Config::$web_path;?>/Shop/buy" class="btn-lg btn-info">
+                <span class="glyphicon glyphicon-ok"></span>
+                <?=Lang::$confirm_and_pay;?>
+            </a>
+        </div>
+    </div>
+    
 </div>

@@ -15,6 +15,7 @@ class Lang
     public static $goodbye = "A Presto";
     public static $warning = "Attenzione";
     public static $confirm_and_pay = "Conferma e Paga";
+    public static $sale_confirm = "L'Acquisto &egrave; stato effettuato. &Egrave; stata inviata una email di conferma all'indirizzo inserito.";
     public static $error = "Errore";
     public static $select = "Seleziona";
     public static $yes = "S&igrave;";
@@ -48,6 +49,7 @@ class Lang
     public static $id = "ID";
     public static $price = "Prezzo";
     public static $cost = "Costo";
+    public static $total = "Totale";
     public static $details = "Dettagli";
     public static $meta_desc = "Descrizione Meta Tag";
     public static $meta_keys = "Parole Chiave Meta Tag";
