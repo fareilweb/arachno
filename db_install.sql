@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2016 at 07:42 PM
+-- Generation Time: Sep 05, 2016 at 10:04 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -268,6 +268,24 @@ CREATE TABLE `acms_payments_has_items` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `acms_sales`
+--
+
+CREATE TABLE `acms_sales` (
+  `sale_id` int(11) NOT NULL,
+  `sale_timstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sale_cart_json` text NOT NULL,
+  `sale_total` decimal(10,0) NOT NULL DEFAULT '0',
+  `payment_status` tinyint(1) DEFAULT '0',
+  `shipping_status` tinyint(1) DEFAULT '0',
+  `fk_user_id` int(11) NOT NULL,
+  `fk_payment_id` int(11) NOT NULL,
+  `fk_shipping_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `acms_shippings`
 --
 
@@ -473,7 +491,8 @@ CREATE TABLE `acms_users` (
 
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
 (1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
-(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
+(21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
+(39, '2016-09-05 17:51:05', 0, '45fbc6d3e05ebd93369ce542e8f2322d', 'registered', 'Pinco', 'Pallino', 'pinco@pallino.it', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
 -- Indexes for dumped tables
@@ -541,6 +560,12 @@ ALTER TABLE `acms_payments_has_items`
   ADD PRIMARY KEY (`fk_payment_id`,`fk_item_id`),
   ADD KEY `fk_acms_payments_has_acms_shop_items_acms_shop_items1_idx` (`fk_item_id`),
   ADD KEY `fk_acms_payments_has_acms_shop_items_acms_payments1_idx` (`fk_payment_id`);
+
+--
+-- Indexes for table `acms_sales`
+--
+ALTER TABLE `acms_sales`
+  ADD PRIMARY KEY (`sale_id`);
 
 --
 -- Indexes for table `acms_shippings`
@@ -615,6 +640,11 @@ ALTER TABLE `acms_pages`
 ALTER TABLE `acms_payments`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `acms_sales`
+--
+ALTER TABLE `acms_sales`
+  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `acms_shippings`
 --
 ALTER TABLE `acms_shippings`
@@ -638,7 +668,7 @@ ALTER TABLE `acms_shop_items_images`
 -- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
