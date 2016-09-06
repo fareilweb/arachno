@@ -1,4 +1,5 @@
 <div class="container-fluid review">
+    
     <h2>
         <span class="glyphicon glyphicon-pushpin"></span>
         <strong><?=Lang::$review;?></strong> <?=Lang::$purchase;?>

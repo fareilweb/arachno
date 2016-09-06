@@ -194,6 +194,16 @@ class Shop extends Controller
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
         $sale_model = $this->getModel('SaleModel');
+            
+            $sale_model->sale_timstamp;
+            $sale_model->sale_cart_json;
+            $sale_model->sale_total;
+            $sale_model->payment_status;
+            $sale_model->shipping_status;
+            $sale_model->fk_user_id;
+            $sale_model->fk_payment_id;
+            $sale_model->fk_shipping_id;
+            
         $ins_res = $sale_model->insert($this->cart);
         
         if(!$ins_res){
@@ -203,9 +213,9 @@ class Shop extends Controller
             
         }else{
             
-            $email_res = $this->sendSaleConfirm($ins_res);
+            //$email_res = $this->sendSaleConfirm($ins_res);
 
-            $pay_res = $this->pay($this->cart);
+            //$pay_res = $this->pay($this->cart);
             
             if(!$pay_res){
                 $this->error = TRUE;
