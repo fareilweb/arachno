@@ -177,7 +177,7 @@ class Shop extends Controller
     // Pay
     function pay($sale_id=NULL){
         
-
+        return TRUE;
     }
     
     // Confirm Sale
@@ -194,32 +194,34 @@ class Shop extends Controller
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
         $sale_model = $this->getModel('SaleModel');
-            
-            $sale_model->sale_timstamp;
-            $sale_model->sale_cart_json;
-            $sale_model->sale_total;
-            $sale_model->payment_status;
-            $sale_model->shipping_status;
-            $sale_model->fk_user_id;
-            $sale_model->fk_payment_id;
-            $sale_model->fk_shipping_id;
-            
-        $ins_res = $sale_model->insert($this->cart);
+        $sale_model->sale_timestamp = date('Y-m-d H:i:s');
+        $sale_model->sale_cart_json = json_encode($this->cart, TRUE);
+        $sale_model->sale_total = 0;
+        foreach($this->cart->items as $item){
+            $sale_model->sale_total += ($item->item_price * $item->quantity);
+        }
+        $sale_model->payment_status = 0;
+        $sale_model->shipping_status = 0;
+        $sale_model->fk_user_id = Session::get("registered_user_id");
+        $sale_model->fk_payment_id = $this->cart->payment_id;
+        $sale_model->fk_shipping_id = $this->cart->shipping_id;
+        
+        $ins_res = $sale_model->insert();
         
         if(!$ins_res){
             
             $this->error = TRUE;
-            $this->notice = Lang::$operation_fail;
+            $this->notice = Lang::$operation_fail . " (ins)";
             
         }else{
             
-            //$email_res = $this->sendSaleConfirm($ins_res);
+            $email_res = $this->sendSaleConfirm($ins_res);
 
-            //$pay_res = $this->pay($this->cart);
+            $pay_res = $this->pay($this->cart);
             
             if(!$pay_res){
                 $this->error = TRUE;
-                $this->notice = Lang::$operation_fail;
+                $this->notice = Lang::$operation_fail . " (pay)";
             }else{
                 $this->notice = Lang::$sale_confirm;
             }
