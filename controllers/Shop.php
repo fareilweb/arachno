@@ -175,15 +175,15 @@ class Shop extends Controller
     }
 
     // Pay
-    function pay($args=NULL){
-        $this->args = $args;
+    function pay($sale_id=NULL){
         
+
     }
     
     // Confirm Sale
-    function saleConfirmEmail($args=NULL){
-        $this->args = $args;
+    function sendSaleConfirm($sale_id=NULL){
         
+        return TRUE;
     }
 
     // Buy
@@ -194,7 +194,7 @@ class Shop extends Controller
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
         $sale_model = $this->getModel('SaleModel');
-        $ins_res = $sale_model->insert();
+        $ins_res = $sale_model->insert($this->cart);
         
         if(!$ins_res){
             
@@ -203,6 +203,8 @@ class Shop extends Controller
             
         }else{
             
+            $email_res = $this->sendSaleConfirm($ins_res);
+
             $pay_res = $this->pay($this->cart);
             
             if(!$pay_res){

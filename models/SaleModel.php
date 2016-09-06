@@ -3,8 +3,9 @@
 class SaleModel extends Model
 {
 
-    function insert($data=NULL)
+    function insert($cart=NULL)
     {
+        
         
     }
     
