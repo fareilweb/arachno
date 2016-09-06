@@ -202,7 +202,7 @@ class Shop extends Controller
         }
         $sale_model->payment_status = 0;
         $sale_model->shipping_status = 0;
-        $sale_model->fk_user_id = Session::get("registered_user_id");
+        Session::get("auth") ? $sale_model->fk_user_id = Session::get("user_data")->user_id : $sale_model->fk_user_id = Session::get("registered_user_id");
         $sale_model->fk_payment_id = $this->cart->payment_id;
         $sale_model->fk_shipping_id = $this->cart->shipping_id;
         
@@ -227,6 +227,7 @@ class Shop extends Controller
             }
             
         }
+        
         
         $this->getView('pages/page_default');
     }
