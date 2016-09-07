@@ -219,12 +219,10 @@ class Shop extends Controller
                 return FALSE;
             }else{
                 
-                $payment = $this->getModel('PaymentModel');
-                $payment->load($this->sale->fk_payment_id);
-                
-                //$this->debug($this->sale);
-                
-                $this->includeView('shop/pay_'.$payment->payment_slug, 'main-content');
+                $this->payment = $this->getModel('PaymentModel');
+                $this->payment->load($this->sale->fk_payment_id);
+            
+                $this->includeView('shop/pay_'.$this->payment->payment_slug, 'main-content');
                 
                 return TRUE;
             }
