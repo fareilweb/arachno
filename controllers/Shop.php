@@ -6,6 +6,8 @@ class Shop extends Controller
     public function index($args){
         // Get Args
         $this->args = $args;
+        $this->includeView('nav/main_menu', 'header-content');
+        $this->getView('pages/page_default');
     }
     
     /* =========================================================================
@@ -192,9 +194,9 @@ class Shop extends Controller
         $sale_model->fk_payment_id = $this->cart->payment_id;
         $sale_model->fk_shipping_id = $this->cart->shipping_id;
         
-        $ins_res = $sale_model->insert();
+        $insert_id_res = $sale_model->insert();
         
-        return $ins_res;
+        return $insert_id_res;
     }
 
     
@@ -210,15 +212,22 @@ class Shop extends Controller
     function pay($sale_id=NULL){
         if ($sale_id !== NULL)
         {
-            $sale_model = $this->getModel('SaleModel');
-            $this->sale = $sale_model->load($sale_id);
+            $this->sale = $this->getModel('SaleModel');
+            $this->sale->load($sale_id);
+            
             if(!$this->sale){
                 return FALSE;
             }else{
                 
+                $payment = $this->getModel('PaymentModel');
+                $payment->load($this->sale->fk_payment_id);
+                
+                //$this->debug($this->sale);
+                
+                $this->includeView('shop/pay_'.$payment->payment_slug, 'main-content');
+                
                 return TRUE;
             }
-            
         }
     }
     
@@ -226,23 +235,22 @@ class Shop extends Controller
     // Buy
     function buy($args=NULL)
     {
-        $this->args = $args;
         $this->cart = Session::get("cart");
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
-        $store_res = $this->storeSale();
-        if(!$store_res){
+        $store_insert_id = $this->storeSale();
+        if(!$store_insert_id){
             
             $this->error = TRUE;
             $this->notice = Lang::$operation_fail . " (store)";
             
         }else{
             
-            if(!$this->sendSaleConfirm($store_res)){
+            if(!$this->sendSaleConfirm($store_insert_id)){
                 $this->error = TRUE;
                 $this->notice = Lang::$operation_fail . " (email)";
             }else{
-                if(!$this->pay($store_res)){
+                if(!$this->pay($store_insert_id)){
                     $this->error = TRUE;
                     $this->notice = Lang::$operation_fail . " (pay)";
                 }
@@ -250,7 +258,7 @@ class Shop extends Controller
             
         }
         
-        $this->getView('pages/page_default');
+        $this->index($args);
     }
 
     // Show Cart

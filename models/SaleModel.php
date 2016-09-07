@@ -34,8 +34,8 @@ class SaleModel extends Model
         if(!$res){
             return FALSE;
         }else{
-            $this->sale_id = $res;
-            return $res;
+            $this->sale_id = $this->mysqli->insert_id;
+            return $this->sale_id;
         }
     }
     
@@ -44,7 +44,7 @@ class SaleModel extends Model
     {
         $this->sale_id = $sale_id; 
         
-        $query = "SELECT * FROM _sales WHERE sale_id = '$sale_id'";
+        $query = "SELECT * FROM #_sales WHERE sale_id = '$sale_id'";
         $data = $this->getObjectData($query);
         if(!$data){
             return FALSE;

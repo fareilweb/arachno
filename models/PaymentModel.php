@@ -4,6 +4,7 @@ class PaymentModel extends Model
 {
     /* Properties */
     private $payment_id = NULL;
+    private $payment_slug = NULL;
     private $payment_name = NULL;
     private $payment_cost = NULL;
     private $payment_status = NULL;
@@ -30,9 +31,9 @@ class PaymentModel extends Model
             $query = "SELECT * FROM #_payments WHERE payment_id = $payment_id; ";
             $data = $this->getArrayData($query);
             if($data!==FALSE AND $data!==0){
-                foreach($data as $ship_k => $ship_v){
-                    if(property_exists($this, $ship_k)){
-                        $this->$ship_k = $ship_v;
+                foreach($data as $key => $val){
+                    if(property_exists($this, $key)){
+                        $this->$key = $val;
                     }
                 }
             }else{
@@ -54,11 +55,13 @@ class PaymentModel extends Model
         $query = 
             "INSERT INTO #_payments (
                 payment_name, 
+                payment_slug,
                 payment_cost, 
                 payment_details, 
                 payment_status
             ) VALUES (
                 '$this->payment_name', 
+                '$this->payment_slug', 
                 '$this->payment_cost', 
                 '$this->payment_details', 
                 '$this->payment_status'
@@ -84,11 +87,12 @@ class PaymentModel extends Model
         $query = 
             "UPDATE #_payments 
              SET " .
-                "payment_name      = '" . $data['payment_name'] . "'," . 
-                "payment_cost      = '" . $data['payment_cost'] . "'," . 
-                "payment_details   = '" . $data['payment_details'] . "'," . 
-                "payment_status    = '" . $data['payment_status'] . "'" .
-             "WHERE payment_id = " . $data['payment_id'] . "; ";
+                "payment_name      = '$this->payment_name', " . 
+                "payment_slug      = '$this->payment_name', " . 
+                "payment_cost      = '$this->payment_cost', " . 
+                "payment_details   = '$this->payment_details'," . 
+                "payment_status    = '$this->payment_status'" .
+             "WHERE payment_id = '$this->payment_id';";
 
         if(!$this->queryExec($query)){
             return FALSE;
