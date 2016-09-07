@@ -39,4 +39,22 @@ class SaleModel extends Model
         }
     }
     
+    
+    function load($sale_id)
+    {
+        $this->sale_id = $sale_id; 
+        
+        $query = "SELECT * FROM _sales WHERE sale_id = '$sale_id'";
+        $data = $this->getObjectData($query);
+        if(!$data){
+            return FALSE;
+        }else{
+            foreach((array)$this as $field => $value){
+                if(!in_array($field, $this->excluded)){
+                    $this->$field = $data->$field;
+                }
+            }
+        }
+    }
+    
 }

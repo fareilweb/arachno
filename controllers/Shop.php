@@ -147,6 +147,7 @@ class Shop extends Controller
         $this->getView('pages/page_default');
     }
 
+    
     // Cart Review
     function review($args=NULL)
     {
@@ -174,6 +175,7 @@ class Shop extends Controller
         
     }
 
+    
     // Insert Current Sale Into DB
     function storeSale(){
         
@@ -195,38 +197,59 @@ class Shop extends Controller
         return $ins_res;
     }
 
-    // Pay
-    function pay($sale_id=NULL){
-        
-        return TRUE;
-    }
     
     // Confirm Sale
     function sendSaleConfirm($sale_id=NULL){
-        
-        return TRUE;
+        if ($sale_id !== NULL){
+            return TRUE;
+        }
     }
 
+    
+    // Pay
+    function pay($sale_id=NULL){
+        if ($sale_id !== NULL)
+        {
+            $sale_model = $this->getModel('SaleModel');
+            $this->sale = $sale_model->load($sale_id);
+            if(!$this->sale){
+                return FALSE;
+            }else{
+                
+                return TRUE;
+            }
+            
+        }
+    }
+    
+    
     // Buy
     function buy($args=NULL)
     {
         $this->args = $args;
         $this->cart = Session::get("cart");
         $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
-        if(!$this->storeRes()){
+        
+        $store_res = $this->storeSale();
+        if(!$store_res){
+            
             $this->error = TRUE;
             $this->notice = Lang::$operation_fail . " (store)";
+            
         }else{
-            if(!$this->sendSaleConfirm($ins_res)){
+            
+            if(!$this->sendSaleConfirm($store_res)){
                 $this->error = TRUE;
                 $this->notice = Lang::$operation_fail . " (email)";
             }else{
-                if(!$this->pay($this->cart)){
+                if(!$this->pay($store_res)){
                     $this->error = TRUE;
                     $this->notice = Lang::$operation_fail . " (pay)";
                 }
             }
+            
         }
+        
         $this->getView('pages/page_default');
     }
 
