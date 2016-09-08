@@ -19,15 +19,15 @@ $cancel_url = Config::$web_path.'/Shop/paypal/cancel';
 $ipn_url = Config::$web_path.'/Shop/paypal/ipn';
 
 // Dati Transazione
-$item_name = "Prenotazione/Acquisto Lancio/i";
-$item_price = $data->total_price;
-$shipping_price = "";
-$custom_info = Session::get('sale_id');
+$item_name = ""; // Item Name (Subject)
+$item_price = 0; // Total Price
+$shipping_price = ""; // Shipping Pricw
+$custom_info = ""; // Sale ID
 
-// Dati Acquirente
-$first_name = "";//Session::get('user_data')->user_name;
-$last_name = "";//Session::get('user_data')->user_surname;
-$address1 = "";//Session::get('user_data')->user_email;
+// Client Data
+$first_name = "";
+$last_name = "";
+$address1 = "";
 $city = "";
 $state = "";
 $zip = "";
