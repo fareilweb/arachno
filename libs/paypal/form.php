@@ -39,9 +39,9 @@ $this_folder_web_path = Config::$web_path.'/libs/paypal';
 
 ?>
 
-<form method="post" name="paypal_form" id="paypal_form" action="<?php echo $paypal_url; ?>">
+<form method="post" name="paypal_form" id="paypal_form" action="<?=$paypal_url; ?>">
 
-    <input type="hidden" name="business" value="<?php echo $paypal_email; ?>" />
+    <input type="hidden" name="business" value="<?=$paypal_email; ?>" />
     <input type="hidden" name="cmd" value="_xclick" />
 
     <!-- Settings -->
@@ -86,7 +86,7 @@ $this_folder_web_path = Config::$web_path.'/libs/paypal';
 <!-- Auto Submit -->
 <script>
 	jQuery(document).ready(function(){
-		jQuery("#paypal_form").submit();	
+	//	jQuery("#paypal_form").submit();	
 	});
 </script>
 

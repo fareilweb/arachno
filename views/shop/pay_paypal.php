@@ -6,7 +6,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <?=$this->debug($this->sale);?>
             <?=$this->debug($this->payment);?>
+            <?php require(Config::$abs_path . '/libs/paypal/form.php');?>
         </div>
     </div>
+
     
 </div>
