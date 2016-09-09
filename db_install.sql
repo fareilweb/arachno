@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2016 at 10:04 PM
+-- Generation Time: Sep 09, 2016 at 07:39 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -239,20 +239,21 @@ INSERT INTO `acms_pages` (`page_id`, `page_slug`, `fk_author_user_id`, `page_tit
 
 CREATE TABLE `acms_payments` (
   `payment_id` int(11) NOT NULL,
-  `payment_name` varchar(80) DEFAULT NULL,
+  `payment_name` varchar(80) NOT NULL,
+  `payment_slug` varchar(80) DEFAULT NULL,
   `payment_cost` float DEFAULT NULL,
   `payment_details` text,
-  `payment_status` tinyint(1) DEFAULT '0'
+  `payment_status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `acms_payments`
 --
 
-INSERT INTO `acms_payments` (`payment_id`, `payment_name`, `payment_cost`, `payment_details`, `payment_status`) VALUES
-(1, 'PayPal', 3, 'Nessuno Dettaglio', 1),
-(2, 'PostePay', 1, 'Nessuno Dettaglio', 1),
-(3, 'Bonifico', 0, 'Nessuno Dettaglio', 1);
+INSERT INTO `acms_payments` (`payment_id`, `payment_name`, `payment_slug`, `payment_cost`, `payment_details`, `payment_status`) VALUES
+(1, 'PayPal', 'paypal', 3, 'Nessuno Dettaglio', 1),
+(2, 'PostePay', 'postepay', 1, 'Nessuno Dettaglio', 1),
+(3, 'Bonifico', 'bank', 0, 'Nessuno Dettaglio', 1);
 
 -- --------------------------------------------------------
 
@@ -273,7 +274,7 @@ CREATE TABLE `acms_payments_has_items` (
 
 CREATE TABLE `acms_sales` (
   `sale_id` int(11) NOT NULL,
-  `sale_timstamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sale_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sale_cart_json` text NOT NULL,
   `sale_total` decimal(10,0) NOT NULL DEFAULT '0',
   `payment_status` tinyint(1) DEFAULT '0',
@@ -282,6 +283,19 @@ CREATE TABLE `acms_sales` (
   `fk_payment_id` int(11) NOT NULL,
   `fk_shipping_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `acms_sales`
+--
+
+INSERT INTO `acms_sales` (`sale_id`, `sale_timestamp`, `sale_cart_json`, `sale_total`, `payment_status`, `shipping_status`, `fk_user_id`, `fk_payment_id`, `fk_shipping_id`) VALUES
+(32, '2016-09-07 18:47:27', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":"2"}],"shipping_id":"4","payment_id":"1"}', '190', 0, 0, 43, 1, 4),
+(33, '2016-09-07 18:48:17', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":"2"}],"shipping_id":"4","payment_id":"1"}', '190', 0, 0, 43, 1, 4),
+(34, '2016-09-07 18:48:29', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":"2"}],"shipping_id":"4","payment_id":"1"}', '190', 0, 0, 43, 1, 4),
+(35, '2016-09-07 18:48:59', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":"2"}],"shipping_id":"4","payment_id":"1"}', '190', 0, 0, 43, 1, 4),
+(36, '2016-09-07 18:49:23', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":"2"}],"shipping_id":"4","payment_id":"1"}', '190', 0, 0, 43, 1, 4),
+(37, '2016-09-08 19:55:01', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":1}],"shipping_id":"4","payment_id":"1"}', '95', 0, 0, 44, 1, 4),
+(38, '2016-09-08 19:57:31', '{"items":[{"item_id":"49","item_code":"051212001","item_categories":{"8":"on","9":"on","10":"on","11":"on","12":"on","13":"on","14":"on","15":"on"},"item_status":"1","item_stock":"5","item_price":"95","item_title":"NADALu00ae - Calprotectina - 10 test","item_weight":"","item_colors":"","item_short_desc":"Test qualitativo in cassetta per la determinazione della calprotectina nelle feci","item_long_desc":"","item_meta_keywords":"","item_meta_description":"","fk_lang_id":"1","item_images":[{"image_id":"81","image_src":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_24_Sunday_11_29_27___heart-4.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"86","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_11___butterfly-1.jpg","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"89","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-2.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-2.png","image_title":"","image_alt":"","is_main":"0","fk_item_id":"49"},{"image_id":"90","image_src":"/views/images/shop/items/2016_July_31_Sunday_20_11_12___heart-3.png","image_path":"/views/images/shop/items/2016_July_24_Sunday_11_29_27___heart-4.jpg","image_name":"2016_July_31_Sunday_20_11_12___heart-3.png","image_title":"","image_alt":"","is_main":"1","fk_item_id":"49"}],"quantity":1}],"shipping_id":"4","payment_id":"1"}', '95', 0, 0, 44, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -492,7 +506,7 @@ CREATE TABLE `acms_users` (
 INSERT INTO `acms_users` (`user_id`, `user_reg_date`, `user_activation`, `hash_user_activation`, `user_type`, `user_name`, `user_surname`, `user_email`, `user_phone`, `user_mobile_phone`, `user_password`, `fk_lang_id`) VALUES
 (1, '2016-04-20 17:04:46', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Luca', 'Cilfone', 'info@fareilweb.com', '3270158630', '3270158630', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
 (21, '2016-07-02 22:00:00', 1, '36660e59856b4de58a219bcf4e27eba3', 'admin', 'Admin', 'DiaTech', 'info@dia-tech.it', '000999888', '3334445556', '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1),
-(39, '2016-09-05 17:51:05', 0, '45fbc6d3e05ebd93369ce542e8f2322d', 'registered', 'Pinco', 'Pallino', 'pinco@pallino.it', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
+(44, '2016-09-08 19:54:58', 0, '05049e90fa4f5039a8cadc6acbb4b2cc', 'registered', 'Pinco', 'Pall', 'pinco@pallino.it', '000999888', NULL, '$1$rasmusle$C9Hxb8sS4oYt1e5VbQc0I.', 1);
 
 --
 -- Indexes for dumped tables
@@ -643,7 +657,7 @@ ALTER TABLE `acms_payments`
 -- AUTO_INCREMENT for table `acms_sales`
 --
 ALTER TABLE `acms_sales`
-  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `acms_shippings`
 --
@@ -668,7 +682,7 @@ ALTER TABLE `acms_shop_items_images`
 -- AUTO_INCREMENT for table `acms_users`
 --
 ALTER TABLE `acms_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
