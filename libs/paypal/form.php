@@ -18,20 +18,37 @@ $confirm_url = Config::$web_path.'/Shop/paypal/confirm';
 $cancel_url = Config::$web_path.'/Shop/paypal/cancel';
 $ipn_url = Config::$web_path.'/Shop/paypal/ipn';
 
+/*
+    <!--?=$this->sale->sale_timestamp;?-->
+    <!--?=$this->sale->sale_cart_json;?-->
+    <!--?=$this->sale->payment_status;?-->
+    <!--?=$this->sale->shipping_status;?-->
+    <!--?=$this->sale->fk_user_id;?-->
+    <!--?=$this->sale->fk_payment_id;?-->
+    <!--?=$this->sale->fk_shipping_id;?-->
+    
+    <!--?=$this->payment->payment_id;?-->
+    <!--?=$this->payment->payment_slug;?-->
+    <!--?=$this->payment->payment_name;?-->
+    <!--?=$this->payment->payment_cost;?-->
+    <!--?=$this->payment->payment_status;?-->
+    <!--?=$this->payment->payment_details;?-->
+*/
+
 // Dati Transazione
-$item_name = ""; // Item Name (Subject)
-$item_price = 0; // Total Price
+$item_name = Lang::$purchase . " " . Config::$site_name; // Item Name
+$tot_price = $this->sale->sale_total; // Total Price
 $shipping_price = ""; // Shipping Pricw
-$custom_info = ""; // Sale ID
+$custom_info = $this->sale->sale_id; // Sale ID
 
 // Client Data
-$first_name = "";
-$last_name = "";
+$first_name = $this->customer->user_name;
+$last_name = $this->customer->user_surname;
 $address1 = "";
 $city = "";
 $state = "";
 $zip = "";
-$email = "";
+$email = $this->customer->user_email;
 
 
 // So can link images or object in this folder without change anything bottom
@@ -64,7 +81,7 @@ $this_folder_web_path = Config::$web_path.'/libs/paypal';
 
     <!-- informazioni sul prodotto -->
     <input type="hidden" name="item_name" value="<?=$item_name?>" />
-    <input type="hidden" name="amount" value="<?=$item_price?>" />
+    <input type="hidden" name="amount" value="<?=$tot_price?>" />
 
     <!-- informazioni sulla vendita -->
     <input type="hidden" name="custom" value="<?=$custom_info?>" />

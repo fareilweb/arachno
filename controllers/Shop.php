@@ -218,10 +218,13 @@ class Shop extends Controller
             if(!$this->sale){
                 return FALSE;
             }else{
-            
+                // Payment Data
                 $this->payment = $this->getModel('PaymentModel');
                 $this->payment->load($this->sale->fk_payment_id);
-            
+                // User Data 
+                $this->customer = $this->getModel('UserModel');
+                $this->customer->loadUserById($this->sale->fk_user_id);
+
                 $this->includeView('shop/pay_'.$this->payment->payment_slug, 'main-content');
                 
                 return TRUE;
