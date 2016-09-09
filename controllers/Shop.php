@@ -218,7 +218,7 @@ class Shop extends Controller
             if(!$this->sale){
                 return FALSE;
             }else{
-                
+            
                 $this->payment = $this->getModel('PaymentModel');
                 $this->payment->load($this->sale->fk_payment_id);
             
