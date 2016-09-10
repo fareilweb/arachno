@@ -148,11 +148,10 @@ class Shop extends Controller
         $this->index($args);
     }
 
-    
+    // Shipping Address
     function shipping_address($args=NULL){
         $this->args = $args;
         $this->cart = Session::get("cart");
-        
         
         $this->includeView('shop/shipping_address', 'main-content');
         $this->index($args);
@@ -202,7 +201,12 @@ class Shop extends Controller
         Session::get("auth") ? $sale_model->fk_user_id = Session::get("user_data")->user_id : $sale_model->fk_user_id = Session::get("registered_user_id");
         $sale_model->fk_payment_id = $this->cart->payment_id;
         $sale_model->fk_shipping_id = $this->cart->shipping_id;
-        
+        $sale_model->shipping_address = $this->cart->shipping_address;
+        $sale_model->shipping_zip = $this->cart->shipping_zip;
+        $sale_model->shipping_city = $this->cart->shipping_city;
+        $sale_model->shipping_province = $this->cart->shipping_province;
+        $sale_model->shipping_state = $this->cart->shipping_state;
+
         $insert_id_res = $sale_model->insert();
         
         return $insert_id_res;
@@ -213,6 +217,28 @@ class Shop extends Controller
     function sendSaleConfirm($sale_id=NULL){
         if ($sale_id !== NULL){
             return TRUE;
+        }
+    }
+
+
+    function paypal($args=NULL){
+        switch($args[0])
+        {
+            case 'confirm': // Confirm Return Url
+
+            break;
+
+            case 'cancel': // Cancel Return Url
+
+            break;
+
+            case 'ipn': // PayPal IPN Url
+
+            break;
+
+            default:
+                // nothing...
+            break;
         }
     }
 
@@ -246,7 +272,7 @@ class Shop extends Controller
     function buy($args=NULL)
     {
         $this->cart = Session::get("cart");
-        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
+        //$this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         
         $store_insert_id = $this->storeSale();
         if(!$store_insert_id){
@@ -271,6 +297,7 @@ class Shop extends Controller
         $this->index($args);
     }
 
+
     // Show Cart
     function cart($args=NULL)
     {
@@ -287,6 +314,7 @@ class Shop extends Controller
         $this->getView('pages/page_default');
             
     }
+
 
     // Set Selected Shipping Method To Cart
     function setShipping($args=NULL)
@@ -317,7 +345,31 @@ class Shop extends Controller
         }
     }
 
-    
+
+    // Set Shipping Address to Session
+    function setShippingAddress($args=NULL)
+    {
+        $this->args = $args;
+        if(isset($this->post['shipping_address']))
+        { 
+            $this->cart = Session::get("cart");
+            if(!$this->cart){
+                echo json_encode(["status"=>FALSE, "message"=>"err_no_cart"], TRUE);
+            }else{
+                $this->cart->shipping_address = $this->post['shipping_address'];
+                $this->cart->shipping_zip = $this->post['shipping_zip'];
+                $this->cart->shipping_city = $this->post['shipping_city'];
+                $this->cart->shipping_province = $this->post['shipping_province'];
+                $this->cart->shipping_state = $this->post['shipping_state'];
+                if(!Session::set("cart", $this->cart)){
+                    echo json_encode(["status"=>FALSE, "message"=>"err_set_cart_failed"], TRUE);
+                }else{
+                    echo json_encode(["status"=>TRUE, "message"=>"err_set_cart_success"], TRUE);
+                }
+            }
+        }
+    }
+
     
     // Set Selected Payment Method To Cart
     function setPayment($args=NULL)
@@ -347,6 +399,7 @@ class Shop extends Controller
             echo json_encode(["status"=>FALSE, "message"=>"err_no_payment_data"], TRUE);
         }
     }
+
 
     // Add An Item To Aart
     function addToCart($args=NULL)
@@ -392,6 +445,7 @@ class Shop extends Controller
         }
         
     }
+
     
     // Remove An Item To Cart
     function removeFromCart($args=NULL)
@@ -421,6 +475,7 @@ class Shop extends Controller
         }
     }
     
+
     // Update Quantity Of An Item To The Cart
     function updateQuantity($args=NULL)
     {

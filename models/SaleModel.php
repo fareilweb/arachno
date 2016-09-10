@@ -15,6 +15,7 @@ class SaleModel extends Model
     public $shipping_address=NULL;
     public $shipping_zip=NULL;
     public $shipping_city=NULL;
+    public $shipping_province=NULL;
     public $shipping_state=NULL;
     
     function insert()

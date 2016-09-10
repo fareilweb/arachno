@@ -10,7 +10,7 @@ class Lang
     /* Edit From Here ----------------------------------------------------------*/
     public static $language = "Lingua";
     public static $select_language = "Seleziona la lingua";
-    public static $welcome = "Benvenuto";
+    public static $welcome = "Benvenuto";    
     public static $hello = "Ciao";
     public static $goodbye = "A Presto";
     public static $warning = "Attenzione";
@@ -33,11 +33,10 @@ class Lang
     public static $activation_success = "Attivazione Riuscita";
     public static $account_still_not_active = "Account non Ancora Attivato";
     public static $activation_email_subject = "Completa Attivazione Account";
-    public static $complete_activation = "Controlla la Posta Elettronica e Segui le istruzioni per Completare L'Attivazione";
-    public static $complete_activation = "Completa Attivazione Account";
+    public static $check_email_to_complete_activation = "Controlla la Posta Elettronica e Segui le istruzioni per Completare L'Attivazione";
     public static $user_already_registered = "L'E-Mail Inserita &egrave; gi&agrave; Registrata. Completa L'Attivazione o Accedi.";
     public static $err_activation_email = "Invio E-Mail di Attivazione Fallito.";
-    public static $access_denied = 'Accesso Negato';
+    public static $access_denied = "Accesso Negato";
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";
     public static $add = "Aggiungi";
@@ -86,6 +85,11 @@ class Lang
     public static $available = "Disponibile";
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
+    public static $address = "Indirizzo";
+    public static $zip_code = "CAP";
+    public static $city = "Citt&agrave;";
+    public static $province = "Provincia";
+    public static $state = "Stato";
     public static $shipping = "Spedizione";
     public static $shipping_address = "Indirizzo di Spedizione";
     public static $shippings = "Spedizioni";

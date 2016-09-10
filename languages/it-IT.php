@@ -36,7 +36,7 @@ class Lang
     public static $check_email_to_complete_activation = "Controlla la Posta Elettronica e Segui le istruzioni per Completare L'Attivazione";
     public static $user_already_registered = "L'E-Mail Inserita &egrave; gi&agrave; Registrata. Completa L'Attivazione o Accedi.";
     public static $err_activation_email = "Invio E-Mail di Attivazione Fallito.";
-    public static $access_denied = 'Accesso Negato';
+    public static $access_denied = "Accesso Negato";
     public static $err_login = "Accesso Fallito";
     public static $err_logout = "Disconnessione Fallita";
     public static $add = "Aggiungi";
@@ -85,6 +85,11 @@ class Lang
     public static $available = "Disponibile";
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
+    public static $address = "Indirizzo";
+    public static $zip_code = "CAP";
+    public static $city = "Citt&agrave;";
+    public static $province = "Provincia";
+    public static $state = "Stato";
     public static $shipping = "Spedizione";
     public static $shipping_address = "Indirizzo di Spedizione";
     public static $shippings = "Spedizioni";

@@ -26,7 +26,12 @@ $ipn_url = Config::$web_path.'/Shop/paypal/ipn';
     <!--?=$this->sale->fk_user_id;?-->
     <!--?=$this->sale->fk_payment_id;?-->
     <!--?=$this->sale->fk_shipping_id;?-->
-    
+    $this->sale->shipping_address;
+    $this->sale->shipping_zip;
+    $this->sale->shipping_city;
+    $this->sale->shipping_province;
+    $this->sale->shipping_state;
+
     <!--?=$this->payment->payment_id;?-->
     <!--?=$this->payment->payment_slug;?-->
     <!--?=$this->payment->payment_name;?-->
@@ -44,10 +49,10 @@ $custom_info = $this->sale->sale_id; // Sale ID
 // Client Data
 $first_name = $this->customer->user_name;
 $last_name = $this->customer->user_surname;
-$address1 = "";
-$city = "";
-$state = "";
-$zip = "";
+$address1 =$this->sale->shipping_address;
+$city = $this->sale->shipping_city;
+$state = $this->sale->shipping_province . ', ' . $this->sale->shipping_state;
+$zip = $this->sale->shipping_zip;
 $email = $this->customer->user_email;
 
 
@@ -102,8 +107,8 @@ $this_folder_web_path = Config::$web_path.'/libs/paypal';
 
 <!-- Auto Submit -->
 <script>
-	jQuery(document).ready(function(){
-	//	jQuery("#paypal_form").submit();	
-	});
+jQuery(document).ready(function(){
+    jQuery("#paypal_form").submit();	
+});
 </script>
 

@@ -53,6 +53,19 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <label><?=Lang::$shipping_address;?></label>
+            <p>
+                <?=$this->cart->shipping_address;?>
+                <br/><?=$this->cart->shipping_zip;?> - 
+                <?=$this->cart->shipping_city;?>
+                <br/><?=$this->cart->shipping_province;?>, 
+                <?=$this->cart->shipping_state;?>
+            </p>
+        </div>
+    </div>
+
     <br/>
     <div class="row">
         <br/><h3><strong><?=Lang::$payment;?></strong></h3>
