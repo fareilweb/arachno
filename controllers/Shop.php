@@ -6,6 +6,7 @@ class Shop extends Controller
     public function index($args){
         // Get Args
         $this->args = $args;
+        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1); // TODO - Get The Menu Id From DB in relation withPage and Position
         $this->includeView('nav/main_menu', 'header-content');
         $this->getView('pages/page_default');
     }
@@ -139,16 +140,24 @@ class Shop extends Controller
         $this->cart = Session::get("cart");
         
         // Get Data
-        $this->menus["main_menu"] = $this->getModel('MenuModel')->selectMenuDataById(1);
         $shop_model = $this->getModel('ShopModel');
         $this->shippings = $shop_model->getShippings();
         
         // Views
-        $this->includeView('nav/main_menu', 'header-content');
         $this->includeView('shop/shipping', 'main-content');
-        $this->getView('pages/page_default');
+        $this->index($args);
     }
 
+    
+    function shipping_address($args=NULL){
+        $this->args = $args;
+        $this->cart = Session::get("cart");
+        
+        
+        $this->includeView('shop/shipping_address', 'main-content');
+        $this->index($args);
+    }
+    
     
     // Cart Review
     function review($args=NULL)

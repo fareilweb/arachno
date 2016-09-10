@@ -12,6 +12,10 @@ class SaleModel extends Model
     public $fk_user_id=NULL;
     public $fk_payment_id=NULL;
     public $fk_shipping_id=NULL;
+    public $shipping_address=NULL;
+    public $shipping_zip=NULL;
+    public $shipping_city=NULL;
+    public $shipping_state=NULL;
     
     function insert()
     {

@@ -86,6 +86,7 @@ class Lang
     public static $unavailable = "Non Disponibile";
     public static $name = "Nome";
     public static $shipping = "Spedizione";
+    public static $shipping_address = "Indirizzo di Spedizione";
     public static $shippings = "Spedizioni";
     public static $edit_shipping = "Modifica/Aggiungi Spedizione";
     public static $payment = "Pagamento";

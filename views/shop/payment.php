@@ -44,9 +44,9 @@ jQuery(document).ready(function(){
     {
         jQuery("#link_continue").removeAttr("disabled");
         <?php if(Session::get('auth')): ?>
-            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/Shop/review");
+            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/Shop/shipping_address");
         <?php else: ?>
-            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/User/register/redirect/Shop/review");
+            jQuery("#link_continue").attr("href", "<?=Config::$web_path;?>/User/register/redirect/Shop/shipping_address");
         <?php endif;?>
     }
     
