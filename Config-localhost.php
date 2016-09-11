@@ -9,7 +9,7 @@ class Config
     public static $db_user 	= 'root';
     public static $db_pass 	= 'luca1981';
     public static $db_prefix    = 'acms_';
-    public static $theme 	= 'default';
+    public static $theme 	= 'diatechshop';
     public static $default_lang = 'it-IT';//'en-GB';
     public static $owner_email	= 'user@provider.ext';
     public static $site_name = 'www.nomesito.dom';
