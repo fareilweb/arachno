@@ -1,13 +1,20 @@
+/*
+Colors Palette
+#2F4D73 - Blu Scuro
+#2F90C8 - Blu Chiaro
+#236198 - Testo
+*/
+
 
 /*=============================================================================*
  * General Style
  *=============================================================================*/
 html, body{
-    color: #222;
+    color: #236198;
     /*background: url("../images/bg-pattern.png");*/
 }
 a{
-    color: #7ecff4;
+    color: #236198;
 }
 
 
@@ -43,7 +50,6 @@ a{
 }
 
 
-
 /*=============================================================================*
  * Header
  *=============================================================================*/
@@ -53,7 +59,6 @@ header{
 header .header-content{
     
 }
-
 
 
 /*=============================================================================*
@@ -66,7 +71,6 @@ input[type='radio']{
 select, option{
     color: #222;
 }
-
 
 
 /*=============================================================================*
@@ -90,7 +94,6 @@ select, option{
 }
 
 
-
 /*=============================================================================*
  * Footer
  *=============================================================================*/
@@ -98,10 +101,14 @@ footer{
     min-height: 164px;
     margin-top: 24px;
     margin-bottom: 0;
-    background: #EBEBEB;
+    background: #2F4D73; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #2F4D73 , #2F90C8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #2F4D73, #2F90C8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,#2F4D73, #2F90C8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #2F4D73, #2F90C8); /* Standard syntax */
 }
 footer .footer-content{
-    
+
 }
 
 
@@ -215,8 +222,6 @@ td.text-right {
  *==============================================================================*/
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
-
-
 
 /* Small Devices/Extra Small, Tablets, Phones ==================================*/
 @media only screen and (min-width: 768px) {

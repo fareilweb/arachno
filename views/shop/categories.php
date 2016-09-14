@@ -19,7 +19,7 @@
                                 </h3>
                             </div>
                             <div class="category_image">
-                                <img src="<?=$curr_category->category_image_src;?>" alt="<?=$curr_category->category_name;?>" title="<?=$curr_category->category_name;?>" />
+                                <img src="<?=Config::$web_path . $curr_category->category_image_src;?>" alt="<?=$curr_category->category_name;?>" title="<?=$curr_category->category_name;?>" />
                             </div>
                             
                             <div class="category_links">

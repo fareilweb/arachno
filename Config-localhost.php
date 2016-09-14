@@ -2,7 +2,7 @@
 class Config
 {
     public static $abs_path     = 'D:\xampp\htdocs\arachno';
-    public static $web_path     = 'http://localhost/arachno';
+    public static $web_path     = 'http://192.168.1.11/arachno';
     public static $home_slug 	= 'home';
     public static $db_host 	= 'localhost';
     public static $db_name 	= 'arachno';
