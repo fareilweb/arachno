@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'nasalizationfree';
-    src: url('fonts/nasalizationfree.eot');
-    src: url('fonts/nasalizationfree.eot') format('embedded-opentype'),
-         url('fonts/nasalizationfree.woff2') format('woff2'),
-         url('fonts/nasalizationfree.woff') format('woff'),
-         url('fonts/nasalizationfree.ttf') format('truetype'),
-         url('fonts/nasalizationfree.svg#nasalizationfree') format('svg');
-}
