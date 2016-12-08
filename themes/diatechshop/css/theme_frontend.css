@@ -1,0 +1,609 @@
+/*=============================================================================*
+ * Fonts Include 
+ *=============================================================================*/
+@import "../fonts/thesans/stylesheet.css";
+
+/* ====================================
+Colors Palette
+    - Footer:       #203d6b -> #408fd4
+    - Blu Scuro:    #235599
+    - Blu Chiaro:   #367fb6
+
+ * ==================================== */
+
+/* General Style Rules */
+html, body{
+    font-family: "thesanslight";
+    color: #367fb6;
+    /*background: url("../images/bg-pattern.png");*/
+}
+a{
+    color: #367fb6;  
+}
+a:hover,
+a:active,
+a:focus{
+    color: #235599;
+    background: none;
+}
+
+h1, h2, h3, h4, h4, h6{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+/* Forms Elements */
+input[type='radio']{
+    width: 20px;
+    height: 20px;
+}
+select, option{
+    color: #222;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #367fb6 !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #367fb6 !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #367fb6 !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #367fb6 !important;    
+}
+
+/* Icons */
+.icon{ margin: 0 3px 0 3px; }
+.icon24{width:24px; height:24px; font-size:24px; margin:0; padding:0;}
+.icon32{width:32px; height:32px; font-size:32px; margin:0; padding:0;}
+.icon48{width:48px; height:48px; font-size:48px; margin:0; padding:0;}
+.icon64{width:64px; height:64px; font-size:64px; margin:0; padding:0;}
+
+
+/* Custom Buttons */
+.btn-white{
+    background: #ffffff;
+    color: #367fb6;
+    border-radius:initial;
+}
+
+/* Notices Box */
+#notice{
+    background: #7ecff4;
+    color: #fcfcfc;
+    font-size: 14pt;
+    text-align: center;
+}
+#notice.error{
+    background: red;
+}
+#notice.warning{
+    background: yellow;
+    color: #222;
+}
+
+
+/* Page Content */
+.container-fluid.content{
+    max-width: 1152px;
+}
+.main-logo{
+
+}
+.page-title{
+    
+}
+/* Boxes */
+.blue-box{
+    width: 100%;
+    padding: 36px;
+    background: #235599;
+    color: #ffffff;
+    border-radius: 36px 0px 36px 0px;
+}
+.blue-box a{
+    color: #ffffff;
+}
+/* Wide Boxes */
+.wide-box{
+    overflow: hidden;
+}
+.wide-box .bg-wrapper{
+    border-radius: 36px 0px 36px 0px;
+    height: 512px;
+    background-position: top center; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.wide-box .icon-wrapper{
+    top: -128px;
+    height: 256px;
+    margin-bottom: -128px;
+    background-position: top center !important;
+    -webkit-background-size: auto 256px !important;
+    -moz-background-size: auto 256px !important;
+    -o-background-size: auto 256px !important;
+    background-size: auto 256px !important;
+}
+
+
+/* Top Bar */
+.top{
+    background: #2F4D73; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #203d6b , #408fd4); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #203d6b, #408fd4); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,#203d6b, #408fd4); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #203d6b, #408fd4); /* Standard syntax */
+    color: #ffffff;
+}
+.top-bar{
+    
+}
+.top-bar #navbar{
+    min-height: 64px;
+    background: url('../images/icon+.png') no-repeat center center;
+    -moz-background-size: auto 80%;
+    -webkit-background-size: auto 80%;
+    background-size: auto 80%;
+}
+.top-bar ul.menu{
+    
+}
+.top-bar ul.menu li{
+    
+}
+.top-bar ul.menu li a,
+.top-bar ul.menu li a:hover,
+.top-bar ul.menu li a:active,
+.top-bar ul.menu li a:focus{
+    color:#ffffff;
+    background: none;
+}
+
+
+/* Header */
+.container-fluid.header{
+    max-width: 1152px;
+}
+header{
+    
+}
+header .header-content{
+    
+}
+header .header-left{
+    
+}
+header .header-right{
+    
+}
+header .logo img{
+    width:70%;
+    margin: 5% 10% 5% 10%;
+}
+header .menu-wrapper{
+    float: left;
+}
+header .menu-wrapper#main_menu{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 3%;
+    font-size:11pt;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+header .menu-wrapper#shop_menu{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 3%;
+    font-size:13pt;
+    font-weight: bold;
+} 
+
+
+
+
+/* Menus/Navigation */
+
+/* Bootstrap NavBar */
+#navbar ul.nav{
+
+}
+#navbar ul.nav{
+    
+}
+#navbar ul.nav li{
+    
+}
+#navbar ul.nav li a{
+    
+}
+#navbar ul.nav li a:hover{
+    
+}
+/* General Menus Rules */
+div.menu-wrapper{
+    
+}
+ul.menu{
+    list-style:none;
+}
+ul.menu li{
+    
+}
+ul.menu li.current{
+    
+}
+ul.menu li a{
+    
+}
+/* Main Menu */
+div.menu-wrapper#menu-main ul{
+    
+}
+div.menu-wrapper#menu-main ul li{
+    
+}
+div.menu-wrapper#menu-main ul li{
+    
+}
+div.menu-wrapper#menu-main ul li a{
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+
+/* Footer */
+footer{
+    min-height: 164px;
+    margin-top: 24px;
+    margin-bottom: 0;
+    background: #2F4D73; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #203d6b , #408fd4); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #203d6b, #408fd4); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right,#203d6b, #408fd4); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #203d6b, #408fd4); /* Standard syntax */
+}
+footer .footer-content{
+    color: #ffffff;
+}
+footer .footer-content a{
+    color: #ffffff;
+}
+footer .footer-left{
+
+}
+footer .footer-left img{
+    width: 90%;
+    max-width: 160px;
+    margin: 5%;
+}
+footer .footer-center{
+
+}
+footer .footer-center .footer-copy{
+    padding:12px 0 12px 0;
+}
+footer .footer-center .footer-copy hr{
+    margin: 6px;
+}
+footer .footer-right{
+
+}
+footer .menu-wrapper{
+    margin: 24px auto 24px auto;
+    text-align: left;
+}
+footer .menu-wrapper a{
+    color: #fff;
+}
+
+
+/* NewsLetter */
+.form-newsletter-subscribe{
+    display: table-cell;
+    vertical-align: middle;
+    width: 240px;
+    height: 168px;
+    padding: 3% 1% 3% 1%;
+}
+.form-newsletter-subscribe input.email-input{
+    background: none;
+    border-radius:initial;
+}
+.form-newsletter-subscribe button.btn-white{
+    background: #ffffff;
+    color: #235599;
+    font-weight: bold;
+    border-radius:initial;
+    margin-left: 5px;
+}
+.form-newsletter-subscribe .newsletter-info{
+    font-size:10pt;
+    line-height: 1;
+}
+.form-newsletter-subscribe input.email-input::-webkit-input-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input::-moz-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input:-ms-input-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input:-moz-placeholder { color: #FFFFFF !important;}
+
+
+/* ============================================================================ * 
+    Shop Style 
+ * ============================================================================ */
+
+/* Categories List View */
+.categories{
+    
+}
+.categories .categories_list{
+    
+}
+.categories .category_wrapper{
+    
+}
+.categories .category_wrapper .category_title{
+    
+}
+.categories .category_wrapper .category_image{
+    
+}
+.categories .category_wrapper .category_image img{
+    width: 100%;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+
+
+
+/* Items List View */
+.items{}
+.items .items_list{}
+.items .current_item_wrapper{}
+.items .current_item{
+    width: 100%;
+}
+.items .current_item:hover{
+
+}
+.items .current_item a{
+    text-decoration: none;
+    color: #235599;
+}
+.items .current_item a:hover,
+.items .current_item a:focus,
+.items .current_item a:active{
+    text-decoration: none;
+    color: #367fb6;
+}
+.items .current_item_title{
+    padding: 0px 3px 0px 3px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+.items .current_item_image{
+    width: 100%;
+    text-align: center;
+}
+.items .current_item_image img{
+    width:100%;
+    height: auto;
+    width: 100%;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+.items .current_item_price{
+    padding: 3px;
+    font-size: 22pt;
+    text-align: center;
+}
+.items .category_children_list{
+    
+}
+.items .category_children_list a{
+    font-size: 13pt;
+}
+.items .category_children_list a:hover{
+    text-decoration: underline;
+}
+
+
+
+/* Item View */
+.item{
+    margin: 12px 6% 12px 6%;
+}
+.item .item_wrapper .item_title h2{
+    text-transform:none;
+}
+.item .item_wrapper .box{
+    padding:18px;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+.item .item_wrapper .field{
+    padding: 24px 12px;
+    border-bottom: 1px solid #367fb6;
+}
+/* Main Item Image */
+.item .item_wrapper .item_main_image{
+    text-align: center;
+}
+.item .item_wrapper .item_main_image img{
+    width: 100%;
+    background: #367fb6;
+}
+/* Item Image */
+.item .item_wrapper .item_image_wrapper{
+    width: 100%;
+}
+.item .item_wrapper .item_image{
+    float: left;
+    width: 100%;
+}
+.item .item_wrapper .item_image img{
+    width: 90%;
+    height: auto;
+    margin: 10%;
+}
+.item .item_wrapper .item_image_title{
+     float: left;
+     width: 100%;
+}
+
+
+
+/* ============================================================================ *  
+    Home Page 
+ * ============================================================================ */ 
+.container-fluid.boxes{
+    /* See Bottom Media Queries
+    margin-left: 8%;
+    margin-right: 8%;
+    */
+}
+.home-page .box{
+    border: 1px solid #367fb6;
+    margin: 24px auto 24px auto;
+    background-size: 100%;
+}
+.home-page .box_1{ background: url("../images/wide-pediatria.png") no-repeat top center;} /* Pediatria */
+.home-page .box_2{ background: url("../images/wide-ginecologia.png") no-repeat top center;} /* Ginecologia */
+.home-page .box_3{ background: url("../images/wide-gastroenterologia.png") no-repeat top center;} /* Gastroenterologia */
+.home-page .box_4{ background: url("../images/wide-laboratorio.png") no-repeat top center;} /* Laboratorio */
+.home-page .box_5{ background: url("../images/wide-allergologia.png") no-repeat top center;} /* Allergologia */
+.home-page .box.right{border-radius: 36px 0px 36px 0px;}
+.home-page .box.left{border-radius: 0px 36px 0px 36px;}
+.home-page .box a.box-link{
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    background: #367FB6;
+    color: #fff;
+    border: 3px solid #fff;
+}
+.home-page .box a.box-link.right{right: -18px; }
+.home-page .box a.box-link.left{ left: -18px; }
+.home-page .box a.box-link .link-title{
+    font-size:14pt;
+}
+.home-page .box a.box-link .link-action{
+    font-size:12pt;
+    font-style: italic;
+}
+.home-page .box a.box-link .link-action .glyphicon{
+    font-weight: bolder;
+}
+.home-page .box table{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height:512px;
+}
+.home-page .box img.icon-image{
+    position: relative;
+    width: 100%;
+}
+.home-page .box img.icon-image.right{
+    right: -55%;
+}
+.home-page .box img.icon-image.left{
+    left: -55%;
+}
+
+
+
+/* Info Request Form  - Chi Siamo */
+.form-to-right{
+    float:left;
+    width: 46%;
+    margin: 2%;
+}
+.form-to-right .box{
+    width:100%;
+    padding: 36px;
+    background: #235599;
+    color: #ffffff;
+    border-radius: 36px 0px 36px 0px;
+}
+.form-to-right h2{
+    margin: 12px 0 46px 0;
+    text-align: center;
+}
+.form-info-request{
+    float:left;
+    width: 46%;
+    margin: 2%;
+}
+.form-info-request .box{
+    width: 100%;
+    min-height: 733px;
+    background: #367fb6;
+    padding: 36px; 
+    color: #ffffff;
+    border-radius: 36px 0px 36px 0px;
+}
+.form-info-request h2{
+    margin: 12px 0 46px 0;
+    text-align: center;
+}
+.form-info-request input{
+    min-height: 46px;
+    border-radius: 12px;
+}
+.form-info-request textarea{
+    min-height: 160px;
+    border-radius: 12px;
+}
+.form-info-request .btn-lg{
+    background: #ffffff;
+    color: #222222;
+    border-radius:12px;
+}
+
+
+
+/*==============================================================================*
+ * Bootstrap Media Queries
+ *==============================================================================*/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small Devices/Extra Small, Tablets, Phones ==================================*/
+@media only screen and (max-width: 768px) {
+    .form-to-right{
+        width: 100%;
+    }
+    .form-info-request{
+        width: 100%;
+    }
+    .container-fluid.boxes{
+        margin-left: 14%;
+        margin-right: 14%;
+    }
+}
+/* Big Tablets, Netbooks, ecc. ================================================*/
+@media only screen and (min-width: 769px) {
+    .main-content{
+        min-height: 256px;
+    }
+    .container-fluid.boxes{
+        margin-left: 14%;
+        margin-right: 14%;
+    }
+}
+/* Medium Devices, Desktops ====================================================*/
+@media only screen and (min-width: 1000px) {
+    .main-content{
+        min-height:512px;
+    }
+    .container-fluid.boxes{
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+}
+/* Large Devices, Wide Screens =================================================*/

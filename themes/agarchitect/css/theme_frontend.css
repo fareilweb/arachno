@@ -1,0 +1,678 @@
+/*=============================================================================*
+ * Fonts Include
+ *============================================================================*/
+@import "../fonts/DaxlinePro/stylesheet.css";
+
+/*
+  Colors Palette
+    Marrone Header bg:  #110f0e | rgb(17, 15, 14)
+    Marrone Body bg:    #231f20 | rgb(35, 31, 32)
+    Color Oro:          #7A6C45
+*/
+
+/* General Style Rules ------------------------------------------------------ */
+html, body{
+    background: #231f20;
+    font-family: "DaxlinePro";
+    color: #ffffff;
+    /*background: url("../images/bg-pattern.png");*/
+}
+a,
+a:hover,
+a:active,
+a:focus{
+    color: #ffffff;
+    background: none;
+}
+h1, h2, h3, h4, h4, h6{
+    font-weight: bold;
+}
+ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* Forms Elements ----------------------------------------------------------- */
+input[type='radio']{
+    width: 20px;
+    height: 20px;
+}
+select, option{
+    color: #222;
+}
+
+
+/* Placeholders ------------------------------------------------------------- */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #222222 !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #222222 !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #222222 !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #222222 !important;
+}
+
+
+/* Icons -------------------------------------------------------------------- */
+.icon{ margin: 0 3px 0 3px; }
+.icon24{width:24px; height:24px; font-size:24px; margin:0; padding:0;}
+.icon32{width:32px; height:32px; font-size:32px; margin:0; padding:0;}
+.icon48{width:48px; height:48px; font-size:48px; margin:0; padding:0;}
+.icon64{width:64px; height:64px; font-size:64px; margin:0; padding:0;}
+
+
+/* Custom Buttons ----------------------------------------------------------- */
+.btn-white{
+    background: #ffffff;
+    color: #222222;
+    border-radius:initial;
+}
+.align-middle-table{
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.align-middle-content{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+/* Notices Box -------------------------------------------------------------- */
+#notice{
+    background: #7ecff4;
+    color: #fcfcfc;
+    font-size: 14pt;
+    text-align: center;
+}
+#notice.error{
+    background: red;
+}
+#notice.warning{
+    background: yellow;
+    color: #222;
+}
+
+
+/* General Menus/Navigation ------------------------------------------------- */
+ul.menu{ list-style:none;}
+
+
+/* Page Content ------------------------------------------------------------- */
+.container-fluid.content{
+    margin-top: 96px;
+    /*max-width: 1152px;*/
+}
+
+
+/* Top Bar ------------------------------------------------------------------ */
+.top{
+    background: #cfcfcf;
+}
+.top-bar ul.menu li a,
+.top-bar ul.menu li a:hover,
+.top-bar ul.menu li a:active,
+.top-bar ul.menu li a:focus{
+    color:#ffffff;
+    background: none;
+}
+
+
+/* Header ------------------------------------------------------------------- */
+header{
+    background: #110f0e;
+}
+header .header-content{
+    border-bottom: 1px solid #ffffff;
+}
+header .header-left{
+    width: 100%;
+    height: 96px;
+    text-align: center;
+
+}
+header .logo{
+    float:left;
+    width: 100%;
+    height: 100%;
+}
+header .logo img{
+    max-height: 70px;
+}
+header .header-center{
+    width: 100%;
+    height: 96px;
+    text-align: center;
+}
+header .header-right{
+    width: 100%;
+    height: 96px;
+    text-align: center;
+}
+
+
+/* Header - Main Menu ------------------------------------------------------- */
+header .menu-wrapper{
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+header .menu-open{
+
+}
+header .menu-open img#icon_closed{
+
+}
+header .menu-open img#icon_open{
+    display: none;
+}
+header div.menu-box{
+    position: absolute;
+    top: 92px;
+    right: 0px;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 36px;
+    width: 100%;
+    height: 0px;
+    margin: 0px 0px 12px 0px;
+    overflow: hidden;
+    z-index: 999;
+}
+header div.menu-wrapper ul{
+    margin: 0;
+    padding: 24px 0 24px 0;
+}
+header div.menu-wrapper ul li a{
+    text-transform: lowercase;
+    font-size: 13pt;
+    font-weight: bold;
+    color: #231f20;
+    -webkit-transition: color 300ms;
+    transition: color 300ms;
+}
+header div.menu-wrapper ul li a:hover,
+header div.menu-wrapper ul li a:focus,
+header div.menu-wrapper ul li a.current{
+    color: #7A6C45;
+}
+header div.menu-wrapper ul.pages li{
+    margin: 0 6% 0 6%;
+    padding: 20px 0 20px 0;
+    border-top: 1px solid #231f20;
+}
+
+
+/* Header Right - Social Links ---------------------------------------------- */
+header .header-right-links{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+header .social-links{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+/* Footer ------------------------------------------------------------------- */
+footer{
+    /*
+    min-height: 164px;
+    margin-top: 24px;
+    margin-bottom: 0;
+    */
+}
+footer .footer-content{}
+footer .footer-content a{}
+footer .footer-left{}
+footer .footer-left img{
+  /*
+    width: 90%;
+    max-width: 160px;
+    margin: 5%;
+    */
+}
+footer .footer-center{}
+footer .footer-center .footer-copy{
+    /*padding:12px 0 12px 0;*/
+}
+footer .footer-center .footer-copy hr{
+    /*margin: 6px;*/
+}
+footer .footer-right{}
+
+
+/* Newsletter Box ----------------------------------------------------------- */
+.form-newsletter-subshowcaseribe{
+    display: table-cell;
+    vertical-align: middle;
+    width: 240px;
+    height: 168px;
+    padding: 3% 1% 3% 1%;
+}
+.form-newsletter-subscribe input.email-input{
+    background: #ffffff;
+    border-radius: initial;
+}
+.form-newsletter-subscribe button.btn-white{
+    background: #ffffff;
+    color: #222222;
+    font-weight: bold;
+    border-radius:initial;
+    margin-left: 5px;
+}
+.form-newsletter-subscribe .newsletter-info{
+    font-size:10pt;
+    line-height: 1;
+}
+/* Newsletter Input Custom Placeholders
+.form-newsletter-subscribe input.email-input::-webkit-input-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input::-moz-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input:-ms-input-placeholder { color: #FFFFFF !important; }
+.form-newsletter-subscribe input.email-input:-moz-placeholder { color: #FFFFFF !important;}
+*/
+
+
+/* Shop Style --------------------------------------------------------------- */
+/* Categories */
+.shop .categories .category_wrapper .category_image img{
+    width: 100%;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+/* Items List */
+.shop .items .current_item{
+    width: 100%;
+}
+.shop .items .current_item a{
+    text-decoration: none;
+    color: #235599;
+}
+.shop .items .current_item a:hover,
+.shop .items .current_item a:focus,
+.shop .items .current_item a:active{
+    text-decoration: none;
+    color: #367fb6;
+}
+.shop .items .current_item_title{
+    padding: 0px 3px 0px 3px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+.shop .items .current_item_image{
+    width: 100%;
+    text-align: center;
+}
+.shop .items .current_item_image img{
+    width:100%;
+    height: auto;
+    width: 100%;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+.shop .items .current_item_price{
+    padding: 3px;
+    font-size: 22pt;
+    text-align: center;
+}
+.shop .items .category_children_list a{
+    font-size: 13pt;
+}
+.shop .items .category_children_list a:hover{
+    text-decoration: underline;
+}
+/* Item View */
+.shop .item{
+    margin: 12px 6% 12px 6%;
+}
+.item .item_wrapper .item_title h2{
+    text-transform:none;
+}
+.shop .item .item_wrapper .box{
+    padding:18px;
+    border:1pt solid #235599;
+    border-radius: 24px 0px 24px 0px;
+}
+.shop .item .item_wrapper .field{
+    padding: 24px 12px;
+    border-bottom: 1px solid #367fb6;
+}
+/* Main Item Image */
+.shop .item .item_wrapper .item_main_image{
+    text-align: center;
+}
+.shop .item .item_wrapper .item_main_image img{
+    width: 100%;
+    background: #367fb6;
+}
+/* Item Image */
+.shop .item .item_wrapper .item_image_wrapper{
+    width: 100%;
+}
+.shop .item .item_wrapper .item_image{
+    float: left;
+    width: 100%;
+}
+.shop .item .item_wrapper .item_image img{
+    width: 90%;
+    height: auto;
+    margin: 10%;
+}
+.shop .item .item_wrapper .item_image_title{
+     float: left;
+     width: 100%;
+}
+
+
+/* Info Request Form -------------------------------------------------------- */
+.form-info-request{
+    float:left;
+    width: 46%;
+    margin: 2%;
+}
+.form-info-request .box{
+    width: 100%;
+    min-height: 733px;
+    padding: 36px;
+    background: #cfcfcf;
+    color: #222222;
+    border-radius: 36px 0px 36px 0px;
+}
+.form-info-request h2{
+    margin: 12px 0 46px 0;
+    text-align: center;
+}
+.form-info-request input{
+    min-height: 46px;
+    border-radius: 12px;
+}
+.form-info-request textarea{
+    min-height: 160px;
+    border-radius: 12px;
+}
+.form-info-request .btn-lg{
+    background: #ffffff;
+    color: #222222;
+    border-radius:12px;
+
+}
+
+
+/* Home Page ---------------------------------------------------------------- */
+.home table{
+    width: 100%;
+    height: 100%;
+}
+.home table tr td{
+    vertical-align: middle;
+    text-align: center;
+}
+.home table#home-table{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+.home table#home-table td{
+    text-align: center;
+}
+.home #logo-wrapper img{
+    width: 50%;
+    min-width: 160px;
+    max-width: 840px;
+}
+.home #text{
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 13pt;
+}
+.home table#home-footer{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    height: 36px;
+    border-top:1px solid #ffffff;
+    text-align: center;
+}
+.home table#home-footer td{
+    padding: 26px;
+}
+
+
+/* ShowCase Items List ------------------------------------------------------ */
+/* Heading */
+.showcase-items-list .heading-bg div{
+    height: calc(85vh - 96px);
+    background: url("../images/img-bg-room.png") no-repeat center center;
+    background-size: cover;
+}
+/* Banner */
+.showcase-items-list .banner > div {
+    position:relative;
+    height: 15vh;
+    background: #fff;
+}
+.showcase-items-list .banner > div img{
+    height: 12vh;
+    margin: 0;
+    padding: 0;
+}
+/* Icon Mouse */
+.showcase-items-list div.icon-mouse{
+    width: 100%;
+    height: 0px;
+    overflow: visible;
+    text-align: center;
+}
+.showcase-items-list div.icon-mouse img{
+    position: relative;
+    top: -120px;
+    width: 96px;
+    height: auto;
+    margin: 0 auto 0 auto;
+}
+/* Showcase Content */
+.showcase-items-list .container-fluid{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.showcase-items-list .content-item{
+    background: #ffffff;
+    margin-bottom: 30px;
+    border-radius: 48px;
+}
+.showcase-items-list .content-item img{
+    width: 100%;
+    margin: 0px;
+    border-radius: 44px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+.showcase-items-list .content-item:hover img{
+    opacity: 0.6;
+}
+.showcase-items-list .caption-container{
+    margin-top: 0px;
+    width: inherit;
+    height: 100%;
+    z-index: 999;
+    background: #fff;
+    overflow: visible;
+}
+.showcase-items-list .caption-content{
+    position: absolute;
+    top: 33%;
+    right: 0px;
+    left: 0px;
+    width: 100%;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+    /*text-shadow: 0px 0px 1px #fcfcfc;*/
+}
+.showcase-items-list .content-item .caption-container{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+.showcase-items-list .content-item:hover .caption-container{
+    opacity: 1;
+}
+
+
+/* Showcase Item ------------------------------------------------------------ */
+.showcase-item{
+    margin-top: 48px;
+}
+.showcase-item .top-box{
+
+}
+.showcase-item .image{
+
+}
+.showcase-item .image img{
+    width: 100%;
+}
+/* Fix Custom Scroll Plugin Width */ .overview{ width: 100%; }
+.showcase-item .description .content{
+    width: 100%;
+    height: 100%;
+}
+.showcase-item .title{
+    text-align: center;
+    margin: 0 0 24px 0;
+}
+.showcase-item .title h1,
+.showcase-item .title h2,
+.showcase-item .title h3{
+    margin: 0;
+    padding: 0;
+}
+.showcase-item .data{
+    margin: 48px auto;
+    border-top: 1px solid #ffffff;
+}
+.showcase-item .field{
+    margin: 24px 0 24px 0;
+}
+.showcase-item .field .label{
+    padding: 0;
+    font-size: 13pt;
+    font-weight: bold;
+}
+.showcase-item .gallery{
+      margin-top: 30px;
+}
+.showcase-item .gallery-image img{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.showcase-item .gallery-slideshow{
+    position: fixed;
+    top: 96px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.9);
+}
+.showcase-item .gallery-slideshow img{
+    width: 640px;
+    margin: 8% auto auto auto;
+}
+.showcase-item .gallery-slideshow .control{
+    position: fixed;
+    padding-top: 16%;
+    text-align: center;
+}
+.showcase-item .gallery-slideshow a{
+    font-size: 64px;
+}
+
+
+/* User Login --------------------------------------------------------------- */
+.login{
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: table;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+.login form{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+/* =========================================================================== *
+    Media Queries
+ * ========================================================================== */
+/* Small Devices/Extra Small, Tablets, Phones ------------------------------- */
+@media only screen and (max-width: 768px) {
+    header .logo{
+        text-align: left;
+    }
+    header .logo img{
+        max-width: 90%;
+    }
+    header div.menu-box{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+    }
+    .container-fluid.content{
+        margin-top: initial;
+    }
+    .showcase-items-list .banner{
+        display: table;
+    }
+    .showcase-items-list .banner > div{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .showcase-items-list .banner > div img{
+        width: 100%;
+        height: auto;
+        margin: 8% auto;
+    }
+}
+/* Big Tablets, Netbooks, ecc. ---------------------------------------------- */
+@media only screen and (min-width: 769px) {
+    .main-content{min-height: 256px;}
+    .home .main-content{min-height: initial;}
+    header{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        z-index: 999;
+    }
+    .showcase-item .description{
+        position: fixed;
+        top: 145px;
+        right: 0px;
+        bottom: 0px;
+    }
+}
+/* Medium Devices, Desktops ------------------------------------------------- */
+@media only screen and (min-width: 1000) {
+    .main-content{min-height:512px;}
+}
+/* Large Devices, Wide showcasereens ---------------------------------------- */
+@media only screen and (min-width: 1366px){
+    .main-content{min-height:640px;}
+}
