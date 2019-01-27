@@ -29,23 +29,23 @@ class App
 		$this->RegisterAutoloaders();
 		$parsedUrl = $this->ParseUrl();
 		if ($parsedUrl) {
-            // If $parsedUrl[0] is a controller
+// If $parsedUrl[0] is a controller
 			if ($this->IncludeController($parsedUrl[0])) {
 				unset($parsedUrl[0]);
 
 				$this->controller_instance = new $this->controller;
 
-                // Method. If $parsedUrl[0] is a controller AND $parsedUrl[1] is a method
+// Method. If $parsedUrl[0] is a controller AND $parsedUrl[1] is a method
 				if (isset($parsedUrl[1]) && method_exists($this->controller_instance, $parsedUrl[1])) {
 					$this->method = $parsedUrl[1];
 					unset($parsedUrl[1]);
 				}
 			} else {
-				// If $parsedUrl[0] is NOT a controller try to run method of default controller
+// If $parsedUrl[0] is NOT a controller try to run method of default controller
 				$this->IncludeController($this->default_controller);
 				$this->controller_instance = new $this->default_controller;
 
-                // If $parsedUrl[0] is a method
+// If $parsedUrl[0] is a method
 				if (method_exists($this->controller_instance, $parsedUrl[0])) {
 					$this->method = $parsedUrl[0];
 					unset($parsedUrl[0]);
@@ -53,13 +53,13 @@ class App
 
 			}
 
-            /* Get and Set params from the remaining $parsedUrl vars */
+/* Get and Set params from the remaining $parsedUrl vars */
 			$this->params = $parsedUrl ? array_values($parsedUrl) : array();
 
-            /* Call controller and method, and passing the parameters */
+/* Call controller and method, and passing the parameters */
 			call_user_func_array(array($this->controller_instance, $this->method), array($this->params));
 		} else {
-			/* If the $parsedUrl is EMPTY use Default controller/methods with empty args */
+/* If the $parsedUrl is EMPTY use Default controller/methods with empty args */
 			$this->IncludeController($this->default_controller);
 			$this->controller_instance = new $this->default_controller;
 			call_user_func_array(array($this->controller_instance, $this->method), array($this->params));
